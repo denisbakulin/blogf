@@ -1,0 +1,37 @@
+# Byte-code files
+*.pyc
+*.pyd
+*.pyo
+__pycache__/
+
+mydb.sqlite3
+# Distribution / packaging
+.Python
+env/
+venv/
+lib/
+include/
+bin/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.cache/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+htmlcov/
+.ipynb_checkpoints/
+.mypy_cache/
+.ruff_cache/
+
+# Editors and IDEs
+.idea/  # PyCharm
+.vscode/ # VS Code
+*.sublime-project
+*.sublime-workspace
+
+# OS generated files
+.DS_Store
+.localized
+Thumbs.db
