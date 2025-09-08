@@ -4,9 +4,9 @@ from auth.dependencies import get_auth_service
 from auth.service import AuthService
 
 from user.schemas import UserCreate
-from mail.utils import send_email
+from mail.utils import EmailSender
 from user.exceptions import UserAlreadyExistErr, UserNotFoundErr, UserInactiveErr
-from auth.utils import set_refresh_token_cookie, decode_token, create_access_token, create_verify_token
+from auth.utils import set_refresh_token_cookie, decode_token, TokenCreator
 from auth.schemas import AuthCreds
 from auth.exceptions import InvalidPasswordErr, InvalidTokenErr
 
@@ -24,10 +24,9 @@ async def register_user(
     try:
         verify_token, access_token = await auth_service.register(user_info)
         background_tasks.add_task(
-            send_email,
-            subject="Подтверждение почты",
-            email_to=user_info.email,
-            body=rf"<a href='http://127.0.0.1:8000/auth/verify-by-email?token={access_token}'>Подтвердить почту</a>"
+            EmailSender(user_info.email, "Подтверждение почты").verify_email,
+            access_token=access_token,
+            username=user_info.username,
         )
         return {"verify_token": verify_token}
     except UserAlreadyExistErr as e:
@@ -66,24 +65,39 @@ async def refresh_token(token: str = Cookie(None)):
         if decoded_token.type != "refresh":
             raise InvalidTokenErr
 
-        access_token = create_access_token(user_id=decoded_token.user_id)
+        access_token = TokenCreator(user_id=decoded_token.user_id).access
 
         return {"access_token": access_token}
 
     except InvalidTokenErr as e:
-        HTTPException(401, detail=str(e))
+        raise HTTPException(401, detail=str(e))
 
 
-@auth_router.post("/verify-by-email")
+@auth_router.get("/verify-by-email")
 async def verify_by_email(
         token: str,
         response: Response,
         auth_service: AuthService = Depends(get_auth_service)
 ):
     try:
-        tokens = await auth_service.verificate_user(token)
+        tokens = await auth_service.verify_user_by_email(token)
         set_refresh_token_cookie(response, tokens.refresh_token)
         return {"access_token": tokens.access_token}
 
     except InvalidTokenErr as e:
-        HTTPException(401, detail=str(e))
+        raise HTTPException(401, detail=str(e))
+
+
+@auth_router.get("/change-email")
+async def change_email_by_token(
+        token: str,
+        response: Response,
+        auth_service: AuthService = Depends(get_auth_service)
+):
+    try:
+        tokens = await auth_service.verify_new_user_email(token)
+        set_refresh_token_cookie(response, tokens.refresh_token)
+        return {"access_token": tokens.access_token}
+
+    except InvalidTokenErr as e:
+        raise HTTPException(401, detail=str(e))

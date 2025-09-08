@@ -33,7 +33,7 @@ async def lifespan(app: FastAPI):
     yield
 
 
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(lifespan=lifespan, debug=True)
 
 app.add_middleware(
         CORSMiddleware,
@@ -49,5 +49,15 @@ def ping():
 
 
 if __name__ == "__main__":
-    uvicorn.run(app)
+    uvicorn.run(
+        app,
+        host="0.0.0.0",
+        port=8000,
+
+
+        reload_dirs=["."],  # Следить за изменениями в текущей директории
+        reload_excludes=["*.tmp", "*.log"],  # Исключить файлы
+
+        log_level="debug"  # Детальное логирование
+    )
 

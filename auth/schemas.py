@@ -1,4 +1,4 @@
-from base.schemas import BaseSchema
+from core.schemas import BaseSchema
 
 
 

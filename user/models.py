@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import ForeignKey, Boolean
-from base.models import BaseORM
+from core.models import BaseORM
 from datetime import datetime
 
 

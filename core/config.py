@@ -1,10 +1,15 @@
 from pydantic_settings import BaseSettings
 from functools import lru_cache
 from pydantic import EmailStr
-
+from typing import Self
 
 
 class BaseConfig(BaseSettings):
+
+    @classmethod
+    @lru_cache
+    def get(cls) -> Self:
+        return cls()
 
     class Config:
         env_file = ".env"
@@ -14,8 +19,6 @@ class AppConfig(BaseConfig):
 
     app_name: str
     db_uri: str
-
-
 
 
 class AuthConfig(BaseConfig):
@@ -35,18 +38,4 @@ class MailConfig(BaseConfig):
     mail_from_name: str = "blogf"
     mail_tls: bool = True
     mail_ssl: bool = False
-
-
-
-@lru_cache
-def get_app_config() -> AppConfig:
-    return AppConfig()
-
-@lru_cache
-def get_auth_config() -> AuthConfig:
-    return AuthConfig()
-
-@lru_cache
-def get_mail_config() -> MailConfig:
-    return MailConfig()
 

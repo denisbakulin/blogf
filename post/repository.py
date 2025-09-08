@@ -1,4 +1,4 @@
-from base.repository import BaseRepository
+from core.repository import BaseRepository
 from post.models import Post
 from sqlalchemy import select
 from typing import Optional

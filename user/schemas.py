@@ -1,5 +1,7 @@
 from pydantic import EmailStr, Field, field_validator
-from base.schemas import BaseSchema
+from core.schemas import BaseSchema
+
+
 
 class UserCreate(BaseSchema):
     username: str = Field(min_length=1)
@@ -14,8 +16,12 @@ class UserCreate(BaseSchema):
 class UserUpdate(BaseSchema):
     bio: str | None = None
     username: str = None
-    email: EmailStr | None = None
     avatar: str | None
+
+
+class AuthUserUpdate(BaseSchema):
+    is_active: bool | None = None
+    is_verified: bool | None = None
 
 class UserProfile(BaseSchema):
     bio: str | None = None
@@ -35,3 +41,6 @@ class PasswordChange(BaseSchema):
 
     old_password: str = Field(min_length=5)
     new_password: str = Field(min_length=5)
+
+class EmailUpdate(BaseSchema):
+    new_email: EmailStr

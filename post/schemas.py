@@ -1,4 +1,4 @@
-from base.schemas import BaseSchema
+from core.schemas import BaseSchema
 from pydantic import field_validator, Field
 from typing import Optional
 from post.utils import normalize_slug

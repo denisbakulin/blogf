@@ -10,15 +10,16 @@ from post.exceptions import PostNotFoundErr
 from post.schemas import PostShow
 from fastapi import Query
 
+
 user_router = APIRouter(prefix="/users", tags=["user"])
 
 
-@user_router.get("/search", response_model=list[UserShow])
+@user_router.get("/search")
 async def search_users(
         q: str = Query(min_length=1),
         pagination: Pagination = Depends(),
         user_service: UserService = Depends(get_user_service)
-):
+) -> list[UserShow]:
     try:
         users = await user_service.search_users(q, pagination.offset, pagination.limit)
         return users
@@ -30,11 +31,11 @@ async def search_users(
 
 
 
-@user_router.get("/{identifier}", response_model=UserShow)
+@user_router.get("/{identifier}")
 async def get_user(
         identifier: str,
         service: UserService = Depends(get_user_service)
-):
+) -> UserShow:
     try:
         user = await service.get_user(identifier)
         return user
@@ -44,13 +45,13 @@ async def get_user(
         raise HTTPException(403, detail=str(e))
 
 
-@user_router.get("/{identifier}/posts", response_model=list[PostShow])
+@user_router.get("/{identifier}/posts")
 async def get_user_posts(
         identifier: str,
         post_service: PostService = Depends(get_post_service),
         user_service: UserService = Depends(get_user_service),
         pagination: Pagination = Depends()
-):
+) -> list[PostShow]:
     try:
         user = await user_service.get_user(identifier)
         posts = await post_service.get_posts_by_author_id(
