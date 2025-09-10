@@ -40,10 +40,10 @@ class EmailSender:
         fm = FastMail(conn_config)
         await fm.send_message(message)
 
-    async def verify_email(self, access_token: str, username: str) -> None:
+    async def verify_email(self, token: str, username: str) -> None:
         html = env.get_template("verify-by-email.html").render(
             username=username,
-            access_token=access_token
+            verify_token=token
         )
         await self._create_and_send_message(html)
 

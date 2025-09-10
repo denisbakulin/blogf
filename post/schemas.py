@@ -13,7 +13,7 @@ class PostCreate(BaseSchema):
 
     @field_validator("slug", mode="before")
     def normalize_slug(cls, slug: Optional[str], info) -> str:
-        if slug is not None:
+        if slug:
             return normalize_slug(slug, default_slug)
         return normalize_slug(info.data.get("title", ""), default_slug)
 

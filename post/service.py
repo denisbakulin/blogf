@@ -17,8 +17,20 @@ class PostService:
         post = self.post_repo.create_post(post_info.model_dump(), author_id=user.id)
 
         await self.session.commit()
+        await self.session.refresh(post)
 
         return post
+
+    async def _get_posts_by(
+            self,
+            offset: int,
+            limit: int,
+            **filter
+    ):
+        posts = await self.post_repo.get_posts(**filter, offset=offset, limit=limit)
+        if not posts:
+            raise PostNotFoundErr("Пост не найден")
+        return posts
 
     async def get_post_by_id(self, post_id: int) -> Post:
         post = await self.post_repo.get_post(post_id=post_id)
@@ -28,38 +40,26 @@ class PostService:
 
         return post
 
-    async def get_posts_by_title(self, title: str, offset: int, limit: int) -> list[Post]:
+    async def get_posts_by_title(
+            self,
+            title: str,
+            offset: int,
+            limit: int
+    ) -> list[Post]:
+        return await self._get_posts_by(offset=offset, limit=limit, title=title)
 
-        posts = await self.post_repo.get_posts(title=title, offset=offset, limit=limit)
+    async def get_posts_by_slug(
+            self,
+            slug: str,
+            offset: int,
+            limit: int
+    ) -> list[Post]:
+        return await self._get_posts_by(offset=offset, limit=limit, slug=slug)
 
-        if not posts:
-            raise PostNotFoundErr(f"Посты с title={title} не найдены")
-
-        return posts
-
-    async def get_posts_by_slug(self, slug: str, offset: int, limit: int) -> list[Post]:
-
-        posts = await self.post_repo.get_posts(offset=offset, limit=limit)
-
-        if not posts:
-            raise PostNotFoundErr(f"Посты с slug={slug} не найдены")
-
-        return posts
-
-    async def get_posts_by_author_username(self, username: str, offset: int, limit: int) -> list[Post]:
-
-        posts = await self.post_repo.get_posts(author_username=username, offset=offset, limit=limit)
-
-        if not posts:
-            raise PostNotFoundErr(f"Посты автора={username} не найдены")
-
-        return posts
-
-    async def get_posts_by_author_id(self, user_id: int, offset: int, limit: int) -> list[Post]:
-
-        posts = await self.post_repo.get_posts(author_id=user_id, offset=offset, limit=limit)
-
-        if not posts:
-            raise PostNotFoundErr(f"Посты автора id={user_id} не найдены")
-
-        return posts
+    async def get_posts_by_author_id(
+            self,
+            author_id: int,
+            offset: int,
+            limit: int
+    ) -> list[Post]:
+        return await self._get_posts_by(offset=offset, limit=limit, author_id=author_id)

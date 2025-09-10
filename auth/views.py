@@ -1,12 +1,10 @@
 from fastapi import Depends, APIRouter, HTTPException, Response, Cookie, BackgroundTasks
 from auth.dependencies import get_auth_service
-
 from auth.service import AuthService
-
 from user.schemas import UserCreate
 from mail.utils import EmailSender
 from user.exceptions import UserAlreadyExistErr, UserNotFoundErr, UserInactiveErr
-from auth.utils import set_refresh_token_cookie, decode_token, TokenCreator
+from auth.utils import set_refresh_token_cookie, decode_token, TokenCreator, TokenTypes
 from auth.schemas import AuthCreds
 from auth.exceptions import InvalidPasswordErr, InvalidTokenErr
 
@@ -22,13 +20,13 @@ async def register_user(
 
 ):
     try:
-        verify_token, access_token = await auth_service.register(user_info)
+        pending_access_token, verify_token = await auth_service.register(user_info)
         background_tasks.add_task(
             EmailSender(user_info.email, "Подтверждение почты").verify_email,
-            access_token=access_token,
+            token=verify_token,
             username=user_info.username,
         )
-        return {"verify_token": verify_token}
+        return {"pending_access_token": pending_access_token}
     except UserAlreadyExistErr as e:
         raise HTTPException(401, str(e))
 
@@ -62,7 +60,7 @@ async def refresh_token(token: str = Cookie(None)):
     try:
         decoded_token = decode_token(token=token)
 
-        if decoded_token.type != "refresh":
+        if decoded_token.type != TokenTypes.refresh:
             raise InvalidTokenErr
 
         access_token = TokenCreator(user_id=decoded_token.user_id).access

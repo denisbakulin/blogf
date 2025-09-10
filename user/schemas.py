@@ -1,3 +1,5 @@
+import datetime
+
 from pydantic import EmailStr, Field, field_validator
 from core.schemas import BaseSchema
 
@@ -19,22 +21,23 @@ class UserUpdate(BaseSchema):
     avatar: str | None
 
 
-class AuthUserUpdate(BaseSchema):
-    is_active: bool | None = None
-    is_verified: bool | None = None
-
 class UserProfile(BaseSchema):
     bio: str | None = None
     avatar: str | None = None
 
-class UserShow(BaseSchema):
 
+class UserShow(BaseSchema):
     id: int
     username: str
-    profile: UserProfile
+    profile: UserProfile | None
+    created_at:  datetime.datetime
+
 
 class UserShowMe(UserShow):
     email: str
+
+
+
 
 
 class PasswordChange(BaseSchema):

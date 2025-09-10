@@ -13,8 +13,6 @@ class UserRepository(BaseRepository):
 
     def create_user(self, user_data: dict) -> User:
         user = User(**user_data)
-        profile = Profile()
-        user.profile = profile
         self.session.add(user)
         return user
 
@@ -33,7 +31,7 @@ class UserRepository(BaseRepository):
             field in {"avatar", "bio"}: lambda: setattr(user.profile, field, value),
         }.get(True, lambda: setattr(user, field, value))()
 
-    async def update_user_info(self, user: User, **updates) -> User:
+    async def update_user_info(self, user: User, updates: dict) -> User:
         for key, value in updates.items():
             self._update_field(user, key, value)
 

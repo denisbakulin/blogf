@@ -1,5 +1,5 @@
 from user.repository import UserRepository
-from user.schemas import UserCreate, UserUpdate, AuthUserUpdate
+from user.schemas import UserCreate, UserUpdate
 from user.models import User
 from user.exceptions import UserAlreadyExistErr, UserNotFoundErr, UserInactiveErr, IncorrectPasswordErr
 from user.utils import verify_password, generate_hashed_password
@@ -12,22 +12,24 @@ class UserService:
         self.session = session
         self.repo = UserRepository(session)
 
-    async def create_user(self, user_info: UserCreate) -> User:
+    async def create_user(self, user: UserCreate) -> User:
 
-        existing_username = await self.repo.get_user(username=user_info.username)
+        existing_username = await self.repo.get_user(username=user.username)
 
         if existing_username:
-            raise UserAlreadyExistErr(f"Пользователь с username={user_info.username} уже существует!")
+            raise UserAlreadyExistErr(f"Пользователь с username={user.username} уже существует!")
 
-        existing_email = await self.repo.get_user(email=user_info.email)
+        existing_email = await self.repo.get_user(email=user.email)
 
         if existing_email:
             raise UserAlreadyExistErr(f"Пользователь с указанной почтой уже существует!")
 
-        hashed_password = generate_hashed_password(password=user_info.password)
-        user_info.password = hashed_password
+        hashed_password = generate_hashed_password(password=user.password)
 
-        user = self.repo.create_user(user_info.model_dump())
+        user = self.repo.create_user({
+            **user.model_dump(),
+            "password": hashed_password
+        })
 
         await self.session.commit()
         await self.session.refresh(user)
@@ -40,9 +42,6 @@ class UserService:
         if not user:
             raise UserNotFoundErr(f"Пользователь не найден!")
 
-        if not user.is_active:
-            raise UserInactiveErr(f"Пользователь деактивирован!")
-
         return user
 
     async def get_user_by_id(self, user_id: int) -> User:
@@ -50,6 +49,28 @@ class UserService:
 
     async def get_user_by_username(self, username: str) -> User:
         return await self._get_user_by(username=username)
+
+    async def get_admin(self):
+        return await self.repo.get_user(is_admin=True)
+
+    async def create_admin(self):
+        hashed_password = generate_hashed_password(password="admin")
+
+        admin_data = {
+            "username": "admin",
+            "password": hashed_password,
+            "is_admin": True,
+            "is_verified": True,
+            "email": "dtorkon@yandex.ru",
+        }
+
+        admin = self.repo.create_user(admin_data)
+
+        await self.session.commit()
+        await self.session.refresh(admin)
+
+        return admin
+
 
     async def update_user(self, user: User, update_info: UserUpdate) -> User:
         if update_info.username:
@@ -62,7 +83,7 @@ class UserService:
         if update_info.bio:
             update_info.bio = update_info.bio[:2000]
 
-        updated_user = await self.repo.update_user_info(user, **update_info.model_dump(exclude_none=True))
+        updated_user = await self.repo.update_user_info(user, update_info.model_dump(exclude_none=True))
 
         await self.session.commit()
         await self.session.refresh(updated_user)
@@ -79,7 +100,8 @@ class UserService:
 
         password = generate_hashed_password(new_password)
 
-        await self.repo.update_user_info(user, password=password)
+
+        await self.repo.update_user_info(user, {"password":password})
 
         await self.session.commit()
         await self.session.refresh(user)
@@ -91,7 +113,7 @@ class UserService:
         if existing_email:
             raise UserAlreadyExistErr("Пользователь с указанной почтой уже существует!")
 
-        await self.repo.update_user_info(user, email=email, is_verified=False)
+        await self.repo.update_user_info(user, {"email":email, "is_verified":False})
         await self.session.commit()
         await self.session.refresh(user)
 
@@ -100,14 +122,10 @@ class UserService:
 
 
 
-    async def get_user(self, identifier: str) -> User:
-        if identifier.isdigit():
-            return await self.get_user_by_id(int(identifier))
+    async def get_user(self, username: str) -> User:
+        return await self.get_user_by_username(username)
 
-        elif identifier.startswith("@"):
-            return await self.get_user_by_username(identifier[1:])
 
-        raise UserNotFoundErr(f"Неверный параметр для поиска пользователя")
 
 
     async def search_users(self, username: str, offset: int, limit: int) -> list[User]:

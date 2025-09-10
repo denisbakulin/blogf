@@ -5,10 +5,6 @@ class UserNotFoundErr(Exception):
     ...
 
 
-class UserNotVerifiedErr(Exception):
-    ...
-
-
 class UserInactiveErr(Exception):
     ...
 

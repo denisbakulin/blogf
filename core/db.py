@@ -17,4 +17,5 @@ async def get_session() -> AsyncSession:
 
 async def init_models():
     async with engine.begin() as conn:
+
         await conn.run_sync(BaseORM.metadata.create_all)

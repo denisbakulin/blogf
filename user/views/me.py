@@ -11,10 +11,13 @@ from auth.utils import TokenCreator
 me_router = APIRouter(prefix="/me", tags=["me"])
 
 
-@me_router.get("")
+@me_router.get(
+    "",
+    response_model=UserShowMe
+)
 async def get_me(
         user: User = Depends(get_current_user)
-) -> UserShowMe:
+):
     return user
 
 @me_router.patch("")

@@ -5,7 +5,7 @@ from typing import Optional
 
 class PostRepository(BaseRepository):
 
-    def create_post(self, post_data: dict, author_id: int):
+    def create_post(self, post_data: dict, author_id: int) -> Post:
         post = Post(**post_data, author_id=author_id)
         self.session.add(post)
         return post
@@ -15,27 +15,12 @@ class PostRepository(BaseRepository):
 
     async def get_posts(
             self,
-            title: Optional[str] = None,
-            slug: Optional[str] = None,
-            author_username: Optional[str] = None,
-            author_id: Optional[int] = None,
             offset: Optional[int] = 0,
-            limit: Optional[int] = 10
+            limit: Optional[int] = 10,
+            **filter,
     ) -> list[Post] | Post | None:
 
-        stmt = select(Post)
-
-        if title:
-            stmt = stmt.where(Post.title == title)
-        elif slug:
-            stmt = stmt.where(Post.slug == slug)
-        elif author_username:
-            stmt = stmt.where(Post.author.username == author_username)
-        elif author_id:
-            stmt = stmt.where(Post.author_id == author_id)
-
-        else:
-            return
+        stmt = select(Post).filter_by(**filter)
 
         result = await self.session.execute(stmt.offset(offset).limit(limit))
 

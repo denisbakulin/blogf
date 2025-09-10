@@ -9,6 +9,7 @@ from enum import StrEnum
 
 class TokenTypes(StrEnum):
     access = "access"
+    pending_access = "pending_access"
     refresh = "refresh"
     verify = "verify"
     change_email = "change-email"
@@ -40,6 +41,11 @@ class TokenCreator:
     def verify(self) -> str:
         age = timedelta(hours=config.verify_token_expire_hours)
         return self._create_token(TokenTypes.verify, age)
+
+    @property
+    def pending_access(self) -> str:
+        age = timedelta(hours=config.verify_token_expire_hours)
+        return self._create_token(TokenTypes.pending_access, age)
 
     @property
     def refresh(self) -> str:

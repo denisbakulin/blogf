@@ -4,6 +4,7 @@ import uvicorn
 from contextlib import asynccontextmanager
 
 
+
 origins = [
     "http://localhost:5173",
     "http://localhost:3000",
@@ -11,11 +12,15 @@ origins = [
 
 
 @asynccontextmanager
-async def lifespan(app: FastAPI):
+async def lifespan(
+        app: FastAPI,
+):
+
     from user.views.other import user_router
     from user.views.me import me_router
     from auth.views import auth_router
     from post.views import post_router
+
 
     app.include_router(user_router)
     app.include_router(auth_router)
@@ -23,17 +28,44 @@ async def lifespan(app: FastAPI):
     app.include_router(post_router)
 
 
+
     from core.db import init_models
     from user.models import User, Profile
     from comment.models import Comment
     from post.models import Post
 
+
     await init_models()
+
+
+    from admin.views import Admin
+    from admin.views import UserAdminView, PostAdminView
+    admin = Admin()
+    user_admin_view = UserAdminView()
+    post_admin_view = PostAdminView()
+
+    admin.include_router(user_admin_view)
+    admin.include_router(post_admin_view)
+
+    app.include_router(admin)
+    from core.db import session_factory
+    from user.service import UserService
+
+    session = session_factory()
+
+
+    user_service = UserService(session=session)
+    admin_exists = await user_service.get_admin()
+
+    if not admin_exists:
+        await user_service.create_admin()
+
 
     yield
 
 
 app = FastAPI(lifespan=lifespan, debug=True)
+
 
 app.add_middleware(
         CORSMiddleware,
@@ -53,11 +85,8 @@ if __name__ == "__main__":
         app,
         host="0.0.0.0",
         port=8000,
-
-
         reload_dirs=["."],  # Следить за изменениями в текущей директории
         reload_excludes=["*.tmp", "*.log"],  # Исключить файлы
-
         log_level="debug"  # Детальное логирование
     )
 

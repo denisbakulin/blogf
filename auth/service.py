@@ -18,9 +18,9 @@ class AuthService:
 
 
     async def register(self, user_info: UserCreate) -> list[str]:
-        user = await self.user_service.create_user(user_info=user_info)
+        user = await self.user_service.create_user(user=user_info)
         tokens = TokenCreator(user.id)
-        return [tokens.verify, tokens.access]
+        return [tokens.pending_access, tokens.verify]
 
 
     async def login(self, creds: AuthCreds) -> Tokens | None:
@@ -49,7 +49,7 @@ class AuthService:
         return Tokens(access_token=tokens.access, refresh_token=tokens.refresh)
 
     async def verify_user_by_email(self, token: str) -> Tokens:
-        return await self._verify_user(token, TokenTypes.access)
+        return await self._verify_user(token, TokenTypes.verify)
 
 
     async def verify_new_user_email(self, token: str):
