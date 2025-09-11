@@ -1,25 +1,25 @@
 from fastapi_mail import ConnectionConfig, MessageSchema, FastMail
-from core.config import MailConfig
+from core.config import MailSettings
 from jinja2 import Environment, FileSystemLoader
 from pathlib import Path
 
 template_dir = Path(__file__).parent.resolve() / "templates"
 
 
-
-config = MailConfig.get()
+config = MailSettings.get()
 
 
 conn_config = ConnectionConfig(
-    MAIL_USERNAME=config.mail_username,
-    MAIL_PASSWORD=config.mail_password,
-    MAIL_FROM=config.mail_from,
+    MAIL_USERNAME=config.username,
+    MAIL_PASSWORD=config.password,
+    MAIL_FROM=config.username,
     MAIL_PORT=1025,
     MAIL_SERVER="localhost",
     MAIL_SSL_TLS=False,
     MAIL_STARTTLS=False,
     USE_CREDENTIALS=False,
 )
+
 env = Environment(loader=FileSystemLoader(template_dir))
 
 

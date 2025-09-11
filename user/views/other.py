@@ -41,7 +41,7 @@ async def get_user(
         service: UserService = Depends(get_user_service)
 ):
     try:
-        user = await service.get_user(username)
+        user = await service.get_user_by_username(username)
         return user
     except UserNotFoundErr as e:
         raise HTTPException(404, detail=str(e))
@@ -60,7 +60,7 @@ async def get_user_posts(
         pagination: Pagination = Depends()
 ):
     try:
-        user = await user_service.get_user(username)
+        user = await user_service.get_user_by_username(username)
         posts = await post_service.get_posts_by_author_id(
             author_id=user.id,
             offset=pagination.offset,

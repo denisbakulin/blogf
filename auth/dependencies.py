@@ -10,7 +10,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from core.db import get_session
 from auth.service import AuthService
 from auth.schemas import TokenInfo
-
+from typing import Annotated
 
 security = HTTPBearer()
 
@@ -51,7 +51,7 @@ async def get_current_user(
 
 
 async def get_verified_user(
-    user: User = Depends(get_user_token),
+    user: User = Depends(get_current_user),
 ) -> User:
     if not user.is_verified:
         return user
@@ -69,3 +69,9 @@ async def get_auth_service(
         session: AsyncSession = Depends(get_session)
 ) -> AuthService:
     return AuthService(session=session)
+
+
+adminDep = Annotated[User, Depends(get_admin)]
+verifiedUserDep = Annotated[User, Depends(get_verified_user)]
+currentUserDep = Annotated[User, Depends(get_current_user)]
+authServiceDep = Annotated[AuthService, Depends(get_auth_service)]

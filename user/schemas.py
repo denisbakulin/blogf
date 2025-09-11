@@ -2,7 +2,7 @@ import datetime
 
 from pydantic import EmailStr, Field, field_validator
 from core.schemas import BaseSchema
-
+from typing import Optional
 
 
 class UserCreate(BaseSchema):
@@ -10,15 +10,19 @@ class UserCreate(BaseSchema):
     password: str = Field(min_length=5)
     email: EmailStr | None = None
 
+    bio: str | None = None
+    avatar: str | None = None
+
+
     @field_validator("username")
     def normalize_name(cls, username: str):
         return username.strip().lower()
 
 
 class UserUpdate(BaseSchema):
-    bio: str | None = None
-    username: str = None
-    avatar: str | None
+    bio: Optional[str] = Field(default=None)
+    username: Optional[str] = Field(default=None)
+    avatar: Optional[str] = Field(default=None)
 
 
 class UserProfile(BaseSchema):

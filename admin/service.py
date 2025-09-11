@@ -14,7 +14,7 @@ class AdminService[T]:
         item = await self.repo.get_item_by_id(item_id)
 
         if not item:
-            raise NotFoundErr(f"{self.model} id={item} не найдено!")
+            raise NotFoundErr(f"{self.model.__name__} id={item_id} не найдено!")
 
         return item
 
@@ -33,7 +33,7 @@ class AdminService[T]:
 
     async def update_item(self, item_id: int, update_info) -> T:
         try:
-            item = await self.repo.get_item_by_id(item_id)
+            item = await self.get_item_by_id(item_id)
 
             await self.repo.update_item(item, update_info.model_dump(exclude_none=True))
 
@@ -44,6 +44,12 @@ class AdminService[T]:
 
         except SQLAlchemyError as e:
             raise ItemUpdateErr(str(e))
+
+    async def delete_item(self, item_id: int):
+        await self.repo.delete_item(item_id)
+
+        await self.session.commit()
+
 
 
 

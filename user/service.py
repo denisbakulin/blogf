@@ -6,30 +6,35 @@ from user.utils import verify_password, generate_hashed_password
 from sqlalchemy.ext.asyncio import AsyncSession
 
 
+from admin.schemas import AdminUserCreate, AdminUserUpdate
+
 
 class UserService:
     def __init__(self, session: AsyncSession):
         self.session = session
         self.repo = UserRepository(session)
 
-    async def create_user(self, user: UserCreate) -> User:
+    async def create_user(self, user_data: UserCreate | AdminUserCreate) -> User:
 
-        existing_username = await self.repo.get_user(username=user.username)
+        existing_username = await self.repo.get_user(username=user_data.username)
 
         if existing_username:
-            raise UserAlreadyExistErr(f"Пользователь с username={user.username} уже существует!")
+            raise UserAlreadyExistErr(f"Пользователь с username={user_data.username} уже существует!")
 
-        existing_email = await self.repo.get_user(email=user.email)
+        existing_email = await self.repo.get_user(email=user_data.email)
 
         if existing_email:
             raise UserAlreadyExistErr(f"Пользователь с указанной почтой уже существует!")
 
-        hashed_password = generate_hashed_password(password=user.password)
+        hashed_password = generate_hashed_password(password=user_data.password)
 
-        user = self.repo.create_user({
-            **user.model_dump(),
-            "password": hashed_password
-        })
+        user_data.password = hashed_password
+
+        user = self.repo.create_user(
+            user_data.model_dump(),
+        )
+
+        await self.update_user(user, UserUpdate(bio=user_data.bio, avatar=user_data.avatar))
 
         await self.session.commit()
         await self.session.refresh(user)
@@ -50,10 +55,14 @@ class UserService:
     async def get_user_by_username(self, username: str) -> User:
         return await self._get_user_by(username=username)
 
-    async def get_admin(self):
-        return await self.repo.get_user(is_admin=True)
+
 
     async def create_admin(self):
+
+        admin = await self.repo.user_exists(is_admin=True)
+
+        if admin: return
+
         hashed_password = generate_hashed_password(password="admin")
 
         admin_data = {
@@ -72,7 +81,7 @@ class UserService:
         return admin
 
 
-    async def update_user(self, user: User, update_info: UserUpdate) -> User:
+    async def update_user(self, user: User, update_info: UserUpdate | AdminUserUpdate ) -> User:
         if update_info.username:
 
             existing = await self.repo.get_user(username=update_info.username)
@@ -116,15 +125,6 @@ class UserService:
         await self.repo.update_user_info(user, {"email":email, "is_verified":False})
         await self.session.commit()
         await self.session.refresh(user)
-
-
-
-
-
-
-    async def get_user(self, username: str) -> User:
-        return await self.get_user_by_username(username)
-
 
 
 

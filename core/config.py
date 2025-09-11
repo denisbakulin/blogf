@@ -15,27 +15,38 @@ class BaseConfig(BaseSettings):
         env_file = ".env"
         extra = "ignore"
 
-class AppConfig(BaseConfig):
 
+class AppSettings(BaseConfig):
     app_name: str
     db_uri: str
 
 
-class AuthConfig(BaseConfig):
+class AuthSettings(BaseConfig):
     secret_key: str
     algorithm: str
     access_token_expire_minutes: int
     refresh_token_expire_days: int
     verify_token_expire_hours: int
 
+    class Config(BaseConfig.Config):
+        env_prefix = "JWT_"
 
-class MailConfig(BaseConfig):
-    mail_username: EmailStr
-    mail_password: str
-    mail_from: EmailStr
-    mail_port: int = 587
-    mail_server: str = "smtp.yandex.ru"
-    mail_from_name: str = "blogf"
-    mail_tls: bool = True
-    mail_ssl: bool = False
+class MailSettings(BaseConfig):
+    username: EmailStr
+    password: str
+    port: int
+    server: str
+    tls: bool = True
+    ssl: bool = False
+
+    class Config(BaseConfig.Config):
+        env_prefix = "MAIL_"
+
+
+class FirstAdminSettings(BaseConfig):
+    login: str
+    password: str
+
+    class Config(BaseConfig.Config):
+        env_prefix = "FIRST_ADMIN_"
 

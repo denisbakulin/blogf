@@ -1,10 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from post.schemas import PostCreate, PostShow
-from post.service import PostService
-from post.dependencies import get_post_service
+from post.dependencies import postServiceDep
 from post.exceptions import PostNotFoundErr
-from auth.dependencies import get_current_user
-from user.models import User
+from auth.dependencies import currentUserDep
 from helpers.pagination import Pagination
 
 post_router = APIRouter(prefix="/posts", tags=["post"])
@@ -16,8 +14,8 @@ post_router = APIRouter(prefix="/posts", tags=["post"])
 )
 async def create_post(
         post_info: PostCreate,
-        user: User = Depends(get_current_user),
-        post_service: PostService = Depends(get_post_service)
+        user: currentUserDep,
+        post_service: postServiceDep
 ):
     return await post_service.create_post(user, post_info)
 
@@ -29,8 +27,9 @@ async def create_post(
 )
 async def get_posts_by_slug(
         slug: str,
+        post_service: postServiceDep,
         pagination: Pagination = Depends(),
-        post_service: PostService = Depends(get_post_service)
+
 ):
     try:
 
@@ -46,7 +45,7 @@ async def get_posts_by_slug(
 )
 async def get_post_by_id(
         post_id: int,
-        post_service: PostService = Depends(get_post_service)
+        post_service: postServiceDep
 ):
     try:
         posts = await post_service.get_post_by_id(post_id)

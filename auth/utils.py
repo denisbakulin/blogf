@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from jose import jwt, JWTError
-from core.config import AuthConfig
+from core.config import AuthSettings
 from auth.schemas import TokenInfo
 from auth.exceptions import InvalidTokenErr
 from fastapi import Response
@@ -15,7 +15,7 @@ class TokenTypes(StrEnum):
     change_email = "change-email"
 
 
-config = AuthConfig.get()
+config = AuthSettings.get()
 
 
 class TokenCreator:

@@ -1,6 +1,5 @@
-from core.models import BaseORM
 from sqlalchemy.ext.asyncio import AsyncSession
-
+from sqlalchemy import delete
 
 class AdminRepository[T]:
 
@@ -21,5 +20,8 @@ class AdminRepository[T]:
             setattr(item, field, value)
         return item
 
+    async def delete_item(self, item_id):
+        stmt = delete(self.model).where(self.model.id == item_id)
+        await self.session.execute(stmt)
 
 

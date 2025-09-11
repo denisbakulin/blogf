@@ -52,5 +52,19 @@ class UserRepository(BaseRepository):
 
         return list(users)
 
+    async def user_exists(
+        self,
+        ** filters
+    ) -> bool:
+        stmt = select(User).filter_by(**filters)
+        result = await self.session.execute(stmt)
+
+        user = result.first()
+
+        return bool(user)
+
+
+
+
 
 

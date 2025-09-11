@@ -2,11 +2,10 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from user.service import UserService
 
 from user.schemas import UserCreate
-from auth.utils import TokenCreator, decode_token, TokenTypes
-from auth.schemas import Tokens, AuthCreds, TokenInfo
+from auth.utils import TokenCreator, decode_token,TokenTypes
+from auth.schemas import Tokens, AuthCreds
 from user.utils import verify_password
 from auth.exceptions import InvalidPasswordErr, InvalidTokenErr
-from auth.utils import TokenTypes
 
 
 class AuthService:
@@ -18,7 +17,7 @@ class AuthService:
 
 
     async def register(self, user_info: UserCreate) -> list[str]:
-        user = await self.user_service.create_user(user=user_info)
+        user = await self.user_service.create_user(user_data=user_info)
         tokens = TokenCreator(user.id)
         return [tokens.pending_access, tokens.verify]
 

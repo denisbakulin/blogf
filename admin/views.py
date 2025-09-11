@@ -12,39 +12,52 @@ from admin.exceptions import NotFoundErr, ItemUpdateErr, ItemCreateErr
 from auth.dependencies import get_admin
 from post.models import Post
 
+
+from typing import Type, Optional
+
 class AdminView(APIRouter):
-    model: BaseORM = None
-    show_schema: BaseSchema = None
-    update_schema: BaseSchema = None
-    create_schema: BaseSchema = None
+    model: Type[BaseORM] = None
+    delete_: bool = False
+    show: Type[BaseSchema] = None
+    update: Type[BaseSchema] = None
+    create: Type[BaseSchema] = None
 
-    def __init__(self):
-        tablename = self.model.__tablename__
+    def __init_subclass__(cls, **kwargs):
+        for key, value in kwargs.items():
+            setattr(cls, key, value)
+
+    def __init__(
+        self,
+            table_name: Optional[str] = None,
+            tags: Optional[list[str]] = None,
+            **kwargs
+    ):
+        table_name = table_name or self.model.__tablename__
+        tags = tags or [f"Admin - {table_name}"]
         super().__init__(
-            prefix=f"/{tablename}",
-            tags=[f"Admin - {tablename}"]
+            prefix=f"/{table_name}",
+            tags=tags,
+            **kwargs
         )
-        self.init_router()
 
-    def __init_subclass__(cls, /, model, **kwargs):
-        super().__init_subclass__(**kwargs)
-        cls.model = model
+        self.init_default_views()
+        self.init_custom_views()
 
 
-    def init_router(self):
-        model = self.model
-        show_schema = self.show_schema
-        update_schema = self.update_schema
-        create_schema = self.create_schema
+    def init_default_views(self):
 
-        if not all([model, show_schema, update_schema, create_schema]):
+        if not self.model:
             raise ValueError()
 
+        model = self.model
+        create = self.create
+        update = self.update
 
-        @self.get(
-            f"",
-            response_model=show_schema
-        )
+        params = {
+            "path": "/{item_id}",
+            "response_model": self.show
+        }
+
         async def get_item(
                 item_id: int,
                 admin_service: AdminService = Depends(get_admin_service(model=model))
@@ -54,70 +67,113 @@ class AdminView(APIRouter):
             except NotFoundErr as e:
                 raise HTTPException(404, str(e))
 
-        @self.get(
-            "/table-info",
-            response_model=list[ColumnProps]
-        )
-        def gettable_info():
+        def get_table_info():
             return model.table_info()
 
-
-        @self.post(
-            "",
-            response_model=show_schema
-        )
         async def create_item(
-                item_create: create_schema,
+                item_create: create,
                 admin_service: AdminService = Depends(get_admin_service(model=model))
         ):
             try:
                 item = await admin_service.create_item(item_create)
-                print(User.table_info())
                 return item
             except ItemCreateErr as e:
                 raise HTTPException(409, str(e))
 
-        @self.patch(
-            f"",
-            response_model=self.show_schema
-        )
         async def update_item(
                 item_id: int,
-                update_data: update_schema,
+                update_data: update,
                 admin_service: AdminService = Depends(get_admin_service(model=model))
         ):
             try:
                 return await admin_service.update_item(item_id, update_data)
+            except NotFoundErr as e:
+                raise HTTPException(404, str(e))
             except ItemUpdateErr as e:
                 raise HTTPException(409, str(e))
 
+        async def delete_item(
+                item_id: int,
+                admin_service: AdminService = Depends(get_admin_service(model=model))
+        ):
 
-    def get_item_by_id(self, item_id: int):
+            return await admin_service.delete_item(item_id)
+
+        if self.show:
+            self.get(**params)(get_item)
+        if self.create:
+            self.post("", response_model=self.show)(create_item)
+        if self.update:
+            self.patch(**params)(update_item)
+        if self.delete_:
+            self.delete("")(delete_item)
+
+        self.get("/table-info", response_model=list[ColumnProps])(get_table_info)
+
+    def init_custom_views(self):
         ...
 
-    def del_item(self, item_id):
-        print(self.model, self.show_schema)
+from user.dependencies import userServiceDep
+from user.exceptions import UserAlreadyExistErr, UserNotFoundErr
 
 
 class UserAdminView(AdminView, model=User):
-    show_schema = AdminUserShow
-    update_schema = AdminUserUpdate
-    create_schema = AdminUserCreate
+    show = AdminUserShow
+
+    def init_custom_views(self):
+
+        @self.post(
+            "",
+            response_model=self.show
+        )
+        async def create_user(
+                user_create: AdminUserCreate,
+                user_service: userServiceDep
+        ):
+            try:
+                return await user_service.create_user(user_create)
+            except UserAlreadyExistErr as e:
+                raise HTTPException(401, str(e))
+        @self.patch("/{user_id}")
+        async def update_user(
+                user_id: int,
+                user_data: AdminUserUpdate,
+                user_service: userServiceDep
+        ):
+            try:
+                user = await user_service.get_user_by_id(user_id)
+                return await user_service.update_user(user, user_data)
+            except UserNotFoundErr as e:
+                raise HTTPException(404, str(e))
+
+            except UserAlreadyExistErr as e:
+                raise HTTPException(404, str(e))
 
 
-class PostAdminView(AdminView, model=Post):
-    show_schema = AdminUserShow
-    update_schema = AdminUserUpdate
-    create_schema = AdminUserCreate
+
+from admin.schemas import AdminPostCreate, AdminPostUpdate, AdminPostShow
+
+
+
+class PostAdminView(AdminView, model=Post, delete_=True):
+    show = AdminPostShow
+    update = AdminPostUpdate
+    create = AdminPostCreate
+
 
 class Admin(APIRouter):
 
-    def __init__(self):
+    def __init__(self, *routers):
         super().__init__(
             dependencies=[Depends(get_admin)],
             prefix="/admin",
             tags=["admin"]
         )
+        if routers:
+            for router in routers:
+                self.include_router(router)
+
+
 
 
 

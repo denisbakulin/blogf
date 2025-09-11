@@ -58,7 +58,6 @@ class BaseORM(DeclarativeBase):
                 )
             )
 
-        print(columns_info)
         return columns_info
     
 

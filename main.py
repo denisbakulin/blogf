@@ -38,27 +38,21 @@ async def lifespan(
     await init_models()
 
 
-    from admin.views import Admin
-    from admin.views import UserAdminView, PostAdminView
-    admin = Admin()
-    user_admin_view = UserAdminView()
-    post_admin_view = PostAdminView()
+    from admin.views import Admin, UserAdminView, PostAdminView
 
-    admin.include_router(user_admin_view)
-    admin.include_router(post_admin_view)
+    admin = Admin(UserAdminView(), PostAdminView())
 
     app.include_router(admin)
+
+
     from core.db import session_factory
     from user.service import UserService
 
     session = session_factory()
 
-
     user_service = UserService(session=session)
-    admin_exists = await user_service.get_admin()
 
-    if not admin_exists:
-        await user_service.create_admin()
+    await user_service.create_admin()
 
 
     yield
