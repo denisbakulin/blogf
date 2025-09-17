@@ -1,6 +1,6 @@
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import inspect
-from typing import Optional, Callable
+from typing import Optional, Type
 from pydantic import BaseModel, Field
 
 
@@ -19,7 +19,8 @@ class BaseORM(DeclarativeBase):
 
     id: Mapped[int] = mapped_column(primary_key=True)
 
-    depends: Optional[list[tuple[str, Callable]]] = None
+    # Зависимосимости для создания объекта
+    depends: Optional[list[tuple[str, Type["BaseORM"]]]] = None
 
     def __init__(self, **kwargs):
         if self.depends is not None:
@@ -34,30 +35,26 @@ class BaseORM(DeclarativeBase):
 
     @classmethod
     def table_info(cls) -> list[ColumnProps]:
+        """Возвращает информацию о таблице построчно"""
+
         inspector = inspect(cls)
-        columns_info = []
 
-        for column in inspector.mapper.columns:
-
-            column_type = str(column.type)
-
-            foreign_key_info = None
-
-            if column.foreign_keys:
-                fk = list(column.foreign_keys)[0]
-                foreign_key_info = f"{fk.column.table.name}.{fk.column.name}"
-
-            columns_info.append(
-                ColumnProps(
-                    name=column.name,
-                    type=column_type,
-                    nullable=bool(column.nullable),
-                    primary_key=bool(column.primary_key),
-                    unique=bool(column.unique),
-                    foreign_key=foreign_key_info
-                )
-            )
-
-        return columns_info
+        return [
+            ColumnProps(
+                name=column.name,
+                type=str(column.type),
+                nullable=bool(column.nullable),
+                primary_key=bool(column.primary_key),
+                unique=bool(column.unique),
+                foreign_key=cls._get_foreign_key_info(column)
+            ) for column in inspector.mapper.columns
+        ]
     
+    @staticmethod
+    def _get_foreign_key_info(column) -> Optional[str]:
 
+        foreign_key_info = None
+        if column.foreign_keys:
+            fk = list(column.foreign_keys)[0]
+            foreign_key_info = f"{fk.column.table.name}.{fk.column.name}"
+        return foreign_key_info

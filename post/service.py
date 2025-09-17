@@ -1,9 +1,8 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from post.repository import PostRepository
 from post.schemas import PostCreate
-from user.models import User
 from post.models import Post
-from post.exceptions import PostNotFoundErr
+from core.exceptions import EntityNotFoundError
 
 
 class PostService:
@@ -12,9 +11,9 @@ class PostService:
         self.session = session
         self.post_repo = PostRepository(session)
 
-    async def create_post(self, user: User, post_info: PostCreate) -> Post:
+    async def create_post(self, author_id: int, post_info: PostCreate) -> Post:
 
-        post = self.post_repo.create_post(post_info.model_dump(), author_id=user.id)
+        post = self.post_repo.create_post(post_info.model_dump(), author_id=author_id)
 
         await self.session.commit()
         await self.session.refresh(post)
@@ -25,18 +24,24 @@ class PostService:
             self,
             offset: int,
             limit: int,
-            **filter
+            **filters
     ):
-        posts = await self.post_repo.get_posts(**filter, offset=offset, limit=limit)
+        posts = await self.post_repo.get_posts(**filters, offset=offset, limit=limit)
         if not posts:
-            raise PostNotFoundErr("Пост не найден")
+            raise EntityNotFoundError(
+                "Post",
+                fields=filters
+            )
         return posts
 
     async def get_post_by_id(self, post_id: int) -> Post:
         post = await self.post_repo.get_post(post_id=post_id)
 
         if not post:
-            raise PostNotFoundErr(f"Пост с id={post_id} не найден")
+            raise EntityNotFoundError(
+                "Post",
+                entity_id=post_id
+            )
 
         return post
 

@@ -2,11 +2,11 @@ from fastapi import APIRouter, Depends, HTTPException
 from user.schemas import UserShow
 from user.dependencies import get_user_service
 from user.service import UserService
-from user.exceptions import UserInactiveErr, UserNotFoundErr
+
 from helpers.pagination import Pagination
 from post.service import PostService
 from post.dependencies import get_post_service
-from post.exceptions import PostNotFoundErr
+
 from post.schemas import PostShow
 from fastapi import Query
 
@@ -23,13 +23,9 @@ async def search_users(
         pagination: Pagination = Depends(),
         user_service: UserService = Depends(get_user_service)
 ):
-    try:
-        users = await user_service.search_users(q, pagination.offset, pagination.limit)
-        return users
-    except UserNotFoundErr as e:
-        raise HTTPException(404, detail=str(e))
+    return await user_service.search_users(q, pagination.offset, pagination.limit)
 
-
+from asyncio import sleep
 
 
 @user_router.get(
@@ -40,13 +36,9 @@ async def get_user(
         username: str,
         service: UserService = Depends(get_user_service)
 ):
-    try:
-        user = await service.get_user_by_username(username)
-        return user
-    except UserNotFoundErr as e:
-        raise HTTPException(404, detail=str(e))
-    except UserInactiveErr as e:
-        raise HTTPException(403, detail=str(e))
+    await sleep(1)
+    return await service.get_user_by_username(username)
+
 
 
 @user_router.get(
@@ -59,18 +51,15 @@ async def get_user_posts(
         user_service: UserService = Depends(get_user_service),
         pagination: Pagination = Depends()
 ):
-    try:
-        user = await user_service.get_user_by_username(username)
-        posts = await post_service.get_posts_by_author_id(
-            author_id=user.id,
-            offset=pagination.offset,
-            limit=pagination.limit
-        )
-        return posts
-    except (UserNotFoundErr, PostNotFoundErr) as e:
-        raise HTTPException(404, detail=str(e))
-    except UserInactiveErr as e:
-        raise HTTPException(403, detail=str(e))
+
+    user = await user_service.get_user_by_username(username)
+    posts = await post_service.get_posts_by_author_id(
+        author_id=user.id,
+        offset=pagination.offset,
+        limit=pagination.limit
+    )
+    return posts
+
 
 
 

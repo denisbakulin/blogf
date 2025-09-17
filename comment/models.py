@@ -12,7 +12,7 @@ class Comment(BaseORM):
     content: Mapped[str] = mapped_column(nullable=False)
 
     post_id: Mapped[int] = mapped_column(ForeignKey("posts.id"), nullable=False)
-    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
+    author_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
     parent_id: Mapped[int] = mapped_column(ForeignKey("comments.id"), nullable=True)
     created_at: Mapped[datetime] = mapped_column(default=datetime.utcnow)
 

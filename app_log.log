@@ -1,0 +1,79 @@
+2025-09-17T22:40:26.940802+0000 ERROR Post не найдено!
+2025-09-17T22:53:29.586384+0000 INFO Request: GET http://127.0.0.1:8000/posts/by-slug/ertertertertert?offset=0&limit=10 from 127.0.0.1
+2025-09-17T22:53:29.601793+0000 ERROR Response: GET http://127.0.0.1:8000/posts/by-slug/ertertertertert?offset=0&limit=10 Status: 404 Time: 16000000.0000s
+2025-09-17T22:53:30.867276+0000 INFO Request: GET http://127.0.0.1:8000/posts/by-slug/ertertertertert?offset=0&limit=10 from 127.0.0.1
+2025-09-17T22:53:30.874405+0000 ERROR Response: GET http://127.0.0.1:8000/posts/by-slug/ertertertertert?offset=0&limit=10 Status: 404 Time: 15000000.0000s
+2025-09-17T22:56:48.222337+0000 INFO Request: GET http://127.0.0.1:8000/docs from 127.0.0.1
+2025-09-17T22:56:48.225392+0000 INFO Response: GET http://127.0.0.1:8000/docs Status: 200 Time: 0.0000s
+2025-09-17T22:56:48.464560+0000 INFO Request: GET http://127.0.0.1:8000/openapi.json from 127.0.0.1
+2025-09-17T22:56:48.506660+0000 INFO Response: GET http://127.0.0.1:8000/openapi.json Status: 200 Time: 0.0470s
+2025-09-17T22:56:58.054042+0000 INFO Request: GET http://127.0.0.1:8000/users/@asdasdasd from 127.0.0.1
+2025-09-17T22:56:59.074305+0000 ERROR Response: GET http://127.0.0.1:8000/users/@asdasdasd Status: 404 Time: 1.0160s
+2025-09-17T22:57:16.973039+0000 INFO Request: GET http://127.0.0.1:8000/posts/by-slug/ertertertertert?offset=0&limit=10 from 127.0.0.1
+2025-09-17T22:57:16.983198+0000 ERROR Response: GET http://127.0.0.1:8000/posts/by-slug/ertertertertert?offset=0&limit=10 Status: 404 Time: 0.0160s
+2025-09-17T22:57:17.316839+0000 INFO Request: GET http://127.0.0.1:8000/favicon.ico from 127.0.0.1
+2025-09-17T22:57:17.317840+0000 ERROR Response: GET http://127.0.0.1:8000/favicon.ico Status: 404 Time: 0.0000s
+2025-09-17T22:57:23.634363+0000 INFO Request: GET http://127.0.0.1:8000/users/@admin from 127.0.0.1
+2025-09-17T22:57:24.655586+0000 INFO Response: GET http://127.0.0.1:8000/users/@admin Status: 200 Time: 1.0310s
+2025-09-17T22:59:18.017352+0000 INFO Request: GET http://127.0.0.1:8000/users/search?q=dsadd&offset=0&limit=10 from 127.0.0.1
+2025-09-17T22:59:18.057351+0000 ERROR Response: GET http://127.0.0.1:8000/users/search?q=dsadd&offset=0&limit=10 Status: 404 Time: 0.0310s
+2025-09-17T22:59:23.056758+0000 INFO Request: GET http://127.0.0.1:8000/users/search?q=a&offset=0&limit=10 from 127.0.0.1
+2025-09-17T22:59:23.067761+0000 INFO Response: GET http://127.0.0.1:8000/users/search?q=a&offset=0&limit=10 Status: 200 Time: 0.0160s
+2025-09-17T22:59:28.786251+0000 INFO Request: GET http://127.0.0.1:8000/users/search?q=d&offset=0&limit=10 from 127.0.0.1
+2025-09-17T22:59:28.813366+0000 INFO Response: GET http://127.0.0.1:8000/users/search?q=d&offset=0&limit=10 Status: 200 Time: 0.0320s
+2025-09-17T23:22:34.434522+0000 INFO Request: GET http://127.0.0.1:8000/docs from 127.0.0.1
+2025-09-17T23:22:34.436490+0000 INFO Response: GET http://127.0.0.1:8000/docs Status: 200 Time: 0.0160s
+2025-09-17T23:22:34.607620+0000 INFO Request: GET http://127.0.0.1:8000/openapi.json from 127.0.0.1
+2025-09-17T23:22:34.662882+0000 INFO Response: GET http://127.0.0.1:8000/openapi.json Status: 200 Time: 0.0460s
+2025-09-17T23:23:01.619263+0000 INFO Request: POST http://127.0.0.1:8000/auth/login from 127.0.0.1
+2025-09-17T23:23:02.230800+0000 INFO Response: POST http://127.0.0.1:8000/auth/login Status: 200 Time: 0.6090s
+2025-09-17T23:23:24.093002+0000 INFO Request: GET http://127.0.0.1:8000/admin/posts/count from 127.0.0.1
+2025-09-17T23:23:24.118028+0000 INFO Response: GET http://127.0.0.1:8000/admin/posts/count Status: 200 Time: 0.0160s
+2025-09-17T23:23:30.204406+0000 INFO Request: GET http://127.0.0.1:8000/admin/users/count from 127.0.0.1
+2025-09-17T23:23:30.281991+0000 INFO Response: GET http://127.0.0.1:8000/admin/users/count Status: 200 Time: 0.0780s
+2025-09-17T23:27:16.944350+0000 INFO Request: POST http://127.0.0.1:8000/admin/users from 127.0.0.1
+2025-09-17T23:27:16.994964+0000 ERROR Response: POST http://127.0.0.1:8000/admin/users Status: 403 Time: 0.0470s
+2025-09-17T23:35:23.891398+0000 INFO Request: GET http://127.0.0.1:8000/docs from 127.0.0.1
+2025-09-17T23:35:23.893370+0000 INFO Response: GET http://127.0.0.1:8000/docs Status: 200 Time: 0.0000s
+2025-09-17T23:35:24.123872+0000 INFO Request: GET http://127.0.0.1:8000/openapi.json from 127.0.0.1
+2025-09-17T23:35:24.211873+0000 INFO Response: GET http://127.0.0.1:8000/openapi.json Status: 200 Time: 0.0780s
+2025-09-17T23:35:32.377910+0000 INFO Request: POST http://127.0.0.1:8000/auth/login from 127.0.0.1
+2025-09-17T23:35:32.962097+0000 INFO Response: POST http://127.0.0.1:8000/auth/login Status: 200 Time: 0.5780s
+2025-09-17T23:35:43.896981+0000 INFO Request: POST http://127.0.0.1:8000/auth/login from 127.0.0.1
+2025-09-17T23:35:44.453760+0000 INFO Response: POST http://127.0.0.1:8000/auth/login Status: 200 Time: 0.5620s
+2025-09-17T23:36:01.987864+0000 INFO Request: GET http://127.0.0.1:8000/admin/users/count from 127.0.0.1
+2025-09-17T23:36:02.011878+0000 INFO Response: GET http://127.0.0.1:8000/admin/users/count Status: 200 Time: 0.0150s
+2025-09-17T23:36:11.183814+0000 INFO Request: GET http://127.0.0.1:8000/admin/users/3 from 127.0.0.1
+2025-09-17T23:36:11.206075+0000 ERROR Response: GET http://127.0.0.1:8000/admin/users/3 Status: 404 Time: 0.0310s
+2025-09-17T23:36:29.221005+0000 INFO Request: GET http://127.0.0.1:8000/admin/posts/3 from 127.0.0.1
+2025-09-17T23:36:29.238964+0000 ERROR Response: GET http://127.0.0.1:8000/admin/posts/3 Status: 404 Time: 0.0160s
+2025-09-17T23:36:46.930757+0000 INFO Request: GET http://127.0.0.1:8000/users/@2/posts?offset=0&limit=10 from 127.0.0.1
+2025-09-17T23:36:46.940902+0000 ERROR Response: GET http://127.0.0.1:8000/users/@2/posts?offset=0&limit=10 Status: 404 Time: 0.0160s
+2025-09-17T23:39:13.171066+0000 INFO Request: GET http://127.0.0.1:8000/users/@2/posts?offset=0&limit=10 from 127.0.0.1
+2025-09-17T23:39:13.237995+0000 ERROR Response: GET http://127.0.0.1:8000/users/@2/posts?offset=0&limit=10 Status: 404 Time: 0.0630s
+2025-09-17T23:39:21.115313+0000 INFO Request: GET http://127.0.0.1:8000/users/@23423sdfsdf/posts?offset=0&limit=10 from 127.0.0.1
+2025-09-17T23:39:21.124583+0000 ERROR Response: GET http://127.0.0.1:8000/users/@23423sdfsdf/posts?offset=0&limit=10 Status: 404 Time: 0.0150s
+2025-09-17T23:39:30.932412+0000 INFO Request: GET http://127.0.0.1:8000/users/@admin/posts?offset=0&limit=10 from 127.0.0.1
+2025-09-17T23:39:30.948600+0000 ERROR Response: GET http://127.0.0.1:8000/users/@admin/posts?offset=0&limit=10 Status: 404 Time: 0.0160s
+2025-09-17T23:40:02.999679+0000 INFO Request: GET http://127.0.0.1:8000/users/@asdfsdfsdf from 127.0.0.1
+2025-09-17T23:40:04.036590+0000 ERROR Response: GET http://127.0.0.1:8000/users/@asdfsdfsdf Status: 404 Time: 1.0310s
+2025-09-17T23:40:34.155951+0000 INFO Request: GET http://127.0.0.1:8000/admin/posts/1 from 127.0.0.1
+2025-09-17T23:40:34.213125+0000 ERROR Response: GET http://127.0.0.1:8000/admin/posts/1 Status: 404 Time: 0.0470s
+2025-09-17T23:40:44.747210+0000 INFO Request: POST http://127.0.0.1:8000/admin/posts from 127.0.0.1
+2025-09-17T23:40:44.841349+0000 INFO Response: POST http://127.0.0.1:8000/admin/posts Status: 200 Time: 0.0930s
+2025-09-17T23:40:52.600282+0000 INFO Request: POST http://127.0.0.1:8000/admin/posts from 127.0.0.1
+2025-09-17T23:40:52.656026+0000 INFO Response: POST http://127.0.0.1:8000/admin/posts Status: 200 Time: 0.0620s
+2025-09-17T23:40:53.330071+0000 INFO Request: POST http://127.0.0.1:8000/admin/posts from 127.0.0.1
+2025-09-17T23:40:53.378586+0000 INFO Response: POST http://127.0.0.1:8000/admin/posts Status: 200 Time: 0.0470s
+2025-09-17T23:40:53.787881+0000 INFO Request: POST http://127.0.0.1:8000/admin/posts from 127.0.0.1
+2025-09-17T23:40:53.840913+0000 INFO Response: POST http://127.0.0.1:8000/admin/posts Status: 200 Time: 0.0470s
+2025-09-17T23:40:54.040313+0000 INFO Request: POST http://127.0.0.1:8000/admin/posts from 127.0.0.1
+2025-09-17T23:40:54.089897+0000 INFO Response: POST http://127.0.0.1:8000/admin/posts Status: 200 Time: 0.0470s
+2025-09-17T23:40:54.368644+0000 INFO Request: POST http://127.0.0.1:8000/admin/posts from 127.0.0.1
+2025-09-17T23:40:54.416073+0000 INFO Response: POST http://127.0.0.1:8000/admin/posts Status: 200 Time: 0.0460s
+2025-09-17T23:40:54.671635+0000 INFO Request: POST http://127.0.0.1:8000/admin/posts from 127.0.0.1
+2025-09-17T23:40:54.720526+0000 INFO Response: POST http://127.0.0.1:8000/admin/posts Status: 200 Time: 0.0470s
+2025-09-17T23:40:59.518882+0000 INFO Request: GET http://127.0.0.1:8000/admin/posts/1 from 127.0.0.1
+2025-09-17T23:40:59.577956+0000 INFO Response: GET http://127.0.0.1:8000/admin/posts/1 Status: 200 Time: 0.0620s
+2025-09-17T23:41:04.938047+0000 INFO Request: GET http://127.0.0.1:8000/admin/posts/456 from 127.0.0.1
+2025-09-17T23:41:04.950614+0000 ERROR Response: GET http://127.0.0.1:8000/admin/posts/456 Status: 404 Time: 0.0000s

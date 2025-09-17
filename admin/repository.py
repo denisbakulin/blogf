@@ -1,5 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import delete
+from sqlalchemy import delete, select, func
+
 
 class AdminRepository[T]:
 
@@ -9,6 +10,11 @@ class AdminRepository[T]:
 
     async def get_item_by_id(self, item_id) -> T:
         return await self.session.get(self.model, item_id)
+
+    async def get_items_count(self) -> int:
+        stmt = select(func.count()).select_from(self.model)
+        count = await self.session.execute(stmt)
+        return count.scalar_one()
 
     async def create_item(self, item_data: dict) -> T:
         item = self.model(**item_data)

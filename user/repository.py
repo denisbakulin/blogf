@@ -20,6 +20,7 @@ class UserRepository(BaseRepository):
             self,
             **filters
     ) -> Optional[User]:
+
         stmt = select(User).filter_by(**filters)
         result = await self.session.execute(stmt)
 

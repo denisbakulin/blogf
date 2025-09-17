@@ -2,15 +2,17 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi import Depends, HTTPException
 from user.models import User
 from auth.utils import decode_token, TokenTypes
-from auth.exceptions import InvalidTokenErr
+
 from user.dependencies import get_user_service
 from user.service import UserService
-from user.exceptions import UserInactiveErr, UserNotFoundErr
+
 from sqlalchemy.ext.asyncio import AsyncSession
 from core.db import get_session
 from auth.service import AuthService
 from auth.schemas import TokenInfo
 from typing import Annotated
+
+from core.exceptions import InvalidTokenError
 
 security = HTTPBearer()
 
@@ -25,29 +27,22 @@ async def get_user_token(
         creds: HTTPAuthorizationCredentials = Depends(security),
 ) -> TokenInfo:
     if creds.scheme != "Bearer":
-        raise HTTPException(
-            401,
+        raise InvalidTokenError(
             f"Invalid auth schema: {creds.scheme} (Bearer need)"
         )
     token = creds.credentials
-    try:
-        return decode_token(token)
-    except InvalidTokenErr as e:
-        raise HTTPException(401, detail=str(e))
+
+    return decode_token(token)
 
 
 async def get_current_user(
     token: TokenInfo = Depends(get_user_token),
     user_service: UserService = Depends(get_user_service)
 ) -> User:
-    try:
-        if token.type in banned_token_types:
-            raise HTTPException(401, "Invalid token type")
-        return await user_service.get_user_by_id(token.user_id)
-    except UserInactiveErr as e:
-        raise HTTPException(403, detail=str(e))
-    except UserNotFoundErr as e:
-        raise HTTPException(404, detail=str(e))
+    if token.type in banned_token_types:
+        raise InvalidTokenError("Неверный тип токена")
+    return await user_service.get_user_by_id(token.user_id)
+
 
 
 async def get_verified_user(

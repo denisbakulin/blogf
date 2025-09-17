@@ -37,6 +37,9 @@ async def lifespan(
 
     await init_models()
 
+    from core.config import FirstAdminSettings
+
+    s = FirstAdminSettings.get()
 
     from admin.views import Admin, UserAdminView, PostAdminView
 
@@ -52,7 +55,13 @@ async def lifespan(
 
     user_service = UserService(session=session)
 
-    await user_service.create_admin()
+    await user_service.create_admin(
+        username=s.login,
+        password=s.password,
+        email=s.email
+    )
+
+
 
 
     yield
@@ -68,7 +77,12 @@ app.add_middleware(
         allow_methods=["*"],
         allow_headers=["*"],
     )
+from core.exceptions import init_error_handlers
+init_error_handlers(app)
 
+from core.log import LoggingMiddleware
+
+app.add_middleware(LoggingMiddleware)
 @app.get("/ping")
 def ping():
     return {"msg": "pong"}

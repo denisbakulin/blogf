@@ -7,17 +7,32 @@ from core.schemas import BaseSchema
 
 from admin.service import AdminService
 from admin.dependencies import get_admin_service
-from admin.exceptions import NotFoundErr, ItemUpdateErr, ItemCreateErr
 
 from auth.dependencies import get_admin
 from post.models import Post
-
+from sqlalchemy.exc import SQLAlchemyError
 
 from typing import Type, Optional
 
+
 class AdminView(APIRouter):
+    """
+    Класс-родитель для написания админ-роутов
+
+    пример:
+
+    class ExampleAdminView(AdminView, model=example, delete_=False):
+        show = ShowModel
+        update = UpdateModel
+
+    """
+    # модель ORM с которой будет взаимодействовать админка
     model: Type[BaseORM] = None
+
+    # удаление сущности
     delete_: bool = False
+
+    # Схемы для взаимодействия с сущностями
     show: Type[BaseSchema] = None
     update: Type[BaseSchema] = None
     create: Type[BaseSchema] = None
@@ -32,8 +47,10 @@ class AdminView(APIRouter):
             tags: Optional[list[str]] = None,
             **kwargs
     ):
+        #устанавливаем /path и tags[] по дефолту (__tablename__) или аргументу
         table_name = table_name or self.model.__tablename__
         tags = tags or [f"Admin - {table_name}"]
+
         super().__init__(
             prefix=f"/{table_name}",
             tags=tags,
@@ -45,6 +62,9 @@ class AdminView(APIRouter):
 
 
     def init_default_views(self):
+        """
+        Определение дефолтных роутов (простые CRUD без проверок)
+        """
 
         if not self.model:
             raise ValueError()
@@ -62,13 +82,19 @@ class AdminView(APIRouter):
                 item_id: int,
                 admin_service: AdminService = Depends(get_admin_service(model=model))
         ):
-            try:
-                return await admin_service.get_item_by_id(item_id)
-            except NotFoundErr as e:
-                raise HTTPException(404, str(e))
+            return await admin_service.get_item_by_id(item_id)
+
 
         def get_table_info():
             return model.table_info()
+
+        async def get_item_count(
+                admin_service: AdminService = Depends(get_admin_service(model=model))
+        ):
+            return await admin_service.get_items_count()
+
+        self.get("/table-info", response_model=list[ColumnProps])(get_table_info)
+        self.get("/count", response_model=int)(get_item_count)
 
         async def create_item(
                 item_create: create,
@@ -77,7 +103,7 @@ class AdminView(APIRouter):
             try:
                 item = await admin_service.create_item(item_create)
                 return item
-            except ItemCreateErr as e:
+            except SQLAlchemyError as e:
                 raise HTTPException(409, str(e))
 
         async def update_item(
@@ -87,9 +113,7 @@ class AdminView(APIRouter):
         ):
             try:
                 return await admin_service.update_item(item_id, update_data)
-            except NotFoundErr as e:
-                raise HTTPException(404, str(e))
-            except ItemUpdateErr as e:
+            except SQLAlchemyError as e:
                 raise HTTPException(409, str(e))
 
         async def delete_item(
@@ -99,6 +123,7 @@ class AdminView(APIRouter):
 
             return await admin_service.delete_item(item_id)
 
+
         if self.show:
             self.get(**params)(get_item)
         if self.create:
@@ -106,15 +131,27 @@ class AdminView(APIRouter):
         if self.update:
             self.patch(**params)(update_item)
         if self.delete_:
-            self.delete("")(delete_item)
+            self.delete("/{item_id}")(delete_item)
 
-        self.get("/table-info", response_model=list[ColumnProps])(get_table_info)
+
 
     def init_custom_views(self):
-        ...
+        """В этом методе прописываются кастомные
+        роуты с отличной от изночальной логикой
+
+        @self.get("path"): ...
+        """
+
 
 from user.dependencies import userServiceDep
-from user.exceptions import UserAlreadyExistErr, UserNotFoundErr
+
+
+
+
+
+
+
+from admin.schemas import AdminPostCreate, AdminPostUpdate, AdminPostShow
 
 
 class UserAdminView(AdminView, model=User):
@@ -130,38 +167,30 @@ class UserAdminView(AdminView, model=User):
                 user_create: AdminUserCreate,
                 user_service: userServiceDep
         ):
-            try:
-                return await user_service.create_user(user_create)
-            except UserAlreadyExistErr as e:
-                raise HTTPException(401, str(e))
+            return await user_service.create_user(user_create)
+
+
         @self.patch("/{user_id}")
         async def update_user(
                 user_id: int,
                 user_data: AdminUserUpdate,
                 user_service: userServiceDep
         ):
-            try:
-                user = await user_service.get_user_by_id(user_id)
-                return await user_service.update_user(user, user_data)
-            except UserNotFoundErr as e:
-                raise HTTPException(404, str(e))
 
-            except UserAlreadyExistErr as e:
-                raise HTTPException(404, str(e))
-
-
-
-from admin.schemas import AdminPostCreate, AdminPostUpdate, AdminPostShow
-
-
+            user = await user_service.get_user_by_id(user_id)
+            return await user_service.update_user(user, user_data)
 
 class PostAdminView(AdminView, model=Post, delete_=True):
     show = AdminPostShow
-    update = AdminPostUpdate
-    create = AdminPostCreate
+
+    def init_custom_views(self):
+       ...
+
+
 
 
 class Admin(APIRouter):
+    """Главный админ-роут с проверкой на права администратора"""
 
     def __init__(self, *routers):
         super().__init__(

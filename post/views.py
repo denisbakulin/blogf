@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from post.schemas import PostCreate, PostShow
 from post.dependencies import postServiceDep
-from post.exceptions import PostNotFoundErr
 from auth.dependencies import currentUserDep
 from helpers.pagination import Pagination
 
@@ -17,7 +16,7 @@ async def create_post(
         user: currentUserDep,
         post_service: postServiceDep
 ):
-    return await post_service.create_post(user, post_info)
+    return await post_service.create_post(user.id, post_info)
 
 
 
@@ -31,12 +30,8 @@ async def get_posts_by_slug(
         pagination: Pagination = Depends(),
 
 ):
-    try:
+    return await post_service.get_posts_by_slug(slug, pagination.offset, pagination.limit)
 
-        posts = await post_service.get_posts_by_slug(slug, pagination.offset, pagination.limit)
-        return posts
-    except PostNotFoundErr as e:
-        raise HTTPException(404, detail=str(e))
 
 
 @post_router.get(
@@ -47,11 +42,7 @@ async def get_post_by_id(
         post_id: int,
         post_service: postServiceDep
 ):
-    try:
-        posts = await post_service.get_post_by_id(post_id)
-        return posts
-    except PostNotFoundErr as e:
-        raise HTTPException(404, detail=str(e))
+    return await post_service.get_post_by_id(post_id)
 
 
 

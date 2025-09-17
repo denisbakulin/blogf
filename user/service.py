@@ -1,12 +1,12 @@
 from user.repository import UserRepository
 from user.schemas import UserCreate, UserUpdate
 from user.models import User
-from user.exceptions import UserAlreadyExistErr, UserNotFoundErr, UserInactiveErr, IncorrectPasswordErr
+from user.exceptions import IncorrectPasswordErr
 from user.utils import verify_password, generate_hashed_password
 from sqlalchemy.ext.asyncio import AsyncSession
-
-
 from admin.schemas import AdminUserCreate, AdminUserUpdate
+from core.exceptions import EntityNotFoundError, EntityAlreadyExists
+from typing import Optional
 
 
 class UserService:
@@ -19,12 +19,20 @@ class UserService:
         existing_username = await self.repo.get_user(username=user_data.username)
 
         if existing_username:
-            raise UserAlreadyExistErr(f"Пользователь с username={user_data.username} уже существует!")
+            raise EntityAlreadyExists(
+                entity="User",
+                field="username",
+                value=user_data.username
+            )
 
         existing_email = await self.repo.get_user(email=user_data.email)
 
         if existing_email:
-            raise UserAlreadyExistErr(f"Пользователь с указанной почтой уже существует!")
+            raise EntityAlreadyExists(
+                entity="User",
+                field="email",
+                value=user_data.email
+            )
 
         hashed_password = generate_hashed_password(password=user_data.password)
 
@@ -41,11 +49,14 @@ class UserService:
 
         return user
 
-    async def _get_user_by(self, **filter) -> User:
-        user = await self.repo.get_user(**filter)
+    async def _get_user_by(self, **filters) -> User:
+        user = await self.repo.get_user(**filters)
 
         if not user:
-            raise UserNotFoundErr(f"Пользователь не найден!")
+            raise EntityNotFoundError(
+                entity="User",
+                fields=filters
+            )
 
         return user
 
@@ -57,20 +68,20 @@ class UserService:
 
 
 
-    async def create_admin(self):
+    async def create_admin(self, username: str, password: str, email: str) -> Optional[User]:
 
         admin = await self.repo.user_exists(is_admin=True)
 
         if admin: return
 
-        hashed_password = generate_hashed_password(password="admin")
+        hashed_password = generate_hashed_password(password=password)
 
         admin_data = {
-            "username": "admin",
+            "username": username,
             "password": hashed_password,
+            "email": email,
             "is_admin": True,
             "is_verified": True,
-            "email": "dtorkon@yandex.ru",
         }
 
         admin = self.repo.create_user(admin_data)
@@ -87,7 +98,11 @@ class UserService:
             existing = await self.repo.get_user(username=update_info.username)
 
             if existing:
-                raise UserAlreadyExistErr(f"Пользователь с username={update_info.username} уже существует!")
+                raise EntityAlreadyExists(
+                    entity="User",
+                    field="username",
+                    value=update_info.username
+                )
 
         if update_info.bio:
             update_info.bio = update_info.bio[:2000]
@@ -103,7 +118,7 @@ class UserService:
         return await self.repo.update_user_info(user, **update_info)
 
 
-    async def change_password(self, user: User, old_password, new_password) -> User:
+    async def change_password(self, user: User, old_password, new_password):
         if not verify_password(old_password, user.password):
             raise IncorrectPasswordErr("Пароль указан не верно!")
 
@@ -120,9 +135,13 @@ class UserService:
         existing_email = await self.repo.get_user(email=email)
 
         if existing_email:
-            raise UserAlreadyExistErr("Пользователь с указанной почтой уже существует!")
+            raise EntityAlreadyExists(
+                    entity="User",
+                    field="email",
+                    value=email
+                )
 
-        await self.repo.update_user_info(user, {"email":email, "is_verified":False})
+        await self.repo.update_user_info(user, {"email": email, "is_verified": False})
         await self.session.commit()
         await self.session.refresh(user)
 
@@ -131,7 +150,12 @@ class UserService:
     async def search_users(self, username: str, offset: int, limit: int) -> list[User]:
         users = await self.repo.search_users(username, offset, limit)
         if not users:
-            raise UserNotFoundErr("Пользователи не найдены")
+            raise EntityNotFoundError(
+                entity="User",
+                fields=dict(
+                    username=username
+                )
+            )
         return users
 
 

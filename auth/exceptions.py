@@ -1,6 +1,2 @@
-class InvalidTokenErr(Exception):
-    ...
-
-
 class InvalidPasswordErr(Exception):
     ...

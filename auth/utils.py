@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 from jose import jwt, JWTError
 from core.config import AuthSettings
 from auth.schemas import TokenInfo
-from auth.exceptions import InvalidTokenErr
+from core.exceptions import InvalidTokenError
 from fastapi import Response
 from enum import StrEnum
 
@@ -19,7 +19,7 @@ config = AuthSettings.get()
 
 
 class TokenCreator:
-
+    """Класс-генератор JWT токенов по user_id"""
     def __init__(self, user_id: int):
         self.user_id = user_id
 
@@ -59,6 +59,7 @@ class TokenCreator:
 
 
 def decode_token(token: str) -> TokenInfo | None:
+    """Декодирует JWT токен из SHA256"""
     try:
         payload = jwt.decode(
             token,
@@ -71,7 +72,7 @@ def decode_token(token: str) -> TokenInfo | None:
 
         return TokenInfo(user_id=user_id, type=token_type)
     except JWTError:
-        raise InvalidTokenErr("Invalid token or expired")
+        raise InvalidTokenError("Невалидный или истекший токен")
 
 
 def set_refresh_token_cookie(response: Response, token):

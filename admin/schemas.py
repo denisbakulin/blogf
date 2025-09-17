@@ -3,6 +3,7 @@ from pydantic import EmailStr, Field
 from core.schemas import BaseSchema
 from typing import Optional
 
+
 class UserFields(BaseSchema):
     is_active: bool = Field(default=True)
     is_verified: bool = Field(default=True)

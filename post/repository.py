@@ -3,6 +3,7 @@ from post.models import Post
 from sqlalchemy import select
 from typing import Optional
 
+
 class PostRepository(BaseRepository):
 
     def create_post(self, post_data: dict, author_id: int) -> Post:
@@ -17,16 +18,10 @@ class PostRepository(BaseRepository):
             self,
             offset: Optional[int] = 0,
             limit: Optional[int] = 10,
-            **filter,
-    ) -> list[Post] | Post | None:
+            **filters,
+    ) -> list[Post] | None:
 
-        stmt = select(Post).filter_by(**filter)
-
-        result = await self.session.execute(stmt.offset(offset).limit(limit))
-
-        posts = result.scalars().all()
-
-        return list(posts)
+        return await super()._get_by(Post, offset=offset, limit=limit, **filters)
 
 
 

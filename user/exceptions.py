@@ -1,13 +1,5 @@
-class UserAlreadyExistErr(Exception):
-    ...
-
-class UserNotFoundErr(Exception):
-    ...
+from core.exceptions import AppError
 
 
-class UserInactiveErr(Exception):
-    ...
-
-
-class IncorrectPasswordErr(Exception):
+class IncorrectPasswordErr(AppError):
     ...

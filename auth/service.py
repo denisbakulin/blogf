@@ -5,7 +5,8 @@ from user.schemas import UserCreate
 from auth.utils import TokenCreator, decode_token,TokenTypes
 from auth.schemas import Tokens, AuthCreds
 from user.utils import verify_password
-from auth.exceptions import InvalidPasswordErr, InvalidTokenErr
+from auth.exceptions import InvalidPasswordErr
+from core.exceptions import InvalidTokenError
 
 
 class AuthService:
@@ -36,7 +37,7 @@ class AuthService:
         token = decode_token(token)
 
         if token.type != target_type:
-            raise InvalidTokenErr(f"Не валидный токен для верификации {token.type} {target_type}")
+            raise InvalidTokenError(f"Не валидный токен для верификации {token.type} {target_type}")
 
         user = await self.user_service.get_user_by_id(token.user_id)
 
@@ -44,7 +45,7 @@ class AuthService:
         await self.session.commit()
 
         tokens = TokenCreator(user.id)
-        print(tokens)
+
         return Tokens(access_token=tokens.access, refresh_token=tokens.refresh)
 
     async def verify_user_by_email(self, token: str) -> Tokens:

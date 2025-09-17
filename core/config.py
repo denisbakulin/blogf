@@ -46,6 +46,7 @@ class MailSettings(BaseConfig):
 class FirstAdminSettings(BaseConfig):
     login: str
     password: str
+    email: EmailStr
 
     class Config(BaseConfig.Config):
         env_prefix = "FIRST_ADMIN_"
