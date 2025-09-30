@@ -35,6 +35,7 @@ class EmailSender:
             body=body,
             subtype="html"
         )
+
     async def _create_and_send_message(self, html: str) -> None:
         message = self._create_message(html)
         fm = FastMail(conn_config)

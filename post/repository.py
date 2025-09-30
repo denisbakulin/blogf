@@ -1,27 +1,36 @@
 from core.repository import BaseRepository
-from post.models import Post
-from sqlalchemy import select
-from typing import Optional
+from post.model import Post
+from typing import Optional, Any, override
+from sqlalchemy.ext.asyncio import AsyncSession
 
+class PostRepository(BaseRepository[Post]):
 
-class PostRepository(BaseRepository):
+    def __init__(self, session: AsyncSession):
+        super().__init__(Post, session)
 
-    def create_post(self, post_data: dict, author_id: int) -> Post:
-        post = Post(**post_data, author_id=author_id)
-        self.session.add(post)
-        return post
+    def create_post(self, **post_data) -> Post:
+        return self.create(**post_data)
 
-    async def get_post(self, post_id: int) -> Optional[Post]:
-        return await self.session.get(Post, post_id)
 
     async def get_posts(
             self,
-            offset: Optional[int] = 0,
-            limit: Optional[int] = 10,
+            offset: Optional[int],
+            limit: Optional[int],
             **filters,
     ) -> list[Post] | None:
 
-        return await super()._get_by(Post, offset=offset, limit=limit, **filters)
+        return await self.get_any_by(offset=offset, limit=limit, **filters)
+
+
+    async def search_posts(
+            self,
+            offset: int,
+            limit: int,
+            field: str,
+            query: Any,
+    ) -> list[Post]:
+        return await self.search(field, query, offset=offset, limit=limit)
+
 
 
 

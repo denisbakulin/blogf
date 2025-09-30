@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 from jose import jwt, JWTError
 from core.config import AuthSettings
 from auth.schemas import TokenInfo
-from core.exceptions import InvalidTokenError
+from auth.exceptions import InvalidTokenError
 from fastapi import Response
 from enum import StrEnum
 
@@ -75,16 +75,16 @@ def decode_token(token: str) -> TokenInfo | None:
         raise InvalidTokenError("Невалидный или истекший токен")
 
 
+from datetime import datetime, timedelta
+
 def set_refresh_token_cookie(response: Response, token):
     response.set_cookie(
         key="refresh_token",
         value=token,
         httponly=True,
-        secure=True,
-        samesite="strict",
-        path="/auth/refresh",
-        max_age=config.refresh_token_expire_days*3600*24,
-
+        samesite="lax",  # или "strict" / "none" если фронтенд на другом домене
+        max_age=60 * 60 * 24 * 7,  # 7 дней, или сколько нужно
+        path="/"
     )
 
 

@@ -1,27 +1,33 @@
-from fastapi import Depends, APIRouter, HTTPException, Response, Cookie, BackgroundTasks
-from comment.schemas import CommentCreate
-from comment.dependencies import commentServiceDep
+from fastapi import APIRouter
+from comment.schemas import CommentShow, CommentUpdate
+from comment.dependencies import commentServiceDep, commentDep
 from auth.dependencies import verifiedUserDep
 
 
-comm_router = APIRouter(prefix="/comment", tags=["auth"])
+comm_router = APIRouter(prefix="/comments", tags=["comment"])
 
 
-
-@comm_router.post("")
-async def create_comment(
-        comment_info: CommentCreate,
-        comment_service: commentServiceDep,
-        user: verifiedUserDep
+@comm_router.get("/{comment_id}", response_model=CommentShow)
+async def get_comment(
+        comment: commentDep
 ):
-    try:
-        return await comment_service.create_comment(
-            comment_info,
-            author_id=user.id,
-            post_id=comment_info.post_id,
-            parent_id=comment_info.parent_id
-        )
-    except:
-        raise
+    return comment
+
+
+@comm_router.patch(
+    "/{comment_id}",
+    response_model=CommentShow
+)
+async def update_comment(
+        comment: commentDep,
+        user: verifiedUserDep,
+        update_info: CommentUpdate,
+        comment_service: commentServiceDep,
+):
+    return await comment_service.update_comment(comment, user, update_info)
+
+
+
+
 
 

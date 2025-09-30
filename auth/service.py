@@ -3,10 +3,10 @@ from user.service import UserService
 
 from user.schemas import UserCreate
 from auth.utils import TokenCreator, decode_token,TokenTypes
-from auth.schemas import Tokens, AuthCreds
+from auth.schemas import LoginTokens, AuthCreds
 from user.utils import verify_password
-from auth.exceptions import InvalidPasswordErr
-from core.exceptions import InvalidTokenError
+from auth.exceptions import InvalidPasswordError, InvalidTokenError
+
 
 
 class AuthService:
@@ -16,24 +16,23 @@ class AuthService:
         self.user_service = UserService(session=session)
 
 
-
     async def register(self, user_info: UserCreate) -> list[str]:
         user = await self.user_service.create_user(user_data=user_info)
         tokens = TokenCreator(user.id)
         return [tokens.pending_access, tokens.verify]
 
 
-    async def login(self, creds: AuthCreds) -> Tokens | None:
+    async def login(self, creds: AuthCreds) -> LoginTokens | None:
         user = await self.user_service.get_user_by_username(creds.username)
 
         if not verify_password(creds.password, user.password):
-            raise InvalidPasswordErr("Пароль не правильный!")
+            raise InvalidPasswordError
 
         tokens = TokenCreator(user.id)
 
-        return Tokens(access_token=tokens.access, refresh_token=tokens.refresh)
+        return LoginTokens(access_token=tokens.access, refresh_token=tokens.refresh)
 
-    async def _verify_user(self, token: str, target_type: TokenTypes) -> Tokens:
+    async def _verify_user(self, token: str, target_type: TokenTypes) -> LoginTokens:
         token = decode_token(token)
 
         if token.type != target_type:
@@ -46,9 +45,9 @@ class AuthService:
 
         tokens = TokenCreator(user.id)
 
-        return Tokens(access_token=tokens.access, refresh_token=tokens.refresh)
+        return LoginTokens(access_token=tokens.access, refresh_token=tokens.refresh)
 
-    async def verify_user_by_email(self, token: str) -> Tokens:
+    async def verify_user_by_email(self, token: str) -> LoginTokens:
         return await self._verify_user(token, TokenTypes.verify)
 
 

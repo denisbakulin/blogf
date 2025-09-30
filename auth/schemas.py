@@ -1,8 +1,7 @@
 from core.schemas import BaseSchema
 
 
-
-class Tokens(BaseSchema):
+class LoginTokens(BaseSchema):
     access_token: str
     refresh_token: str
 
@@ -14,3 +13,4 @@ class TokenInfo(BaseSchema):
 class AuthCreds(BaseSchema):
     username: str
     password: str
+

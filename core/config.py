@@ -44,7 +44,7 @@ class MailSettings(BaseConfig):
 
 
 class FirstAdminSettings(BaseConfig):
-    login: str
+    username: str
     password: str
     email: EmailStr
 

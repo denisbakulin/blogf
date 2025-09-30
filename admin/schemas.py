@@ -32,13 +32,6 @@ from post.schemas import PostShow, PostBase
 class AdminPostShow(PostShow):
     ...
 
-class AdminPostCreate(PostBase):
-    author_id: int
-
-
-class AdminPostUpdate(PostBase):
-    ...
-
 
 
 

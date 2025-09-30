@@ -1,11 +1,16 @@
-from fastapi import APIRouter, HTTPException, BackgroundTasks
+from fastapi import APIRouter, BackgroundTasks, Depends
 from user.schemas import EmailUpdate, UserUpdate, UserShowMe, PasswordChange
 from auth.dependencies import currentUserDep
 from user.dependencies import userServiceDep
-from user.exceptions import IncorrectPasswordErr
+
 from mail.utils import EmailSender
 from auth.utils import TokenCreator
-
+from comment.dependencies import commentServiceDep
+from comment.schemas import CommentShow
+from helpers.search import Pagination
+from reaction.dependencies import reactionServiceDep
+from reaction.schemas import ReactionShow
+from reaction.types import UserReactions
 
 me_router = APIRouter(prefix="/me", tags=["me"])
 
@@ -18,6 +23,7 @@ async def get_me(
         user: currentUserDep
 ):
     return user
+
 
 @me_router.patch("")
 async def patch_my_info(
@@ -36,11 +42,10 @@ async def change_password(
         user: currentUserDep,
         user_service: userServiceDep,
 ):
-    try:
-        await user_service.change_password(user, pwd.old_password, pwd.new_password)
-        return {"ok": True}
-    except IncorrectPasswordErr as e:
-        raise HTTPException(401, detail=str(e))
+
+    await user_service.change_password(user, pwd.old_password, pwd.new_password)
+    return {"ok": True}
+
 
 
 @me_router.put("/email")
@@ -58,4 +63,33 @@ async def change_email(
         ce_token,
         user.username
     )
+
+
+@me_router.get(
+    "/comments",
+    response_model=list[CommentShow]
+)
+async def get_my_comments(
+        user: currentUserDep,
+        comment_service: commentServiceDep,
+        pagination: Pagination = Depends()
+
+):
+    return await comment_service.get_user_comments(user=user, pagination=pagination)
+
+
+@me_router.get(
+    "/reactions",
+    response_model=list[ReactionShow]
+)
+async def get_my_reactions(
+        user: currentUserDep,
+        like_service: reactionServiceDep,
+        v: UserReactions,
+        pagination: Pagination = Depends()
+):
+    return await like_service.get_user_reactions(user, v, pagination)
+
+
+
 

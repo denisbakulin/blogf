@@ -1,10 +1,9 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from core.models import BaseORM
+from core.model import BaseORM, TimeMixin
 from sqlalchemy import ForeignKey
-from datetime import datetime
 
 
-class Comment(BaseORM):
+class Comment(BaseORM, TimeMixin):
     __tablename__ = "comments"
 
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -12,9 +11,9 @@ class Comment(BaseORM):
     content: Mapped[str] = mapped_column(nullable=False)
 
     post_id: Mapped[int] = mapped_column(ForeignKey("posts.id"), nullable=False)
-    author_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
     parent_id: Mapped[int] = mapped_column(ForeignKey("comments.id"), nullable=True)
-    created_at: Mapped[datetime] = mapped_column(default=datetime.utcnow)
+
 
     replies: Mapped[list["Comment"]] = relationship(
         back_populates="parent",

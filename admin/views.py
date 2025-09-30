@@ -1,7 +1,7 @@
-from fastapi import APIRouter, Depends, HTTPException
-from user.models import User
+from fastapi import APIRouter, Depends
+from user.model import User
 from admin.schemas import AdminUserShow, AdminUserUpdate, AdminUserCreate
-from core.models import BaseORM, ColumnProps
+from core.model import BaseORM, ColumnProps
 from core.schemas import BaseSchema
 
 
@@ -9,10 +9,24 @@ from admin.service import AdminService
 from admin.dependencies import get_admin_service
 
 from auth.dependencies import get_admin
-from post.models import Post
-from sqlalchemy.exc import SQLAlchemyError
+from post.model import Post
 
 from typing import Type, Optional
+
+
+
+class Admin(APIRouter):
+    """Главный админ-роут с проверкой на права администратора"""
+
+    def __init__(self, *routers):
+        super().__init__(
+            dependencies=[Depends(get_admin)],
+            prefix="/admin",
+            tags=["admin"]
+        )
+        if routers:
+            for router in routers:
+                self.include_router(router)
 
 
 class AdminView(APIRouter):
@@ -29,13 +43,11 @@ class AdminView(APIRouter):
     # модель ORM с которой будет взаимодействовать админка
     model: Type[BaseORM] = None
 
-    # удаление сущности
+    # удаление записи
     delete_: bool = False
 
-    # Схемы для взаимодействия с сущностями
+    # Схемы для взаимодействия с записями
     show: Type[BaseSchema] = None
-    update: Type[BaseSchema] = None
-    create: Type[BaseSchema] = None
 
     def __init_subclass__(cls, **kwargs):
         for key, value in kwargs.items():
@@ -70,13 +82,7 @@ class AdminView(APIRouter):
             raise ValueError()
 
         model = self.model
-        create = self.create
-        update = self.update
 
-        params = {
-            "path": "/{item_id}",
-            "response_model": self.show
-        }
 
         async def get_item(
                 item_id: int,
@@ -93,43 +99,19 @@ class AdminView(APIRouter):
         ):
             return await admin_service.get_items_count()
 
-        self.get("/table-info", response_model=list[ColumnProps])(get_table_info)
-        self.get("/count", response_model=int)(get_item_count)
-
-        async def create_item(
-                item_create: create,
-                admin_service: AdminService = Depends(get_admin_service(model=model))
-        ):
-            try:
-                item = await admin_service.create_item(item_create)
-                return item
-            except SQLAlchemyError as e:
-                raise HTTPException(409, str(e))
-
-        async def update_item(
-                item_id: int,
-                update_data: update,
-                admin_service: AdminService = Depends(get_admin_service(model=model))
-        ):
-            try:
-                return await admin_service.update_item(item_id, update_data)
-            except SQLAlchemyError as e:
-                raise HTTPException(409, str(e))
 
         async def delete_item(
                 item_id: int,
                 admin_service: AdminService = Depends(get_admin_service(model=model))
         ):
+            return await admin_service.delete_item_by_id(item_id)
 
-            return await admin_service.delete_item(item_id)
-
+        self.get("/table-info", response_model=list[ColumnProps])(get_table_info)
+        self.get("/count", response_model=int)(get_item_count)
 
         if self.show:
-            self.get(**params)(get_item)
-        if self.create:
-            self.post("", response_model=self.show)(create_item)
-        if self.update:
-            self.patch(**params)(update_item)
+            self.get(path="/{item_id}", response_model=self.show)(get_item)
+
         if self.delete_:
             self.delete("/{item_id}")(delete_item)
 
@@ -145,13 +127,7 @@ class AdminView(APIRouter):
 
 from user.dependencies import userServiceDep
 
-
-
-
-
-
-
-from admin.schemas import AdminPostCreate, AdminPostUpdate, AdminPostShow
+from admin.schemas import AdminPostShow
 
 
 class UserAdminView(AdminView, model=User):
@@ -180,6 +156,7 @@ class UserAdminView(AdminView, model=User):
             user = await user_service.get_user_by_id(user_id)
             return await user_service.update_user(user, user_data)
 
+
 class PostAdminView(AdminView, model=Post, delete_=True):
     show = AdminPostShow
 
@@ -189,18 +166,7 @@ class PostAdminView(AdminView, model=Post, delete_=True):
 
 
 
-class Admin(APIRouter):
-    """Главный админ-роут с проверкой на права администратора"""
 
-    def __init__(self, *routers):
-        super().__init__(
-            dependencies=[Depends(get_admin)],
-            prefix="/admin",
-            tags=["admin"]
-        )
-        if routers:
-            for router in routers:
-                self.include_router(router)
 
 
 

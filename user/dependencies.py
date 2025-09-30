@@ -1,13 +1,28 @@
 from user.service import UserService
-from core.db import get_session
-from fastapi import Depends
-from sqlalchemy.ext.asyncio import AsyncSession
+from user.model import User
+from user.repository import UserRepository
+from core.db import getSessionDep
+from fastapi import Depends, HTTPException, Path
 from typing import Annotated
+from fastapi import status as st
+
+
 
 def get_user_service(
-        session: AsyncSession = Depends(get_session)
+        session: getSessionDep
 ) -> UserService:
     return UserService(session=session)
 
 
 userServiceDep = Annotated[UserService, Depends(get_user_service)]
+
+
+
+async def get_user(
+        user_service: userServiceDep,
+        username: str
+) -> User:
+    return await user_service.get_user_by_username(username)
+
+userDep = Annotated[User, Depends(get_user)]
+

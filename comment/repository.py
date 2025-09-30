@@ -1,39 +1,33 @@
 from core.repository import BaseRepository
-from comment.models import Comment
-from sqlalchemy import select
+from comment.model import Comment
 from typing import Optional
+from sqlalchemy.ext.asyncio import AsyncSession
 
 
-class CommentRepository(BaseRepository):
+class CommentRepository(BaseRepository[Comment]):
+
+    def __init__(self, session: AsyncSession):
+        super().__init__(Comment, session)
 
     async def create_comment(
             self,
-            comment_data: dict,
-            author_id: int,
-            post_id: int,
-            parent_id: int
-    ) -> Comment:
-
-        comment = Comment(
             **comment_data,
-            author_id=author_id,
-            post_id=post_id,
-            parent_id=parent_id
-        )
-        self.session.add(comment)
-        return comment
-
-    async def get_comment(self, post_id: int) -> Optional[Comment]:
-        return await self.session.get(Comment, post_id)
+    ) -> Comment:
+        return self.create(**comment_data)
 
     async def get_comments(
             self,
-            offset: Optional[int] = 0,
-            limit: Optional[int] = 10,
+            offset: Optional[int],
+            limit: Optional[int],
             **filters,
     ) -> list[Comment] | None:
-        return await super()._get_by(Comment, offset=offset, limit=limit, **filters)
+        return await self.get_any_by(offset=offset, limit=limit, **filters)
 
+    async def get_comment(
+            self,
+            **filters
+    ) -> Optional[Comment]:
+        return await self.get_one_by(**filters)
 
 
 

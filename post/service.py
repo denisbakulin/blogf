@@ -1,70 +1,60 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from post.repository import PostRepository
-from post.schemas import PostCreate
-from post.models import Post
-from core.exceptions import EntityNotFoundError
+from post.schemas import PostCreate, PostUpdate
+from post.model import Post
+from helpers.search import Pagination
+from post.utils import PostSearchParams
+from core.service import BaseService
+from post.utils import generate_slug
+from user.model import User
+from core.exceptions import EntityBadRequestError
 
-
-class PostService:
+class PostService(BaseService):
 
     def __init__(self, session: AsyncSession):
-        self.session = session
-        self.post_repo = PostRepository(session)
+        super().__init__(Post, session, PostRepository)
 
     async def create_post(self, author_id: int, post_info: PostCreate) -> Post:
 
-        post = self.post_repo.create_post(post_info.model_dump(), author_id=author_id)
-
+        post = self.repository.create_post(**post_info.model_dump(), author_id=author_id)
         await self.session.commit()
-        await self.session.refresh(post)
+
+        slug = generate_slug(post.title, post.id)
+
+        await self.update_item(post, slug=slug)
 
         return post
 
-    async def _get_posts_by(
-            self,
-            offset: int,
-            limit: int,
-            **filters
-    ):
-        posts = await self.post_repo.get_posts(**filters, offset=offset, limit=limit)
-        if not posts:
-            raise EntityNotFoundError(
-                "Post",
-                fields=filters
-            )
-        return posts
 
-    async def get_post_by_id(self, post_id: int) -> Post:
-        post = await self.post_repo.get_post(post_id=post_id)
-
-        if not post:
-            raise EntityNotFoundError(
-                "Post",
-                entity_id=post_id
-            )
-
-        return post
-
-    async def get_posts_by_title(
-            self,
-            title: str,
-            offset: int,
-            limit: int
-    ) -> list[Post]:
-        return await self._get_posts_by(offset=offset, limit=limit, title=title)
-
-    async def get_posts_by_slug(
+    async def get_post_by_slug(
             self,
             slug: str,
-            offset: int,
-            limit: int
-    ) -> list[Post]:
-        return await self._get_posts_by(offset=offset, limit=limit, slug=slug)
+    ) -> Post:
+        return await self.get_item_by(slug=slug)
+
+    async def update_post(self, post: Post, user: User, update_data: PostUpdate) -> Post:
+
+        if post.author_id != user.id:
+            raise EntityBadRequestError(
+                "Post",
+                f"Пост id={post.id} не принадлежит user={user.username}"
+            )
+
+        await self.update_item(post, **update_data.model_dump())
+
+        return post
+
 
     async def get_posts_by_author_id(
             self,
             author_id: int,
-            offset: int,
-            limit: int
+            pagination: Pagination,
     ) -> list[Post]:
-        return await self._get_posts_by(offset=offset, limit=limit, author_id=author_id)
+        return await self.repository.get_any_by(author_id=author_id, **pagination.get())
+
+    async def search_posts(
+            self,
+            search: PostSearchParams,
+            pagination: Pagination
+    ) -> list[Post]:
+        return await self.search_items(search, pagination)

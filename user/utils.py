@@ -1,5 +1,6 @@
 from passlib.context import CryptContext
-
+from helpers.search import search_param_fabric
+from typing import Literal
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -10,4 +11,9 @@ def verify_password(password, hashed_password) -> bool:
 
 def generate_hashed_password(password) -> str:
     return pwd_context.hash(password)
+
+
+UserSearchParams = search_param_fabric(Literal["username", "id"])
+
+
 

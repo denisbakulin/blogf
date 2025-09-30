@@ -17,6 +17,7 @@ logger.add(
 )
 
 class LoggingMiddleware(BaseHTTPMiddleware):
+
     async def dispatch(self, request: Request, call_next):
         start_time = monotonic_ns()
         logger.info(f"Request: {request.method} {request.url} from {request.client.host}")
@@ -28,7 +29,6 @@ class LoggingMiddleware(BaseHTTPMiddleware):
         response_str = (f"Response: {request.method} {request.url} "
                         f"Status: {response.status_code} "
                         f"Time: {process_time:.4f}s")
-
 
         logger.error(response_str) \
             if response.status_code >= 400 \

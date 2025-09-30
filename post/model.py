@@ -1,21 +1,21 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from core.models import BaseORM
+from core.model import BaseORM, IdMixin, TimeMixin
 from sqlalchemy import ForeignKey
-from datetime import datetime
 
 
-class Post(BaseORM):
+
+class Post(BaseORM, IdMixin, TimeMixin):
     __tablename__ = "posts"
 
     title: Mapped[str] = mapped_column(nullable=False)
     content: Mapped[str] = mapped_column(nullable=False)
     author_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
-    slug: Mapped[str] = mapped_column(nullable=False)
-    created_at: Mapped[datetime] = mapped_column(default=datetime.utcnow)
+    slug: Mapped[str] = mapped_column(index=True, unique=True, nullable=True)
+
     author: Mapped["User"] = relationship("User", back_populates="posts")
 
     comments: Mapped[list["Comment"]] = relationship(
         "Comment",
-        back_populates="post"
+        back_populates="post",
+        cascade="all, delete-orphan"
     )
-

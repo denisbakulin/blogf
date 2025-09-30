@@ -13,9 +13,9 @@ if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
 
-from comment.models import Comment
-from user.models import User, Profile
-from post.models import Post
+from comment.model import Comment
+from user.model import User, Profile
+from post.model import Post
 
 from core.db import BaseORM
 

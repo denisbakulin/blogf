@@ -2,7 +2,7 @@ from unidecode import unidecode
 from re import sub
 
 
-def normalize_slug(slug: str, default: str) -> str:
+def generate_slug(title: str, index: int) -> str:
     """Приводит строку к виду 'abc-de-f-g' путем
     транслитерации с русского(англ.) на английский
     и отброса специальных символов, убирая их или заменяя на '-'.
@@ -13,7 +13,15 @@ def normalize_slug(slug: str, default: str) -> str:
     result = sub(
         r"[^a-z0-9]+",
         "-",
-        unidecode(slug).lower().strip("-")
+        unidecode(f"{title} {index}").lower().strip("-")
     )
-    return result or default
+
+    return result
+
+
+from helpers.search import search_param_fabric
+from typing import Literal
+
+
+PostSearchParams = search_param_fabric(Literal["slug", "id", "title"])
 

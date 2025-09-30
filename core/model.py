@@ -2,7 +2,7 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import inspect
 from typing import Optional, Type
 from pydantic import BaseModel, Field
-
+from datetime import datetime
 
 class ColumnProps(BaseModel):
     name: str
@@ -17,10 +17,10 @@ class ColumnProps(BaseModel):
 class BaseORM(DeclarativeBase):
     __abstract__ = True
 
-    id: Mapped[int] = mapped_column(primary_key=True)
-
-    # Зависимосимости для создания объекта
     depends: Optional[list[tuple[str, Type["BaseORM"]]]] = None
+    """depends = [("profile", Profile), ...]
+    создает поля (связанные таблицы) при создании записи 
+    """
 
     def __init__(self, **kwargs):
         if self.depends is not None:
@@ -58,3 +58,12 @@ class BaseORM(DeclarativeBase):
             fk = list(column.foreign_keys)[0]
             foreign_key_info = f"{fk.column.table.name}.{fk.column.name}"
         return foreign_key_info
+
+
+class IdMixin(DeclarativeBase):
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+
+
+class TimeMixin(DeclarativeBase):
+    created_at: Mapped[datetime] = mapped_column(default=datetime.utcnow)
+

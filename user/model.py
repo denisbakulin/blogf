@@ -1,9 +1,8 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import ForeignKey, Boolean
-from core.models import BaseORM
-from datetime import datetime
+from core.model import BaseORM, IdMixin, TimeMixin
 
-class Profile(BaseORM):
+class Profile(BaseORM, IdMixin):
     __tablename__ = "profiles"
 
     bio: Mapped[str | None]
@@ -12,7 +11,7 @@ class Profile(BaseORM):
 
     user: Mapped["User"] = relationship(back_populates="profile")
 
-class User(BaseORM):
+class User(BaseORM, IdMixin, TimeMixin):
     __tablename__ = "users"
 
     depends = [("profile", Profile)]
@@ -20,7 +19,7 @@ class User(BaseORM):
     username: Mapped[str] = mapped_column(nullable=False, unique=True)
     password: Mapped[str] = mapped_column(nullable=False)
     email: Mapped[str] = mapped_column(nullable=False, unique=True)
-    created_at: Mapped[datetime] = mapped_column(default=datetime.utcnow)
+
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
     is_verified: Mapped[bool] = mapped_column(Boolean, default=False)
     is_admin: Mapped[bool] = mapped_column(Boolean, default=False)
@@ -42,5 +41,8 @@ class User(BaseORM):
         back_populates="author",
         lazy="selectin"
     )
+
+
+
 
 

@@ -5,7 +5,7 @@ from user.schemas import UserCreate
 from mail.utils import EmailSender
 from auth.utils import set_refresh_token_cookie, decode_token, TokenCreator, TokenTypes
 from auth.schemas import AuthCreds
-from core.exceptions import InvalidTokenError, EntityLockedError
+from auth.exceptions import InvalidTokenError
 
 
 auth_router = APIRouter(prefix="/auth", tags=["auth"])
@@ -42,16 +42,18 @@ async def login_user(
 
 @auth_router.post("/logout")
 async def logout(response: Response):
-    response.delete_cookie("refresh_token", path="/refresh", secure=True)
+    response.delete_cookie("refresh_token", path="/", secure=True)
     return {"ok": True}
 
 
 @auth_router.post("/refresh")
-async def refresh_token(token: str = Cookie(None)):
-    if not token:
+async def refresh_user_token(refresh_token: str = Cookie(None)):
+
+
+    if not refresh_token:
         raise HTTPException(401, "No refresh token")
 
-    decoded_token = decode_token(token=token)
+    decoded_token = decode_token(token=refresh_token)
 
     if decoded_token.type != TokenTypes.refresh:
         raise InvalidTokenError("Тип токена не access")

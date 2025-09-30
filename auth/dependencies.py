@@ -1,6 +1,6 @@
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi import Depends, HTTPException
-from user.models import User
+from user.model import User
 from auth.utils import decode_token, TokenTypes
 
 from user.dependencies import get_user_service
@@ -12,16 +12,15 @@ from auth.service import AuthService
 from auth.schemas import TokenInfo
 from typing import Annotated
 
-from core.exceptions import InvalidTokenError
+from auth.exceptions import InvalidTokenError
 
 security = HTTPBearer()
 
 
-banned_token_types = [
-    TokenTypes.change_email,
-    TokenTypes.verify,
-    TokenTypes.refresh
-]
+allowed_access_tokens = {
+    TokenTypes.pending_access,
+    TokenTypes.access
+}
 
 async def get_user_token(
         creds: HTTPAuthorizationCredentials = Depends(security),
@@ -39,16 +38,17 @@ async def get_current_user(
     token: TokenInfo = Depends(get_user_token),
     user_service: UserService = Depends(get_user_service)
 ) -> User:
-    if token.type in banned_token_types:
-        raise InvalidTokenError("Неверный тип токена")
-    return await user_service.get_user_by_id(token.user_id)
+    if token.type in allowed_access_tokens:
+        return await user_service.get_user_by_id(token.user_id)
+    raise InvalidTokenError("Неверный тип токена")
+
 
 
 
 async def get_verified_user(
     user: User = Depends(get_current_user),
 ) -> User:
-    if not user.is_verified:
+    if user.is_verified:
         return user
     raise HTTPException(401, "Почта не подтверждена")
 
