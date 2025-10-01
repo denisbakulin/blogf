@@ -1,16 +1,24 @@
-from core.schemas import BaseSchema
+from pydantic import BaseModel
 
 
-class LoginTokens(BaseSchema):
+class AccessTokenResponse(BaseModel):
+    access_token: str
+
+class PendingAccessTokenResponse(BaseModel):
+    pending_access_token: str
+
+
+class LoginTokens(BaseModel):
     access_token: str
     refresh_token: str
 
 
-class TokenInfo(BaseSchema):
+class TokenInfo(BaseModel):
     type: str
     user_id: int
 
-class AuthCreds(BaseSchema):
+
+class AuthCreds(BaseModel):
     username: str
     password: str
 

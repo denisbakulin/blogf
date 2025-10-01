@@ -1,23 +1,25 @@
 from fastapi import APIRouter, BackgroundTasks, Depends
-from user.schemas import EmailUpdate, UserUpdate, UserShowMe, PasswordChange
-from auth.dependencies import currentUserDep
-from user.dependencies import userServiceDep
 
-from mail.utils import EmailSender
+from auth.dependencies import currentUserDep
 from auth.utils import TokenCreator
 from comment.dependencies import commentServiceDep
 from comment.schemas import CommentShow
 from helpers.search import Pagination
+from mail.utils import EmailSender
 from reaction.dependencies import reactionServiceDep
 from reaction.schemas import ReactionShow
 from reaction.types import UserReactions
+from user.dependencies import userServiceDep
+from user.schemas import EmailUpdate, PasswordChange, UserShowMe, UserUpdate
 
 me_router = APIRouter(prefix="/me", tags=["me"])
 
 
 @me_router.get(
     "",
-    response_model=UserShowMe
+    summary="Получить текущего пользователя",
+    response_model=UserShowMe,
+
 )
 async def get_me(
         user: currentUserDep
@@ -25,18 +27,23 @@ async def get_me(
     return user
 
 
-@me_router.patch("")
+@me_router.patch(
+    "",
+    summary="Изменить информацию текущего пользователя"
+)
 async def patch_my_info(
         user_updates: UserUpdate,
         user: currentUserDep,
         user_service: userServiceDep,
 ):
     await user_service.update_user(user, user_updates)
-    return {"ok": True}
 
 
 
-@me_router.put("/password")
+@me_router.put(
+    "/password",
+    summary="Изменить пароль"
+)
 async def change_password(
         pwd: PasswordChange,
         user: currentUserDep,
@@ -44,11 +51,14 @@ async def change_password(
 ):
 
     await user_service.change_password(user, pwd.old_password, pwd.new_password)
-    return {"ok": True}
 
 
 
-@me_router.put("/email")
+
+@me_router.put(
+    "/email",
+    summary="Изменить почту"
+)
 async def change_email(
         email: EmailUpdate,
         bg_task: BackgroundTasks,
@@ -67,7 +77,9 @@ async def change_email(
 
 @me_router.get(
     "/comments",
-    response_model=list[CommentShow]
+    summary="Получить комментарии текущего пользователя",
+    response_model=list[CommentShow],
+
 )
 async def get_my_comments(
         user: currentUserDep,
@@ -80,7 +92,9 @@ async def get_my_comments(
 
 @me_router.get(
     "/reactions",
-    response_model=list[ReactionShow]
+    summary="Получить реакции пользователя",
+    response_model=list[ReactionShow],
+
 )
 async def get_my_reactions(
         user: currentUserDep,
@@ -89,6 +103,7 @@ async def get_my_reactions(
         pagination: Pagination = Depends()
 ):
     return await like_service.get_user_reactions(user, v, pagination)
+
 
 
 

@@ -1,8 +1,8 @@
-from core.schemas import BaseSchema
-from pydantic import  Field
-
 from datetime import datetime
 
+from pydantic import Field
+
+from core.schemas import BaseSchema
 
 
 class PostBase(BaseSchema):

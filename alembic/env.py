@@ -1,10 +1,8 @@
 from logging.config import fileConfig
 
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
+from sqlalchemy import engine_from_config, pool
 
 from alembic import context
-
 
 config = context.config
 
@@ -14,11 +12,9 @@ if config.config_file_name is not None:
 
 
 from comment.model import Comment
-from user.model import User, Profile
-from post.model import Post
-
 from core.db import BaseORM
-
+from post.model import Post
+from user.model import Profile, User
 
 target_metadata = BaseORM.metadata
 

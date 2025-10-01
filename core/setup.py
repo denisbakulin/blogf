@@ -1,6 +1,6 @@
-from fastapi import FastAPI, APIRouter
 from contextlib import asynccontextmanager
 
+from fastapi import APIRouter, FastAPI
 
 origins = [
     "http://localhost:5173",
@@ -30,18 +30,18 @@ def set_middlewares(app: FastAPI):
     app.add_middleware(LoggingMiddleware)
 
     from core.exceptions_middleware import AppExceptionMiddleware
-
     app.add_middleware(AppExceptionMiddleware)
 
 
 
+
 def include_routers(app: FastAPI):
-    from user.views.other import user_router
-    from user.views.me import me_router
+    from admin.views import Admin, PostAdminView, UserAdminView
     from auth.views import auth_router
-    from post.views import post_router
     from comment.views import comm_router
-    from admin.views import Admin, UserAdminView, PostAdminView
+    from post.views import post_router
+    from user.views.me import me_router
+    from user.views.other import user_router
 
     admin_router = Admin(UserAdminView(), PostAdminView())
 
@@ -59,18 +59,17 @@ def include_routers(app: FastAPI):
 
 
 async def init_db(app: FastAPI):
-    from user.model import User, Profile
     from comment.model import Comment
+    from core.db import init_models, session_factory
     from post.model import Post
     from reaction.model import Reaction
-
-    from core.db import session_factory, init_models
-    from user.service import UserService
+    from user.model import Profile, User
     from user.schemas import UserCreate
+    from user.service import UserService
 
     await init_models()
 
-    from core.config import FirstAdminSettings
+    from core.settings import FirstAdminSettings
 
     admin_data = FirstAdminSettings.get().dict()
 

@@ -1,6 +1,7 @@
-from sqlalchemy.orm import Mapped, mapped_column, relationship
-from core.model import BaseORM, TimeMixin
 from sqlalchemy import ForeignKey
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+
+from core.model import BaseORM, TimeMixin
 
 
 class Comment(BaseORM, TimeMixin):

@@ -1,13 +1,14 @@
 from sqlalchemy.ext.asyncio import AsyncSession
+
+from core.exceptions import EntityBadRequestError
+from core.service import BaseService
+from helpers.search import Pagination
+from post.model import Post
 from post.repository import PostRepository
 from post.schemas import PostCreate, PostUpdate
-from post.model import Post
-from helpers.search import Pagination
-from post.utils import PostSearchParams
-from core.service import BaseService
-from post.utils import generate_slug
+from post.utils import PostSearchParams, generate_slug
 from user.model import User
-from core.exceptions import EntityBadRequestError
+
 
 class PostService(BaseService):
 

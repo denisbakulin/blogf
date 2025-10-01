@@ -1,12 +1,11 @@
 from sqlalchemy.ext.asyncio import AsyncSession
-from user.service import UserService
 
-from user.schemas import UserCreate
-from auth.utils import TokenCreator, decode_token,TokenTypes
-from auth.schemas import LoginTokens, AuthCreds
-from user.utils import verify_password
 from auth.exceptions import InvalidPasswordError, InvalidTokenError
-
+from auth.schemas import AuthCreds, LoginTokens
+from auth.utils import TokenCreator, TokenTypes, decode_token
+from user.schemas import UserCreate
+from user.service import UserService
+from user.utils import verify_password
 
 
 class AuthService:
@@ -22,7 +21,7 @@ class AuthService:
         return [tokens.pending_access, tokens.verify]
 
 
-    async def login(self, creds: AuthCreds) -> LoginTokens | None:
+    async def login(self, creds: AuthCreds) -> LoginTokens:
         user = await self.user_service.get_user_by_username(creds.username)
 
         if not verify_password(creds.password, user.password):
@@ -40,7 +39,7 @@ class AuthService:
 
         user = await self.user_service.get_user_by_id(token.user_id)
 
-        await self.user_service.update_important_user_info(user, is_verified=True)
+        await self.user_service.repository.update(user, is_verified=True)
         await self.session.commit()
 
         tokens = TokenCreator(user.id)
@@ -53,6 +52,8 @@ class AuthService:
 
     async def verify_new_user_email(self, token: str):
         return await self._verify_user(token, TokenTypes.change_email)
+
+
 
 
 

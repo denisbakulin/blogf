@@ -1,13 +1,16 @@
-from post.dependencies import PostService
-from core.service import BaseService
-from reaction.repository import ReactionRepository
-from sqlalchemy.ext.asyncio import AsyncSession
-from reaction.model import Reaction
-from user.model import User
-from helpers.search import Pagination
-from post.model import Post
-
 from functools import partial
+
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from core.service import BaseService
+from helpers.search import Pagination
+from post.dependencies import PostService
+from post.model import Post
+from reaction.model import Reaction
+from reaction.repository import ReactionRepository
+from user.model import User
+
+
 class ReactionService(BaseService):
 
     def __init__(self, session: AsyncSession):
@@ -24,7 +27,7 @@ class ReactionService(BaseService):
 
 
     async def get_post_reactions(self, post: Post, reaction_type: str, pagination: Pagination) -> list[Reaction]:
-        default_get = partial(self.repository.get_any_by, user_id=post.id, **pagination.get())
+        default_get = partial(self.repository.get_any_by, post_id=post.id, **pagination.get())
 
         return await self._get_reactions(default_get, reaction_type)
 

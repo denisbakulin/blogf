@@ -1,5 +1,6 @@
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column
+
 from core.model import BaseORM, TimeMixin
 
 

@@ -1,13 +1,17 @@
 from fastapi import APIRouter
-from comment.schemas import CommentShow, CommentUpdate
-from comment.dependencies import commentServiceDep, commentDep
-from auth.dependencies import verifiedUserDep
 
+from auth.dependencies import verifiedUserDep
+from comment.dependencies import commentDep, commentServiceDep
+from comment.schemas import CommentShow, CommentUpdate
 
 comm_router = APIRouter(prefix="/comments", tags=["comment"])
 
 
-@comm_router.get("/{comment_id}", response_model=CommentShow)
+@comm_router.get(
+    "/{comment_id}",
+    response_model=CommentShow,
+    summary="Получить комментарий по id"
+)
 async def get_comment(
         comment: commentDep
 ):
@@ -16,7 +20,8 @@ async def get_comment(
 
 @comm_router.patch(
     "/{comment_id}",
-    response_model=CommentShow
+    response_model=CommentShow,
+    summary="Изменить комментарий"
 )
 async def update_comment(
         comment: commentDep,

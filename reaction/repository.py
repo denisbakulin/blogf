@@ -1,6 +1,8 @@
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from core.repository import BaseRepository
 from reaction.model import Reaction
-from sqlalchemy.ext.asyncio import AsyncSession
+
 
 class ReactionRepository(BaseRepository[Reaction]):
 

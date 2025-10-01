@@ -1,7 +1,9 @@
-from user.schemas import UserShowMe, UserCreate
-from pydantic import EmailStr, Field
-from core.schemas import BaseSchema
 from typing import Optional
+
+from pydantic import EmailStr, Field
+
+from core.schemas import BaseSchema
+from user.schemas import UserCreate, UserShowMe
 
 
 class UserFields(BaseSchema):
@@ -26,7 +28,7 @@ class AdminUserUpdate(UserFields):
 
 
 
-from post.schemas import PostShow, PostBase
+from post.schemas import PostBase, PostShow
 
 
 class AdminPostShow(PostShow):

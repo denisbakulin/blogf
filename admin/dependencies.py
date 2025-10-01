@@ -1,7 +1,10 @@
-from admin.service import AdminService
-from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Callable
+
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from admin.service import AdminService
 from core.db import getSessionDep
+
 
 def get_admin_service(
         model,

@@ -1,7 +1,8 @@
-from pydantic_settings import BaseSettings
 from functools import lru_cache
-from pydantic import EmailStr
 from typing import Self
+
+from pydantic import EmailStr
+from pydantic_settings import BaseSettings
 
 
 class BaseConfig(BaseSettings):

@@ -1,6 +1,7 @@
-from core.schemas import BaseSchema
 from datetime import datetime
 from typing import Optional
+
+from core.schemas import BaseSchema
 
 
 class CommentBase(BaseSchema):

@@ -1,15 +1,19 @@
-from user.repository import UserRepository
-from user.schemas import UserCreate, UserUpdate, UserProfile
-from user.model import User, Profile
-from auth.exceptions import InvalidPasswordError
-from user.utils import verify_password, generate_hashed_password, UserSearchParams
-from sqlalchemy.ext.asyncio import AsyncSession
-from admin.schemas import AdminUserCreate, AdminUserUpdate
-from core.exceptions import EntityNotFoundError, EntityAlreadyExists
 from typing import Optional
-from core.service import BaseService
 
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from admin.schemas import AdminUserUpdate
+from auth.exceptions import InvalidPasswordError
+from core.exceptions import EntityAlreadyExists
+from core.service import BaseService
 from helpers.search import Pagination
+from user.model import Profile, User
+from user.repository import UserRepository
+from user.schemas import UserCreate, UserUpdate
+from user.utils import (UserSearchParams, generate_hashed_password,
+                        verify_password)
+
+
 class UserService(BaseService):
     def __init__(self, session: AsyncSession):
         super().__init__(User, session, UserRepository)

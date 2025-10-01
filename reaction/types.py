@@ -1,6 +1,5 @@
 from typing import Literal
 
-
 default_reactions = ("love", "like", "dislike")
 
 

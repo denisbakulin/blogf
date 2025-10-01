@@ -1,17 +1,25 @@
-from fastapi import Depends, APIRouter, HTTPException, Response, Cookie, BackgroundTasks
-from auth.dependencies import get_auth_service
-from auth.service import AuthService
-from user.schemas import UserCreate
-from mail.utils import EmailSender
-from auth.utils import set_refresh_token_cookie, decode_token, TokenCreator, TokenTypes
-from auth.schemas import AuthCreds
-from auth.exceptions import InvalidTokenError
+from fastapi import (APIRouter, BackgroundTasks, Cookie, Depends,
+                     HTTPException, Response)
 
+from auth.dependencies import get_auth_service
+from auth.exceptions import InvalidTokenError
+from auth.schemas import (AccessTokenResponse, AuthCreds,
+                          PendingAccessTokenResponse)
+from auth.service import AuthService
+from auth.utils import (TokenCreator, TokenTypes, decode_token,
+                        set_refresh_token_cookie)
+from mail.utils import EmailSender
+from user.schemas import UserCreate
 
 auth_router = APIRouter(prefix="/auth", tags=["auth"])
 
 
-@auth_router.post("/register")
+@auth_router.post(
+    "/register",
+    summary="Зарегистрироваться в системе",
+    response_model=PendingAccessTokenResponse,
+
+)
 async def register_user(
         user_info: UserCreate,
         background_tasks: BackgroundTasks,
@@ -19,15 +27,23 @@ async def register_user(
 
 ):
     pending_access_token, verify_token = await auth_service.register(user_info)
+
     background_tasks.add_task(
         EmailSender(user_info.email, "Подтверждение почты").verify_email,
         token=verify_token,
         username=user_info.username,
     )
-    return {"pending_access_token": pending_access_token}
+
+    return PendingAccessTokenResponse(pending_access_token=pending_access_token)
 
 
-@auth_router.post("/login")
+
+@auth_router.post(
+    "/login",
+    summary="Войти в аккаунт",
+    response_model=AccessTokenResponse,
+
+)
 async def login_user(
         response: Response,
         creds: AuthCreds,
@@ -36,19 +52,24 @@ async def login_user(
 
     tokens = await auth_service.login(creds)
     set_refresh_token_cookie(response, tokens.refresh_token)
-    return {"access_token": tokens.access_token}
+    return AccessTokenResponse(access_token=tokens.access_token)
 
 
 
-@auth_router.post("/logout")
+@auth_router.post(
+    "/logout",
+    summary="Выйти из аккаунта"
+)
 async def logout(response: Response):
     response.delete_cookie("refresh_token", path="/", secure=True)
-    return {"ok": True}
 
 
-@auth_router.post("/refresh")
+
+@auth_router.post(
+    "/refresh",
+    summary="Обновить токен доступа"
+)
 async def refresh_user_token(refresh_token: str = Cookie(None)):
-
 
     if not refresh_token:
         raise HTTPException(401, "No refresh token")
@@ -60,12 +81,17 @@ async def refresh_user_token(refresh_token: str = Cookie(None)):
 
     access_token = TokenCreator(user_id=decoded_token.user_id).access
 
-    return {"access_token": access_token}
+    return AccessTokenResponse(access_token=access_token)
 
 
 
 
-@auth_router.get("/verify-by-email")
+@auth_router.get(
+    "/verify-by-email",
+    summary="Подтвердить почту через переход по ссылке",
+    response_model=AccessTokenResponse,
+
+)
 async def verify_by_email(
         token: str,
         response: Response,
@@ -74,11 +100,18 @@ async def verify_by_email(
 
     tokens = await auth_service.verify_user_by_email(token)
     set_refresh_token_cookie(response, tokens.refresh_token)
-    return {"access_token": tokens.access_token}
+
+    return AccessTokenResponse(access_token=tokens.access_token)
 
 
 
-@auth_router.get("/change-email")
+
+@auth_router.get(
+    "/change-email",
+    summary="Сменить почту через переход по ссылке",
+    response_model=AccessTokenResponse,
+
+)
 async def change_email_by_token(
         token: str,
         response: Response,
@@ -86,5 +119,6 @@ async def change_email_by_token(
 ):
     tokens = await auth_service.verify_new_user_email(token)
     set_refresh_token_cookie(response, tokens.refresh_token)
-    return {"access_token": tokens.access_token}
+
+    return AccessTokenResponse(access_token=tokens.access_token)
 

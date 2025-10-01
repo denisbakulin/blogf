@@ -1,7 +1,9 @@
-from reaction.service import ReactionService
-from fastapi import Depends
 from typing import Annotated
+
+from fastapi import Depends
+
 from core.db import getSessionDep
+from reaction.service import ReactionService
 
 
 def get_reaction_service(

@@ -1,7 +1,9 @@
-from user.model import User
-from core.repository import BaseRepository
-from typing import Optional, Literal
+from typing import Literal, Optional
+
 from sqlalchemy.ext.asyncio import AsyncSession
+
+from core.repository import BaseRepository
+from user.model import User
 
 secure_fields = Literal["password", "is_active", "is_verify"]
 

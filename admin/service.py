@@ -1,6 +1,7 @@
 from sqlalchemy.ext.asyncio import AsyncSession
-from core.service import BaseService
+
 from core.repository import BaseRepository
+from core.service import BaseService
 
 
 class AdminService[T](BaseService):

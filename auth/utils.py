@@ -1,10 +1,12 @@
 from datetime import datetime, timedelta
-from jose import jwt, JWTError
-from core.config import AuthSettings
-from auth.schemas import TokenInfo
-from auth.exceptions import InvalidTokenError
-from fastapi import Response
 from enum import StrEnum
+
+from fastapi import Response
+from jose import JWTError, jwt
+
+from auth.exceptions import InvalidTokenError
+from auth.schemas import TokenInfo
+from core.settings import AuthSettings
 
 
 class TokenTypes(StrEnum):
@@ -76,6 +78,7 @@ def decode_token(token: str) -> TokenInfo | None:
 
 
 from datetime import datetime, timedelta
+
 
 def set_refresh_token_cookie(response: Response, token):
     response.set_cookie(

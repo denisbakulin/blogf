@@ -1,11 +1,12 @@
-from loguru import logger
 from pathlib import Path
-from fastapi import Request
-from starlette.middleware.base import BaseHTTPMiddleware
 from time import monotonic_ns
 
+from fastapi import Request
+from loguru import logger
+from starlette.middleware.base import BaseHTTPMiddleware
 
 path_dir = Path(__file__).parent.parent
+
 
 logger.add(
     path_dir / "app_log.log",

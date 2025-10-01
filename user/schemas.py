@@ -1,8 +1,9 @@
 import datetime
+from typing import Optional
 
 from pydantic import EmailStr, Field, field_validator
+
 from core.schemas import BaseSchema
-from typing import Optional
 
 
 class UserCreate(BaseSchema):

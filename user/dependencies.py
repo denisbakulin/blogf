@@ -1,11 +1,12 @@
-from user.service import UserService
-from user.model import User
-from user.repository import UserRepository
-from core.db import getSessionDep
-from fastapi import Depends, HTTPException, Path
 from typing import Annotated
+
+from fastapi import Depends, HTTPException, Path
 from fastapi import status as st
 
+from core.db import getSessionDep
+from user.model import User
+from user.repository import UserRepository
+from user.service import UserService
 
 
 def get_user_service(

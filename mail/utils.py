@@ -1,7 +1,9 @@
-from fastapi_mail import ConnectionConfig, MessageSchema, FastMail
-from core.config import MailSettings
-from jinja2 import Environment, FileSystemLoader
 from pathlib import Path
+
+from fastapi_mail import ConnectionConfig, FastMail, MessageSchema
+from jinja2 import Environment, FileSystemLoader
+
+from core.settings import MailSettings
 
 template_dir = Path(__file__).parent.resolve() / "templates"
 

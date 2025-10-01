@@ -1,8 +1,10 @@
+from typing import Type, TypeVar
+
 from sqlalchemy.ext.asyncio import AsyncSession
+
+from core.exceptions import EntityAlreadyExists, EntityNotFoundError
 from core.model import BaseORM
-from typing import TypeVar, Type
 from core.repository import BaseRepository
-from core.exceptions import EntityNotFoundError, EntityAlreadyExists
 from helpers.search import Pagination
 
 T = TypeVar("T", bound=Type[BaseORM])

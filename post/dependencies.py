@@ -1,9 +1,11 @@
-from post.service import PostService
-from fastapi import Depends
 from typing import Annotated
+
+from fastapi import Depends
+
 from core.db import getSessionDep
-from post.repository import PostRepository
 from post.model import Post
+from post.service import PostService
+
 
 def get_post_service(
         session: getSessionDep

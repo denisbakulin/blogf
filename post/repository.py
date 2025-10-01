@@ -1,7 +1,10 @@
+from typing import Any, Optional
+
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from core.repository import BaseRepository
 from post.model import Post
-from typing import Optional, Any, override
-from sqlalchemy.ext.asyncio import AsyncSession
+
 
 class PostRepository(BaseRepository[Post]):
 

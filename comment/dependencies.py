@@ -1,8 +1,11 @@
-from fastapi import Depends
-from comment.service import CommentService
 from typing import Annotated
-from core.db import getSessionDep
+
+from fastapi import Depends
+
 from comment.model import Comment
+from comment.service import CommentService
+from core.db import getSessionDep
+
 
 async def get_comment_service(
         session: getSessionDep

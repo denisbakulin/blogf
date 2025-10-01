@@ -1,18 +1,15 @@
+from typing import Optional, Type
+
 from fastapi import APIRouter, Depends
-from user.model import User
-from admin.schemas import AdminUserShow, AdminUserUpdate, AdminUserCreate
+
+from admin.dependencies import get_admin_service
+from admin.schemas import AdminUserCreate, AdminUserShow, AdminUserUpdate
+from admin.service import AdminService
+from auth.dependencies import get_admin
 from core.model import BaseORM, ColumnProps
 from core.schemas import BaseSchema
-
-
-from admin.service import AdminService
-from admin.dependencies import get_admin_service
-
-from auth.dependencies import get_admin
 from post.model import Post
-
-from typing import Type, Optional
-
+from user.model import User
 
 
 class Admin(APIRouter):
@@ -22,7 +19,7 @@ class Admin(APIRouter):
         super().__init__(
             dependencies=[Depends(get_admin)],
             prefix="/admin",
-            tags=["admin"]
+            tags=["admin"],
         )
         if routers:
             for router in routers:
@@ -36,8 +33,8 @@ class AdminView(APIRouter):
     пример:
 
     class ExampleAdminView(AdminView, model=example, delete_=False):
-        show = ShowModel
-        update = UpdateModel
+        def init_custom_views():
+            ...
 
     """
     # модель ORM с которой будет взаимодействовать админка
@@ -46,7 +43,7 @@ class AdminView(APIRouter):
     # удаление записи
     delete_: bool = False
 
-    # Схемы для взаимодействия с записями
+    # Схема для демонстрации записи
     show: Type[BaseSchema] = None
 
     def __init_subclass__(cls, **kwargs):
@@ -82,6 +79,24 @@ class AdminView(APIRouter):
             raise ValueError()
 
         model = self.model
+        model_name = model.__name__
+
+
+        self.get(
+            "/table-info",
+            response_model=list[ColumnProps],
+            summary=f"Получить информацию о таблице {model_name}"
+        )(model.table_info)
+
+        @self.get(
+            "/count",
+            response_model=int,
+            summary=f"Получить количество записей {model_name}"
+        )
+        async def get_item_count(
+                admin_service: AdminService = Depends(get_admin_service(model=model))
+        ):
+            return await admin_service.get_items_count()
 
 
         async def get_item(
@@ -90,30 +105,24 @@ class AdminView(APIRouter):
         ):
             return await admin_service.get_item_by_id(item_id)
 
-
-        def get_table_info():
-            return model.table_info()
-
-        async def get_item_count(
-                admin_service: AdminService = Depends(get_admin_service(model=model))
-        ):
-            return await admin_service.get_items_count()
-
-
         async def delete_item(
                 item_id: int,
                 admin_service: AdminService = Depends(get_admin_service(model=model))
         ):
             return await admin_service.delete_item_by_id(item_id)
 
-        self.get("/table-info", response_model=list[ColumnProps])(get_table_info)
-        self.get("/count", response_model=int)(get_item_count)
-
         if self.show:
-            self.get(path="/{item_id}", response_model=self.show)(get_item)
+            self.get(
+                "/{item_id}",
+                response_model=self.show,
+                summary=f"Получить {model_name} по id"
+            )(get_item)
 
         if self.delete_:
-            self.delete("/{item_id}")(delete_item)
+            self.delete(
+                "/{item_id}",
+                summary=f"Удалить {model_name} по id"
+            )(delete_item)
 
 
 
@@ -125,9 +134,8 @@ class AdminView(APIRouter):
         """
 
 
-from user.dependencies import userServiceDep
-
 from admin.schemas import AdminPostShow
+from user.dependencies import userServiceDep
 
 
 class UserAdminView(AdminView, model=User):

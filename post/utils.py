@@ -1,5 +1,9 @@
-from unidecode import unidecode
 from re import sub
+from typing import Literal
+
+from unidecode import unidecode
+
+from helpers.search import search_param_fabric
 
 
 def generate_slug(title: str, index: int) -> str:
@@ -17,10 +21,6 @@ def generate_slug(title: str, index: int) -> str:
     )
 
     return result
-
-
-from helpers.search import search_param_fabric
-from typing import Literal
 
 
 PostSearchParams = search_param_fabric(Literal["slug", "id", "title"])

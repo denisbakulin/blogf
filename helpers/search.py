@@ -1,6 +1,6 @@
-from pydantic import BaseModel, Field
 from fastapi import Query
-from typing import Literal
+from pydantic import BaseModel, Field
+
 
 class Pagination(BaseModel):
     offset: int = Field(ge=0, default=0)

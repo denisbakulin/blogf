@@ -1,7 +1,9 @@
-from core.repository import BaseRepository
-from comment.model import Comment
 from typing import Optional
+
 from sqlalchemy.ext.asyncio import AsyncSession
+
+from comment.model import Comment
+from core.repository import BaseRepository
 
 
 class CommentRepository(BaseRepository[Comment]):

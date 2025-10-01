@@ -1,18 +1,12 @@
+from fastapi import status
 from fastapi import status as st
-
-
-from core.exceptions import (
-    EntityBadRequestError,
-    EntityNotFoundError,
-    EntityAlreadyExists,
-
-)
-
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
 from starlette.responses import JSONResponse
-from fastapi import status
+
 from auth.exceptions import AuthError
+from core.exceptions import (EntityAlreadyExists, EntityBadRequestError,
+                             EntityNotFoundError)
 
 
 class AppExceptionMiddleware(BaseHTTPMiddleware):

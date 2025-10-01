@@ -1,19 +1,16 @@
 from fastapi import APIRouter, Depends
-from post.schemas import PostCreate, PostShow, PostUpdate
-from post.dependencies import postServiceDep, postDep
-from auth.dependencies import verifiedUserDep
-from helpers.search import Pagination
+from fastapi import status
 
+from auth.dependencies import currentUserDep, verifiedUserDep
 from comment.dependencies import commentServiceDep
-from comment.schemas import CommentShow
+from comment.schemas import CommentCreate, CommentShow
+from helpers.search import Pagination
+from post.dependencies import postDep, postServiceDep
+from post.schemas import PostCreate, PostShow, PostUpdate
 from post.utils import PostSearchParams
-from comment.schemas import CommentCreate
-
-from auth.dependencies import currentUserDep
-
-from reaction.schemas import ReactionShow
 from reaction.dependencies import reactionServiceDep
-
+from reaction.schemas import ReactionShow
+from reaction.types import PostReactionsGetParams, PostReactionsSetParams
 
 post_router = APIRouter(prefix="/posts", tags=["post"])
 
@@ -22,7 +19,9 @@ post_router = APIRouter(prefix="/posts", tags=["post"])
 
 @post_router.post(
     "",
-    response_model=PostShow
+    summary="Создать пост",
+    response_model=PostShow,
+    status_code=status.HTTP_201_CREATED,
 )
 async def create_post(
         post_info: PostCreate,
@@ -34,7 +33,9 @@ async def create_post(
 
 @post_router.get(
     "/{slug}",
-    response_model=PostShow
+    summary="Получить пост по slug",
+    response_model=PostShow,
+
 )
 async def get_post(
         post: postDep
@@ -44,19 +45,20 @@ async def get_post(
 
 @post_router.get(
     "/search",
+    summary="Поиск поста по ключевым параметрам",
     response_model=list[PostShow]
 )
 async def search_posts(
         post_service: postServiceDep,
         search: PostSearchParams = Depends(),
         pagination: Pagination = Depends()
-
 ):
     return await post_service.search_posts(search=search, pagination=pagination)
 
 
-@post_router.patch(
+@post_router.put(
     "/{slug}",
+    summary="Изменить информацию о посте",
     response_model=PostShow
 )
 async def update_post(
@@ -68,7 +70,13 @@ async def update_post(
     return await post_service.update_post(post, user, update_info)
 
 
-@post_router.post("/{slug}/comments", response_model=CommentShow)
+@post_router.post(
+    "/{slug}/comments",
+    summary="Создать комментарий под постом",
+    response_model=CommentShow,
+    status_code=status.HTTP_201_CREATED
+
+)
 async def create_comment(
         post: postDep,
         comment_info: CommentCreate,
@@ -84,7 +92,9 @@ async def create_comment(
 
 @post_router.get(
     "/{slug}/comments",
-    response_model=list[CommentShow]
+    summary="Получить комментарии под постом",
+    response_model=list[CommentShow],
+
 )
 async def get_post_comments(
         post: postDep,
@@ -95,10 +105,13 @@ async def get_post_comments(
 
 
 
-from reaction.types import PostReactionsSetParams, PostReactionsGetParams
 
 @post_router.post(
     "/{slug}/reactions",
+    summary="Оставить реакцию под постом",
+    response_model=ReactionShow,
+    status_code=status.HTTP_201_CREATED
+
 )
 async def add_post_reaction(
         post: postDep,
@@ -111,7 +124,9 @@ async def add_post_reaction(
 
 @post_router.get(
     "/{slug}/reactions",
-    response_model=list[ReactionShow]
+    summary="Получить реакци поста",
+    response_model=list[ReactionShow],
+
 )
 async def get_post_reactions(
         post: postDep,

@@ -1,18 +1,17 @@
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from fastapi import Depends, HTTPException
-from user.model import User
-from auth.utils import decode_token, TokenTypes
-
-from user.dependencies import get_user_service
-from user.service import UserService
-
-from sqlalchemy.ext.asyncio import AsyncSession
-from core.db import get_session
-from auth.service import AuthService
-from auth.schemas import TokenInfo
 from typing import Annotated
 
+from fastapi import Depends, HTTPException
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from auth.exceptions import InvalidTokenError
+from auth.schemas import TokenInfo
+from auth.service import AuthService
+from auth.utils import TokenTypes, decode_token
+from core.db import get_session
+from user.dependencies import get_user_service
+from user.model import User
+from user.service import UserService
 
 security = HTTPBearer()
 

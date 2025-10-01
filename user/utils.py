@@ -1,6 +1,8 @@
-from passlib.context import CryptContext
-from helpers.search import search_param_fabric
 from typing import Literal
+
+from passlib.context import CryptContext
+
+from helpers.search import search_param_fabric
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
