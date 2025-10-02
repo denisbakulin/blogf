@@ -1,5 +1,7 @@
 from functools import lru_cache
-from typing import Self
+from typing import Self, Literal
+from os import getenv
+
 
 from pydantic import EmailStr
 from pydantic_settings import BaseSettings
@@ -13,11 +15,13 @@ class BaseConfig(BaseSettings):
         return cls()
 
     class Config:
-        env_file = ".env"
+        mode = getenv("MODE", "TEST")
+        env_file = ".env" if mode == "DEV" else ".env.test"
         extra = "ignore"
 
 
 class AppSettings(BaseConfig):
+    app_mode: Literal["DEV", "TEST"]
     app_name: str
     db_uri: str
 

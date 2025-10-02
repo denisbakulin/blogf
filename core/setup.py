@@ -59,9 +59,10 @@ def include_routers(app: FastAPI):
 
 
 async def init_db(app: FastAPI):
-    from comment.model import Comment
+
     from core.db import init_models, session_factory
     from post.model import Post
+    from comment.model import Comment
     from reaction.model import Reaction
     from user.model import Profile, User
     from user.schemas import UserCreate
@@ -79,6 +80,7 @@ async def init_db(app: FastAPI):
         await user_service.create_first_admin(
             UserCreate(**admin_data)
         )
+
 
 
 @asynccontextmanager
