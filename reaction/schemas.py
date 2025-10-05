@@ -1,10 +1,9 @@
-from datetime import datetime
+from pydantic import BaseModel
 
-from core.schemas import BaseSchema
+from core.schemas import TimeMixinSchema
 
-
-class ReactionShow(BaseSchema):
+class ReactionShow(BaseModel, TimeMixinSchema):
     user_id: int
     post_id: int
     reaction: str
-    created_at: datetime
+

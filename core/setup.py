@@ -44,6 +44,7 @@ def include_routers(app: FastAPI):
     from post.views import post_router
     from user.views.me import me_router
     from user.views.other import user_router
+    from chat.views import direct_router
 
     admin_router = Admin(UserAdminView(), PostAdminView())
 
@@ -51,7 +52,8 @@ def include_routers(app: FastAPI):
         user_router, me_router,
         auth_router, post_router,
         comm_router, admin_router,
-        crypto_router, weather_router
+        crypto_router, weather_router,
+        direct_router,
     ]
 
 
@@ -64,6 +66,7 @@ async def init_db(app: FastAPI):
     from core.db import init_models, session_factory
     from user.schemas import UserCreate
     from user.service import UserService
+    from chat.model import DirectChat, DirectMessage, GeneralMessage, GeneralChat, GeneralChatMembers
 
     await init_models()
 

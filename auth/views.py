@@ -3,21 +3,20 @@ from fastapi import (APIRouter, BackgroundTasks, Cookie, Depends,
 
 from auth.deps import get_auth_service
 from auth.exceptions import InvalidTokenError
-from auth.schemas import (AccessTokenResponse, AuthCreds,
-                          PendingAccessTokenResponse)
+from auth.schemas import (AccessTokenResponse, AuthCreds)
 from auth.service import AuthService
 from auth.utils import (TokenCreator, TokenTypes, decode_token,
                         set_refresh_token_cookie)
 from mail.utils import EmailSender
 from user.schemas import UserCreate
 
-auth_router = APIRouter(prefix="/auth", tags=["auth"])
+auth_router = APIRouter(prefix="/auth", tags=["🔐 Авторизация"])
 
 
 @auth_router.post(
     "/register",
     summary="Зарегистрироваться в системе",
-    response_model=PendingAccessTokenResponse,
+    response_model=AccessTokenResponse
 
 )
 async def register_user(
@@ -34,7 +33,7 @@ async def register_user(
         username=user_info.username,
     )
 
-    return PendingAccessTokenResponse(pending_access_token=pending_access_token)
+    return AccessTokenResponse(access_token=pending_access_token)
 
 
 

@@ -4,9 +4,6 @@ from pydantic import BaseModel
 class AccessTokenResponse(BaseModel):
     access_token: str
 
-class PendingAccessTokenResponse(BaseModel):
-    pending_access_token: str
-
 
 class LoginTokens(BaseModel):
     access_token: str

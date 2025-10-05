@@ -1,7 +1,6 @@
-from datetime import datetime
 from typing import Optional
 
-from core.schemas import BaseSchema
+from core.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
 
 
 class CommentBase(BaseSchema):
@@ -11,10 +10,9 @@ class CommentCreate(CommentBase):
     parent_id: Optional[int] = None
 
 
-class CommentShow(CommentCreate):
-    id: int
+class CommentShow(CommentCreate, IdMixinSchema, TimeMixinSchema):
     user_id: int
-    created_at: datetime
+
 
 class CommentUpdate(CommentBase):
     ...

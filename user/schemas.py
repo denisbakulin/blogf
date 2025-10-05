@@ -1,9 +1,8 @@
-import datetime
 from typing import Optional
 
 from pydantic import EmailStr, Field, field_validator
 
-from core.schemas import BaseSchema
+from core.schemas import BaseSchema,  IdMixinSchema, TimeMixinSchema
 
 
 class UserCreate(BaseSchema):
@@ -31,19 +30,15 @@ class UserProfile(BaseSchema):
     avatar: str | None = None
 
 
-class UserShow(BaseSchema):
-    id: int
+class UserShow(BaseSchema, IdMixinSchema, TimeMixinSchema):
     username: str
     profile: UserProfile | None
-    created_at:  datetime.datetime
     is_active: bool
 
 
 class UserShowMe(UserShow):
     email: str
     is_verified: bool
-
-
 
 
 

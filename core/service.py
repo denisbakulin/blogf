@@ -7,11 +7,12 @@ from core.model import BaseORM
 from core.repository import BaseRepository
 from helpers.search import Pagination
 
-T = TypeVar("T", bound=Type[BaseORM])
-R = TypeVar("R", bound=Type[BaseRepository])
+
+T = TypeVar("T", bound=BaseORM)
+R = TypeVar("R", bound=BaseRepository)
 
 
-class BaseService[T]:
+class BaseService[T, R]:
     """
     Базовый класс-service проекта
     с базовой бизнес-логикой для получения,
@@ -22,7 +23,7 @@ class BaseService[T]:
             self,
             model: T,
             session: AsyncSession,
-            repository: Type[BaseRepository] = None
+            repository: type[R] = None
     ):
         """При наследовании обязательно переопределить и указать модель,
         чтобы пользоваться методами класса"""
@@ -30,7 +31,7 @@ class BaseService[T]:
         self.model = model
         self.session = session
         if repository is not None:
-            self.repository = repository(session=session)
+            self.repository: R = repository(session=session)
 
     async def get_item_by_id(self, item_id: int) -> T:
         return await self.get_item_by(id=item_id)

@@ -6,7 +6,7 @@ from fastapi_cache.decorator import cache
 from integrations.weather.external import (WeatherResponse,
                                            get_openweather_client)
 
-weather_router = APIRouter(prefix="/ext/weather")
+weather_router = APIRouter(prefix="/ext/weather", tags=["🌤 Погода"])
 
 
 @weather_router.get(

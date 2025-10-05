@@ -12,7 +12,7 @@ from reaction.deps import reactionServiceDep
 from reaction.schemas import ReactionShow
 from reaction.types import PostReactionsGetParams, PostReactionsSetParams
 
-post_router = APIRouter(prefix="/posts", tags=["post"])
+post_router = APIRouter(prefix="/posts", tags=["📝 Посты"])
 
 
 

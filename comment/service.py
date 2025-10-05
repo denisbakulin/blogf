@@ -12,7 +12,7 @@ from user.model import User
 from user.service import UserService
 
 
-class CommentService(BaseService[Comment]):
+class CommentService(BaseService[Comment, CommentRepository]):
 
     def __init__(self, session: AsyncSession):
         super().__init__(Comment, session, CommentRepository)

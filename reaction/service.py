@@ -11,7 +11,7 @@ from reaction.repository import ReactionRepository
 from user.model import User
 
 
-class ReactionService(BaseService):
+class ReactionService(BaseService[Reaction, ReactionRepository]):
 
     def __init__(self, session: AsyncSession):
         super().__init__(Reaction, session, ReactionRepository)

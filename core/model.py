@@ -19,6 +19,7 @@ class ColumnProps(BaseModel):
 class BaseORM(DeclarativeBase):
     __abstract__ = True
 
+
     depends: Optional[list[tuple[str, Type["BaseORM"]]]] = None
     """depends = [("profile", Profile), ...]
     создает поля (связанные таблицы) при создании записи 

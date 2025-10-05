@@ -8,7 +8,7 @@ from user.deps import userDep, userServiceDep
 from user.schemas import UserShow
 from user.utils import UserSearchParams
 
-user_router = APIRouter(prefix="/users", tags=["user"])
+user_router = APIRouter(prefix="/users", tags=["👨 Пользователи"])
 
 @user_router.get(
     "/search",

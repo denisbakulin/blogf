@@ -10,7 +10,7 @@ from post.utils import PostSearchParams, generate_slug
 from user.model import User
 
 
-class PostService(BaseService):
+class PostService(BaseService[Post, PostRepository]):
 
     def __init__(self, session: AsyncSession):
         super().__init__(Post, session, PostRepository)

@@ -14,7 +14,7 @@ from user.utils import (UserSearchParams, generate_hashed_password,
                         verify_password)
 
 
-class UserService(BaseService):
+class UserService(BaseService[User, UserRepository]):
     def __init__(self, session: AsyncSession):
         super().__init__(User, session, UserRepository)
 
@@ -41,7 +41,6 @@ class UserService(BaseService):
         )
 
         return user
-
 
     async def get_user_by_id(self, user_id: int) -> User:
         return await self.get_item_by_id(user_id)

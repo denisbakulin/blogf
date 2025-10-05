@@ -19,7 +19,7 @@ class Admin(APIRouter):
         super().__init__(
             dependencies=[Depends(get_admin)],
             prefix="/admin",
-            tags=["admin"],
+            tags=["⚙️ Админ"],
         )
         if routers:
             for router in routers:
@@ -58,7 +58,7 @@ class AdminView(APIRouter):
     ):
         #устанавливаем /path и tags[] по дефолту (__tablename__) или аргументу
         table_name = table_name or self.model.__tablename__
-        tags = tags or [f"Admin - {table_name}"]
+        tags = tags or [f"⚙ Админ - {table_name}"]
 
         super().__init__(
             prefix=f"/{table_name}",

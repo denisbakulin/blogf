@@ -1,8 +1,6 @@
-from datetime import datetime
-
 from pydantic import Field, BaseModel
 
-from core.schemas import BaseSchema
+from core.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
 
 
 class PostBase(BaseSchema):
@@ -10,10 +8,8 @@ class PostBase(BaseSchema):
     content: str = Field(max_length=5000)
 
 
-class PostShow(PostBase):
-    id: int
+class PostShow(PostBase, IdMixinSchema, TimeMixinSchema):
     author_id: int
-    created_at: datetime
     slug: str
 
 class PostReactions(BaseModel):

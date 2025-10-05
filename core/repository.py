@@ -1,4 +1,4 @@
-from typing import Any, Optional, Type, TypeVar
+from typing import Any, Optional, Type, TypeVar, Unpack, Protocol
 
 from sqlalchemy import desc, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -6,6 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from core.model import BaseORM
 
 T = TypeVar("T", bound=BaseORM)
+
 
 
 class BaseRepository[T]:
@@ -65,7 +66,7 @@ class BaseRepository[T]:
 
     def create(
             self,
-            **data
+            **data: Unpack[T]
     ) -> T:
         """Создает запись"""
 

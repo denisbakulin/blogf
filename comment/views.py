@@ -4,7 +4,7 @@ from auth.deps import verifiedUserDep
 from comment.deps import commentDep, commentServiceDep
 from comment.schemas import CommentShow, CommentUpdate
 
-comm_router = APIRouter(prefix="/comments", tags=["comment"])
+comm_router = APIRouter(prefix="/comments", tags=["💬 Комментарии"])
 
 
 @comm_router.get(

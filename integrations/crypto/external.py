@@ -15,17 +15,14 @@ class BinanceAPI(ExternalAPI):
     @safe_request
     async def get_crypto_info(
             self,
-            ticker_from: str = "btc",
-            ticker_to: str = "usdt"
+            ticker: str = "btc",
     ) -> CryptoResponse:
-
-        ticker_from, ticker_to = map(str.upper, (ticker_from, ticker_to))
 
         async with AsyncClient(base_url=self.path) as client:
 
             response = await client.get(
                 "/api/v3/ticker/price",
-                params={"symbol": f"{ticker_from}{ticker_to}"}
+                params={"symbol": f"{ticker.upper()}USDT"}
             )
             data = response.json()
 

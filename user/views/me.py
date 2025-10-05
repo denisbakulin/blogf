@@ -12,14 +12,14 @@ from reaction.types import UserReactions
 from user.deps import userServiceDep
 from user.schemas import EmailUpdate, PasswordChange, UserShowMe, UserUpdate
 
-me_router = APIRouter(prefix="/me", tags=["me"])
+
+me_router = APIRouter(prefix="/me", tags=["👤 Личный кабинет"])
 
 
 @me_router.get(
     "",
     summary="Получить текущего пользователя",
     response_model=UserShowMe,
-
 )
 async def get_me(
         user: currentUserDep
@@ -103,6 +103,15 @@ async def get_my_reactions(
         pagination: Pagination = Depends()
 ):
     return await like_service.get_user_reactions(user, v, pagination)
+
+
+
+
+
+
+
+
+
 
 
 
