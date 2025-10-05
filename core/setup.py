@@ -39,6 +39,8 @@ def include_routers(app: FastAPI):
     from admin.views import Admin, PostAdminView, UserAdminView
     from auth.views import auth_router
     from comment.views import comm_router
+    from integrations.crypto.views import crypto_router
+    from integrations.weather.views import weather_router
     from post.views import post_router
     from user.views.me import me_router
     from user.views.other import user_router
@@ -46,13 +48,12 @@ def include_routers(app: FastAPI):
     admin_router = Admin(UserAdminView(), PostAdminView())
 
     routers: list[APIRouter] = [
-        user_router,
-        me_router,
-        auth_router,
-        post_router,
-        comm_router,
-        admin_router
+        user_router, me_router,
+        auth_router, post_router,
+        comm_router, admin_router,
+        crypto_router, weather_router
     ]
+
 
     for router in routers:
         app.include_router(router)
@@ -61,10 +62,6 @@ def include_routers(app: FastAPI):
 async def init_db(app: FastAPI):
 
     from core.db import init_models, session_factory
-    from post.model import Post
-    from comment.model import Comment
-    from reaction.model import Reaction
-    from user.model import Profile, User
     from user.schemas import UserCreate
     from user.service import UserService
 
@@ -88,6 +85,13 @@ async def lifespan(
         app: FastAPI,
 ):
     include_routers(app)
+
+    from fastapi_cache import FastAPICache
+    from fastapi_cache.backends.redis import RedisBackend
+    from redis import asyncio as aioredis
+
+    redis = aioredis.from_url("redis://localhost")
+    FastAPICache.init(RedisBackend(redis), prefix="fastapi-cache")
 
     await init_db(app)
 

@@ -1,7 +1,7 @@
 from fastapi import (APIRouter, BackgroundTasks, Cookie, Depends,
                      HTTPException, Response)
 
-from auth.dependencies import get_auth_service
+from auth.deps import get_auth_service
 from auth.exceptions import InvalidTokenError
 from auth.schemas import (AccessTokenResponse, AuthCreds,
                           PendingAccessTokenResponse)

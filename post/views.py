@@ -1,14 +1,14 @@
-from fastapi import APIRouter, Depends
-from fastapi import status
+from fastapi import APIRouter, Depends, status
+from fastapi_cache.decorator import cache
 
-from auth.dependencies import currentUserDep, verifiedUserDep
-from comment.dependencies import commentServiceDep
+from auth.deps import currentUserDep, verifiedUserDep
+from comment.deps import commentServiceDep
 from comment.schemas import CommentCreate, CommentShow
 from helpers.search import Pagination
-from post.dependencies import postDep, postServiceDep
-from post.schemas import PostCreate, PostShow, PostUpdate
+from post.deps import postDep, postServiceDep
+from post.schemas import PostCreate, PostShow, PostUpdate, FullPostShow
 from post.utils import PostSearchParams
-from reaction.dependencies import reactionServiceDep
+from reaction.deps import reactionServiceDep
 from reaction.schemas import ReactionShow
 from reaction.types import PostReactionsGetParams, PostReactionsSetParams
 
@@ -28,26 +28,29 @@ async def create_post(
         user: verifiedUserDep,
         post_service: postServiceDep
 ):
-    return await post_service.create_post(user.id, post_info)
+    return await post_service.create_post(user, post_info)
 
 
 @post_router.get(
     "/{slug}",
-    summary="Получить пост по slug",
-    response_model=PostShow,
+    summary="Получить пост",
+    response_model=FullPostShow,
 
 )
+@cache(expire=60)
 async def get_post(
-        post: postDep
+        post: postDep,
+        reaction_service: reactionServiceDep
 ):
-    return post
-
+    reactions = await reaction_service.get_post_reaction_count(post)
+    return FullPostShow(post=post, reactions=reactions)
 
 @post_router.get(
     "/search",
     summary="Поиск поста по ключевым параметрам",
     response_model=list[PostShow]
 )
+@cache(expire=120)
 async def search_posts(
         post_service: postServiceDep,
         search: PostSearchParams = Depends(),

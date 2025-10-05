@@ -1,7 +1,6 @@
 from functools import lru_cache
-from typing import Self, Literal
 from os import getenv
-
+from typing import Literal, Self
 
 from pydantic import EmailStr
 from pydantic_settings import BaseSettings

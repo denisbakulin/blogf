@@ -36,10 +36,12 @@ class UserShow(BaseSchema):
     username: str
     profile: UserProfile | None
     created_at:  datetime.datetime
+    is_active: bool
 
 
 class UserShowMe(UserShow):
     email: str
+    is_verified: bool
 
 
 

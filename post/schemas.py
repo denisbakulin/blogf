@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from pydantic import Field
+from pydantic import Field, BaseModel
 
 from core.schemas import BaseSchema
 
@@ -16,6 +16,15 @@ class PostShow(PostBase):
     created_at: datetime
     slug: str
 
+class PostReactions(BaseModel):
+    like: int = 0
+    love: int = 0
+    dislike: int = 0
+
+
+class FullPostShow(BaseSchema):
+    post: PostShow
+    reactions: PostReactions
 
 
 

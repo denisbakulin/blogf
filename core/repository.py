@@ -102,10 +102,14 @@ class BaseRepository[T]:
         await self.session.commit()
 
 
-    async def get_items_count(self) -> int:
+    async def get_items_count(self, **filters) -> int:
         """Возврвщвет количество записей в таблице"""
 
         stmt = select(func.count()).select_from(self.model)
+
+        if filters:
+            stmt = stmt.filter_by(**filters)
+
         count = await self.session.execute(stmt)
         return count.scalar_one()
 

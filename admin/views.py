@@ -2,10 +2,10 @@ from typing import Optional, Type
 
 from fastapi import APIRouter, Depends
 
-from admin.dependencies import get_admin_service
+from admin.deps import get_admin_service
 from admin.schemas import AdminUserCreate, AdminUserShow, AdminUserUpdate
 from admin.service import AdminService
-from auth.dependencies import get_admin
+from auth.deps import get_admin
 from core.model import BaseORM, ColumnProps
 from core.schemas import BaseSchema
 from post.model import Post
@@ -135,7 +135,7 @@ class AdminView(APIRouter):
 
 
 from admin.schemas import AdminPostShow
-from user.dependencies import userServiceDep
+from user.deps import userServiceDep
 
 
 class UserAdminView(AdminView, model=User):

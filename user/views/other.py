@@ -1,14 +1,14 @@
 from fastapi import APIRouter, Depends
+from fastapi_cache.decorator import cache
 
 from helpers.search import Pagination
-from post.dependencies import postServiceDep
+from post.deps import postServiceDep
 from post.schemas import PostShow
-from user.dependencies import userDep, userServiceDep
+from user.deps import userDep, userServiceDep
 from user.schemas import UserShow
 from user.utils import UserSearchParams
 
 user_router = APIRouter(prefix="/users", tags=["user"])
-
 
 @user_router.get(
     "/search",
@@ -16,11 +16,13 @@ user_router = APIRouter(prefix="/users", tags=["user"])
     response_model=list[UserShow],
 
 )
+@cache(expire=60)
 async def search_users(
         user_service: userServiceDep,
         search: UserSearchParams = Depends(),
         pagination: Pagination = Depends(),
 ):
+
     return await user_service.search_users(search=search, pagination=pagination)
 
 
@@ -30,6 +32,7 @@ async def search_users(
     response_model=UserShow,
 
 )
+@cache(expire=60)
 async def get_user(
         user: userDep
 ):

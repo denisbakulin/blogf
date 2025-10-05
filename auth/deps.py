@@ -9,7 +9,7 @@ from auth.schemas import TokenInfo
 from auth.service import AuthService
 from auth.utils import TokenTypes, decode_token
 from core.db import get_session
-from user.dependencies import get_user_service
+from user.deps import get_user_service
 from user.model import User
 from user.service import UserService
 

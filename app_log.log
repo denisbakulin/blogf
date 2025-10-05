@@ -21012,3 +21012,1115 @@
 2025-10-02T21:28:16.131586+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3440s
 2025-10-02T21:28:16.524263+0000 INFO Request: GET http://test/users/@user from 127.0.0.1
 2025-10-02T21:28:16.533168+0000 INFO Response: GET http://test/users/@user Status: 200 Time: 0.0150s
+2025-10-03T20:23:32.588319+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T20:23:33.088364+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.5000s
+2025-10-03T20:23:33.598542+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T20:23:34.071120+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4840s
+2025-10-03T20:23:34.085467+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T20:23:34.099465+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0000s
+2025-10-03T20:23:34.847236+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T20:23:35.377249+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.5310s
+2025-10-03T20:23:35.862341+0000 INFO Request: GET http://test/users/@user1 from 127.0.0.1
+2025-10-03T20:23:35.872458+0000 INFO Response: GET http://test/users/@user1 Status: 200 Time: 0.0150s
+2025-10-03T20:23:35.883460+0000 INFO Request: GET http://test/users/@user2 from 127.0.0.1
+2025-10-03T20:23:36.277546+0000 INFO Request: GET http://test/users/@user3 from 127.0.0.1
+2025-10-03T20:23:36.293585+0000 INFO Request: GET http://test/users/@user4 from 127.0.0.1
+2025-10-03T20:23:36.319677+0000 INFO Request: GET http://test/users/@user5 from 127.0.0.1
+2025-10-03T20:23:36.370122+0000 INFO Request: GET http://test/users/@user6 from 127.0.0.1
+2025-10-03T20:23:36.398267+0000 INFO Request: GET http://test/users/@user7 from 127.0.0.1
+2025-10-03T20:23:36.439269+0000 INFO Request: GET http://test/users/@user8 from 127.0.0.1
+2025-10-03T20:23:36.475481+0000 INFO Request: GET http://test/users/@user9 from 127.0.0.1
+2025-10-03T20:23:36.500481+0000 INFO Request: GET http://test/users/@user10 from 127.0.0.1
+2025-10-03T20:23:36.529482+0000 INFO Request: GET http://test/users/@user11 from 127.0.0.1
+2025-10-03T20:23:36.553484+0000 INFO Request: GET http://test/users/@user12 from 127.0.0.1
+2025-10-03T20:23:36.576762+0000 INFO Request: GET http://test/users/@user13 from 127.0.0.1
+2025-10-03T20:23:36.602040+0000 INFO Request: GET http://test/users/@user14 from 127.0.0.1
+2025-10-03T20:23:36.627028+0000 INFO Request: GET http://test/users/@user15 from 127.0.0.1
+2025-10-03T20:23:36.649203+0000 INFO Request: GET http://test/users/@user16 from 127.0.0.1
+2025-10-03T20:23:36.674506+0000 INFO Request: GET http://test/users/@user17 from 127.0.0.1
+2025-10-03T20:23:36.696846+0000 INFO Request: GET http://test/users/@user18 from 127.0.0.1
+2025-10-03T20:23:36.717848+0000 INFO Request: GET http://test/users/@user19 from 127.0.0.1
+2025-10-03T20:23:36.738885+0000 INFO Request: GET http://test/users/@user20 from 127.0.0.1
+2025-10-03T20:23:36.761247+0000 INFO Request: GET http://test/users/@user21 from 127.0.0.1
+2025-10-03T20:23:36.782244+0000 INFO Request: GET http://test/users/@user22 from 127.0.0.1
+2025-10-03T20:23:36.805214+0000 INFO Request: GET http://test/users/@user23 from 127.0.0.1
+2025-10-03T20:23:36.826886+0000 INFO Request: GET http://test/users/@user24 from 127.0.0.1
+2025-10-03T20:23:36.851523+0000 INFO Request: GET http://test/users/@user25 from 127.0.0.1
+2025-10-03T20:23:36.872664+0000 INFO Request: GET http://test/users/@user26 from 127.0.0.1
+2025-10-03T20:23:36.894699+0000 INFO Request: GET http://test/users/@user27 from 127.0.0.1
+2025-10-03T20:23:36.915115+0000 INFO Request: GET http://test/users/@user28 from 127.0.0.1
+2025-10-03T20:23:36.936152+0000 INFO Request: GET http://test/users/@user29 from 127.0.0.1
+2025-10-03T20:23:36.959112+0000 INFO Request: GET http://test/users/@user30 from 127.0.0.1
+2025-10-03T20:23:36.979311+0000 INFO Request: GET http://test/users/@user31 from 127.0.0.1
+2025-10-03T20:23:37.000969+0000 INFO Request: GET http://test/users/@user32 from 127.0.0.1
+2025-10-03T20:23:37.030283+0000 INFO Request: GET http://test/users/@user33 from 127.0.0.1
+2025-10-03T20:23:37.052367+0000 INFO Request: GET http://test/users/@user34 from 127.0.0.1
+2025-10-03T20:23:37.074561+0000 INFO Request: GET http://test/users/@user35 from 127.0.0.1
+2025-10-03T20:23:37.099183+0000 INFO Request: GET http://test/users/@user36 from 127.0.0.1
+2025-10-03T20:23:37.123734+0000 INFO Request: GET http://test/users/@user37 from 127.0.0.1
+2025-10-03T20:23:37.145759+0000 INFO Request: GET http://test/users/@user38 from 127.0.0.1
+2025-10-03T20:23:37.166884+0000 INFO Request: GET http://test/users/@user39 from 127.0.0.1
+2025-10-03T20:23:37.189454+0000 INFO Request: GET http://test/users/@user40 from 127.0.0.1
+2025-10-03T20:23:37.211975+0000 INFO Request: GET http://test/users/@user41 from 127.0.0.1
+2025-10-03T20:23:37.235187+0000 INFO Request: GET http://test/users/@user42 from 127.0.0.1
+2025-10-03T20:23:37.260157+0000 INFO Request: GET http://test/users/@user43 from 127.0.0.1
+2025-10-03T20:23:37.283184+0000 INFO Request: GET http://test/users/@user44 from 127.0.0.1
+2025-10-03T20:23:37.303492+0000 INFO Request: GET http://test/users/@user45 from 127.0.0.1
+2025-10-03T20:23:37.324922+0000 INFO Request: GET http://test/users/@user46 from 127.0.0.1
+2025-10-03T20:23:37.346636+0000 INFO Request: GET http://test/users/@user47 from 127.0.0.1
+2025-10-03T20:23:37.367590+0000 INFO Request: GET http://test/users/@user48 from 127.0.0.1
+2025-10-03T20:23:37.392592+0000 INFO Request: GET http://test/users/@user49 from 127.0.0.1
+2025-10-03T20:23:37.417975+0000 INFO Request: GET http://test/users/@user50 from 127.0.0.1
+2025-10-03T20:23:37.439011+0000 INFO Request: GET http://test/users/@user51 from 127.0.0.1
+2025-10-03T20:23:37.462306+0000 INFO Request: GET http://test/users/@user52 from 127.0.0.1
+2025-10-03T20:23:37.483338+0000 INFO Request: GET http://test/users/@user53 from 127.0.0.1
+2025-10-03T20:23:37.503626+0000 INFO Request: GET http://test/users/@user54 from 127.0.0.1
+2025-10-03T20:23:37.528643+0000 INFO Request: GET http://test/users/@user55 from 127.0.0.1
+2025-10-03T20:23:37.553630+0000 INFO Request: GET http://test/users/@user56 from 127.0.0.1
+2025-10-03T20:23:37.574626+0000 INFO Request: GET http://test/users/@user57 from 127.0.0.1
+2025-10-03T20:23:37.598751+0000 INFO Request: GET http://test/users/@user58 from 127.0.0.1
+2025-10-03T20:23:37.620904+0000 INFO Request: GET http://test/users/@user59 from 127.0.0.1
+2025-10-03T20:23:37.643334+0000 INFO Request: GET http://test/users/@user60 from 127.0.0.1
+2025-10-03T20:23:37.666470+0000 INFO Request: GET http://test/users/@user61 from 127.0.0.1
+2025-10-03T20:23:37.689577+0000 INFO Request: GET http://test/users/@user62 from 127.0.0.1
+2025-10-03T20:23:37.711883+0000 INFO Request: GET http://test/users/@user63 from 127.0.0.1
+2025-10-03T20:23:37.735026+0000 INFO Request: GET http://test/users/@user64 from 127.0.0.1
+2025-10-03T20:23:37.758000+0000 INFO Request: GET http://test/users/@user65 from 127.0.0.1
+2025-10-03T20:23:37.778260+0000 INFO Request: GET http://test/users/@user66 from 127.0.0.1
+2025-10-03T20:23:37.804257+0000 INFO Request: GET http://test/users/@user67 from 127.0.0.1
+2025-10-03T20:23:37.829067+0000 INFO Request: GET http://test/users/@user68 from 127.0.0.1
+2025-10-03T20:23:37.855000+0000 INFO Request: GET http://test/users/@user69 from 127.0.0.1
+2025-10-03T20:23:37.878383+0000 INFO Request: GET http://test/users/@user70 from 127.0.0.1
+2025-10-03T20:23:37.899476+0000 INFO Request: GET http://test/users/@user71 from 127.0.0.1
+2025-10-03T20:23:37.921704+0000 INFO Request: GET http://test/users/@user72 from 127.0.0.1
+2025-10-03T20:23:37.943640+0000 INFO Request: GET http://test/users/@user73 from 127.0.0.1
+2025-10-03T20:23:37.965214+0000 INFO Request: GET http://test/users/@user74 from 127.0.0.1
+2025-10-03T20:23:37.986152+0000 INFO Request: GET http://test/users/@user75 from 127.0.0.1
+2025-10-03T20:23:38.006152+0000 INFO Request: GET http://test/users/@user76 from 127.0.0.1
+2025-10-03T20:23:38.028149+0000 INFO Request: GET http://test/users/@user77 from 127.0.0.1
+2025-10-03T20:23:38.050123+0000 INFO Request: GET http://test/users/@user78 from 127.0.0.1
+2025-10-03T20:23:38.074306+0000 INFO Request: GET http://test/users/@user79 from 127.0.0.1
+2025-10-03T20:23:38.101307+0000 INFO Request: GET http://test/users/@user80 from 127.0.0.1
+2025-10-03T20:23:38.124417+0000 INFO Request: GET http://test/users/@user81 from 127.0.0.1
+2025-10-03T20:23:38.146570+0000 INFO Request: GET http://test/users/@user82 from 127.0.0.1
+2025-10-03T20:23:38.169067+0000 INFO Request: GET http://test/users/@user83 from 127.0.0.1
+2025-10-03T20:23:38.199273+0000 INFO Request: GET http://test/users/@user84 from 127.0.0.1
+2025-10-03T20:23:38.220422+0000 INFO Request: GET http://test/users/@user85 from 127.0.0.1
+2025-10-03T20:23:38.241933+0000 INFO Request: GET http://test/users/@user86 from 127.0.0.1
+2025-10-03T20:23:38.263933+0000 INFO Request: GET http://test/users/@user87 from 127.0.0.1
+2025-10-03T20:23:38.285097+0000 INFO Request: GET http://test/users/@user88 from 127.0.0.1
+2025-10-03T20:23:38.306060+0000 INFO Request: GET http://test/users/@user89 from 127.0.0.1
+2025-10-03T20:23:38.327717+0000 INFO Request: GET http://test/users/@user90 from 127.0.0.1
+2025-10-03T20:23:38.351816+0000 INFO Request: GET http://test/users/@user91 from 127.0.0.1
+2025-10-03T20:23:38.373956+0000 INFO Request: GET http://test/users/@user92 from 127.0.0.1
+2025-10-03T20:23:38.396635+0000 INFO Request: GET http://test/users/@user93 from 127.0.0.1
+2025-10-03T20:23:38.418637+0000 INFO Request: GET http://test/users/@user94 from 127.0.0.1
+2025-10-03T20:23:38.445038+0000 INFO Request: GET http://test/users/@user95 from 127.0.0.1
+2025-10-03T20:23:38.484148+0000 INFO Request: GET http://test/users/@user96 from 127.0.0.1
+2025-10-03T20:23:38.508300+0000 INFO Request: GET http://test/users/@user97 from 127.0.0.1
+2025-10-03T20:23:38.535244+0000 INFO Request: GET http://test/users/@user98 from 127.0.0.1
+2025-10-03T20:23:38.565242+0000 INFO Request: GET http://test/users/@user99 from 127.0.0.1
+2025-10-03T20:25:24.751822+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T20:25:25.125356+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3750s
+2025-10-03T20:26:07.491008+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T20:26:07.863082+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3750s
+2025-10-03T20:26:48.364761+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T20:26:48.751995+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3900s
+2025-10-03T20:26:49.585799+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T20:26:49.933456+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3440s
+2025-10-03T20:27:35.134572+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T20:27:35.579004+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4370s
+2025-10-03T20:27:39.732253+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T20:27:40.145702+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4060s
+2025-10-03T20:27:40.153962+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T20:27:40.165905+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0160s
+2025-10-03T20:27:40.994376+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T20:27:41.426488+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4220s
+2025-10-03T20:27:45.524717+0000 INFO Request: GET http://test/users/@user1 from 127.0.0.1
+2025-10-03T20:27:45.532919+0000 INFO Response: GET http://test/users/@user1 Status: 200 Time: 0.0000s
+2025-10-03T20:27:45.537967+0000 INFO Request: GET http://test/users/@user2 from 127.0.0.1
+2025-10-03T20:27:45.545941+0000 INFO Response: GET http://test/users/@user2 Status: 200 Time: 0.0160s
+2025-10-03T20:27:45.551019+0000 INFO Request: GET http://test/users/@user3 from 127.0.0.1
+2025-10-03T20:27:45.557919+0000 INFO Response: GET http://test/users/@user3 Status: 200 Time: 0.0160s
+2025-10-03T20:27:45.564020+0000 INFO Request: GET http://test/users/@user4 from 127.0.0.1
+2025-10-03T20:27:45.570922+0000 INFO Response: GET http://test/users/@user4 Status: 200 Time: 0.0150s
+2025-10-03T20:27:45.577016+0000 INFO Request: GET http://test/users/@user5 from 127.0.0.1
+2025-10-03T20:27:45.583956+0000 INFO Response: GET http://test/users/@user5 Status: 200 Time: 0.0000s
+2025-10-03T20:27:45.588972+0000 INFO Request: GET http://test/users/@user6 from 127.0.0.1
+2025-10-03T20:27:45.598352+0000 INFO Response: GET http://test/users/@user6 Status: 200 Time: 0.0000s
+2025-10-03T20:27:45.606660+0000 INFO Request: GET http://test/users/@user7 from 127.0.0.1
+2025-10-03T20:27:45.614707+0000 INFO Response: GET http://test/users/@user7 Status: 200 Time: 0.0000s
+2025-10-03T20:27:45.619949+0000 INFO Request: GET http://test/users/@user8 from 127.0.0.1
+2025-10-03T20:27:45.627997+0000 INFO Response: GET http://test/users/@user8 Status: 200 Time: 0.0000s
+2025-10-03T20:27:45.633358+0000 INFO Request: GET http://test/users/@user9 from 127.0.0.1
+2025-10-03T20:27:45.642363+0000 INFO Response: GET http://test/users/@user9 Status: 200 Time: 0.0000s
+2025-10-03T20:29:05.719667+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T20:29:06.181090+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4690s
+2025-10-03T20:29:10.293348+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T20:29:10.722303+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4220s
+2025-10-03T20:29:11.331940+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T20:29:11.762197+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4380s
+2025-10-03T20:29:15.736601+0000 INFO Request: GET http://test/users/@user1 from 127.0.0.1
+2025-10-03T20:29:15.744910+0000 INFO Response: GET http://test/users/@user1 Status: 200 Time: 0.0150s
+2025-10-03T20:29:15.750875+0000 INFO Request: GET http://test/users/@user2 from 127.0.0.1
+2025-10-03T20:29:15.758920+0000 INFO Response: GET http://test/users/@user2 Status: 200 Time: 0.0160s
+2025-10-03T20:29:15.763870+0000 INFO Request: GET http://test/users/@user3 from 127.0.0.1
+2025-10-03T20:29:15.772098+0000 INFO Response: GET http://test/users/@user3 Status: 200 Time: 0.0000s
+2025-10-03T20:29:15.777442+0000 INFO Request: GET http://test/users/@user4 from 127.0.0.1
+2025-10-03T20:29:15.784492+0000 INFO Response: GET http://test/users/@user4 Status: 200 Time: 0.0000s
+2025-10-03T20:29:15.790705+0000 INFO Request: GET http://test/users/@user5 from 127.0.0.1
+2025-10-03T20:29:15.797695+0000 INFO Response: GET http://test/users/@user5 Status: 200 Time: 0.0000s
+2025-10-03T20:29:15.802700+0000 INFO Request: GET http://test/users/@user6 from 127.0.0.1
+2025-10-03T20:29:15.810754+0000 INFO Response: GET http://test/users/@user6 Status: 200 Time: 0.0160s
+2025-10-03T20:29:15.816912+0000 INFO Request: GET http://test/users/@user7 from 127.0.0.1
+2025-10-03T20:29:15.826948+0000 INFO Response: GET http://test/users/@user7 Status: 200 Time: 0.0150s
+2025-10-03T20:29:15.833999+0000 INFO Request: GET http://test/users/@user8 from 127.0.0.1
+2025-10-03T20:29:15.841951+0000 INFO Response: GET http://test/users/@user8 Status: 200 Time: 0.0160s
+2025-10-03T20:29:15.847280+0000 INFO Request: GET http://test/users/@user9 from 127.0.0.1
+2025-10-03T20:29:15.855539+0000 INFO Response: GET http://test/users/@user9 Status: 200 Time: 0.0160s
+2025-10-03T20:29:15.861810+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T20:29:15.872803+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0150s
+2025-10-03T20:29:31.248672+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T20:29:31.641387+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3910s
+2025-10-03T20:29:35.583094+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T20:29:36.020158+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4380s
+2025-10-03T20:29:36.676497+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T20:29:37.111358+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4380s
+2025-10-03T20:29:41.238844+0000 INFO Request: GET http://test/users/@user1 from 127.0.0.1
+2025-10-03T20:29:41.247893+0000 INFO Response: GET http://test/users/@user1 Status: 200 Time: 0.0150s
+2025-10-03T20:29:41.253848+0000 INFO Request: GET http://test/users/@user2 from 127.0.0.1
+2025-10-03T20:29:41.261893+0000 INFO Response: GET http://test/users/@user2 Status: 200 Time: 0.0160s
+2025-10-03T20:29:41.267881+0000 INFO Request: GET http://test/users/@user3 from 127.0.0.1
+2025-10-03T20:29:41.275935+0000 INFO Response: GET http://test/users/@user3 Status: 200 Time: 0.0150s
+2025-10-03T20:29:41.283087+0000 INFO Request: GET http://test/users/@user4 from 127.0.0.1
+2025-10-03T20:29:41.291182+0000 INFO Response: GET http://test/users/@user4 Status: 200 Time: 0.0160s
+2025-10-03T20:29:41.298320+0000 INFO Request: GET http://test/users/@user5 from 127.0.0.1
+2025-10-03T20:29:41.306586+0000 INFO Response: GET http://test/users/@user5 Status: 200 Time: 0.0160s
+2025-10-03T20:29:41.313470+0000 INFO Request: GET http://test/users/@user6 from 127.0.0.1
+2025-10-03T20:29:41.321562+0000 INFO Response: GET http://test/users/@user6 Status: 200 Time: 0.0150s
+2025-10-03T20:29:41.327466+0000 INFO Request: GET http://test/users/@user7 from 127.0.0.1
+2025-10-03T20:29:41.336508+0000 INFO Response: GET http://test/users/@user7 Status: 200 Time: 0.0160s
+2025-10-03T20:29:41.342718+0000 INFO Request: GET http://test/users/@user8 from 127.0.0.1
+2025-10-03T20:29:41.349715+0000 INFO Response: GET http://test/users/@user8 Status: 200 Time: 0.0000s
+2025-10-03T20:29:41.379220+0000 INFO Request: GET http://test/users/@user9 from 127.0.0.1
+2025-10-03T20:29:41.387315+0000 INFO Response: GET http://test/users/@user9 Status: 200 Time: 0.0160s
+2025-10-03T20:29:41.394260+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T20:29:41.406277+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0150s
+2025-10-03T20:56:38.847378+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T20:56:39.330657+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4840s
+2025-10-03T20:56:43.079601+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T20:56:43.444856+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3750s
+2025-10-03T20:56:43.983171+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T20:56:44.357583+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3750s
+2025-10-03T20:56:48.347148+0000 INFO Request: GET http://test/users/@user1 from 127.0.0.1
+2025-10-03T20:56:48.357058+0000 INFO Response: GET http://test/users/@user1 Status: 200 Time: 0.0160s
+2025-10-03T20:56:48.364117+0000 INFO Request: GET http://test/users/@user2 from 127.0.0.1
+2025-10-03T20:56:48.371148+0000 INFO Response: GET http://test/users/@user2 Status: 200 Time: 0.0150s
+2025-10-03T20:56:48.377141+0000 INFO Request: GET http://test/users/@user3 from 127.0.0.1
+2025-10-03T20:56:48.386046+0000 INFO Response: GET http://test/users/@user3 Status: 200 Time: 0.0160s
+2025-10-03T20:56:48.393334+0000 INFO Request: GET http://test/users/@user4 from 127.0.0.1
+2025-10-03T20:56:48.402582+0000 INFO Response: GET http://test/users/@user4 Status: 200 Time: 0.0150s
+2025-10-03T20:56:48.409629+0000 INFO Request: GET http://test/users/@user5 from 127.0.0.1
+2025-10-03T20:56:48.417583+0000 INFO Response: GET http://test/users/@user5 Status: 200 Time: 0.0160s
+2025-10-03T20:56:48.424864+0000 INFO Request: GET http://test/users/@user6 from 127.0.0.1
+2025-10-03T20:56:48.433770+0000 INFO Response: GET http://test/users/@user6 Status: 200 Time: 0.0160s
+2025-10-03T20:56:48.440868+0000 INFO Request: GET http://test/users/@user7 from 127.0.0.1
+2025-10-03T20:56:48.449793+0000 INFO Response: GET http://test/users/@user7 Status: 200 Time: 0.0150s
+2025-10-03T20:56:48.456941+0000 INFO Request: GET http://test/users/@user8 from 127.0.0.1
+2025-10-03T20:56:48.463993+0000 INFO Response: GET http://test/users/@user8 Status: 200 Time: 0.0160s
+2025-10-03T20:56:48.470114+0000 INFO Request: GET http://test/users/@user9 from 127.0.0.1
+2025-10-03T20:56:48.479219+0000 INFO Response: GET http://test/users/@user9 Status: 200 Time: 0.0160s
+2025-10-03T20:56:48.486153+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T20:56:48.496752+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0150s
+2025-10-03T20:56:48.700506+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T20:56:48.708522+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0000s
+2025-10-03T20:56:48.718453+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T20:56:48.728440+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0160s
+2025-10-03T20:56:48.745585+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T20:56:48.757087+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0160s
+2025-10-03T20:56:48.773948+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T20:56:48.782919+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0000s
+2025-10-03T20:56:48.793932+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T20:56:48.802897+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0000s
+2025-10-03T20:56:48.813932+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T20:56:48.821155+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0150s
+2025-10-03T20:56:48.831547+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T20:56:48.839549+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0160s
+2025-10-03T20:56:48.850598+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T20:56:48.859633+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0000s
+2025-10-03T21:00:12.648871+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:00:13.000476+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3440s
+2025-10-03T21:00:16.928490+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:00:17.357490+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4380s
+2025-10-03T21:00:18.059560+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:00:18.410382+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3430s
+2025-10-03T21:00:22.548783+0000 INFO Request: GET http://test/users/@user1 from 127.0.0.1
+2025-10-03T21:00:22.556747+0000 INFO Response: GET http://test/users/@user1 Status: 200 Time: 0.0160s
+2025-10-03T21:00:22.563721+0000 INFO Request: GET http://test/users/@user2 from 127.0.0.1
+2025-10-03T21:00:22.571721+0000 INFO Response: GET http://test/users/@user2 Status: 200 Time: 0.0150s
+2025-10-03T21:00:22.577737+0000 INFO Request: GET http://test/users/@user3 from 127.0.0.1
+2025-10-03T21:00:22.585778+0000 INFO Response: GET http://test/users/@user3 Status: 200 Time: 0.0160s
+2025-10-03T21:00:22.592723+0000 INFO Request: GET http://test/users/@user4 from 127.0.0.1
+2025-10-03T21:00:22.600697+0000 INFO Response: GET http://test/users/@user4 Status: 200 Time: 0.0160s
+2025-10-03T21:00:22.606723+0000 INFO Request: GET http://test/users/@user5 from 127.0.0.1
+2025-10-03T21:00:22.615823+0000 INFO Response: GET http://test/users/@user5 Status: 200 Time: 0.0000s
+2025-10-03T21:00:22.623934+0000 INFO Request: GET http://test/users/@user6 from 127.0.0.1
+2025-10-03T21:00:22.632993+0000 INFO Response: GET http://test/users/@user6 Status: 200 Time: 0.0160s
+2025-10-03T21:00:22.639255+0000 INFO Request: GET http://test/users/@user7 from 127.0.0.1
+2025-10-03T21:00:22.648258+0000 INFO Response: GET http://test/users/@user7 Status: 200 Time: 0.0150s
+2025-10-03T21:00:22.655502+0000 INFO Request: GET http://test/users/@user8 from 127.0.0.1
+2025-10-03T21:00:22.666026+0000 INFO Response: GET http://test/users/@user8 Status: 200 Time: 0.0160s
+2025-10-03T21:00:22.674247+0000 INFO Request: GET http://test/users/@user9 from 127.0.0.1
+2025-10-03T21:00:22.683535+0000 INFO Response: GET http://test/users/@user9 Status: 200 Time: 0.0160s
+2025-10-03T21:00:22.692792+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T21:00:22.706752+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0150s
+2025-10-03T21:09:42.370437+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:09:42.726525+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3600s
+2025-10-03T21:09:46.082121+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:09:46.429586+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3600s
+2025-10-03T21:09:46.965542+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:09:47.313035+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3440s
+2025-10-03T21:09:50.691882+0000 INFO Request: GET http://test/users/@user1 from 127.0.0.1
+2025-10-03T21:09:50.698195+0000 INFO Response: GET http://test/users/@user1 Status: 200 Time: 0.0150s
+2025-10-03T21:09:50.704159+0000 INFO Request: GET http://test/users/@user2 from 127.0.0.1
+2025-10-03T21:09:50.712246+0000 INFO Response: GET http://test/users/@user2 Status: 200 Time: 0.0160s
+2025-10-03T21:09:50.735869+0000 INFO Request: GET http://test/users/@user3 from 127.0.0.1
+2025-10-03T21:09:50.744815+0000 INFO Response: GET http://test/users/@user3 Status: 200 Time: 0.0150s
+2025-10-03T21:09:50.751488+0000 INFO Request: GET http://test/users/@user4 from 127.0.0.1
+2025-10-03T21:09:50.759123+0000 INFO Response: GET http://test/users/@user4 Status: 200 Time: 0.0160s
+2025-10-03T21:09:50.766449+0000 INFO Request: GET http://test/users/@user5 from 127.0.0.1
+2025-10-03T21:09:50.775444+0000 INFO Response: GET http://test/users/@user5 Status: 200 Time: 0.0150s
+2025-10-03T21:09:50.783451+0000 INFO Request: GET http://test/users/@user6 from 127.0.0.1
+2025-10-03T21:09:50.793706+0000 INFO Response: GET http://test/users/@user6 Status: 200 Time: 0.0160s
+2025-10-03T21:09:50.798899+0000 INFO Request: GET http://test/users/@user7 from 127.0.0.1
+2025-10-03T21:09:50.807110+0000 INFO Response: GET http://test/users/@user7 Status: 200 Time: 0.0160s
+2025-10-03T21:09:50.813444+0000 INFO Request: GET http://test/users/@user8 from 127.0.0.1
+2025-10-03T21:09:50.820438+0000 INFO Response: GET http://test/users/@user8 Status: 200 Time: 0.0150s
+2025-10-03T21:09:50.844744+0000 INFO Request: GET http://test/users/@user9 from 127.0.0.1
+2025-10-03T21:09:50.853714+0000 INFO Response: GET http://test/users/@user9 Status: 200 Time: 0.0160s
+2025-10-03T21:09:50.859047+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T21:09:50.893477+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0310s
+2025-10-03T21:09:50.901446+0000 INFO Request: GET http://test/users/search?q=user&strict=false&field=username from 127.0.0.1
+2025-10-03T21:09:50.916473+0000 INFO Response: GET http://test/users/search?q=user&strict=false&field=username Status: 200 Time: 0.0160s
+2025-10-03T21:09:50.918532+0000 INFO Request: GET http://test/users/search?q=user1&strict=true&field=username from 127.0.0.1
+2025-10-03T21:09:50.926482+0000 INFO Response: GET http://test/users/search?q=user1&strict=true&field=username Status: 200 Time: 0.0000s
+2025-10-03T21:12:39.122943+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:12:39.571726+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4530s
+2025-10-03T21:12:43.715907+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:12:44.149171+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4370s
+2025-10-03T21:12:44.767303+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:12:45.195818+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4370s
+2025-10-03T21:12:49.403820+0000 INFO Request: GET http://test/users/@user1 from 127.0.0.1
+2025-10-03T21:12:49.412064+0000 INFO Response: GET http://test/users/@user1 Status: 200 Time: 0.0000s
+2025-10-03T21:12:49.418009+0000 INFO Request: GET http://test/users/@user2 from 127.0.0.1
+2025-10-03T21:12:49.426060+0000 INFO Response: GET http://test/users/@user2 Status: 200 Time: 0.0000s
+2025-10-03T21:12:49.432015+0000 INFO Request: GET http://test/users/@user3 from 127.0.0.1
+2025-10-03T21:12:49.440033+0000 INFO Response: GET http://test/users/@user3 Status: 200 Time: 0.0000s
+2025-10-03T21:12:49.447018+0000 INFO Request: GET http://test/users/@user4 from 127.0.0.1
+2025-10-03T21:12:49.456025+0000 INFO Response: GET http://test/users/@user4 Status: 200 Time: 0.0000s
+2025-10-03T21:12:49.462025+0000 INFO Request: GET http://test/users/@user5 from 127.0.0.1
+2025-10-03T21:12:49.470071+0000 INFO Response: GET http://test/users/@user5 Status: 200 Time: 0.0000s
+2025-10-03T21:12:49.476216+0000 INFO Request: GET http://test/users/@user6 from 127.0.0.1
+2025-10-03T21:12:49.483632+0000 INFO Response: GET http://test/users/@user6 Status: 200 Time: 0.0000s
+2025-10-03T21:12:49.489799+0000 INFO Request: GET http://test/users/@user7 from 127.0.0.1
+2025-10-03T21:12:49.497799+0000 INFO Response: GET http://test/users/@user7 Status: 200 Time: 0.0150s
+2025-10-03T21:12:49.502848+0000 INFO Request: GET http://test/users/@user8 from 127.0.0.1
+2025-10-03T21:12:49.510855+0000 INFO Response: GET http://test/users/@user8 Status: 200 Time: 0.0160s
+2025-10-03T21:12:49.539168+0000 INFO Request: GET http://test/users/@user9 from 127.0.0.1
+2025-10-03T21:12:49.548199+0000 INFO Response: GET http://test/users/@user9 Status: 200 Time: 0.0000s
+2025-10-03T21:12:49.555257+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T21:12:49.566366+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0000s
+2025-10-03T21:12:49.572455+0000 INFO Request: GET http://test/users/search?q=user&strict=false&field=username from 127.0.0.1
+2025-10-03T21:12:49.584710+0000 INFO Response: GET http://test/users/search?q=user&strict=false&field=username Status: 200 Time: 0.0000s
+2025-10-03T21:12:49.585712+0000 INFO Request: GET http://test/users/search?q=user1&strict=true&field=username from 127.0.0.1
+2025-10-03T21:12:49.594821+0000 INFO Response: GET http://test/users/search?q=user1&strict=true&field=username Status: 200 Time: 0.0000s
+2025-10-03T21:25:42.269427+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:25:42.807734+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.5470s
+2025-10-03T21:25:47.216841+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:25:47.712626+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.5000s
+2025-10-03T21:25:48.455027+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:25:48.840133+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3910s
+2025-10-03T21:25:53.161818+0000 INFO Request: POST http://test/posts from 127.0.0.1
+2025-10-03T21:25:53.199431+0000 INFO Response: POST http://test/posts Status: 201 Time: 0.0470s
+2025-10-03T21:25:53.895407+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:25:54.327101+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4370s
+2025-10-03T21:25:58.518211+0000 INFO Request: GET http://test/users/@user1 from 127.0.0.1
+2025-10-03T21:25:58.529252+0000 INFO Response: GET http://test/users/@user1 Status: 200 Time: 0.0150s
+2025-10-03T21:25:58.539435+0000 INFO Request: GET http://test/users/@user2 from 127.0.0.1
+2025-10-03T21:25:58.549481+0000 INFO Response: GET http://test/users/@user2 Status: 200 Time: 0.0000s
+2025-10-03T21:25:58.558618+0000 INFO Request: GET http://test/users/@user3 from 127.0.0.1
+2025-10-03T21:25:58.567643+0000 INFO Response: GET http://test/users/@user3 Status: 200 Time: 0.0000s
+2025-10-03T21:25:58.576620+0000 INFO Request: GET http://test/users/@user4 from 127.0.0.1
+2025-10-03T21:25:58.585624+0000 INFO Response: GET http://test/users/@user4 Status: 200 Time: 0.0160s
+2025-10-03T21:25:58.593751+0000 INFO Request: GET http://test/users/@user5 from 127.0.0.1
+2025-10-03T21:25:58.608756+0000 INFO Response: GET http://test/users/@user5 Status: 200 Time: 0.0160s
+2025-10-03T21:25:58.620752+0000 INFO Request: GET http://test/users/@user6 from 127.0.0.1
+2025-10-03T21:25:58.630795+0000 INFO Response: GET http://test/users/@user6 Status: 200 Time: 0.0000s
+2025-10-03T21:25:58.638982+0000 INFO Request: GET http://test/users/@user7 from 127.0.0.1
+2025-10-03T21:25:58.648940+0000 INFO Response: GET http://test/users/@user7 Status: 200 Time: 0.0150s
+2025-10-03T21:25:58.659942+0000 INFO Request: GET http://test/users/@user8 from 127.0.0.1
+2025-10-03T21:25:58.671114+0000 INFO Response: GET http://test/users/@user8 Status: 200 Time: 0.0160s
+2025-10-03T21:25:58.680116+0000 INFO Request: GET http://test/users/@user9 from 127.0.0.1
+2025-10-03T21:25:58.689114+0000 INFO Response: GET http://test/users/@user9 Status: 200 Time: 0.0000s
+2025-10-03T21:25:58.697260+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T21:25:58.706396+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0000s
+2025-10-03T21:25:58.714396+0000 INFO Request: GET http://test/users/search?q=user&strict=false&field=username from 127.0.0.1
+2025-10-03T21:25:58.729395+0000 INFO Response: GET http://test/users/search?q=user&strict=false&field=username Status: 200 Time: 0.0160s
+2025-10-03T21:25:58.732438+0000 INFO Request: GET http://test/users/search?q=user1&strict=true&field=username from 127.0.0.1
+2025-10-03T21:25:58.741766+0000 INFO Response: GET http://test/users/search?q=user1&strict=true&field=username Status: 200 Time: 0.0150s
+2025-10-03T21:30:28.033040+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:30:28.437153+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4070s
+2025-10-03T21:30:33.133740+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:30:33.600590+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4690s
+2025-10-03T21:30:34.476496+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:30:34.970859+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4840s
+2025-10-03T21:30:39.593876+0000 INFO Request: POST http://test/posts from 127.0.0.1
+2025-10-03T21:30:39.640914+0000 INFO Response: POST http://test/posts Status: 201 Time: 0.0470s
+2025-10-03T21:30:40.401835+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:30:40.923598+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.5160s
+2025-10-03T21:30:45.543733+0000 INFO Request: GET http://test/users/@user1 from 127.0.0.1
+2025-10-03T21:30:45.552729+0000 INFO Response: GET http://test/users/@user1 Status: 200 Time: 0.0000s
+2025-10-03T21:30:45.563729+0000 INFO Request: GET http://test/users/@user2 from 127.0.0.1
+2025-10-03T21:30:45.573730+0000 INFO Response: GET http://test/users/@user2 Status: 200 Time: 0.0150s
+2025-10-03T21:30:45.584990+0000 INFO Request: GET http://test/users/@user3 from 127.0.0.1
+2025-10-03T21:30:45.594989+0000 INFO Response: GET http://test/users/@user3 Status: 200 Time: 0.0000s
+2025-10-03T21:30:45.605227+0000 INFO Request: GET http://test/users/@user4 from 127.0.0.1
+2025-10-03T21:30:45.616187+0000 INFO Response: GET http://test/users/@user4 Status: 200 Time: 0.0150s
+2025-10-03T21:30:45.625330+0000 INFO Request: GET http://test/users/@user5 from 127.0.0.1
+2025-10-03T21:30:45.634368+0000 INFO Response: GET http://test/users/@user5 Status: 200 Time: 0.0160s
+2025-10-03T21:30:45.643608+0000 INFO Request: GET http://test/users/@user6 from 127.0.0.1
+2025-10-03T21:30:45.651558+0000 INFO Response: GET http://test/users/@user6 Status: 200 Time: 0.0150s
+2025-10-03T21:30:45.659861+0000 INFO Request: GET http://test/users/@user7 from 127.0.0.1
+2025-10-03T21:30:45.668893+0000 INFO Response: GET http://test/users/@user7 Status: 200 Time: 0.0160s
+2025-10-03T21:30:45.676902+0000 INFO Request: GET http://test/users/@user8 from 127.0.0.1
+2025-10-03T21:30:45.685900+0000 INFO Response: GET http://test/users/@user8 Status: 200 Time: 0.0160s
+2025-10-03T21:30:45.695901+0000 INFO Request: GET http://test/users/@user9 from 127.0.0.1
+2025-10-03T21:30:45.704887+0000 INFO Response: GET http://test/users/@user9 Status: 200 Time: 0.0000s
+2025-10-03T21:30:45.712858+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T21:30:45.722198+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0000s
+2025-10-03T21:30:45.731243+0000 INFO Request: GET http://test/users/search?q=user&strict=false&field=username from 127.0.0.1
+2025-10-03T21:30:45.745078+0000 INFO Response: GET http://test/users/search?q=user&strict=false&field=username Status: 200 Time: 0.0150s
+2025-10-03T21:30:45.747129+0000 INFO Request: GET http://test/users/search?q=user1&strict=true&field=username from 127.0.0.1
+2025-10-03T21:30:45.756620+0000 INFO Response: GET http://test/users/search?q=user1&strict=true&field=username Status: 200 Time: 0.0000s
+2025-10-03T21:32:16.269836+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:32:16.727651+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4690s
+2025-10-03T21:32:21.640216+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:32:22.120427+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4840s
+2025-10-03T21:32:23.080595+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:32:23.536779+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4530s
+2025-10-03T21:32:28.535497+0000 INFO Request: POST http://test/posts from 127.0.0.1
+2025-10-03T21:32:28.579460+0000 INFO Response: POST http://test/posts Status: 201 Time: 0.0470s
+2025-10-03T21:32:29.413716+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:32:29.903130+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4840s
+2025-10-03T21:32:34.564899+0000 INFO Request: GET http://test/users/@user1 from 127.0.0.1
+2025-10-03T21:32:34.573800+0000 INFO Response: GET http://test/users/@user1 Status: 200 Time: 0.0150s
+2025-10-03T21:32:34.581856+0000 INFO Request: GET http://test/users/@user2 from 127.0.0.1
+2025-10-03T21:32:34.591815+0000 INFO Response: GET http://test/users/@user2 Status: 200 Time: 0.0160s
+2025-10-03T21:32:34.601816+0000 INFO Request: GET http://test/users/@user3 from 127.0.0.1
+2025-10-03T21:32:39.935997+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:32:40.412627+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4680s
+2025-10-03T21:32:41.566840+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:32:41.941442+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3750s
+2025-10-03T21:32:46.102848+0000 INFO Request: POST http://test/posts from 127.0.0.1
+2025-10-03T21:32:46.139530+0000 INFO Response: POST http://test/posts Status: 201 Time: 0.0310s
+2025-10-03T21:32:46.818815+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:32:47.221985+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4060s
+2025-10-03T21:32:51.314620+0000 INFO Request: GET http://test/users/@user1 from 127.0.0.1
+2025-10-03T21:32:51.323932+0000 INFO Response: GET http://test/users/@user1 Status: 200 Time: 0.0150s
+2025-10-03T21:32:51.332945+0000 INFO Request: GET http://test/users/@user2 from 127.0.0.1
+2025-10-03T21:32:51.340501+0000 INFO Response: GET http://test/users/@user2 Status: 200 Time: 0.0160s
+2025-10-03T21:32:51.347537+0000 INFO Request: GET http://test/users/@user3 from 127.0.0.1
+2025-10-03T21:32:51.355290+0000 INFO Response: GET http://test/users/@user3 Status: 200 Time: 0.0160s
+2025-10-03T21:32:51.364306+0000 INFO Request: GET http://test/users/@user4 from 127.0.0.1
+2025-10-03T21:32:51.372533+0000 INFO Response: GET http://test/users/@user4 Status: 200 Time: 0.0150s
+2025-10-03T21:32:51.380532+0000 INFO Request: GET http://test/users/@user5 from 127.0.0.1
+2025-10-03T21:32:51.391533+0000 INFO Response: GET http://test/users/@user5 Status: 200 Time: 0.0160s
+2025-10-03T21:32:51.400706+0000 INFO Request: GET http://test/users/@user6 from 127.0.0.1
+2025-10-03T21:32:51.411719+0000 INFO Response: GET http://test/users/@user6 Status: 200 Time: 0.0000s
+2025-10-03T21:32:51.421911+0000 INFO Request: GET http://test/users/@user7 from 127.0.0.1
+2025-10-03T21:32:51.431861+0000 INFO Response: GET http://test/users/@user7 Status: 200 Time: 0.0160s
+2025-10-03T21:32:51.442860+0000 INFO Request: GET http://test/users/@user8 from 127.0.0.1
+2025-10-03T21:32:51.454886+0000 INFO Response: GET http://test/users/@user8 Status: 200 Time: 0.0150s
+2025-10-03T21:32:51.465471+0000 INFO Request: GET http://test/users/@user9 from 127.0.0.1
+2025-10-03T21:32:51.476507+0000 INFO Response: GET http://test/users/@user9 Status: 200 Time: 0.0160s
+2025-10-03T21:32:51.487472+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T21:32:51.498517+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0150s
+2025-10-03T21:32:51.509708+0000 INFO Request: GET http://test/users/search?q=user&strict=false&field=username from 127.0.0.1
+2025-10-03T21:32:51.526719+0000 INFO Response: GET http://test/users/search?q=user&strict=false&field=username Status: 200 Time: 0.0150s
+2025-10-03T21:32:51.529687+0000 INFO Request: GET http://test/users/search?q=user1&strict=true&field=username from 127.0.0.1
+2025-10-03T21:32:51.540748+0000 INFO Response: GET http://test/users/search?q=user1&strict=true&field=username Status: 200 Time: 0.0160s
+2025-10-03T21:37:44.726572+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:37:45.173456+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4370s
+2025-10-03T21:37:49.638820+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:37:50.078296+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4370s
+2025-10-03T21:37:50.818641+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:37:51.258263+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4530s
+2025-10-03T21:37:55.890430+0000 INFO Request: POST http://test/posts from 127.0.0.1
+2025-10-03T21:37:55.933286+0000 INFO Response: POST http://test/posts Status: 201 Time: 0.0470s
+2025-10-03T21:37:56.618529+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T21:37:57.056097+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4380s
+2025-10-03T21:38:01.509293+0000 INFO Request: GET http://test/users/@user1 from 127.0.0.1
+2025-10-03T21:38:01.517883+0000 INFO Response: GET http://test/users/@user1 Status: 200 Time: 0.0000s
+2025-10-03T21:38:01.523868+0000 INFO Request: GET http://test/users/@user2 from 127.0.0.1
+2025-10-03T21:38:01.532351+0000 INFO Response: GET http://test/users/@user2 Status: 200 Time: 0.0000s
+2025-10-03T21:38:01.538366+0000 INFO Request: GET http://test/users/@user3 from 127.0.0.1
+2025-10-03T21:38:01.547184+0000 INFO Response: GET http://test/users/@user3 Status: 200 Time: 0.0000s
+2025-10-03T21:38:01.555272+0000 INFO Request: GET http://test/users/@user4 from 127.0.0.1
+2025-10-03T21:38:01.563181+0000 INFO Response: GET http://test/users/@user4 Status: 200 Time: 0.0000s
+2025-10-03T21:38:01.569233+0000 INFO Request: GET http://test/users/@user5 from 127.0.0.1
+2025-10-03T21:38:01.577569+0000 INFO Response: GET http://test/users/@user5 Status: 200 Time: 0.0000s
+2025-10-03T21:38:01.583789+0000 INFO Request: GET http://test/users/@user6 from 127.0.0.1
+2025-10-03T21:38:01.593726+0000 INFO Response: GET http://test/users/@user6 Status: 200 Time: 0.0160s
+2025-10-03T21:38:01.601765+0000 INFO Request: GET http://test/users/@user7 from 127.0.0.1
+2025-10-03T21:38:01.610729+0000 INFO Response: GET http://test/users/@user7 Status: 200 Time: 0.0000s
+2025-10-03T21:38:01.622065+0000 INFO Request: GET http://test/users/@user8 from 127.0.0.1
+2025-10-03T21:38:01.635508+0000 INFO Response: GET http://test/users/@user8 Status: 200 Time: 0.0160s
+2025-10-03T21:38:01.647146+0000 INFO Request: GET http://test/users/@user9 from 127.0.0.1
+2025-10-03T21:38:01.659065+0000 INFO Response: GET http://test/users/@user9 Status: 200 Time: 0.0150s
+2025-10-03T21:38:01.668021+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T21:38:01.679265+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0160s
+2025-10-03T21:38:01.686299+0000 INFO Request: GET http://test/users/search?q=user&strict=false&field=username from 127.0.0.1
+2025-10-03T21:38:01.700300+0000 INFO Response: GET http://test/users/search?q=user&strict=false&field=username Status: 200 Time: 0.0150s
+2025-10-03T21:38:01.702352+0000 INFO Request: GET http://test/users/search?q=user1&strict=true&field=username from 127.0.0.1
+2025-10-03T21:38:01.710363+0000 INFO Response: GET http://test/users/search?q=user1&strict=true&field=username Status: 200 Time: 0.0160s
+2025-10-03T22:45:12.298780+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:45:12.662674+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3590s
+2025-10-03T22:45:24.441608+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:45:24.793168+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3590s
+2025-10-03T22:45:25.367349+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:45:25.710120+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3440s
+2025-10-03T22:45:36.603959+0000 INFO Request: POST http://test/posts from 127.0.0.1
+2025-10-03T22:45:36.614194+0000 ERROR Response: POST http://test/posts Status: 401 Time: 0.0000s
+2025-10-03T22:45:37.421814+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:45:37.766994+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3440s
+2025-10-03T22:45:49.156430+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=all&limit=10&offset=0 from 127.0.0.1
+2025-10-03T22:45:49.165487+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=all&limit=10&offset=0 Status: 200 Time: 0.0160s
+2025-10-03T22:45:49.171493+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=like&limit=10&offset=0 from 127.0.0.1
+2025-10-03T22:45:49.180428+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=like&limit=10&offset=0 Status: 200 Time: 0.0160s
+2025-10-03T22:45:49.197436+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=dislike&limit=10&offset=0 from 127.0.0.1
+2025-10-03T22:45:49.206485+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=dislike&limit=10&offset=0 Status: 200 Time: 0.0000s
+2025-10-03T22:45:49.212542+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=love&limit=10&offset=0 from 127.0.0.1
+2025-10-03T22:45:49.221546+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=love&limit=10&offset=0 Status: 200 Time: 0.0000s
+2025-10-03T22:45:49.797246+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:45:50.318408+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.5160s
+2025-10-03T22:46:01.188282+0000 INFO Request: GET http://test/users/@user1 from 127.0.0.1
+2025-10-03T22:46:01.195511+0000 INFO Response: GET http://test/users/@user1 Status: 200 Time: 0.0150s
+2025-10-03T22:46:01.204570+0000 INFO Request: GET http://test/users/@user2 from 127.0.0.1
+2025-10-03T22:46:01.212829+0000 INFO Response: GET http://test/users/@user2 Status: 200 Time: 0.0160s
+2025-10-03T22:46:01.220349+0000 INFO Request: GET http://test/users/@user3 from 127.0.0.1
+2025-10-03T22:46:01.230314+0000 INFO Response: GET http://test/users/@user3 Status: 200 Time: 0.0160s
+2025-10-03T22:46:01.240356+0000 INFO Request: GET http://test/users/@user4 from 127.0.0.1
+2025-10-03T22:46:01.253382+0000 INFO Response: GET http://test/users/@user4 Status: 200 Time: 0.0150s
+2025-10-03T22:46:01.263407+0000 INFO Request: GET http://test/users/@user5 from 127.0.0.1
+2025-10-03T22:46:01.276348+0000 INFO Response: GET http://test/users/@user5 Status: 200 Time: 0.0150s
+2025-10-03T22:46:01.285317+0000 INFO Request: GET http://test/users/@user6 from 127.0.0.1
+2025-10-03T22:46:01.294362+0000 INFO Response: GET http://test/users/@user6 Status: 200 Time: 0.0160s
+2025-10-03T22:46:01.303640+0000 INFO Request: GET http://test/users/@user7 from 127.0.0.1
+2025-10-03T22:46:01.312677+0000 INFO Response: GET http://test/users/@user7 Status: 200 Time: 0.0000s
+2025-10-03T22:46:01.320639+0000 INFO Request: GET http://test/users/@user8 from 127.0.0.1
+2025-10-03T22:46:01.330696+0000 INFO Response: GET http://test/users/@user8 Status: 200 Time: 0.0000s
+2025-10-03T22:46:01.338641+0000 INFO Request: GET http://test/users/@user9 from 127.0.0.1
+2025-10-03T22:46:01.347092+0000 INFO Response: GET http://test/users/@user9 Status: 200 Time: 0.0000s
+2025-10-03T22:46:01.351361+0000 INFO Request: GET http://test/users/@user10 from 127.0.0.1
+2025-10-03T22:46:01.358310+0000 INFO Response: GET http://test/users/@user10 Status: 200 Time: 0.0000s
+2025-10-03T22:46:01.362403+0000 INFO Request: GET http://test/users/@user11 from 127.0.0.1
+2025-10-03T22:46:01.369358+0000 INFO Response: GET http://test/users/@user11 Status: 200 Time: 0.0150s
+2025-10-03T22:46:01.374348+0000 INFO Request: GET http://test/users/@user12 from 127.0.0.1
+2025-10-03T22:46:01.381309+0000 INFO Response: GET http://test/users/@user12 Status: 200 Time: 0.0000s
+2025-10-03T22:46:01.385355+0000 INFO Request: GET http://test/users/@user13 from 127.0.0.1
+2025-10-03T22:46:01.392362+0000 INFO Response: GET http://test/users/@user13 Status: 200 Time: 0.0000s
+2025-10-03T22:46:01.398371+0000 INFO Request: GET http://test/users/@user14 from 127.0.0.1
+2025-10-03T22:46:01.406348+0000 INFO Response: GET http://test/users/@user14 Status: 200 Time: 0.0150s
+2025-10-03T22:46:01.411354+0000 INFO Request: GET http://test/users/@user15 from 127.0.0.1
+2025-10-03T22:46:01.418310+0000 INFO Response: GET http://test/users/@user15 Status: 200 Time: 0.0160s
+2025-10-03T22:46:01.423371+0000 INFO Request: GET http://test/users/@user16 from 127.0.0.1
+2025-10-03T22:46:01.430353+0000 INFO Response: GET http://test/users/@user16 Status: 200 Time: 0.0160s
+2025-10-03T22:46:01.436353+0000 INFO Request: GET http://test/users/@user17 from 127.0.0.1
+2025-10-03T22:46:01.444352+0000 INFO Response: GET http://test/users/@user17 Status: 200 Time: 0.0150s
+2025-10-03T22:46:01.448352+0000 INFO Request: GET http://test/users/@user18 from 127.0.0.1
+2025-10-03T22:46:01.455359+0000 INFO Response: GET http://test/users/@user18 Status: 200 Time: 0.0000s
+2025-10-03T22:46:01.460402+0000 INFO Request: GET http://test/users/@user19 from 127.0.0.1
+2025-10-03T22:46:01.466596+0000 INFO Response: GET http://test/users/@user19 Status: 200 Time: 0.0000s
+2025-10-03T22:46:01.471874+0000 INFO Request: GET http://test/users/@user20 from 127.0.0.1
+2025-10-03T22:46:01.478201+0000 INFO Response: GET http://test/users/@user20 Status: 200 Time: 0.0160s
+2025-10-03T22:46:01.483196+0000 INFO Request: GET http://test/users/@user21 from 127.0.0.1
+2025-10-03T22:46:01.490156+0000 INFO Response: GET http://test/users/@user21 Status: 200 Time: 0.0000s
+2025-10-03T22:46:01.495149+0000 INFO Request: GET http://test/users/@user22 from 127.0.0.1
+2025-10-03T22:46:01.501156+0000 INFO Response: GET http://test/users/@user22 Status: 200 Time: 0.0000s
+2025-10-03T22:46:01.505202+0000 INFO Request: GET http://test/users/@user23 from 127.0.0.1
+2025-10-03T22:46:01.511486+0000 INFO Response: GET http://test/users/@user23 Status: 200 Time: 0.0160s
+2025-10-03T22:46:01.516518+0000 INFO Request: GET http://test/users/@user24 from 127.0.0.1
+2025-10-03T22:46:01.522490+0000 INFO Response: GET http://test/users/@user24 Status: 200 Time: 0.0150s
+2025-10-03T22:46:01.526477+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T22:46:01.533901+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0000s
+2025-10-03T22:46:01.541990+0000 INFO Request: GET http://test/users/search?q=user&strict=false&field=username from 127.0.0.1
+2025-10-03T22:46:01.553223+0000 INFO Response: GET http://test/users/search?q=user&strict=false&field=username Status: 200 Time: 0.0000s
+2025-10-03T22:46:01.554222+0000 INFO Request: GET http://test/users/search?q=user1&strict=true&field=username from 127.0.0.1
+2025-10-03T22:46:01.560275+0000 INFO Response: GET http://test/users/search?q=user1&strict=true&field=username Status: 200 Time: 0.0000s
+2025-10-03T22:47:27.646613+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:47:28.013658+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3750s
+2025-10-03T22:47:39.255900+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:47:39.607919+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3600s
+2025-10-03T22:47:40.216425+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:47:40.643665+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4220s
+2025-10-03T22:47:53.813574+0000 INFO Request: POST http://test/posts from 127.0.0.1
+2025-10-03T22:47:53.837831+0000 ERROR Response: POST http://test/posts Status: 401 Time: 0.0310s
+2025-10-03T22:47:55.040983+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:47:55.423058+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3750s
+2025-10-03T22:48:08.288634+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=all&limit=10&offset=0 from 127.0.0.1
+2025-10-03T22:48:08.303664+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=all&limit=10&offset=0 Status: 200 Time: 0.0160s
+2025-10-03T22:48:08.314897+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=like&limit=10&offset=0 from 127.0.0.1
+2025-10-03T22:48:08.328200+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=like&limit=10&offset=0 Status: 200 Time: 0.0150s
+2025-10-03T22:48:08.338680+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=dislike&limit=10&offset=0 from 127.0.0.1
+2025-10-03T22:48:08.350690+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=dislike&limit=10&offset=0 Status: 200 Time: 0.0160s
+2025-10-03T22:48:08.360710+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=love&limit=10&offset=0 from 127.0.0.1
+2025-10-03T22:48:08.373693+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=love&limit=10&offset=0 Status: 200 Time: 0.0150s
+2025-10-03T22:48:09.155217+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:48:09.541307+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3910s
+2025-10-03T22:48:21.425842+0000 INFO Request: GET http://test/users/@user24 from 127.0.0.1
+2025-10-03T22:48:21.433846+0000 INFO Response: GET http://test/users/@user24 Status: 200 Time: 0.0160s
+2025-10-03T22:48:21.439837+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T22:48:21.447793+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0150s
+2025-10-03T22:48:21.460817+0000 INFO Request: GET http://test/users/search?q=user&strict=false&field=username from 127.0.0.1
+2025-10-03T22:48:21.473799+0000 INFO Response: GET http://test/users/search?q=user&strict=false&field=username Status: 200 Time: 0.0160s
+2025-10-03T22:48:21.475848+0000 INFO Request: GET http://test/users/search?q=user1&strict=true&field=username from 127.0.0.1
+2025-10-03T22:48:21.483854+0000 INFO Response: GET http://test/users/search?q=user1&strict=true&field=username Status: 200 Time: 0.0000s
+2025-10-03T22:49:52.082425+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:49:52.520971+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4380s
+2025-10-03T22:50:06.573007+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:50:07.033399+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4530s
+2025-10-03T22:50:07.739185+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:50:08.192792+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4530s
+2025-10-03T22:50:20.075902+0000 INFO Request: POST http://test/posts from 127.0.0.1
+2025-10-03T22:50:20.084732+0000 ERROR Response: POST http://test/posts Status: 401 Time: 0.0000s
+2025-10-03T22:50:20.754888+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:50:21.113824+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3600s
+2025-10-03T22:50:32.148613+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=all&limit=10&offset=0 from 127.0.0.1
+2025-10-03T22:50:32.158925+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=all&limit=10&offset=0 Status: 200 Time: 0.0000s
+2025-10-03T22:50:32.166890+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=like&limit=10&offset=0 from 127.0.0.1
+2025-10-03T22:50:32.175932+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=like&limit=10&offset=0 Status: 200 Time: 0.0000s
+2025-10-03T22:50:32.182890+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=dislike&limit=10&offset=0 from 127.0.0.1
+2025-10-03T22:50:32.191014+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=dislike&limit=10&offset=0 Status: 200 Time: 0.0000s
+2025-10-03T22:50:32.199131+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=love&limit=10&offset=0 from 127.0.0.1
+2025-10-03T22:50:32.207164+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=love&limit=10&offset=0 Status: 200 Time: 0.0000s
+2025-10-03T22:50:32.877517+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:50:33.273650+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4060s
+2025-10-03T22:50:45.580191+0000 INFO Request: GET http://test/users/@test_user from 127.0.0.1
+2025-10-03T22:50:45.589781+0000 INFO Response: GET http://test/users/@test_user Status: 200 Time: 0.0160s
+2025-10-03T22:50:45.596835+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T22:50:45.605819+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0160s
+2025-10-03T22:50:45.613079+0000 INFO Request: GET http://test/users/search?q=user&strict=false&field=username from 127.0.0.1
+2025-10-03T22:50:45.625976+0000 INFO Response: GET http://test/users/search?q=user&strict=false&field=username Status: 200 Time: 0.0150s
+2025-10-03T22:50:45.628073+0000 INFO Request: GET http://test/users/search?q=user1&strict=true&field=username from 127.0.0.1
+2025-10-03T22:50:45.636185+0000 INFO Response: GET http://test/users/search?q=user1&strict=true&field=username Status: 200 Time: 0.0160s
+2025-10-03T22:54:03.205592+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:54:03.615571+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4070s
+2025-10-03T22:54:15.397331+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:54:15.825886+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4370s
+2025-10-03T22:54:16.502566+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:54:16.930509+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4380s
+2025-10-03T22:54:28.880468+0000 INFO Request: POST http://test/posts from 127.0.0.1
+2025-10-03T22:54:28.896524+0000 ERROR Response: POST http://test/posts Status: 401 Time: 0.0160s
+2025-10-03T22:54:30.052621+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:54:30.458777+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4060s
+2025-10-03T22:54:43.178562+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=all&limit=10&offset=0 from 127.0.0.1
+2025-10-03T22:54:43.192497+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=all&limit=10&offset=0 Status: 200 Time: 0.0160s
+2025-10-03T22:54:43.202500+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=like&limit=10&offset=0 from 127.0.0.1
+2025-10-03T22:54:43.214863+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=like&limit=10&offset=0 Status: 200 Time: 0.0160s
+2025-10-03T22:54:43.224126+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=dislike&limit=10&offset=0 from 127.0.0.1
+2025-10-03T22:54:43.234528+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=dislike&limit=10&offset=0 Status: 200 Time: 0.0160s
+2025-10-03T22:54:43.242544+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=love&limit=10&offset=0 from 127.0.0.1
+2025-10-03T22:54:43.253575+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=love&limit=10&offset=0 Status: 200 Time: 0.0000s
+2025-10-03T22:54:43.917828+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:54:44.348832+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4220s
+2025-10-03T22:54:56.594293+0000 INFO Request: GET http://test/users/@test_user from 127.0.0.1
+2025-10-03T22:54:56.604659+0000 INFO Response: GET http://test/users/@test_user Status: 200 Time: 0.0160s
+2025-10-03T22:54:56.641976+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T22:54:56.657557+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0150s
+2025-10-03T22:54:56.667553+0000 INFO Request: GET http://test/users/search?q=user&strict=false&field=username from 127.0.0.1
+2025-10-03T22:54:56.683127+0000 INFO Response: GET http://test/users/search?q=user&strict=false&field=username Status: 200 Time: 0.0160s
+2025-10-03T22:54:56.685163+0000 INFO Request: GET http://test/users/search?q=user1&strict=true&field=username from 127.0.0.1
+2025-10-03T22:54:56.695157+0000 INFO Response: GET http://test/users/search?q=user1&strict=true&field=username Status: 200 Time: 0.0150s
+2025-10-03T22:55:11.976930+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:55:12.435098+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4530s
+2025-10-03T22:55:24.628253+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:55:25.018845+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3910s
+2025-10-03T22:55:25.691134+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:55:26.199763+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.5150s
+2025-10-03T22:55:38.013620+0000 INFO Request: POST http://test/posts from 127.0.0.1
+2025-10-03T22:55:38.027849+0000 ERROR Response: POST http://test/posts Status: 401 Time: 0.0150s
+2025-10-03T22:55:39.018845+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:55:39.410801+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3900s
+2025-10-03T22:55:51.418157+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=all&limit=10&offset=0 from 127.0.0.1
+2025-10-03T22:55:51.432127+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=all&limit=10&offset=0 Status: 200 Time: 0.0160s
+2025-10-03T22:55:51.441103+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=like&limit=10&offset=0 from 127.0.0.1
+2025-10-03T22:55:51.453008+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=like&limit=10&offset=0 Status: 200 Time: 0.0150s
+2025-10-03T22:55:51.461065+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=dislike&limit=10&offset=0 from 127.0.0.1
+2025-10-03T22:55:51.470300+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=dislike&limit=10&offset=0 Status: 200 Time: 0.0000s
+2025-10-03T22:55:51.477278+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=love&limit=10&offset=0 from 127.0.0.1
+2025-10-03T22:55:51.488738+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=love&limit=10&offset=0 Status: 200 Time: 0.0000s
+2025-10-03T22:55:52.121471+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:55:52.511909+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3910s
+2025-10-03T22:56:04.638299+0000 INFO Request: GET http://test/users/@test_user from 127.0.0.1
+2025-10-03T22:56:04.648542+0000 INFO Response: GET http://test/users/@test_user Status: 200 Time: 0.0150s
+2025-10-03T22:56:04.658503+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T22:56:04.670787+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0160s
+2025-10-03T22:56:04.680007+0000 INFO Request: GET http://test/users/search?q=user&strict=false&field=username from 127.0.0.1
+2025-10-03T22:56:04.697030+0000 INFO Response: GET http://test/users/search?q=user&strict=false&field=username Status: 200 Time: 0.0150s
+2025-10-03T22:56:04.699966+0000 INFO Request: GET http://test/users/search?q=user1&strict=true&field=username from 127.0.0.1
+2025-10-03T22:56:04.710966+0000 INFO Response: GET http://test/users/search?q=user1&strict=true&field=username Status: 200 Time: 0.0160s
+2025-10-03T22:56:59.254292+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:56:59.708419+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4530s
+2025-10-03T22:57:11.239271+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:57:11.637191+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4060s
+2025-10-03T22:57:12.300053+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:57:12.732547+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4380s
+2025-10-03T22:57:24.413463+0000 INFO Request: POST http://test/posts from 127.0.0.1
+2025-10-03T22:57:24.428678+0000 ERROR Response: POST http://test/posts Status: 401 Time: 0.0160s
+2025-10-03T22:57:24.820324+0000 INFO Request: GET http://test/users/@test_user/posts?limit=3&offset=0 from 127.0.0.1
+2025-10-03T22:57:24.838339+0000 INFO Response: GET http://test/users/@test_user/posts?limit=3&offset=0 Status: 200 Time: 0.0160s
+2025-10-03T22:57:25.580024+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:57:26.023354+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4530s
+2025-10-03T22:57:38.169042+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=all&limit=10&offset=0 from 127.0.0.1
+2025-10-03T22:57:38.182308+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=all&limit=10&offset=0 Status: 200 Time: 0.0160s
+2025-10-03T22:57:38.191221+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=like&limit=10&offset=0 from 127.0.0.1
+2025-10-03T22:57:38.203605+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=like&limit=10&offset=0 Status: 200 Time: 0.0150s
+2025-10-03T22:57:38.211564+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=dislike&limit=10&offset=0 from 127.0.0.1
+2025-10-03T22:57:38.222597+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=dislike&limit=10&offset=0 Status: 200 Time: 0.0000s
+2025-10-03T22:57:38.230725+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=love&limit=10&offset=0 from 127.0.0.1
+2025-10-03T22:57:38.242340+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=love&limit=10&offset=0 Status: 200 Time: 0.0150s
+2025-10-03T22:57:38.962368+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T22:57:39.416997+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4530s
+2025-10-03T22:57:51.749580+0000 INFO Request: GET http://test/users/@test_user from 127.0.0.1
+2025-10-03T22:57:51.758835+0000 INFO Response: GET http://test/users/@test_user Status: 200 Time: 0.0160s
+2025-10-03T22:57:51.766835+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T22:57:51.775481+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0150s
+2025-10-03T22:57:51.783179+0000 INFO Request: GET http://test/users/search?q=user&strict=false&field=username from 127.0.0.1
+2025-10-03T22:57:51.798618+0000 INFO Response: GET http://test/users/search?q=user&strict=false&field=username Status: 200 Time: 0.0160s
+2025-10-03T22:57:51.800709+0000 INFO Request: GET http://test/users/search?q=user1&strict=true&field=username from 127.0.0.1
+2025-10-03T22:57:51.809663+0000 INFO Response: GET http://test/users/search?q=user1&strict=true&field=username Status: 200 Time: 0.0160s
+2025-10-03T23:03:53.276184+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T23:03:53.691940+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4070s
+2025-10-03T23:04:05.961817+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T23:04:06.396579+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4220s
+2025-10-03T23:04:07.078150+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T23:04:07.469654+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3910s
+2025-10-03T23:04:19.123000+0000 INFO Request: POST http://test/posts from 127.0.0.1
+2025-10-03T23:04:19.137397+0000 ERROR Response: POST http://test/posts Status: 401 Time: 0.0160s
+2025-10-03T23:04:19.519765+0000 INFO Request: GET http://test/users/@test_user/posts?limit=3&offset=0 from 127.0.0.1
+2025-10-03T23:04:19.536666+0000 INFO Response: GET http://test/users/@test_user/posts?limit=3&offset=0 Status: 200 Time: 0.0150s
+2025-10-03T23:04:20.159402+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T23:04:20.551888+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3910s
+2025-10-03T23:04:32.813636+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=all&limit=10&offset=0 from 127.0.0.1
+2025-10-03T23:04:32.824843+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=all&limit=10&offset=0 Status: 200 Time: 0.0150s
+2025-10-03T23:04:32.833396+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=like&limit=10&offset=0 from 127.0.0.1
+2025-10-03T23:04:32.846239+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=like&limit=10&offset=0 Status: 200 Time: 0.0160s
+2025-10-03T23:04:32.855234+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=dislike&limit=10&offset=0 from 127.0.0.1
+2025-10-03T23:04:32.868189+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=dislike&limit=10&offset=0 Status: 200 Time: 0.0150s
+2025-10-03T23:04:32.876187+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=love&limit=10&offset=0 from 127.0.0.1
+2025-10-03T23:04:32.887240+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=love&limit=10&offset=0 Status: 200 Time: 0.0160s
+2025-10-03T23:04:33.580875+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T23:04:34.047428+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4690s
+2025-10-03T23:04:46.916568+0000 INFO Request: GET http://test/users/@test_user from 127.0.0.1
+2025-10-03T23:04:46.925655+0000 INFO Response: GET http://test/users/@test_user Status: 200 Time: 0.0000s
+2025-10-03T23:04:46.935005+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T23:04:46.943492+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0000s
+2025-10-03T23:04:46.950439+0000 INFO Request: GET http://test/users/search?q=user&strict=false&field=username from 127.0.0.1
+2025-10-03T23:04:46.964175+0000 INFO Response: GET http://test/users/search?q=user&strict=false&field=username Status: 200 Time: 0.0160s
+2025-10-03T23:04:46.966177+0000 INFO Request: GET http://test/users/search?q=user1&strict=true&field=username from 127.0.0.1
+2025-10-03T23:04:46.974361+0000 INFO Response: GET http://test/users/search?q=user1&strict=true&field=username Status: 200 Time: 0.0000s
+2025-10-03T23:08:22.377877+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T23:08:22.900106+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.5310s
+2025-10-03T23:08:22.907802+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T23:08:23.418661+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.5160s
+2025-10-03T23:08:24.252116+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T23:08:24.707675+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4530s
+2025-10-03T23:08:25.376257+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T23:08:25.806111+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4380s
+2025-10-03T23:08:26.526459+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T23:08:26.957369+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4220s
+2025-10-03T23:08:26.972785+0000 INFO Request: GET http://test/users/search?q=user&strict=false&field=username from 127.0.0.1
+2025-10-03T23:08:26.984818+0000 INFO Response: GET http://test/users/search?q=user&strict=false&field=username Status: 200 Time: 0.0160s
+2025-10-03T23:09:20.157742+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T23:09:20.550235+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3910s
+2025-10-03T23:09:21.192068+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T23:09:21.570473+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3900s
+2025-10-03T23:09:22.110720+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T23:09:22.461861+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3590s
+2025-10-03T23:09:23.015722+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T23:09:23.359264+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3440s
+2025-10-03T23:10:40.193786+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T23:10:40.589923+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.4060s
+2025-10-03T23:10:41.954807+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T23:10:42.339633+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3910s
+2025-10-03T23:10:42.959015+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T23:10:43.349629+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3910s
+2025-10-03T23:10:44.656500+0000 INFO Request: POST http://test/posts from 127.0.0.1
+2025-10-03T23:10:44.666854+0000 ERROR Response: POST http://test/posts Status: 401 Time: 0.0160s
+2025-10-03T23:10:44.837490+0000 INFO Request: GET http://test/users/@test_user/posts?limit=3&offset=0 from 127.0.0.1
+2025-10-03T23:10:44.847450+0000 INFO Response: GET http://test/users/@test_user/posts?limit=3&offset=0 Status: 200 Time: 0.0000s
+2025-10-03T23:10:45.390239+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T23:10:45.733009+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3440s
+2025-10-03T23:10:46.916702+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=all&limit=10&offset=0 from 127.0.0.1
+2025-10-03T23:10:46.926081+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=all&limit=10&offset=0 Status: 200 Time: 0.0000s
+2025-10-03T23:10:46.931038+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=like&limit=10&offset=0 from 127.0.0.1
+2025-10-03T23:10:46.942076+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=like&limit=10&offset=0 Status: 200 Time: 0.0000s
+2025-10-03T23:10:46.947075+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=dislike&limit=10&offset=0 from 127.0.0.1
+2025-10-03T23:10:46.956036+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=dislike&limit=10&offset=0 Status: 200 Time: 0.0000s
+2025-10-03T23:10:46.961013+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=love&limit=10&offset=0 from 127.0.0.1
+2025-10-03T23:10:46.968859+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=love&limit=10&offset=0 Status: 200 Time: 0.0000s
+2025-10-03T23:10:47.486384+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T23:10:47.831883+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3430s
+2025-10-03T23:10:49.030260+0000 INFO Request: GET http://test/users/@test_user from 127.0.0.1
+2025-10-03T23:10:49.038143+0000 INFO Response: GET http://test/users/@test_user Status: 200 Time: 0.0160s
+2025-10-03T23:10:49.057429+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T23:10:49.066809+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0000s
+2025-10-03T23:10:49.072261+0000 INFO Request: GET http://test/users/search?q=user&strict=false&field=username from 127.0.0.1
+2025-10-03T23:10:49.083399+0000 INFO Response: GET http://test/users/search?q=user&strict=false&field=username Status: 200 Time: 0.0000s
+2025-10-03T23:10:49.084765+0000 INFO Request: GET http://test/users/search?q=user1&strict=true&field=username from 127.0.0.1
+2025-10-03T23:10:49.091985+0000 INFO Response: GET http://test/users/search?q=user1&strict=true&field=username Status: 200 Time: 0.0160s
+2025-10-03T23:13:08.197474+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T23:13:08.588190+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3910s
+2025-10-03T23:13:09.772103+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T23:13:10.149941+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3900s
+2025-10-03T23:13:10.710173+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T23:13:11.065499+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3440s
+2025-10-03T23:13:12.226483+0000 INFO Request: POST http://test/posts from 127.0.0.1
+2025-10-03T23:13:12.252740+0000 INFO Response: POST http://test/posts Status: 201 Time: 0.0150s
+2025-10-03T23:13:12.257742+0000 INFO Request: GET http://test/users/@test_user/posts?limit=3&offset=0 from 127.0.0.1
+2025-10-03T23:13:12.270005+0000 INFO Response: GET http://test/users/@test_user/posts?limit=3&offset=0 Status: 200 Time: 0.0000s
+2025-10-03T23:13:12.785070+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T23:13:13.131569+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3440s
+2025-10-03T23:13:14.331827+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=all&limit=10&offset=0 from 127.0.0.1
+2025-10-03T23:13:14.341431+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=all&limit=10&offset=0 Status: 200 Time: 0.0160s
+2025-10-03T23:13:14.348044+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=like&limit=10&offset=0 from 127.0.0.1
+2025-10-03T23:13:14.357352+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=like&limit=10&offset=0 Status: 200 Time: 0.0160s
+2025-10-03T23:13:14.364311+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=dislike&limit=10&offset=0 from 127.0.0.1
+2025-10-03T23:13:14.372371+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=dislike&limit=10&offset=0 Status: 200 Time: 0.0150s
+2025-10-03T23:13:14.376297+0000 INFO Request: GET http://test/posts/test-post-1/reactions?t=love&limit=10&offset=0 from 127.0.0.1
+2025-10-03T23:13:14.383390+0000 INFO Response: GET http://test/posts/test-post-1/reactions?t=love&limit=10&offset=0 Status: 200 Time: 0.0160s
+2025-10-03T23:13:14.890488+0000 INFO Request: POST http://test/auth/login from 127.0.0.1
+2025-10-03T23:13:15.244050+0000 INFO Response: POST http://test/auth/login Status: 200 Time: 0.3590s
+2025-10-03T23:13:16.408533+0000 INFO Request: GET http://test/users/@test_user from 127.0.0.1
+2025-10-03T23:13:16.417867+0000 INFO Response: GET http://test/users/@test_user Status: 200 Time: 0.0160s
+2025-10-03T23:13:16.446296+0000 INFO Request: GET http://test/me from 127.0.0.1
+2025-10-03T23:13:16.454575+0000 INFO Response: GET http://test/me Status: 200 Time: 0.0000s
+2025-10-03T23:13:16.459909+0000 INFO Request: GET http://test/users/search?q=user&strict=false&field=username from 127.0.0.1
+2025-10-03T23:13:16.470910+0000 INFO Response: GET http://test/users/search?q=user&strict=false&field=username Status: 200 Time: 0.0000s
+2025-10-03T23:13:16.473816+0000 INFO Request: GET http://test/users/search?q=user1&strict=true&field=username from 127.0.0.1
+2025-10-03T23:13:16.483466+0000 INFO Response: GET http://test/users/search?q=user1&strict=true&field=username Status: 200 Time: 0.0160s
+2025-10-05T00:05:25.252727+0000 INFO Request: GET http://localhost:8000/ from 127.0.0.1
+2025-10-05T00:05:25.283198+0000 ERROR Response: GET http://localhost:8000/ Status: 404 Time: 0.0310s
+2025-10-05T00:05:25.400150+0000 INFO Request: GET http://localhost:8000/favicon.ico from 127.0.0.1
+2025-10-05T00:05:25.407422+0000 ERROR Response: GET http://localhost:8000/favicon.ico Status: 404 Time: 0.0150s
+2025-10-05T00:05:29.253275+0000 INFO Request: GET http://localhost:8000/docs from 127.0.0.1
+2025-10-05T00:05:29.254401+0000 INFO Response: GET http://localhost:8000/docs Status: 200 Time: 0.0000s
+2025-10-05T00:05:29.562591+0000 INFO Request: GET http://localhost:8000/openapi.json from 127.0.0.1
+2025-10-05T00:05:29.755195+0000 INFO Response: GET http://localhost:8000/openapi.json Status: 200 Time: 0.1870s
+2025-10-05T00:05:41.766031+0000 INFO Request: GET http://localhost:8000/weather/krasnoyarsk from 127.0.0.1
+2025-10-05T00:05:42.757666+0000 INFO Response: GET http://localhost:8000/weather/krasnoyarsk Status: 200 Time: 0.9840s
+2025-10-05T00:10:55.527274+0000 INFO Request: GET http://localhost:8000/weather/krasnoya from 127.0.0.1
+2025-10-05T00:10:55.527274+0000 ERROR Response: GET http://localhost:8000/weather/krasnoya Status: 404 Time: 0.0000s
+2025-10-05T00:12:31.594156+0000 INFO Request: GET http://localhost:8000/weather/krasnoya from 127.0.0.1
+2025-10-05T00:16:24.193416+0000 INFO Request: GET http://localhost:8000/weather/krasnoya from 127.0.0.1
+2025-10-05T00:16:25.921343+0000 INFO Response: GET http://localhost:8000/weather/krasnoya Status: 200 Time: 1.7340s
+2025-10-05T00:21:31.241772+0000 INFO Request: GET http://localhost:8000/weather/krasnoya from 127.0.0.1
+2025-10-05T00:24:45.093606+0000 INFO Request: GET http://localhost:8000/weather/krasnoya from 127.0.0.1
+2025-10-05T00:25:06.709640+0000 INFO Request: GET http://localhost:8000/weather/krasnoya from 127.0.0.1
+2025-10-05T00:27:14.814732+0000 INFO Request: GET http://localhost:8000/weather/krasnoya from 127.0.0.1
+2025-10-05T00:27:54.175822+0000 INFO Request: GET http://localhost:8000/weather/krasnoya from 127.0.0.1
+2025-10-05T00:28:33.081089+0000 INFO Request: GET http://localhost:1000/docs from 127.0.0.1
+2025-10-05T00:28:33.081089+0000 INFO Response: GET http://localhost:1000/docs Status: 200 Time: 0.0000s
+2025-10-05T00:28:33.287102+0000 INFO Request: GET http://localhost:1000/openapi.json from 127.0.0.1
+2025-10-05T00:28:33.355940+0000 INFO Response: GET http://localhost:1000/openapi.json Status: 200 Time: 0.0630s
+2025-10-05T00:28:40.659200+0000 INFO Request: GET http://localhost:1000/weather/sadasd from 127.0.0.1
+2025-10-05T00:29:53.507324+0000 INFO Request: GET http://localhost:1000/weather/sadasd from 127.0.0.1
+2025-10-05T00:29:55.282498+0000 ERROR Response: GET http://localhost:1000/weather/sadasd Status: 500 Time: 1.7810s
+2025-10-05T00:33:02.406610+0000 INFO Request: GET http://localhost:1000/weather/sadasd from 127.0.0.1
+2025-10-05T00:33:31.443207+0000 INFO Request: GET http://localhost:1000/weather/sadasd from 127.0.0.1
+2025-10-05T00:34:51.177701+0000 INFO Request: GET http://localhost:1000/weather/sadasd from 127.0.0.1
+2025-10-05T00:35:13.145121+0000 INFO Request: GET http://localhost:1000/weather/sadasd from 127.0.0.1
+2025-10-05T00:37:02.485917+0000 INFO Request: GET http://localhost:1000/weather/sadasd from 127.0.0.1
+2025-10-05T00:37:03.827118+0000 ERROR Response: GET http://localhost:1000/weather/sadasd Status: 500 Time: 1.3290s
+2025-10-05T00:39:02.773193+0000 INFO Request: GET http://localhost:1000/weather/sadasd from 127.0.0.1
+2025-10-05T00:39:03.966367+0000 ERROR Response: GET http://localhost:1000/weather/sadasd Status: 500 Time: 1.1870s
+2025-10-05T00:45:26.659717+0000 INFO Request: GET http://localhost:1000/weather/sadasd from 127.0.0.1
+2025-10-05T00:45:27.861279+0000 ERROR Response: GET http://localhost:1000/weather/sadasd Status: 500 Time: 1.2030s
+2025-10-05T00:53:49.972627+0000 INFO Request: GET http://localhost:1000/docs from 127.0.0.1
+2025-10-05T00:53:49.980636+0000 INFO Response: GET http://localhost:1000/docs Status: 200 Time: 0.0000s
+2025-10-05T00:53:50.252315+0000 INFO Request: GET http://localhost:1000/openapi.json from 127.0.0.1
+2025-10-05T00:53:50.457834+0000 INFO Response: GET http://localhost:1000/openapi.json Status: 200 Time: 0.2030s
+2025-10-05T00:54:23.297811+0000 INFO Request: GET http://localhost:1000/docs from 127.0.0.1
+2025-10-05T00:54:23.297811+0000 INFO Response: GET http://localhost:1000/docs Status: 200 Time: 0.0000s
+2025-10-05T00:54:23.499818+0000 INFO Request: GET http://localhost:1000/openapi.json from 127.0.0.1
+2025-10-05T00:54:23.507345+0000 INFO Response: GET http://localhost:1000/openapi.json Status: 200 Time: 0.0000s
+2025-10-05T00:54:31.416149+0000 INFO Request: GET http://localhost:1000/weather/sadad from 127.0.0.1
+2025-10-05T00:54:32.525318+0000 INFO Response: GET http://localhost:1000/weather/sadad Status: 200 Time: 1.1100s
+2025-10-05T00:54:40.310111+0000 INFO Request: GET http://localhost:1000/weather/saa from 127.0.0.1
+2025-10-05T00:54:41.439554+0000 INFO Response: GET http://localhost:1000/weather/saa Status: 200 Time: 1.1410s
+2025-10-05T00:54:45.259653+0000 INFO Request: GET http://localhost:1000/weather/saaasdasd from 127.0.0.1
+2025-10-05T00:54:46.457469+0000 ERROR Response: GET http://localhost:1000/weather/saaasdasd Status: 500 Time: 1.2030s
+2025-10-05T00:55:05.843897+0000 INFO Request: GET http://localhost:1000/weather/moscow from 127.0.0.1
+2025-10-05T00:55:06.793431+0000 INFO Response: GET http://localhost:1000/weather/moscow Status: 200 Time: 0.9370s
+2025-10-05T00:55:35.099551+0000 INFO Request: GET http://localhost:1000/docs from 127.0.0.1
+2025-10-05T00:55:35.099551+0000 INFO Response: GET http://localhost:1000/docs Status: 200 Time: 0.0000s
+2025-10-05T00:55:35.388137+0000 INFO Request: GET http://localhost:1000/openapi.json from 127.0.0.1
+2025-10-05T00:55:35.391440+0000 INFO Response: GET http://localhost:1000/openapi.json Status: 200 Time: 0.0160s
+2025-10-05T00:55:59.669460+0000 INFO Request: GET http://localhost:1000/docs from 127.0.0.1
+2025-10-05T00:55:59.669460+0000 INFO Response: GET http://localhost:1000/docs Status: 200 Time: 0.0000s
+2025-10-05T00:55:59.891349+0000 INFO Request: GET http://localhost:1000/openapi.json from 127.0.0.1
+2025-10-05T00:55:59.900052+0000 INFO Response: GET http://localhost:1000/openapi.json Status: 200 Time: 0.0000s
+2025-10-05T00:56:44.552970+0000 INFO Request: GET http://localhost:1000/docs from 127.0.0.1
+2025-10-05T00:56:44.552970+0000 INFO Response: GET http://localhost:1000/docs Status: 200 Time: 0.0000s
+2025-10-05T00:56:44.705434+0000 INFO Request: GET http://localhost:1000/openapi.json from 127.0.0.1
+2025-10-05T00:56:44.705434+0000 INFO Response: GET http://localhost:1000/openapi.json Status: 200 Time: 0.0000s
+2025-10-05T00:57:50.058136+0000 INFO Request: GET http://localhost:1000/docs from 127.0.0.1
+2025-10-05T00:57:50.058136+0000 INFO Response: GET http://localhost:1000/docs Status: 200 Time: 0.0000s
+2025-10-05T00:57:50.271137+0000 INFO Request: GET http://localhost:1000/openapi.json from 127.0.0.1
+2025-10-05T00:57:50.279137+0000 INFO Response: GET http://localhost:1000/openapi.json Status: 200 Time: 0.0000s
+2025-10-05T00:58:27.169122+0000 INFO Request: GET http://localhost:1000/weather/dfgdgd from 127.0.0.1
+2025-10-05T00:58:29.386506+0000 ERROR Response: GET http://localhost:1000/weather/dfgdgd Status: 500 Time: 2.2190s
+2025-10-05T00:58:50.761078+0000 INFO Request: GET http://localhost:5000/docs from 127.0.0.1
+2025-10-05T00:58:50.761078+0000 INFO Response: GET http://localhost:5000/docs Status: 200 Time: 0.0000s
+2025-10-05T00:58:50.942610+0000 INFO Request: GET http://localhost:5000/openapi.json from 127.0.0.1
+2025-10-05T00:58:50.995722+0000 INFO Response: GET http://localhost:5000/openapi.json Status: 200 Time: 0.0460s
+2025-10-05T00:59:08.241483+0000 INFO Request: GET http://localhost:5000/crypto?ticker_from=btc&ticker_to=usdt from 127.0.0.1
+2025-10-05T00:59:09.697606+0000 INFO Response: GET http://localhost:5000/crypto?ticker_from=btc&ticker_to=usdt Status: 200 Time: 1.4540s
+2025-10-05T00:59:23.295743+0000 INFO Request: GET http://localhost:5000/crypto?ticker_from=btc&ticker_to=eth from 127.0.0.1
+2025-10-05T00:59:24.786471+0000 ERROR Response: GET http://localhost:5000/crypto?ticker_from=btc&ticker_to=eth Status: 500 Time: 1.5000s
+2025-10-05T01:00:03.575045+0000 INFO Request: GET http://localhost:5000/crypto?ticker_from=btc&ticker_to=eth from 127.0.0.1
+2025-10-05T01:00:04.659054+0000 ERROR Response: GET http://localhost:5000/crypto?ticker_from=btc&ticker_to=eth Status: 500 Time: 1.0930s
+2025-10-05T01:00:13.613763+0000 INFO Request: GET http://localhost:5000/crypto?ticker_from=eth&ticker_to=btc from 127.0.0.1
+2025-10-05T01:00:14.859299+0000 INFO Response: GET http://localhost:5000/crypto?ticker_from=eth&ticker_to=btc Status: 200 Time: 1.2500s
+2025-10-05T01:00:29.194991+0000 INFO Request: GET http://localhost:5000/crypto?ticker_from=btc&ticker_to=btc from 127.0.0.1
+2025-10-05T01:00:30.538614+0000 ERROR Response: GET http://localhost:5000/crypto?ticker_from=btc&ticker_to=btc Status: 500 Time: 1.3430s
+2025-10-05T01:02:55.211898+0000 INFO Request: GET http://localhost:5000/crypto?ticker_from=btc&ticker_to=btc from 127.0.0.1
+2025-10-05T01:02:56.854125+0000 ERROR Response: GET http://localhost:5000/crypto?ticker_from=btc&ticker_to=btc Status: 500 Time: 1.6410s
+2025-10-05T01:03:35.090673+0000 INFO Request: GET http://localhost:5000/crypto?ticker_from=btc&ticker_to=btc from 127.0.0.1
+2025-10-05T01:03:36.591068+0000 ERROR Response: GET http://localhost:5000/crypto?ticker_from=btc&ticker_to=btc Status: 400 Time: 1.5000s
+2025-10-05T01:03:48.937128+0000 INFO Request: GET http://localhost:5000/crypto?ticker_from=eth&ticker_to=usdt from 127.0.0.1
+2025-10-05T01:03:50.103880+0000 INFO Response: GET http://localhost:5000/crypto?ticker_from=eth&ticker_to=usdt Status: 200 Time: 1.1560s
+2025-10-05T01:19:44.054181+0000 INFO Request: GET http://localhost:5000/crypto?ticker_from=eth&ticker_to=usdt from 127.0.0.1
+2025-10-05T01:19:47.879206+0000 INFO Response: GET http://localhost:5000/crypto?ticker_from=eth&ticker_to=usdt Status: 200 Time: 3.8280s
+2025-10-05T01:20:13.945014+0000 INFO Request: GET http://localhost:5000/crypto?ticker_from=btc&ticker_to=usdt from 127.0.0.1
+2025-10-05T01:20:15.378347+0000 INFO Response: GET http://localhost:5000/crypto?ticker_from=btc&ticker_to=usdt Status: 200 Time: 1.4370s
+2025-10-05T01:24:10.229658+0000 INFO Request: GET http://localhost:5000/users/@admin from 127.0.0.1
+2025-10-05T01:24:27.749017+0000 INFO Request: GET http://localhost:5000/users/search?q=adm&field=username&strict=false&offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:24:27.832987+0000 INFO Response: GET http://localhost:5000/users/search?q=adm&field=username&strict=false&offset=0&limit=10 Status: 200 Time: 0.0940s
+2025-10-05T01:25:20.233168+0000 INFO Request: GET http://localhost:5000/docs from 127.0.0.1
+2025-10-05T01:25:20.233168+0000 INFO Response: GET http://localhost:5000/docs Status: 200 Time: 0.0000s
+2025-10-05T01:25:20.480696+0000 INFO Request: GET http://localhost:5000/openapi.json from 127.0.0.1
+2025-10-05T01:25:20.531812+0000 INFO Response: GET http://localhost:5000/openapi.json Status: 200 Time: 0.0620s
+2025-10-05T01:25:22.011452+0000 INFO Request: GET http://localhost:5000/docs from 127.0.0.1
+2025-10-05T01:25:22.035485+0000 INFO Response: GET http://localhost:5000/docs Status: 200 Time: 0.0310s
+2025-10-05T01:25:22.266034+0000 INFO Request: GET http://localhost:5000/openapi.json from 127.0.0.1
+2025-10-05T01:25:22.266034+0000 INFO Response: GET http://localhost:5000/openapi.json Status: 200 Time: 0.0000s
+2025-10-05T01:25:40.255822+0000 INFO Request: GET http://localhost:4000/docs from 127.0.0.1
+2025-10-05T01:25:40.255822+0000 INFO Response: GET http://localhost:4000/docs Status: 200 Time: 0.0000s
+2025-10-05T01:25:40.483661+0000 INFO Request: GET http://localhost:4000/openapi.json from 127.0.0.1
+2025-10-05T01:25:40.548961+0000 INFO Response: GET http://localhost:4000/openapi.json Status: 200 Time: 0.0630s
+2025-10-05T01:25:56.737835+0000 INFO Request: GET http://localhost:4000/users/search?q=adm&field=username&strict=false&offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:25:56.777814+0000 INFO Response: GET http://localhost:4000/users/search?q=adm&field=username&strict=false&offset=0&limit=10 Status: 200 Time: 0.0320s
+2025-10-05T01:26:08.599464+0000 INFO Request: GET http://localhost:4000/users/search?q=use&field=username&strict=false&offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:26:08.633024+0000 INFO Response: GET http://localhost:4000/users/search?q=use&field=username&strict=false&offset=0&limit=10 Status: 200 Time: 0.0310s
+2025-10-05T01:27:06.385280+0000 INFO Request: GET http://localhost:4000/users/search?q=te&field=username&strict=false&offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:27:06.409852+0000 INFO Response: GET http://localhost:4000/users/search?q=te&field=username&strict=false&offset=0&limit=10 Status: 200 Time: 0.0310s
+2025-10-05T01:27:33.582764+0000 INFO Request: GET http://localhost:4000/users/@test_admin/posts?offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:27:33.603155+0000 INFO Response: GET http://localhost:4000/users/@test_admin/posts?offset=0&limit=10 Status: 200 Time: 0.0160s
+2025-10-05T01:28:27.952381+0000 INFO Request: GET http://localhost:4000/docs from 127.0.0.1
+2025-10-05T01:28:27.952381+0000 INFO Response: GET http://localhost:4000/docs Status: 200 Time: 0.0000s
+2025-10-05T01:28:28.241343+0000 INFO Request: GET http://localhost:4000/openapi.json from 127.0.0.1
+2025-10-05T01:28:28.312624+0000 INFO Response: GET http://localhost:4000/openapi.json Status: 200 Time: 0.0790s
+2025-10-05T01:28:41.027999+0000 INFO Request: GET http://localhost:4000/users/search?q=adm&field=username&strict=false&offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:28:41.069855+0000 INFO Response: GET http://localhost:4000/users/search?q=adm&field=username&strict=false&offset=0&limit=10 Status: 200 Time: 0.0470s
+2025-10-05T01:28:48.012386+0000 INFO Request: GET http://localhost:4000/users/search?q=use&field=username&strict=false&offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:28:48.025819+0000 INFO Response: GET http://localhost:4000/users/search?q=use&field=username&strict=false&offset=0&limit=10 Status: 200 Time: 0.0160s
+2025-10-05T01:28:54.928132+0000 INFO Request: GET http://localhost:4000/users/search?q=a&field=username&strict=false&offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:28:54.949669+0000 INFO Response: GET http://localhost:4000/users/search?q=a&field=username&strict=false&offset=0&limit=10 Status: 200 Time: 0.0160s
+2025-10-05T01:29:01.819988+0000 INFO Request: GET http://localhost:4000/users/search?q=aa&field=username&strict=false&offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:29:01.833534+0000 INFO Response: GET http://localhost:4000/users/search?q=aa&field=username&strict=false&offset=0&limit=10 Status: 200 Time: 0.0150s
+2025-10-05T01:29:06.160239+0000 INFO Request: GET http://localhost:4000/users/search?q=aaa&field=username&strict=false&offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:29:06.169755+0000 INFO Response: GET http://localhost:4000/users/search?q=aaa&field=username&strict=false&offset=0&limit=10 Status: 200 Time: 0.0000s
+2025-10-05T01:29:10.698417+0000 INFO Request: GET http://localhost:4000/users/search?q=aaadsfsdf&field=username&strict=false&offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:29:10.731913+0000 INFO Response: GET http://localhost:4000/users/search?q=aaadsfsdf&field=username&strict=false&offset=0&limit=10 Status: 200 Time: 0.0310s
+2025-10-05T01:29:25.486909+0000 INFO Request: GET http://localhost:4000/users/@admin from 127.0.0.1
+2025-10-05T01:29:25.511713+0000 INFO Response: GET http://localhost:4000/users/@admin Status: 200 Time: 0.0160s
+2025-10-05T01:31:01.160892+0000 INFO Request: GET http://localhost:4000/users/@admin from 127.0.0.1
+2025-10-05T01:31:01.176853+0000 INFO Response: GET http://localhost:4000/users/@admin Status: 200 Time: 0.0160s
+2025-10-05T01:31:23.437073+0000 INFO Request: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:31:23.470211+0000 INFO Response: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 Status: 200 Time: 0.0310s
+2025-10-05T01:31:32.414468+0000 INFO Request: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:31:32.434681+0000 INFO Response: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 Status: 200 Time: 0.0160s
+2025-10-05T01:31:33.652834+0000 INFO Request: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:31:33.672153+0000 INFO Response: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 Status: 200 Time: 0.0310s
+2025-10-05T01:31:34.181835+0000 INFO Request: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:31:34.196581+0000 INFO Response: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 Status: 200 Time: 0.0160s
+2025-10-05T01:31:34.631955+0000 INFO Request: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:31:34.648405+0000 INFO Response: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 Status: 200 Time: 0.0160s
+2025-10-05T01:31:34.813703+0000 INFO Request: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:31:34.841010+0000 INFO Response: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 Status: 200 Time: 0.0150s
+2025-10-05T01:31:35.457391+0000 INFO Request: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:31:35.482608+0000 INFO Response: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 Status: 200 Time: 0.0160s
+2025-10-05T01:31:36.168639+0000 INFO Request: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:31:36.188194+0000 INFO Response: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 Status: 200 Time: 0.0320s
+2025-10-05T01:31:36.757846+0000 INFO Request: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:31:36.774663+0000 INFO Response: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 Status: 200 Time: 0.0160s
+2025-10-05T01:31:37.261823+0000 INFO Request: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:31:37.283848+0000 INFO Response: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 Status: 200 Time: 0.0310s
+2025-10-05T01:31:37.803874+0000 INFO Request: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:31:37.820517+0000 INFO Response: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 Status: 200 Time: 0.0320s
+2025-10-05T01:31:38.168211+0000 INFO Request: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:31:38.184833+0000 INFO Response: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 Status: 200 Time: 0.0160s
+2025-10-05T01:31:38.388007+0000 INFO Request: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:31:38.407485+0000 INFO Response: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 Status: 200 Time: 0.0310s
+2025-10-05T01:31:38.577415+0000 INFO Request: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:31:38.592710+0000 INFO Response: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 Status: 200 Time: 0.0000s
+2025-10-05T01:31:38.758135+0000 INFO Request: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:31:38.774149+0000 INFO Response: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 Status: 200 Time: 0.0160s
+2025-10-05T01:31:38.911922+0000 INFO Request: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:31:38.914716+0000 INFO Response: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 Status: 200 Time: 0.0000s
+2025-10-05T01:31:39.052575+0000 INFO Request: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 from 127.0.0.1
+2025-10-05T01:31:39.088878+0000 INFO Response: GET http://localhost:4000/users/@admin/posts?offset=0&limit=10 Status: 200 Time: 0.0310s
+2025-10-05T01:32:50.757565+0000 INFO Request: GET http://localhost:4000/users/@admin from 127.0.0.1
+2025-10-05T01:32:55.786517+0000 INFO Response: GET http://localhost:4000/users/@admin Status: 200 Time: 5.0310s
+2025-10-05T01:34:54.237544+0000 INFO Request: GET http://localhost:4000/docs from 127.0.0.1
+2025-10-05T01:34:54.237544+0000 INFO Response: GET http://localhost:4000/docs Status: 200 Time: 0.0000s
+2025-10-05T01:34:54.482311+0000 INFO Request: GET http://localhost:4000/openapi.json from 127.0.0.1
+2025-10-05T01:34:54.537078+0000 INFO Response: GET http://localhost:4000/openapi.json Status: 200 Time: 0.0620s
+2025-10-05T01:35:29.226731+0000 INFO Request: GET http://localhost:4000/docs from 127.0.0.1
+2025-10-05T01:35:29.226731+0000 INFO Response: GET http://localhost:4000/docs Status: 200 Time: 0.0000s
+2025-10-05T01:35:29.450896+0000 INFO Request: GET http://localhost:4000/openapi.json from 127.0.0.1
+2025-10-05T01:35:29.509201+0000 INFO Response: GET http://localhost:4000/openapi.json Status: 200 Time: 0.0620s
+2025-10-05T01:37:08.473506+0000 INFO Request: GET http://localhost:4000/docs from 127.0.0.1
+2025-10-05T01:37:08.473506+0000 INFO Response: GET http://localhost:4000/docs Status: 200 Time: 0.0000s
+2025-10-05T01:37:08.753891+0000 INFO Request: GET http://localhost:4000/openapi.json from 127.0.0.1
+2025-10-05T01:37:08.816479+0000 INFO Response: GET http://localhost:4000/openapi.json Status: 200 Time: 0.0630s
+2025-10-05T01:37:25.693755+0000 INFO Request: GET http://localhost:4000/docs from 127.0.0.1
+2025-10-05T01:37:25.693755+0000 INFO Response: GET http://localhost:4000/docs Status: 200 Time: 0.0000s
+2025-10-05T01:37:25.883862+0000 INFO Request: GET http://localhost:4000/openapi.json from 127.0.0.1
+2025-10-05T01:37:25.886238+0000 INFO Response: GET http://localhost:4000/openapi.json Status: 200 Time: 0.0000s
+2025-10-05T01:37:45.184743+0000 INFO Request: GET http://localhost:4000/docs from 127.0.0.1
+2025-10-05T01:37:45.192748+0000 INFO Response: GET http://localhost:4000/docs Status: 200 Time: 0.0160s
+2025-10-05T01:37:45.345637+0000 INFO Request: GET http://localhost:4000/openapi.json from 127.0.0.1
+2025-10-05T01:37:45.401425+0000 INFO Response: GET http://localhost:4000/openapi.json Status: 200 Time: 0.0470s
+2025-10-05T01:41:41.149004+0000 INFO Request: GET http://localhost:4000/ext/weather/зеленогорск from 127.0.0.1
+2025-10-05T01:41:42.313748+0000 INFO Response: GET http://localhost:4000/ext/weather/зеленогорск Status: 200 Time: 1.1720s
+2025-10-05T01:42:24.995935+0000 INFO Request: GET http://localhost:4000/docs from 127.0.0.1
+2025-10-05T01:42:24.995935+0000 INFO Response: GET http://localhost:4000/docs Status: 200 Time: 0.0000s
+2025-10-05T01:42:25.105931+0000 INFO Request: GET http://localhost:4000/openapi.json from 127.0.0.1
+2025-10-05T01:42:25.137947+0000 INFO Response: GET http://localhost:4000/openapi.json Status: 200 Time: 0.0310s
+2025-10-05T01:42:33.772547+0000 INFO Request: GET http://localhost:4000/ext/weather/Москва from 127.0.0.1
+2025-10-05T01:42:35.552099+0000 INFO Response: GET http://localhost:4000/ext/weather/Москва Status: 200 Time: 1.7810s
+2025-10-05T01:43:02.999074+0000 INFO Request: GET http://localhost:4000/ext/crypto?ticker_from=btc&ticker_to=eth from 127.0.0.1
+2025-10-05T01:43:04.390308+0000 ERROR Response: GET http://localhost:4000/ext/crypto?ticker_from=btc&ticker_to=eth Status: 400 Time: 1.4070s
+2025-10-05T01:43:19.104101+0000 INFO Request: GET http://localhost:4000/ext/crypto?ticker_from=eth&ticker_to=btc from 127.0.0.1
+2025-10-05T01:43:20.510626+0000 INFO Response: GET http://localhost:4000/ext/crypto?ticker_from=eth&ticker_to=btc Status: 200 Time: 1.4060s
+2025-10-05T01:43:32.761852+0000 INFO Request: GET http://localhost:4000/ext/weather/Москва from 127.0.0.1
+2025-10-05T01:43:34.425478+0000 INFO Response: GET http://localhost:4000/ext/weather/Москва Status: 200 Time: 1.6720s
+2025-10-05T01:43:35.307476+0000 INFO Request: GET http://localhost:4000/ext/weather/Москва from 127.0.0.1
+2025-10-05T01:43:36.785398+0000 INFO Response: GET http://localhost:4000/ext/weather/Москва Status: 200 Time: 1.4840s
+2025-10-05T01:45:02.104458+0000 INFO Request: GET http://localhost:4000/ext/weather/Москва from 127.0.0.1
+2025-10-05T01:45:03.271289+0000 INFO Response: GET http://localhost:4000/ext/weather/Москва Status: 200 Time: 1.1720s
+2025-10-05T02:01:20.672556+0000 INFO Request: GET http://localhost:4000/ext/crypto?ticker_from=eth&ticker_to=btc from 127.0.0.1
+2025-10-05T02:01:21.344441+0000 ERROR Response: GET http://localhost:4000/ext/crypto?ticker_from=eth&ticker_to=btc Status: 502 Time: 0.6720s
+2025-10-05T02:01:43.536461+0000 INFO Request: GET http://localhost:8000/docs from 127.0.0.1
+2025-10-05T02:01:43.536461+0000 INFO Request: GET http://localhost:8000/docs from 127.0.0.1
+2025-10-05T02:01:43.536461+0000 INFO Response: GET http://localhost:8000/docs Status: 200 Time: 0.0000s
+2025-10-05T02:01:43.536461+0000 INFO Response: GET http://localhost:8000/docs Status: 200 Time: 0.0000s
+2025-10-05T04:06:52.833636+0000 INFO Request: GET http://localhost:4000/docs from 127.0.0.1
+2025-10-05T04:06:52.833636+0000 INFO Response: GET http://localhost:4000/docs Status: 200 Time: 0.0000s
+2025-10-05T04:06:53.071649+0000 INFO Request: GET http://localhost:4000/openapi.json from 127.0.0.1
+2025-10-05T04:06:53.119974+0000 INFO Response: GET http://localhost:4000/openapi.json Status: 200 Time: 0.0460s
+2025-10-05T04:07:07.648167+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:08:16.240651+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:08:34.555576+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:10:13.017076+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:11:04.690928+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:11:56.532082+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:12:33.145108+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:14:56.231029+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:15:26.834286+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:15:26.877915+0000 INFO Response: GET http://localhost:4000/posts/string-10 Status: 200 Time: 0.0470s
+2025-10-05T04:15:50.074438+0000 INFO Request: POST http://localhost:4000/posts/string-10/reactions?reaction=like from 127.0.0.1
+2025-10-05T04:15:50.084578+0000 ERROR Response: POST http://localhost:4000/posts/string-10/reactions?reaction=like Status: 403 Time: 0.0150s
+2025-10-05T04:16:13.772993+0000 INFO Request: POST http://localhost:4000/auth/login from 127.0.0.1
+2025-10-05T04:16:24.866719+0000 INFO Request: POST http://localhost:4000/auth/login from 127.0.0.1
+2025-10-05T04:16:25.431314+0000 INFO Response: POST http://localhost:4000/auth/login Status: 200 Time: 0.5630s
+2025-10-05T04:16:44.969431+0000 INFO Request: POST http://localhost:4000/posts/string-10/reactions?reaction=like from 127.0.0.1
+2025-10-05T04:16:45.043858+0000 INFO Response: POST http://localhost:4000/posts/string-10/reactions?reaction=like Status: 201 Time: 0.0620s
+2025-10-05T04:16:54.311671+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:16:54.320249+0000 INFO Response: GET http://localhost:4000/posts/string-10 Status: 200 Time: 0.0160s
+2025-10-05T04:16:57.392692+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:16:57.397357+0000 INFO Response: GET http://localhost:4000/posts/string-10 Status: 200 Time: 0.0000s
+2025-10-05T04:16:58.017122+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:16:58.025297+0000 INFO Response: GET http://localhost:4000/posts/string-10 Status: 200 Time: 0.0000s
+2025-10-05T04:17:04.821131+0000 INFO Request: POST http://localhost:4000/posts/string-10/reactions?reaction=dislike from 127.0.0.1
+2025-10-05T04:17:04.917402+0000 INFO Response: POST http://localhost:4000/posts/string-10/reactions?reaction=dislike Status: 201 Time: 0.0930s
+2025-10-05T04:17:15.042267+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:17:15.057980+0000 INFO Response: GET http://localhost:4000/posts/string-10 Status: 200 Time: 0.0160s
+2025-10-05T04:19:08.985115+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:19:09.002408+0000 INFO Response: GET http://localhost:4000/posts/string-10 Status: 200 Time: 0.0160s
+2025-10-05T04:19:11.176308+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:19:11.187253+0000 INFO Response: GET http://localhost:4000/posts/string-10 Status: 200 Time: 0.0160s
+2025-10-05T04:19:39.825144+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:19:39.843587+0000 INFO Response: GET http://localhost:4000/posts/string-10 Status: 200 Time: 0.0310s
+2025-10-05T04:19:41.146170+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:19:41.165370+0000 INFO Response: GET http://localhost:4000/posts/string-10 Status: 200 Time: 0.0150s
+2025-10-05T04:20:12.420839+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:20:12.434332+0000 INFO Response: GET http://localhost:4000/posts/string-10 Status: 200 Time: 0.0160s
+2025-10-05T04:20:16.318121+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:20:16.340405+0000 INFO Response: GET http://localhost:4000/posts/string-10 Status: 200 Time: 0.0150s
+2025-10-05T04:20:24.137616+0000 INFO Request: POST http://localhost:4000/posts/string-10/reactions?reaction=dislike from 127.0.0.1
+2025-10-05T04:20:24.229608+0000 INFO Response: POST http://localhost:4000/posts/string-10/reactions?reaction=dislike Status: 201 Time: 0.0940s
+2025-10-05T04:20:30.285446+0000 INFO Request: POST http://localhost:4000/posts/string-10/reactions?reaction=like from 127.0.0.1
+2025-10-05T04:20:30.347075+0000 INFO Response: POST http://localhost:4000/posts/string-10/reactions?reaction=like Status: 201 Time: 0.0630s
+2025-10-05T04:20:35.444821+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:20:35.455810+0000 INFO Response: GET http://localhost:4000/posts/string-10 Status: 200 Time: 0.0150s
+2025-10-05T04:22:21.123232+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:22:21.138809+0000 INFO Response: GET http://localhost:4000/posts/string-10 Status: 200 Time: 0.0160s
+2025-10-05T04:22:28.645704+0000 INFO Request: GET http://localhost:4000/posts/string-19 from 127.0.0.1
+2025-10-05T04:22:28.662352+0000 INFO Response: GET http://localhost:4000/posts/string-19 Status: 200 Time: 0.0150s
+2025-10-05T04:22:33.478833+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:22:33.497666+0000 INFO Response: GET http://localhost:4000/posts/string-10 Status: 200 Time: 0.0150s
+2025-10-05T04:23:58.773289+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:23:58.798059+0000 INFO Response: GET http://localhost:4000/posts/string-10 Status: 200 Time: 0.0310s
+2025-10-05T04:24:00.191006+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:24:00.207212+0000 INFO Response: GET http://localhost:4000/posts/string-10 Status: 200 Time: 0.0150s
+2025-10-05T04:24:01.031609+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:24:01.050259+0000 INFO Response: GET http://localhost:4000/posts/string-10 Status: 200 Time: 0.0160s
+2025-10-05T04:24:01.744594+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:24:01.758332+0000 INFO Response: GET http://localhost:4000/posts/string-10 Status: 200 Time: 0.0160s
+2025-10-05T04:24:26.220753+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:24:26.239504+0000 INFO Response: GET http://localhost:4000/posts/string-10 Status: 200 Time: 0.0150s
+2025-10-05T04:24:59.677174+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:24:59.696556+0000 INFO Response: GET http://localhost:4000/posts/string-10 Status: 200 Time: 0.0160s
+2025-10-05T04:25:47.752007+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:25:47.764121+0000 INFO Response: GET http://localhost:4000/posts/string-10 Status: 200 Time: 0.0000s
+2025-10-05T04:25:53.471667+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:25:53.538497+0000 INFO Response: GET http://localhost:4000/posts/string-10 Status: 200 Time: 0.0620s
+2025-10-05T04:27:06.672539+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:27:06.697602+0000 INFO Response: GET http://localhost:4000/posts/string-10 Status: 200 Time: 0.0160s
+2025-10-05T04:27:24.815584+0000 INFO Request: GET http://localhost:4000/posts/string-19 from 127.0.0.1
+2025-10-05T04:27:24.835362+0000 INFO Response: GET http://localhost:4000/posts/string-19 Status: 200 Time: 0.0150s
+2025-10-05T04:27:30.365276+0000 INFO Request: GET http://localhost:4000/posts/string-20 from 127.0.0.1
+2025-10-05T04:27:30.383377+0000 INFO Response: GET http://localhost:4000/posts/string-20 Status: 200 Time: 0.0160s
+2025-10-05T04:27:34.347853+0000 INFO Request: GET http://localhost:4000/posts/string-11 from 127.0.0.1
+2025-10-05T04:27:34.358631+0000 INFO Response: GET http://localhost:4000/posts/string-11 Status: 200 Time: 0.0150s
+2025-10-05T04:27:38.817006+0000 INFO Request: GET http://localhost:4000/posts/string-9 from 127.0.0.1
+2025-10-05T04:27:38.827719+0000 INFO Response: GET http://localhost:4000/posts/string-9 Status: 200 Time: 0.0150s
+2025-10-05T04:27:43.478360+0000 INFO Request: GET http://localhost:4000/posts/string-10 from 127.0.0.1
+2025-10-05T04:27:43.492166+0000 INFO Response: GET http://localhost:4000/posts/string-10 Status: 200 Time: 0.0150s
+2025-10-05T04:28:24.409446+0000 INFO Request: GET http://localhost:4000/docs from 127.0.0.1
+2025-10-05T04:28:24.417297+0000 INFO Response: GET http://localhost:4000/docs Status: 200 Time: 0.0000s
+2025-10-05T04:28:24.608602+0000 INFO Request: GET http://localhost:4000/openapi.json from 127.0.0.1
+2025-10-05T04:28:24.664801+0000 INFO Response: GET http://localhost:4000/openapi.json Status: 200 Time: 0.0470s
+2025-10-05T04:30:26.604184+0000 INFO Request: GET http://localhost:4000/docs from 127.0.0.1
+2025-10-05T04:30:26.604184+0000 INFO Response: GET http://localhost:4000/docs Status: 200 Time: 0.0000s
+2025-10-05T04:30:26.713809+0000 INFO Request: GET http://localhost:4000/openapi.json from 127.0.0.1
+2025-10-05T04:30:26.739418+0000 INFO Response: GET http://localhost:4000/openapi.json Status: 200 Time: 0.0310s
+2025-10-05T04:31:19.340716+0000 INFO Request: GET http://localhost:4000/ext/crypto?ticker_from=dfsf&ticker_to=sdfsdf from 127.0.0.1
+2025-10-05T04:31:24.838482+0000 ERROR Response: GET http://localhost:4000/ext/crypto?ticker_from=dfsf&ticker_to=sdfsdf Status: 400 Time: 5.5000s
+2025-10-05T04:31:37.206007+0000 INFO Request: GET http://localhost:4000/ext/crypto?ticker_from=btc&ticker_to=usdt from 127.0.0.1
+2025-10-05T04:31:46.506404+0000 INFO Response: GET http://localhost:4000/ext/crypto?ticker_from=btc&ticker_to=usdt Status: 200 Time: 9.2970s
+2025-10-05T04:32:00.624181+0000 INFO Request: GET http://localhost:4000/ext/weather/moscow from 127.0.0.1
+2025-10-05T04:32:10.265095+0000 INFO Response: GET http://localhost:4000/ext/weather/moscow Status: 200 Time: 9.6410s

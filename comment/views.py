@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from auth.dependencies import verifiedUserDep
-from comment.dependencies import commentDep, commentServiceDep
+from auth.deps import verifiedUserDep
+from comment.deps import commentDep, commentServiceDep
 from comment.schemas import CommentShow, CommentUpdate
 
 comm_router = APIRouter(prefix="/comments", tags=["comment"])

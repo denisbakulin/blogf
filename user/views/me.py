@@ -1,15 +1,15 @@
 from fastapi import APIRouter, BackgroundTasks, Depends
 
-from auth.dependencies import currentUserDep
+from auth.deps import currentUserDep
 from auth.utils import TokenCreator
-from comment.dependencies import commentServiceDep
+from comment.deps import commentServiceDep
 from comment.schemas import CommentShow
 from helpers.search import Pagination
 from mail.utils import EmailSender
-from reaction.dependencies import reactionServiceDep
+from reaction.deps import reactionServiceDep
 from reaction.schemas import ReactionShow
 from reaction.types import UserReactions
-from user.dependencies import userServiceDep
+from user.deps import userServiceDep
 from user.schemas import EmailUpdate, PasswordChange, UserShowMe, UserUpdate
 
 me_router = APIRouter(prefix="/me", tags=["me"])

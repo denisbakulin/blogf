@@ -1,7 +1,7 @@
-import pytest
 from os import getenv
-from dotenv import load_dotenv
 
+import pytest
+from dotenv import load_dotenv
 
 load_dotenv(".env.test")
 
@@ -12,23 +12,29 @@ def ensure_test_env():
         pytest.exit(f"Окружение [{mode}] не подходит для тестирования!", returncode=1)
 
 
-from user.service import UserService
-from user.schemas import UserCreate
 from auth.utils import TokenCreator
+from comment.service import CommentService
+from post.service import PostService
+from reaction.service import ReactionService
+from user.schemas import UserCreate
+from user.service import UserService
 
-user_info = UserCreate(
-    username="user",
-    password="12345",
-    email="user@example.com"
-)
+users = [
+    UserCreate(
+        username=f"user{i}",
+        password="12345",
+        email=f"user{i}@example.com"
+    )
+    for i in range(1, 25)
+]
+
 
 import pytest_asyncio
-from core.setup import create_app
-from core.settings import FirstAdminSettings
-
 from httpx import ASGITransport, AsyncClient
 
 from core.db import get_engine
+from core.settings import FirstAdminSettings
+from core.setup import create_app
 
 pytest_plugins = ['pytest_asyncio']
 
@@ -80,21 +86,60 @@ async def admin_client(client):
 
     return client
 
+from random import choice
+
+from comment.schemas import CommentCreate
+from post.schemas import PostCreate
 
 
 @pytest_asyncio.fixture(scope="module", autouse=True)
 async def auth_client(client):
-
     async with session_factory() as session:
-
+        # сервисы
         user_service = UserService(session)
-        user = await user_service.create_user(user_info, is_verified=True)
-        access_token = TokenCreator(user.id).access
-        print(user, 1111111111111111)
+        post_service = PostService(session)
+        comment_service = CommentService(session)
+        reaction_service = ReactionService(session)
 
-    if access_token:
+        # создаём тестового пользователя
+        user = await user_service.create_user(UserCreate(
+            username="test_user",
+            password="12345",
+            email="test_user@example.com"
+        ), is_verified=True)
+
+        users = [
+            UserCreate(username=f"user{i}", password="12345", email=f"user{i}@test.com")
+            for i in range(2)
+        ]
+
+        for _user in users:
+            _user = await user_service.create_user(_user, is_verified=True)
+
+            post = await post_service.create_post(
+                user,
+                PostCreate(title="test_post", content="интересно")
+            )
+
+            await comment_service.create_comment(
+                CommentCreate(parent_id=None, content="коммент"),
+                _user, post
+            )
+
+            await reaction_service.add_reaction(
+                _user, post, choice(["like", "dislike", "love"])
+            )
+
+
+        access_token = TokenCreator(user.id).access
         client.headers.update({"Authorization": f"Bearer {access_token}"})
+        client.user = user
+
+
+
+
 
     return client
+
 
 

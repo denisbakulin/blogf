@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.service import BaseService
 from helpers.search import Pagination
-from post.dependencies import PostService
+from post.schemas import PostReactions
 from post.model import Post
 from reaction.model import Reaction
 from reaction.repository import ReactionRepository
@@ -37,6 +37,11 @@ class ReactionService(BaseService):
 
         return await self._get_reactions(default_get, reaction_type)
 
+
+    async def get_post_reaction_count(self, post: Post) -> PostReactions:
+        reactions = await self.repository.get_post_reaction_count(post=post)
+        print(PostReactions(**reactions), reactions)
+        return PostReactions(**reactions)
 
     async def _get_reactions(self, default, reaction):
         if reaction == "all":

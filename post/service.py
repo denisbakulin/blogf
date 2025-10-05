@@ -15,9 +15,9 @@ class PostService(BaseService):
     def __init__(self, session: AsyncSession):
         super().__init__(Post, session, PostRepository)
 
-    async def create_post(self, author_id: int, post_info: PostCreate) -> Post:
+    async def create_post(self, user: User, post_info: PostCreate) -> Post:
 
-        post = self.repository.create_post(**post_info.model_dump(), author_id=author_id)
+        post = self.repository.create_post(**post_info.model_dump(), author_id=user.id)
         await self.session.commit()
 
         slug = generate_slug(post.title, post.id)
