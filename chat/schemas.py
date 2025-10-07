@@ -19,3 +19,18 @@ class GeneralMessageShow(BaseMessageShow):
 class DirectChatShow(BaseModel, TimeMixinSchema):
     first_user_id: int
     second_user_id: int
+
+
+class BaseDirectEvent(BaseModel):
+    type: str
+    data: dict
+
+class ClientDirectEvent(BaseDirectEvent):
+    initiator_id: int
+
+
+
+
+
+
+

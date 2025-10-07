@@ -11,13 +11,14 @@ from post.service import PostService
 from user.model import User
 from user.service import UserService
 
-
+from chat.manager import WebSocketManager
 class CommentService(BaseService[Comment, CommentRepository]):
 
     def __init__(self, session: AsyncSession):
         super().__init__(Comment, session, CommentRepository)
         self.user_service = UserService(session=session)
         self.post_service = PostService(session=session)
+        self.ws_manager = WebSocketManager()
 
 
     async def create_comment(
@@ -38,6 +39,13 @@ class CommentService(BaseService[Comment, CommentRepository]):
         comment = await self.create_item(
             **comment_data.model_dump(exclude_none=True),
             user_id=user.id, post_id=post.id,
+        )
+
+        await self.ws_manager.comment_notify(
+            recipient_id=post.author_id,
+            username=user.username,
+            comment=comment.content[:100],
+            comment_id=comment.id
         )
 
         return comment

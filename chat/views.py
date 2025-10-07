@@ -7,8 +7,11 @@ from auth.deps import currentUserDep
 from chat.deps import directChatServiceDep
 from helpers.search import Pagination
 
+from fastapi_cache.decorator import cache
 
 direct_router = APIRouter(prefix="/direct", tags=["💭 Личные сообщения"])
+
+
 
 @direct_router.get(
     "",
@@ -24,7 +27,7 @@ async def get_user_chats(
 
 
 @direct_router.post(
-    "/{username}",
+    "/msg/{username}",
     summary="Отправить сообщение пользователю",
     response_model=DirectMessageShow
 )
@@ -35,8 +38,21 @@ async def create_message(
         message_info: MessageCreate
 
 ):
-
     return await chat_service.create_message(sender, recipient, message_info)
+
+
+@direct_router.get(
+    "/msg/{message_id}",
+    summary="Получить сообщениe",
+    response_model=DirectMessageShow
+)
+@cache(expire=60)
+async def get_message(
+        message_id: int,
+        user: verifiedUserDep,
+        chat_service: directChatServiceDep,
+):
+    return await chat_service.get_message_by_id(user, message_id)
 
 
 @direct_router.get(
@@ -50,7 +66,8 @@ async def get_messages(
         chat_service: directChatServiceDep,
         pagination: Pagination = Depends()
 ):
+    return await chat_service.message_service.get_messages(user, interlocutor, pagination)
 
-    return await chat_service.get_messages(user, interlocutor, pagination)
+
 
 

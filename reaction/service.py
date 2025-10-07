@@ -9,12 +9,13 @@ from post.model import Post
 from reaction.model import Reaction
 from reaction.repository import ReactionRepository
 from user.model import User
-
+from chat.ws import WebSocketManager
 
 class ReactionService(BaseService[Reaction, ReactionRepository]):
 
     def __init__(self, session: AsyncSession):
         super().__init__(Reaction, session, ReactionRepository)
+        self.ws_manager = WebSocketManager()
 
     async def add_reaction(self, user: User, post: Post, reaction_type: str):
         reaction = await self.repository.get_one_by(user_id=user.id, post_id=post.id)
@@ -22,8 +23,15 @@ class ReactionService(BaseService[Reaction, ReactionRepository]):
         if reaction:
             await self.delete_item(reaction)
 
+        reaction = await self.create_item(user_id=user.id, post_id=post.id, reaction=reaction_type)
 
-        return await self.create_item(user_id=user.id, post_id=post.id, reaction=reaction_type)
+        await self.ws_manager.reaction_notify(
+            recipient_id=post.author_id,
+            reaction=reaction_type,
+            username=user.username
+        )
+
+        return reaction
 
 
     async def get_post_reactions(self, post: Post, reaction_type: str, pagination: Pagination) -> list[Reaction]:

@@ -60,7 +60,7 @@ class TokenCreator:
         return self._create_token(TokenTypes.change_email, age)
 
 
-def decode_token(token: str) -> TokenInfo | None:
+def decode_token(token: str) -> TokenInfo:
     """Декодирует JWT токен из SHA256"""
     try:
         payload = jwt.decode(

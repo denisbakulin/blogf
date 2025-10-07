@@ -11,7 +11,7 @@ class DirectChatRepository(BaseRepository):
 
     def __init__(self, session: AsyncSession):
         super().__init__(DirectChat, session)
-        self.message = BaseRepository(DirectMessage, session)
+
 
 
     async def chat_exists(self, id1: int, id2: int) -> Optional[DirectChat]:

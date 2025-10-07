@@ -32,6 +32,8 @@ class BaseService[T, R]:
         self.session = session
         if repository is not None:
             self.repository: R = repository(session=session)
+        else:
+            self.repository: R = BaseRepository(model, session)
 
     async def get_item_by_id(self, item_id: int) -> T:
         return await self.get_item_by(id=item_id)
@@ -41,6 +43,7 @@ class BaseService[T, R]:
 
         await self.session.commit()
         await self.session.refresh(item)
+
         return item
 
 
