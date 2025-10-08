@@ -84,6 +84,11 @@ class DirectChatService(BaseService[DirectChat, DirectChatRepository]):
             recipient: User,
             message_info: MessageCreate
     ) -> DirectMessage:
+        if not recipient.settings.enable_direct:
+            raise EntityBadRequestError(
+                message=f"Пользователь {recipient.username} не принимает сообщения"
+            )
+
         chat = await self.repository.chat_exists(sender.id, recipient.id)
 
         if chat is None:
@@ -204,6 +209,29 @@ class DirectChatService(BaseService[DirectChat, DirectChatRepository]):
 
         return message
 
+    async def edit_message(self, user: User,  message_id: int, message_updates: MessageCreate) -> DirectMessage:
+        message = await self.get_message_by_id(user, message_id)
+
+        if message.sender_id != user.id:
+            raise EntityBadRequestError(
+                "Сообщение",
+                f"{user.username} не владелец сообщения {message_id}"
+            )
+
+        message = await self.message_service.update_item(message, **message_updates.dict())
+
+        await self.ws_manager.edit_message(
+            recipient_id=message.recipient_id,
+            message_id=message_id,
+            content=message_updates.content,
+            username=user.username
+        )
+        return message
+
+
+
+
+
 
     async def get_direct(self, user1: User, user2: User) -> DirectChat:
         direct = await self.repository.chat_exists(user1.id, user2.id)
@@ -225,3 +253,4 @@ class DirectChatService(BaseService[DirectChat, DirectChatRepository]):
         return await self.repository.get_any_by(
             banned_user_id=user.id, **pagination.get()
         )
+

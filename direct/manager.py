@@ -83,6 +83,17 @@ class WebSocketManager:
         })
 
     @recipient_connected
+    async def edit_message(self, connection: WebSocket, *, username: str, message_id: int, content: str):
+        await connection.send_json({
+            "action": "edit_message",
+            "data": {
+                "username": username,
+                "message_id": message_id,
+                "content": content
+            }
+        })
+
+    @recipient_connected
     async def user_typing(self, connection: WebSocket, *, initiator_id: int):
         await connection.send_json({
             "action": "typing",

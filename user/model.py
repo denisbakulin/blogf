@@ -8,9 +8,12 @@ class Profile(BaseORM, IdMixin):
     __tablename__ = "profiles"
 
     bio: Mapped[str | None]
-    avatar: Mapped[str | None]
-    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), unique=True)
+    age: Mapped[int | None]
+    city: Mapped[str | None]
     foreign_link: Mapped[str | None]
+
+
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), unique=True)
 
     user: Mapped["User"] = relationship(back_populates="profile")
 
@@ -24,6 +27,8 @@ class Settings(BaseORM, IdMixin):
     reaction_notifications: Mapped[bool] = mapped_column(default=True)
     comment_notifications: Mapped[bool] = mapped_column(default=True)
 
+    is_profile_public: Mapped[bool] = mapped_column(default=True)
+    enable_direct: Mapped[bool] = mapped_column(default=True)
 
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), unique=True)
 
@@ -40,6 +45,7 @@ class User(BaseORM, IdMixin, TimeMixin):
     username: Mapped[str] = mapped_column(nullable=False, unique=True)
     password: Mapped[str] = mapped_column(nullable=False)
     email: Mapped[str] = mapped_column(nullable=False, unique=True)
+
 
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
     is_verified: Mapped[bool] = mapped_column(Boolean, default=False)

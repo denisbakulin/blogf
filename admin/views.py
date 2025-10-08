@@ -12,6 +12,7 @@ from post.model import Post
 from user.model import User
 from user.schemas import UserCreate
 
+
 class Admin(APIRouter):
     """Главный админ-роут с проверкой на права администратора"""
 
@@ -86,14 +87,15 @@ class AdminView(APIRouter):
 
         self.get(
             "/table-info",
-            response_model=list[ColumnProps],
-            summary=f"Получить информацию о таблице {self.table_name}"
+            summary=f"Получить информацию о таблице {self.table_name}",
+            response_model=list[ColumnProps]
+
         )(model.table_info)
 
         @self.get(
             "/count",
-            response_model=int,
-            summary=f"Получить количество записей {self.table_name}"
+            summary=f"Получить количество записей {self.table_name}",
+            response_model=int
         )
         async def get_item_count(
                 admin_service: AdminService = Depends(get_admin_service(model=model))
@@ -116,8 +118,9 @@ class AdminView(APIRouter):
         if self.show:
             self.get(
                 "/{item_id}",
-                response_model=self.show,
-                summary=f"Получить {self.table_name} по id"
+                summary=f"Получить {self.table_name} по id",
+                response_model=self.show
+
             )(get_item)
 
         if self.delete_:
@@ -161,7 +164,8 @@ class UserAdminView(AdminView, model=User):
 
         @self.patch(
             "/{username}",
-            summary="Изменить пользователя"
+            summary="Изменить пользователя",
+            response_model=self.show
         )
         async def update_user(
                 user: userDep,
@@ -173,14 +177,41 @@ class UserAdminView(AdminView, model=User):
 
 
 from post.schemas import PostShow
+from post.deps import postDep, postServiceDep
+from post.schemas import PostUpdate, PostAllows
 
 
 class PostAdminView(AdminView, model=Post, delete_=True):
     show = PostShow
 
     def init_custom_views(self):
-       ...
 
+        @self.patch(
+            "/{slug}",
+            summary="Изменить пост",
+            response_model=self.show
+        )
+        async def edit_post(
+                post: postDep,
+                updates: PostUpdate,
+                post_service: postServiceDep,
+                allows: PostAllows = Depends()
+
+        ):
+            return await post_service.update_item(
+                post, **updates.dict(), **allows.dict()
+            )
+
+
+
+
+
+from comment.schemas import CommentShow
+from comment.model import Comment
+
+
+class CommentAdminView(AdminView, model=Comment, delete_=True):
+    show = CommentShow
 
 
 

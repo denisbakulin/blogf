@@ -29,7 +29,10 @@ class UserUpdate(BaseSchema):
 
 class UserProfile(BaseSchema):
     bio: str | None = None
-    avatar: str | None = None
+    age: int | None = None
+    city: str | None = None
+    foreign_link: str | None = None
+
 
 
 class UserShow(BaseSchema, IdMixinSchema, TimeMixinSchema):
@@ -61,3 +64,8 @@ class UserSettings(BaseSchema):
     direct_notifications: bool
     reaction_notifications: bool
     comment_notifications: bool
+
+    enable_direct: bool
+    is_profile_public: bool
+
+

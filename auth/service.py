@@ -40,16 +40,17 @@ class AuthService:
         return LoginTokens(access_token=tokens.access, refresh_token=tokens.refresh)
 
     async def _verify_user(self, token: str, target_type: TokenTypes) -> LoginTokens:
-        token = decode_token(token)
+        decoded_token = decode_token(token)
 
-        if token.type != target_type:
+        if decoded_token.type != target_type:
             raise InvalidTokenError(f"Не валидный токен для верификации {token.type} {target_type}")
 
-        user = await self.user_service.get_user_by_id(token.user_id)
+        user = await self.user_service.get_user_by_id(decoded_token.user_id)
 
         await self.user_service.update_item(user, is_verified=True)
 
-        await self.token_service.create_item(token=token, type=target_type)
+        await self.token_service.create_item(token=token, type=decoded_token.type)
+
 
         tokens = TokenCreator(user.id)
 

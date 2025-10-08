@@ -134,7 +134,18 @@ async def get_message(
     return await chat_service.get_message_by_id(user, message_id)
 
 
-
+@direct_router.put(
+    "/msg/{message_id}",
+    summary="Изменить сообщениe",
+    response_model=DirectMessageShow
+)
+async def edit_message(
+        message_id: int,
+        user: verifiedUserDep,
+        chat_service: directChatServiceDep,
+        updates: MessageCreate
+):
+    return await chat_service.edit_message(user, message_id, updates)
 
 
 

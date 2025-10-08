@@ -31,19 +31,7 @@ async def create_post(
     return await post_service.create_post(user, post_info)
 
 
-@post_router.get(
-    "/{slug}",
-    summary="Получить пост",
-    response_model=FullPostShow,
 
-)
-@cache(expire=60)
-async def get_post(
-        post: postDep,
-        reaction_service: reactionServiceDep
-):
-    reactions = await reaction_service.get_post_reaction_count(post)
-    return FullPostShow(post=post, reactions=reactions)
 
 @post_router.get(
     "/search",
@@ -57,6 +45,24 @@ async def search_posts(
         pagination: Pagination = Depends()
 ):
     return await post_service.search_posts(search=search, pagination=pagination)
+
+@post_router.get(
+    "/{slug}",
+    summary="Получить пост",
+    response_model=FullPostShow,
+
+)
+@cache(expire=60)
+async def get_post(
+        post: postDep,
+        reaction_service: reactionServiceDep
+):
+    reactions = await reaction_service.get_post_reaction_count(post)
+
+    return FullPostShow(
+        post=PostShow.model_validate(post),
+        reactions=reactions
+    )
 
 
 @post_router.put(

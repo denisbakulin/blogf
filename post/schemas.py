@@ -3,12 +3,15 @@ from pydantic import Field, BaseModel
 from core.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
 
 
-class PostBase(BaseSchema):
+class PostAllows(BaseSchema):
+    allow_comments: bool = Field(default=True)
+    allow_reactions: bool = Field(default=True)
+
+class PostBase(PostAllows):
     title: str = Field(min_length=1, max_length=100)
     content: str = Field(max_length=5000)
     public: bool = Field(default=True)
-    allow_comments: bool = Field(default=True)
-    allow_reactions: bool = Field(default=True)
+
 
 
 class PostShow(PostBase, IdMixinSchema, TimeMixinSchema):

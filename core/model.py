@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Optional, Type
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from sqlalchemy import inspect
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
@@ -24,6 +24,7 @@ class BaseORM(DeclarativeBase):
     """depends = [("profile", Profile), ...]
     создает поля (связанные таблицы) при создании записи 
     """
+
 
     def __init__(self, **kwargs):
         if self.depends is not None:

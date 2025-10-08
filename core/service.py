@@ -93,20 +93,19 @@ class BaseService[T, R]:
         await self.repository.delete(item)
 
 
-    async def update_item(self, item: T, **updates):
+    async def update_item(self, item: T, **updates) -> T:
         await self.repository.update(item, **updates)
         await self.session.commit()
         await self.session.refresh(item)
+
+        return item
 
     async def search_items(
             self,
             search,
             pagination: Pagination,
             inner_props: dict[str, Any] | None = None,
-
             **filters,
-
-
     ) -> list[T]:
 
         if search.strict:

@@ -36,7 +36,7 @@ def set_middlewares(app: FastAPI):
 
 
 def include_routers(app: FastAPI):
-    from admin.views import Admin, PostAdminView, UserAdminView
+    from admin.views import Admin, PostAdminView, UserAdminView, CommentAdminView
     from auth.views import auth_router
     from comment.views import comm_router
     from integrations.crypto.views import crypto_router
@@ -47,9 +47,11 @@ def include_routers(app: FastAPI):
     from direct.views import direct_router
     from direct.ws import ws
 
+
     admin_router = Admin(
         UserAdminView(table_name="Пользователи"),
-        PostAdminView(table_name="Посты")
+        PostAdminView(table_name="Посты"),
+        CommentAdminView(table_name="Комментарии")
     )
 
 
