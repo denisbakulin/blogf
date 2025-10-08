@@ -12,11 +12,12 @@ from user.repository import UserRepository
 from user.schemas import UserCreate, UserUpdate, UserSettings
 from user.utils import (UserSearchParams, generate_hashed_password,
                         verify_password)
-
+from direct.service import DirectChatService
 
 class UserService(BaseService[User, UserRepository]):
     def __init__(self, session: AsyncSession):
         super().__init__(User, session, UserRepository)
+        self.direct_chat_service = DirectChatService(session)
 
     async def create_user(self, user_data: UserCreate, is_verified=False, is_admin=False) -> User:
         await self.check_already_exists(username=user_data.username)
@@ -39,6 +40,9 @@ class UserService(BaseService[User, UserRepository]):
                 avatar=user_data.avatar,
             )
         )
+
+
+        await self.direct_chat_service.create_favorites_chat(user)
 
         return user
 

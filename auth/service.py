@@ -12,6 +12,7 @@ from auth.model import UsedToken
 from auth.utils import TokenTypes
 
 
+
 class AuthService:
 
     def __init__(self, session: AsyncSession):
@@ -19,8 +20,11 @@ class AuthService:
         self.user_service = UserService(session=session)
         self.token_service = BaseService[UsedToken, session](UsedToken, session)
 
+
+
     async def register(self, user_info: UserCreate) -> list[str]:
         user = await self.user_service.create_user(user_data=user_info)
+
         tokens = TokenCreator(user.id)
         return [tokens.pending_access, tokens.verify]
 

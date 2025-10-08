@@ -11,7 +11,7 @@ from post.service import PostService
 from user.model import User
 from user.service import UserService
 
-from chat.manager import WebSocketManager
+from direct.manager import WebSocketManager
 class CommentService(BaseService[Comment, CommentRepository]):
 
     def __init__(self, session: AsyncSession):
@@ -46,12 +46,13 @@ class CommentService(BaseService[Comment, CommentRepository]):
             user_id=user.id, post_id=post.id,
         )
 
-        await self.ws_manager.comment_notify(
-            recipient_id=post.author_id,
-            username=user.username,
-            comment=comment.content[:100],
-            comment_id=comment.id
-        )
+        if post.author.settings.comment_notifications:
+            await self.ws_manager.comment_notify(
+                recipient_id=post.author_id,
+                username=user.username,
+                comment=comment.content[:100],
+                comment_id=comment.id
+            )
 
         return comment
 
@@ -61,6 +62,7 @@ class CommentService(BaseService[Comment, CommentRepository]):
             user: User,
             update_data: CommentUpdate
     ) -> Comment:
+
         if comment.user_id != user.id:
             raise EntityBadRequestError(
                 "Comment",

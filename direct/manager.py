@@ -1,9 +1,9 @@
 from fastapi import WebSocket
 from typing import Optional, Self, Callable
-from chat.schemas import ClientDirectEvent
+from direct.schemas import ClientDirectEvent
 
 
-from functools import  wraps
+from functools import wraps
 
 
 class WebSocketManager:

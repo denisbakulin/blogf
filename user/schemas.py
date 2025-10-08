@@ -58,3 +58,6 @@ class UserSettings(BaseSchema):
 
     show_in_search: bool
 
+    direct_notifications: bool
+    reaction_notifications: bool
+    comment_notifications: bool

@@ -10,7 +10,7 @@ from post.model import Post
 from reaction.model import Reaction
 from reaction.repository import ReactionRepository
 from user.model import User
-from chat.ws import WebSocketManager
+from direct.ws import WebSocketManager
 
 class ReactionService(BaseService[Reaction, ReactionRepository]):
 
@@ -32,12 +32,13 @@ class ReactionService(BaseService[Reaction, ReactionRepository]):
 
         reaction = await self.create_item(user_id=user.id, post_id=post.id, reaction=reaction_type)
 
-        await self.ws_manager.reaction_notify(
-            recipient_id=post.author_id,
-            reaction=reaction_type,
-            username=user.username,
-            post_id=post.id
-        )
+        if reaction.user.settings.reaction_notifications:
+            await self.ws_manager.reaction_notify(
+                recipient_id=post.author_id,
+                reaction=reaction_type,
+                username=user.username,
+                post_id=post.id
+            )
 
         return reaction
 

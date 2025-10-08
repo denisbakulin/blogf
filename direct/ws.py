@@ -1,8 +1,8 @@
 from fastapi import Query, APIRouter
 from fastapi.websockets import WebSocketDisconnect, WebSocket
-from chat.manager import WebSocketManager
+from direct.manager import WebSocketManager
 from auth.utils import decode_token
-from chat.schemas import ClientDirectEvent
+from direct.schemas import ClientDirectEvent
 
 
 direct_manager = WebSocketManager()

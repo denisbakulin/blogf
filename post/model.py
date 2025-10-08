@@ -17,6 +17,6 @@ class Post(BaseORM, IdMixin, TimeMixin):
 
     author_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
 
-    author: Mapped["User"] = relationship("User", back_populates="posts")
+    author: Mapped["User"] = relationship("User")
 
 

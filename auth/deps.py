@@ -9,6 +9,8 @@ from auth.schemas import TokenInfo
 from auth.service import AuthService
 from auth.utils import TokenTypes, decode_token
 from core.db import get_session
+
+from core.exceptions import EntityLockedError
 from user.deps import get_user_service
 from user.model import User
 from user.service import UserService
@@ -38,7 +40,14 @@ async def get_current_user(
     user_service: UserService = Depends(get_user_service)
 ) -> User:
     if token.type in allowed_access_tokens:
-        return await user_service.get_user_by_id(token.user_id)
+        user = await user_service.get_user_by_id(token.user_id)
+
+        if user.is_active:
+            return user
+
+        raise EntityLockedError(
+            message=f"Пользователь {user.username} временно заблокирован"
+        )
     raise InvalidTokenError("Неверный тип токена")
 
 

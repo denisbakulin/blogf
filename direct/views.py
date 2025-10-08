@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends
 from user.deps import userDep
-from chat.schemas import  MessageCreate, DirectMessageShow, DirectChatShow
+from direct.schemas import  MessageCreate, DirectMessageShow, DirectChatShow, DirectUserSettingsSchema
 from auth.deps import verifiedUserDep
 from auth.deps import currentUserDep
 
-from chat.deps import directChatServiceDep
+from direct.deps import directChatServiceDep
 from helpers.search import Pagination
 
 from fastapi_cache.decorator import cache
@@ -25,6 +25,57 @@ async def get_user_chats(
 ):
     return await direct_service.get_user_chats(user, pagination)
 
+
+@direct_router.get(
+    "/banned",
+    summary="Получить Заблокированные чаты",
+    response_model=list[DirectChatShow]
+)
+async def get_banned_chats(
+        user: currentUserDep,
+        chat_service: directChatServiceDep,
+        pagination: Pagination = Depends(),
+):
+    return await chat_service.get_banned_chats(user, pagination)
+
+@direct_router.get(
+    "/{username}",
+    summary="Получить сообщения чата с пользователем",
+    response_model=list[DirectMessageShow]
+)
+async def get_messages(
+        user: verifiedUserDep,
+        recipient: userDep,
+        chat_service: directChatServiceDep,
+        pagination: Pagination = Depends()
+):
+    return await chat_service.message_service.get_messages(user, recipient, pagination)
+
+
+@direct_router.get(
+    "/{username}/settings",
+    summary="Получить настройки чата",
+    response_model=DirectUserSettingsSchema
+)
+async def get_direct_settings(
+        user: verifiedUserDep,
+        recipient: userDep,
+        chat_service: directChatServiceDep,
+):
+    return await chat_service.get_direct_settings(user, recipient)
+
+@direct_router.patch(
+    "/{username}/settings",
+    summary="Изменить настройки чата",
+    response_model=DirectUserSettingsSchema
+)
+async def edit_direct_settings(
+        user: verifiedUserDep,
+        recipient: userDep,
+        settings: DirectUserSettingsSchema,
+        chat_service: directChatServiceDep,
+):
+    return await chat_service.edit_direct_settings(user, recipient, settings)
 
 
 @direct_router.post(
@@ -51,17 +102,7 @@ async def unban_user(
     await chat_service.unban_direct(current_user, to_unban_user)
 
 
-@direct_router.get(
-    "/banned",
-    summary="Получить Заблокированные чаты",
-    response_model=list[DirectChatShow]
-)
-async def get_banned_chats(
-        user: currentUserDep,
-        chat_service: directChatServiceDep,
-        pagination: Pagination = Depends(),
-):
-    return await chat_service.get_banned_chats(user, pagination)
+
 
 
 @direct_router.post(
@@ -93,18 +134,7 @@ async def get_message(
     return await chat_service.get_message_by_id(user, message_id)
 
 
-@direct_router.get(
-    "/{username}",
-    summary="Получить сообщения чата с пользователем",
-    response_model=list[DirectMessageShow]
-)
-async def get_messages(
-        user: verifiedUserDep,
-        interlocutor: userDep,
-        chat_service: directChatServiceDep,
-        pagination: Pagination = Depends()
-):
-    return await chat_service.message_service.get_messages(user, interlocutor, pagination)
+
 
 
 

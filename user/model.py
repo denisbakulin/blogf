@@ -10,6 +10,7 @@ class Profile(BaseORM, IdMixin):
     bio: Mapped[str | None]
     avatar: Mapped[str | None]
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), unique=True)
+    foreign_link: Mapped[str | None]
 
     user: Mapped["User"] = relationship(back_populates="profile")
 
@@ -18,6 +19,10 @@ class Settings(BaseORM, IdMixin):
     __tablename__ = "user_settings"
 
     show_in_search: Mapped[bool] = mapped_column(default=True)
+
+    direct_notifications: Mapped[bool] = mapped_column(default=True)
+    reaction_notifications: Mapped[bool] = mapped_column(default=True)
+    comment_notifications: Mapped[bool] = mapped_column(default=True)
 
 
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), unique=True)
@@ -40,7 +45,6 @@ class User(BaseORM, IdMixin, TimeMixin):
     is_verified: Mapped[bool] = mapped_column(Boolean, default=False)
     is_admin: Mapped[bool] = mapped_column(Boolean, default=False)
 
-
     profile: Mapped["Profile"] = relationship(
         back_populates="user",
         uselist=False,
@@ -54,12 +58,6 @@ class User(BaseORM, IdMixin, TimeMixin):
         cascade="all, delete-orphan",
         lazy="joined"
     )
-
-    posts: Mapped[list["Post"]] = relationship(
-        back_populates="author",
-        cascade="all, delete-orphan",
-    )
-
 
 
 

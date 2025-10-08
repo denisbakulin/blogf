@@ -44,10 +44,14 @@ def include_routers(app: FastAPI):
     from post.views import post_router
     from user.views.me import me_router
     from user.views.other import user_router
-    from chat.views import direct_router
-    from chat.ws import ws
+    from direct.views import direct_router
+    from direct.ws import ws
 
-    admin_router = Admin(UserAdminView(), PostAdminView())
+    admin_router = Admin(
+        UserAdminView(table_name="Пользователи"),
+        PostAdminView(table_name="Посты")
+    )
+
 
     routers: list[APIRouter] = [
         user_router, me_router,
@@ -68,7 +72,7 @@ async def init_db(app: FastAPI):
     from user.schemas import UserCreate
     from user.service import UserService
 
-    from chat.model import DirectChat, DirectMessage, GeneralMessage, GeneralChat, GeneralChatMembers
+    from direct.model import DirectChat, DirectMessage, DirectUserSettings
     from auth.model import UsedToken
     from user.model import User, Profile, Settings
     from comment.model import Comment

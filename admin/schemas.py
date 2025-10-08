@@ -3,7 +3,7 @@ from typing import Optional
 from pydantic import EmailStr, Field
 
 from core.schemas import BaseSchema
-from user.schemas import UserCreate, UserShowMe
+from user.schemas import UserShowMe
 
 
 class UserFields(BaseSchema):
@@ -15,24 +15,16 @@ class UserFields(BaseSchema):
 class AdminUserShow(UserShowMe, UserFields):
     ...
 
-class AdminUserCreate(UserCreate, UserFields):
-    ...
 
 class AdminUserUpdate(UserFields):
     username: Optional[str] = None
     email: Optional[EmailStr] = None
     is_admin: Optional[bool] = None
+    is_active: Optional[bool] = None
 
 
 
 
-
-
-from post.schemas import PostBase, PostShow
-
-
-class AdminPostShow(PostShow):
-    ...
 
 
 

@@ -16,7 +16,7 @@ user_router = APIRouter(prefix="/users", tags=["👨 Пользователи"])
     response_model=list[UserShow],
 
 )
-@cache(expire=60)
+
 async def search_users(
         user_service: userServiceDep,
         search: UserSearchParams = Depends(),

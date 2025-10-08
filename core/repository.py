@@ -70,32 +70,6 @@ class BaseRepository[T]:
         return result.scalar_one_or_none()
 
 
-    def _get_inner_field(self, field: str) -> InstrumentedAttribute:
-        """
-        Возвращает вложенное свойство модели
-        Пример:
-            _get_inner_field("one.two.three") -> One.two.three
-        """
-
-        props = field.split(".")
-        val = getattr(self.model, props[0])
-
-        for prop in props[1:]:
-            val = getattr(val.property.mapper.class_, prop)
-            print(prop, val)
-
-        return val
-
-    def _process_stmt_with_inner_fields(
-            self,
-            inner_props: dict[str, Any] | None,
-            stmt: Q
-    ) -> Q:
-        if inner_props is not None:
-            for prop, value in inner_props.items():
-                stmt = stmt.where(self._get_inner_field(prop) == value)
-        return stmt
-
     def create(
             self,
             **data: Unpack[T]
@@ -154,20 +128,14 @@ class BaseRepository[T]:
 
 
     async def search(
-            self,
-            field: str,
-            query: Any,
-            offset: int,
-            limit: int,
-            inner_props: dict[str, Any] = None,
-
+        self,
+        field: str,
+        query: Any,
+        offset: int,
+        limit: int,
+        inner_props: dict[str, Any] | None = None,
     ) -> list[T]:
-        """Ищет с помощью %search% запись"""
-
-        stmt = (select(self.model)
-                .where(getattr(self.model, field)
-                       .ilike(f"%{query}%"))
-                )
+        stmt = select(self.model).where(getattr(self.model, field).ilike(f"%{query}%"))
 
         stmt = self._process_stmt_with_inner_fields(inner_props, stmt)
 
@@ -175,9 +143,37 @@ class BaseRepository[T]:
 
         result = await self.session.execute(stmt)
 
-        items = result.scalars().all()
+        return list(result.scalars().all())
 
-        return list(items)
+    def _process_stmt_with_inner_fields(self, inner_props: dict[str, Any] | None, stmt: Q) -> Q:
+        """
+        Добавляет join и фильтры по вложенным свойствам (One-to-One / One-to-Many)
+        inner_props = {"settings.show_in_search": True}
+        """
+
+        if not inner_props:
+            return stmt
+
+        for prop_path, value in inner_props.items():
+            parts = prop_path.split(".")
+            current_model = self.model
+            rel_attr = getattr(current_model, parts[0])
+
+            # join с таблицей
+            stmt = stmt.join(rel_attr)
+
+            # проход по вложенным уровням (если есть)
+            for part in parts[1:-1]:
+                rel_class = rel_attr.property.mapper.class_
+                rel_attr = getattr(rel_class, part)
+                stmt = stmt.join(rel_attr)
+
+            # фильтр по последнему полю
+            rel_class = rel_attr.property.mapper.class_
+            column = getattr(rel_class, parts[-1])
+            stmt = stmt.where(column == value)
+
+        return stmt
 
 
 

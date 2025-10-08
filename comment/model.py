@@ -11,20 +11,15 @@ class Comment(BaseORM, TimeMixin):
 
     content: Mapped[str] = mapped_column(nullable=False)
 
-    post_id: Mapped[int] = mapped_column(ForeignKey("posts.id"), nullable=False)
+    post_id: Mapped[int] = mapped_column(ForeignKey("posts.id", ondelete="CASCADE"), nullable=False)
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
-    parent_id: Mapped[int] = mapped_column(ForeignKey("comments.id"), nullable=True)
-
-
-    replies: Mapped[list["Comment"]] = relationship(
-        back_populates="parent",
-        cascade="all, delete-orphan"
-    )
+    parent_id: Mapped[int] = mapped_column(ForeignKey("comments.id", ondelete="CASCADE"), nullable=True)
 
     parent: Mapped["Comment"] = relationship(
-        back_populates="replies",
+        "Comment",
         remote_side=[id]
     )
+
 
 
 

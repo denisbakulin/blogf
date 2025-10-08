@@ -33,7 +33,7 @@ class BaseService[T, R]:
         if repository is not None:
             self.repository: R = repository(session=session)
         else:
-            self.repository = BaseRepository(model, session)
+            self.repository: R = BaseRepository(model, session)
 
     async def get_item_by_id(self, item_id: int) -> T:
         return await self.get_item_by(id=item_id)
@@ -103,6 +103,7 @@ class BaseService[T, R]:
             search,
             pagination: Pagination,
             inner_props: dict[str, Any] | None = None,
+
             **filters,
 
 
@@ -113,13 +114,15 @@ class BaseService[T, R]:
                 **{search.field: search.q},
                 **pagination.get(),
                 **filters,
-                inner_props=inner_props
+                inner_props=inner_props,
+
             )
         return await self.repository.search(
             field=search.field,
             query=search.q,
             **pagination.get(),
             **filters,
-            inner_props=inner_props
+            inner_props=inner_props,
+
         )
 

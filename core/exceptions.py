@@ -54,8 +54,9 @@ class EntityAlreadyExists(AppError):
 class EntityLockedError(AppError):
     """Ресурс заблокирован"""
 
-    def __init__(self, entity: str):
-        super().__init__(f"Ресурс [{entity}] заблокирован!")
+    def __init__(self, entity: str, message: str | None = None):
+
+        super().__init__(f"Ресурс [{entity}] заблокирован!" if not message else entity)
         self.entity = entity
 
 
