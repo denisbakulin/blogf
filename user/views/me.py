@@ -10,7 +10,7 @@ from reaction.deps import reactionServiceDep
 from reaction.schemas import ReactionShow
 from reaction.types import UserReactions
 from user.deps import userServiceDep
-from user.schemas import EmailUpdate, PasswordChange, UserShowMe, UserUpdate
+from user.schemas import EmailUpdate, PasswordChange, UserShowMe, UserUpdate, UserSettings
 
 
 me_router = APIRouter(prefix="/me", tags=["👤 Личный кабинет"])
@@ -74,6 +74,30 @@ async def change_email(
         user.username
     )
 
+@me_router.get(
+    "/settings",
+    summary="Получить настройки аккаунта",
+    response_model=UserSettings
+)
+async def get_settings(
+        user: currentUserDep,
+):
+
+    return user.settings
+
+
+@me_router.patch(
+    "/settings",
+    summary="Изменить настройки аккаунта",
+    response_model=UserSettings
+)
+async def edit_settings(
+        user: currentUserDep,
+        user_service: userServiceDep,
+        settings: UserSettings
+):
+    return await user_service.edit_user_settings(user, settings)
+
 
 @me_router.get(
     "/comments",
@@ -103,8 +127,6 @@ async def get_my_reactions(
         pagination: Pagination = Depends()
 ):
     return await like_service.get_user_reactions(user, v, pagination)
-
-
 
 
 

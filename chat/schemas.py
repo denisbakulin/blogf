@@ -19,6 +19,7 @@ class GeneralMessageShow(BaseMessageShow):
 class DirectChatShow(BaseModel, TimeMixinSchema):
     first_user_id: int
     second_user_id: int
+    banned_user_id: int | None
 
 
 class BaseDirectEvent(BaseModel):

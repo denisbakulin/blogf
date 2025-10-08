@@ -27,6 +27,11 @@ class CommentService(BaseService[Comment, CommentRepository]):
             user: User,
             post: Post
     ) -> Comment:
+        if not post.allow_comments:
+            raise EntityBadRequestError(
+                "Comment",
+                f"Под постом [{post.slug}] нельзя оставлять комментарии"
+            )
 
         if comment_data.parent_id is not None:
             parent = await self.get_comment_by_id(comment_data.parent_id)

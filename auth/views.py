@@ -12,7 +12,6 @@ from user.schemas import UserCreate
 
 auth_router = APIRouter(prefix="/auth", tags=["🔐 Авторизация"])
 
-
 @auth_router.post(
     "/register",
     summary="Зарегистрироваться в системе",
@@ -97,7 +96,7 @@ async def verify_by_email(
         auth_service: AuthService = Depends(get_auth_service)
 ):
 
-    tokens = await auth_service.verify_user_by_email(token)
+    tokens = await auth_service.verify_by_email(token)
     set_refresh_token_cookie(response, tokens.refresh_token)
 
     return AccessTokenResponse(access_token=tokens.access_token)
@@ -116,7 +115,7 @@ async def change_email_by_token(
         response: Response,
         auth_service: AuthService = Depends(get_auth_service)
 ):
-    tokens = await auth_service.verify_new_user_email(token)
+    tokens = await auth_service.change_email(token)
     set_refresh_token_cookie(response, tokens.refresh_token)
 
     return AccessTokenResponse(access_token=tokens.access_token)

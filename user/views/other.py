@@ -32,7 +32,7 @@ async def search_users(
     response_model=UserShow,
 
 )
-@cache(expire=60)
+
 async def get_user(
         user: userDep
 ):

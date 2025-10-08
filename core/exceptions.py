@@ -26,11 +26,11 @@ class EntityBadRequestError(AppError):
     def __init__(
             self,
             entity: str,
-            message: str
+            message: str = ""
     ):
         super().__init__(
-            f"[{entity}] Ошибка изменения состояния ресурса | "
-            f"{message}"
+            f"[{entity}] Ошибка доступа к ресурсу"
+            f" | {message}"
         )
 
         self.entity = entity

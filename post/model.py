@@ -8,14 +8,15 @@ class Post(BaseORM, IdMixin, TimeMixin):
     __tablename__ = "posts"
 
     title: Mapped[str] = mapped_column(nullable=False)
-    content: Mapped[str] = mapped_column(nullable=False)
-    author_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     slug: Mapped[str] = mapped_column(index=True, unique=True, nullable=True)
+    content: Mapped[str] = mapped_column(nullable=False)
+
+    public: Mapped[bool] = mapped_column(default=True)
+    allow_comments: Mapped[bool] = mapped_column(default=True)
+    allow_reactions: Mapped[bool] = mapped_column(default=True)
+
+    author_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
 
     author: Mapped["User"] = relationship("User", back_populates="posts")
 
-    comments: Mapped[list["Comment"]] = relationship(
-        "Comment",
-        back_populates="post",
-        cascade="all, delete-orphan"
-    )
+

@@ -62,12 +62,13 @@ class WebSocketManager:
         })
 
     @recipient_connected
-    async def reaction_notify(self, connection: WebSocket, *, username: str, reaction: str):
+    async def reaction_notify(self, connection: WebSocket, *, username: str, reaction: str, post_id: int):
         await connection.send_json({
             "action": "reaction",
             "data": {
                 "username": username,
-                "reaction": reaction
+                "reaction": reaction,
+                "post_id": post_id
             }
         })
 
@@ -89,8 +90,6 @@ class WebSocketManager:
                 "initiator_id": initiator_id
             }
         })
-
-
 
     async def process(self, event: ClientDirectEvent):
         action_relationship: dict[str, Callable] = {

@@ -3,6 +3,7 @@ from functools import partial
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.service import BaseService
+from core.exceptions import EntityBadRequestError
 from helpers.search import Pagination
 from post.schemas import PostReactions
 from post.model import Post
@@ -18,6 +19,12 @@ class ReactionService(BaseService[Reaction, ReactionRepository]):
         self.ws_manager = WebSocketManager()
 
     async def add_reaction(self, user: User, post: Post, reaction_type: str):
+        if not post.allow_reactions:
+            raise EntityBadRequestError(
+                "Reaction",
+                f"Под постом [{post.slug}] запрещено оставлять реакции"
+            )
+
         reaction = await self.repository.get_one_by(user_id=user.id, post_id=post.id)
 
         if reaction:
@@ -28,7 +35,8 @@ class ReactionService(BaseService[Reaction, ReactionRepository]):
         await self.ws_manager.reaction_notify(
             recipient_id=post.author_id,
             reaction=reaction_type,
-            username=user.username
+            username=user.username,
+            post_id=post.id
         )
 
         return reaction

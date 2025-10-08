@@ -1,4 +1,4 @@
-from typing import Type, TypeVar
+from typing import Type, TypeVar, Any
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -33,7 +33,7 @@ class BaseService[T, R]:
         if repository is not None:
             self.repository: R = repository(session=session)
         else:
-            self.repository: R = BaseRepository(model, session)
+            self.repository = BaseRepository(model, session)
 
     async def get_item_by_id(self, item_id: int) -> T:
         return await self.get_item_by(id=item_id)
@@ -102,17 +102,24 @@ class BaseService[T, R]:
             self,
             search,
             pagination: Pagination,
+            inner_props: dict[str, Any] | None = None,
+            **filters,
+
 
     ) -> list[T]:
 
         if search.strict:
             return await self.repository.get_any_by(
                 **{search.field: search.q},
-                **pagination.get()
+                **pagination.get(),
+                **filters,
+                inner_props=inner_props
             )
         return await self.repository.search(
             field=search.field,
             query=search.q,
-            **pagination.get()
+            **pagination.get(),
+            **filters,
+            inner_props=inner_props
         )
 

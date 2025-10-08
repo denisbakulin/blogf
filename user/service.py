@@ -7,9 +7,9 @@ from auth.exceptions import InvalidPasswordError
 from core.exceptions import EntityAlreadyExists
 from core.service import BaseService
 from helpers.search import Pagination
-from user.model import Profile, User
+from user.model import Profile, User, Settings
 from user.repository import UserRepository
-from user.schemas import UserCreate, UserUpdate
+from user.schemas import UserCreate, UserUpdate, UserSettings
 from user.utils import (UserSearchParams, generate_hashed_password,
                         verify_password)
 
@@ -105,7 +105,20 @@ class UserService(BaseService[User, UserRepository]):
 
 
     async def search_users(self, search: UserSearchParams, pagination: Pagination) -> list[User]:
-        return await self.search_items(search, pagination)
+        return await self.search_items(
+            search, pagination,
+            inner_props={
+                "settings.show_in_search": True
+            }
+        )
+
+    async def edit_user_settings(self, user: User, settings: UserSettings) -> Settings:
+
+        await self.update_item(user.settings, **settings.dict())
+
+        return user.settings
+
+
 
 
 

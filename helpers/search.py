@@ -18,7 +18,7 @@ def search_param_fabric(allowed_fields: type[str]):
             self,
             q: str = Query(..., min_length=1, description="Значение запроса"),
             field: allowed_fields = Query(..., description="Критерий запроса"),
-            strict: bool = Query(..., description="Строгое совпадение"),
+            strict: bool = Query(False, description="Строгое совпадение"),
         ):
             self.q = q
             self.strict = strict

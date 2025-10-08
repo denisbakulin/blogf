@@ -26,9 +26,6 @@ class Comment(BaseORM, TimeMixin):
         remote_side=[id]
     )
 
-    user: Mapped["User"] = relationship("User", back_populates="comments")
-    post: Mapped["Post"] = relationship("Post", back_populates="comments")
-
 
 
 

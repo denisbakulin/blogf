@@ -13,10 +13,24 @@ class Profile(BaseORM, IdMixin):
 
     user: Mapped["User"] = relationship(back_populates="profile")
 
+
+class Settings(BaseORM, IdMixin):
+    __tablename__ = "user_settings"
+
+    show_in_search: Mapped[bool] = mapped_column(default=True)
+
+
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), unique=True)
+
+    user: Mapped["User"] = relationship(back_populates="settings")
+
+
+
+
 class User(BaseORM, IdMixin, TimeMixin):
     __tablename__ = "users"
 
-    depends = [("profile", Profile)]
+    depends = [("profile", Profile), ("settings", Settings)]
 
     username: Mapped[str] = mapped_column(nullable=False, unique=True)
     password: Mapped[str] = mapped_column(nullable=False)
@@ -26,6 +40,7 @@ class User(BaseORM, IdMixin, TimeMixin):
     is_verified: Mapped[bool] = mapped_column(Boolean, default=False)
     is_admin: Mapped[bool] = mapped_column(Boolean, default=False)
 
+
     profile: Mapped["Profile"] = relationship(
         back_populates="user",
         uselist=False,
@@ -33,17 +48,17 @@ class User(BaseORM, IdMixin, TimeMixin):
         lazy="joined"
     )
 
-    comments: Mapped[list["Comment"]] = relationship(
-        "Comment",
-        back_populates="user"
+    settings: Mapped["Settings"] = relationship(
+        back_populates="user",
+        uselist=False,
+        cascade="all, delete-orphan",
+        lazy="joined"
     )
 
     posts: Mapped[list["Post"]] = relationship(
-        "Post",
         back_populates="author",
-        lazy="selectin"
+        cascade="all, delete-orphan",
     )
-
 
 
 

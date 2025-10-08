@@ -6,6 +6,10 @@ from auth.utils import TokenCreator, TokenTypes, decode_token
 from user.schemas import UserCreate
 from user.service import UserService
 from user.utils import verify_password
+from core.service import BaseService
+from auth.model import UsedToken
+
+from auth.utils import TokenTypes
 
 
 class AuthService:
@@ -13,7 +17,7 @@ class AuthService:
     def __init__(self, session: AsyncSession):
         self.session = session
         self.user_service = UserService(session=session)
-
+        self.token_service = BaseService[UsedToken, session](UsedToken, session)
 
     async def register(self, user_info: UserCreate) -> list[str]:
         user = await self.user_service.create_user(user_data=user_info)
@@ -39,18 +43,23 @@ class AuthService:
 
         user = await self.user_service.get_user_by_id(token.user_id)
 
-        await self.user_service.repository.update(user, is_verified=True)
-        await self.session.commit()
+        await self.user_service.update_item(user, is_verified=True)
+
+        await self.token_service.create_item(token=token, type=target_type)
 
         tokens = TokenCreator(user.id)
 
         return LoginTokens(access_token=tokens.access, refresh_token=tokens.refresh)
 
-    async def verify_user_by_email(self, token: str) -> LoginTokens:
+    async def verify_by_email(self, token: str) -> LoginTokens:
+        await self.token_service.check_already_exists(token=token, type=TokenTypes.verify)
+
         return await self._verify_user(token, TokenTypes.verify)
 
 
-    async def verify_new_user_email(self, token: str):
+    async def change_email(self, token: str):
+        await self.token_service.check_already_exists(token=token, type=TokenTypes.change_email)
+
         return await self._verify_user(token, TokenTypes.change_email)
 
 

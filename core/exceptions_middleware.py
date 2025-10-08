@@ -6,7 +6,7 @@ from starlette.responses import JSONResponse
 
 from auth.exceptions import AuthError
 from core.exceptions import (EntityAlreadyExists, EntityBadRequestError,
-                             EntityNotFoundError)
+                             EntityNotFoundError, EntityLockedError)
 
 
 class AppExceptionMiddleware(BaseHTTPMiddleware):
@@ -37,6 +37,12 @@ class AppExceptionMiddleware(BaseHTTPMiddleware):
                 status_code=st.HTTP_401_UNAUTHORIZED,
                 content={"detail": str(exc)}
             )
+        except EntityLockedError as exc:
+            return JSONResponse (
+                status_code=st.HTTP_423_LOCKED,
+                content={"detail" : str(exc)}
+            )
+
 
 
 

@@ -26,6 +26,44 @@ async def get_user_chats(
     return await direct_service.get_user_chats(user, pagination)
 
 
+
+@direct_router.post(
+    "/{username}/ban",
+    summary="Заблокировать Пользователя",
+)
+async def ban_user(
+        current_user: currentUserDep,
+        to_ban_user: userDep,
+        chat_service: directChatServiceDep,
+):
+    await chat_service.ban_direct(current_user, to_ban_user)
+
+
+@direct_router.post(
+    "/{username}/unban",
+    summary="Разблокировать Пользователя",
+)
+async def unban_user(
+        current_user: currentUserDep,
+        to_unban_user: userDep,
+        chat_service: directChatServiceDep,
+):
+    await chat_service.unban_direct(current_user, to_unban_user)
+
+
+@direct_router.get(
+    "/banned",
+    summary="Получить Заблокированные чаты",
+    response_model=list[DirectChatShow]
+)
+async def get_banned_chats(
+        user: currentUserDep,
+        chat_service: directChatServiceDep,
+        pagination: Pagination = Depends(),
+):
+    return await chat_service.get_banned_chats(user, pagination)
+
+
 @direct_router.post(
     "/msg/{username}",
     summary="Отправить сообщение пользователю",
@@ -67,6 +105,8 @@ async def get_messages(
         pagination: Pagination = Depends()
 ):
     return await chat_service.message_service.get_messages(user, interlocutor, pagination)
+
+
 
 
 

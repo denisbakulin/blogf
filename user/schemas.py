@@ -5,6 +5,8 @@ from pydantic import EmailStr, Field, field_validator
 from core.schemas import BaseSchema,  IdMixinSchema, TimeMixinSchema
 
 
+
+
 class UserCreate(BaseSchema):
     username: str = Field(min_length=1)
     password: str = Field(min_length=5)
@@ -39,6 +41,7 @@ class UserShow(BaseSchema, IdMixinSchema, TimeMixinSchema):
 class UserShowMe(UserShow):
     email: str
     is_verified: bool
+    is_admin: bool
 
 
 
@@ -49,3 +52,9 @@ class PasswordChange(BaseSchema):
 
 class EmailUpdate(BaseSchema):
     new_email: EmailStr
+
+
+class UserSettings(BaseSchema):
+
+    show_in_search: bool
+
