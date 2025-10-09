@@ -25,33 +25,44 @@ class BaseRepository[T]:
 
     async def get_any_by(
             self,
-            offset: int,
-            limit: int,
-            order_by="id",
-            _desc=True,
+            offset: int | None = None,
+            limit: int | None = None,
+            lines: list | None = None,
+            order_by: str = "id",
+            _desc: bool = True,
             inner_props: dict[str, Any] = None,
             **filters,
-    ) -> list[T]:
+    ) -> list[T] | list[Any]:
         """Возвращает отфильтрованный и отсортированый список записей
         по заданным параметрам и фильтрам
        """
+        if lines:
+            stmt = select(*lines)
+        else:
+            stmt = select(self.model)
 
-        stmt = (select(self.model).filter_by(**filters))
+        stmt = stmt.filter_by(**filters)
 
         stmt = self._process_stmt_with_inner_fields(inner_props, stmt)
 
         order_func = getattr(self.model, order_by, None)
 
-        if order_func is not None and _desc:
-            stmt = stmt.order_by(desc(order_func))
+        if order_func is not None:
+            stmt = stmt.order_by(desc(order_func) if _desc else order_func)
 
-        stmt = stmt.offset(offset).limit(limit)
+        if offset:
+            stmt = stmt.offset(offset)
+
+        if limit:
+            stmt = stmt.limit(limit)
 
         result = await self.session.execute(stmt)
 
-        items = result.scalars().all()
+        if lines:
+            return [*result.all()]
 
-        return list(items)
+        return [*result.scalars().all()]
+
 
     async def get_one_by(
             self,

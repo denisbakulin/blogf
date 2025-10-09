@@ -21,17 +21,20 @@ class UserCreate(BaseSchema):
         return username.strip().lower()
 
 
-class UserUpdate(BaseSchema):
-    bio: Optional[str] = Field(default=None)
-    username: Optional[str] = Field(default=None)
-    avatar: Optional[str] = Field(default=None)
-
 
 class UserProfile(BaseSchema):
     bio: str | None = None
     age: int | None = None
     city: str | None = None
     foreign_link: str | None = None
+
+
+class UserUpdate(BaseSchema):
+    username: Optional[str] = Field(default=None)
+    profile: UserProfile
+
+
+
 
 
 

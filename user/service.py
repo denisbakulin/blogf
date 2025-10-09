@@ -18,6 +18,7 @@ class UserService(BaseService[User, UserRepository]):
     def __init__(self, session: AsyncSession):
         super().__init__(User, session, UserRepository)
         self.direct_chat_service = DirectChatService(session)
+        self.base_serv = BaseService(Profile, session)
 
     async def create_user(self, user_data: UserCreate, is_verified=False, is_admin=False) -> User:
         await self.check_already_exists(username=user_data.username)
@@ -56,7 +57,7 @@ class UserService(BaseService[User, UserRepository]):
 
     async def create_first_admin(self, admin_data: UserCreate) -> Optional[User]:
 
-        admin = await self.repository.get_any_by(is_admin=True, offset=0, limit=1)
+        admin = await self.repository.get_one_by(is_admin=True)
 
         if admin:
             return
@@ -79,14 +80,10 @@ class UserService(BaseService[User, UserRepository]):
                     field="username",
                     value=update_info.username
                 )
+            await self.update_item(user, username=update_info.username)
 
-        if update_info.bio:
-            update_info.bio = update_info.bio[:2000]
 
-        await self.update_item(
-            user,
-            **update_info.model_dump(exclude_none=True)
-        )
+        await self.base_serv.update_item(user.profile, **update_info.profile.model_dump(exclude_none=True))
 
         return user
 

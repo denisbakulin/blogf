@@ -26,12 +26,13 @@ class Settings(BaseORM, IdMixin):
     direct_notifications: Mapped[bool] = mapped_column(default=True)
     reaction_notifications: Mapped[bool] = mapped_column(default=True)
     comment_notifications: Mapped[bool] = mapped_column(default=True)
+    subscribe_notifications: Mapped[bool] = mapped_column(default=True)
 
     is_profile_public: Mapped[bool] = mapped_column(default=True)
     enable_direct: Mapped[bool] = mapped_column(default=True)
 
-    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), unique=True)
 
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), unique=True)
     user: Mapped["User"] = relationship(back_populates="settings")
 
 

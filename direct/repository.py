@@ -1,8 +1,8 @@
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, all_, or_, and_
+from sqlalchemy import select, or_, and_
 
 from core.repository import BaseRepository
-from direct.model import DirectMessage, DirectChat
+from direct.model import DirectChat
 
 from typing import Optional
 
