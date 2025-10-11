@@ -1,23 +1,18 @@
 from typing import Any, Optional
 
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select
+from sqlalchemy import select, func, desc
 from core.repository import BaseRepository
 from post.model import Post
 
-from user.model import User
 from subs.repository import SubscribeRepository
-from subs.model import Subscribe
+from reaction.model import Reaction
 
 class PostRepository(BaseRepository[Post]):
 
     def __init__(self, session: AsyncSession):
         super().__init__(Post, session)
         self.subs_repository = SubscribeRepository(session)
-
-    def create_post(self, **post_data) -> Post:
-        return self.create(**post_data)
-
 
     async def get_posts(
             self,
@@ -27,7 +22,6 @@ class PostRepository(BaseRepository[Post]):
     ) -> list[Post] | None:
 
         return await self.get_any_by(offset=offset, limit=limit, **filters)
-
 
     async def search_posts(
             self,
@@ -57,7 +51,23 @@ class PostRepository(BaseRepository[Post]):
 
         return [*posts]
 
+    async def get_top_of_posts(self, reaction: str):
+        stmt = (
+            select(
+                Post,
+                func.count(Reaction.post_id).label("like_count")
+            )
+            .join(Reaction, Reaction.post_id == Post.id)
+            .where(Reaction.reaction == reaction)
+            .group_by(Post.id)
+            .order_by(desc("like_count"))
+            .limit(10)
+        )
+        result = await self.session.execute(stmt)
 
+        posts = result.all()
+
+        return [*posts]
 
 
 

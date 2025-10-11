@@ -34,18 +34,18 @@ class UserUpdate(BaseSchema):
     profile: UserProfile
 
 
-
-
+class PostUserShow(BaseSchema):
+    username: str
 
 
 class UserShow(BaseSchema, IdMixinSchema, TimeMixinSchema):
     username: str
     profile: UserProfile | None
     is_active: bool
+    email: str
 
 
 class UserShowMe(UserShow):
-    email: str
     is_verified: bool
     is_admin: bool
 

@@ -10,7 +10,7 @@ config = AppSettings.get()
 
 @lru_cache
 def get_engine():
-    return create_async_engine(config.db_uri)
+    return create_async_engine(config.db_uri, echo=True)
 
 session_factory = async_sessionmaker(bind=get_engine(), expire_on_commit=False)
 

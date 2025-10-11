@@ -6,29 +6,29 @@ from comment.deps import commentServiceDep
 from comment.schemas import CommentCreate, CommentShow
 from helpers.search import Pagination
 from post.deps import postDep, postServiceDep
-from post.schemas import PostCreate, PostShow, PostUpdate, FullPostShow
+from post.schemas import PostCreate, PostShow, PostUpdate, FullPostShow, TopPostShow
 from post.utils import PostSearchParams
 from reaction.deps import reactionServiceDep
 from reaction.schemas import ReactionShow
 from reaction.types import PostReactionsGetParams, PostReactionsSetParams
 
+from typing import Literal
 post_router = APIRouter(prefix="/posts", tags=["📝 Посты"])
 
 
 
 
-@post_router.post(
-    "",
-    summary="Создать пост",
-    response_model=PostShow,
-    status_code=status.HTTP_201_CREATED,
+@post_router.get(
+    "/top",
+    summary="Получить топ постов",
+    response_model=list[TopPostShow],
 )
-async def create_post(
-        post_info: PostCreate,
-        user: verifiedUserDep,
-        post_service: postServiceDep
+async def get_top_of_posts(
+        post_service: postServiceDep,
+        field: Literal["like", "dislike"]
 ):
-    return await post_service.create_post(user, post_info)
+    return await post_service.get_top_of_posts(field)
+
 
 
 
@@ -44,7 +44,7 @@ async def search_posts(
         search: PostSearchParams = Depends(),
         pagination: Pagination = Depends()
 ):
-    return await post_service.search_posts(search=search, pagination=pagination)
+    return await post_service.search_items(search=search, pagination=pagination)
 
 @post_router.get(
     "/{slug}",

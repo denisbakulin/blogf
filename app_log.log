@@ -23551,3 +23551,366 @@
 2025-10-09T19:26:34.615051+0000 INFO Request: GET http://localhost:2000/subs/content?offset=0&limit=10 from 127.0.0.1
 2025-10-09T19:26:34.634468+0000 INFO Response: GET http://localhost:2000/subs/content?offset=0&limit=10 Status: 200 Time: 0.0160s
 2025-10-09T19:26:43.953562+0000 INFO Request: POST http://localhost:2000/subs/admin from 127.0.0.1
+2025-10-09T19:34:57.937883+0000 INFO Request: GET http://localhost:2000/docs from 127.0.0.1
+2025-10-09T19:34:57.937883+0000 INFO Response: GET http://localhost:2000/docs Status: 200 Time: 0.0000s
+2025-10-09T19:34:58.223572+0000 INFO Request: GET http://localhost:2000/openapi.json from 127.0.0.1
+2025-10-09T19:34:58.296811+0000 INFO Response: GET http://localhost:2000/openapi.json Status: 200 Time: 0.0780s
+2025-10-09T19:35:10.481310+0000 INFO Request: GET http://localhost:2000/me from 127.0.0.1
+2025-10-09T19:35:10.510903+0000 INFO Response: GET http://localhost:2000/me Status: 200 Time: 0.0310s
+2025-10-09T19:35:35.449847+0000 INFO Request: GET http://localhost:2000/subs?offset=0&limit=10 from 127.0.0.1
+2025-10-09T19:35:35.464482+0000 INFO Response: GET http://localhost:2000/subs?offset=0&limit=10 Status: 200 Time: 0.0150s
+2025-10-09T19:35:41.446201+0000 INFO Request: GET http://localhost:2000/subs/content?offset=0&limit=10 from 127.0.0.1
+2025-10-09T19:35:41.463047+0000 INFO Response: GET http://localhost:2000/subs/content?offset=0&limit=10 Status: 200 Time: 0.0150s
+2025-10-09T19:35:50.788781+0000 INFO Request: POST http://localhost:2000/subs/admin from 127.0.0.1
+2025-10-09T22:11:22.329529+0000 INFO Request: GET http://localhost:2000/docs from 127.0.0.1
+2025-10-09T22:11:22.329529+0000 INFO Response: GET http://localhost:2000/docs Status: 200 Time: 0.0000s
+2025-10-09T22:11:22.553139+0000 INFO Request: GET http://localhost:2000/openapi.json from 127.0.0.1
+2025-10-09T22:11:22.619731+0000 INFO Response: GET http://localhost:2000/openapi.json Status: 200 Time: 0.0620s
+2025-10-09T22:11:40.200610+0000 INFO Request: GET http://localhost:2000/docs from 127.0.0.1
+2025-10-09T22:11:40.202834+0000 INFO Response: GET http://localhost:2000/docs Status: 200 Time: 0.0150s
+2025-10-09T22:11:40.393485+0000 INFO Request: GET http://localhost:2000/openapi.json from 127.0.0.1
+2025-10-09T22:11:40.397134+0000 INFO Response: GET http://localhost:2000/openapi.json Status: 200 Time: 0.0000s
+2025-10-09T22:12:21.016528+0000 INFO Request: GET http://localhost:3000/docs from 127.0.0.1
+2025-10-09T22:12:21.016528+0000 INFO Response: GET http://localhost:3000/docs Status: 200 Time: 0.0000s
+2025-10-09T22:12:21.183325+0000 INFO Request: GET http://localhost:3000/openapi.json from 127.0.0.1
+2025-10-09T22:12:21.233711+0000 INFO Response: GET http://localhost:3000/openapi.json Status: 200 Time: 0.0620s
+2025-10-09T22:12:35.252536+0000 INFO Request: GET http://localhost:3000/posts/top?field=dislike from 127.0.0.1
+2025-10-09T22:12:35.269602+0000 INFO Response: GET http://localhost:3000/posts/top?field=dislike Status: 200 Time: 0.0160s
+2025-10-09T22:12:46.533958+0000 INFO Request: GET http://localhost:3000/posts/top?field=dislike from 127.0.0.1
+2025-10-09T22:12:46.547111+0000 INFO Response: GET http://localhost:3000/posts/top?field=dislike Status: 200 Time: 0.0160s
+2025-10-09T22:14:24.575485+0000 INFO Request: GET http://localhost:3000/posts/top?field=dislike from 127.0.0.1
+2025-10-09T22:14:24.593608+0000 INFO Response: GET http://localhost:3000/posts/top?field=dislike Status: 200 Time: 0.0310s
+2025-10-09T22:14:56.227061+0000 INFO Request: GET http://localhost:3000/posts/search?q=stri&field=slug&strict=false&offset=0&limit=10 from 127.0.0.1
+2025-10-09T22:15:04.378758+0000 INFO Response: GET http://localhost:3000/posts/search?q=stri&field=slug&strict=false&offset=0&limit=10 Status: 200 Time: 8.1560s
+2025-10-09T22:15:24.957170+0000 INFO Request: GET http://localhost:3000/posts/search?q=st&field=slug&strict=false&offset=0&limit=10 from 127.0.0.1
+2025-10-09T22:15:33.068785+0000 INFO Response: GET http://localhost:3000/posts/search?q=st&field=slug&strict=false&offset=0&limit=10 Status: 200 Time: 8.1100s
+2025-10-09T22:18:59.545816+0000 INFO Request: POST http://localhost:3000/auth/login from 127.0.0.1
+2025-10-09T22:19:00.152700+0000 INFO Response: POST http://localhost:3000/auth/login Status: 200 Time: 0.5940s
+2025-10-09T22:19:33.947204+0000 INFO Request: POST http://localhost:3000/posts/string-1/reactions?reaction=like from 127.0.0.1
+2025-10-09T22:19:34.055923+0000 INFO Response: POST http://localhost:3000/posts/string-1/reactions?reaction=like Status: 201 Time: 0.1090s
+2025-10-09T22:19:40.538255+0000 INFO Request: POST http://localhost:3000/posts/string-1/reactions?reaction=like from 127.0.0.1
+2025-10-09T22:19:40.595857+0000 INFO Response: POST http://localhost:3000/posts/string-1/reactions?reaction=like Status: 201 Time: 0.0630s
+2025-10-09T22:19:45.389566+0000 INFO Request: POST http://localhost:3000/posts/string-1/reactions?reaction=dislike from 127.0.0.1
+2025-10-09T22:19:45.609522+0000 INFO Response: POST http://localhost:3000/posts/string-1/reactions?reaction=dislike Status: 201 Time: 0.2180s
+2025-10-09T22:19:50.025528+0000 INFO Request: POST http://localhost:3000/posts/string-1/reactions?reaction=like from 127.0.0.1
+2025-10-09T22:19:50.142459+0000 INFO Response: POST http://localhost:3000/posts/string-1/reactions?reaction=like Status: 201 Time: 0.1250s
+2025-10-09T22:20:44.197109+0000 INFO Request: GET http://localhost:3000/posts/top?field=like from 127.0.0.1
+2025-10-09T22:20:44.204470+0000 INFO Response: GET http://localhost:3000/posts/top?field=like Status: 200 Time: 0.0150s
+2025-10-09T22:23:09.454477+0000 INFO Request: GET http://localhost:3000/posts/top?field=like from 127.0.0.1
+2025-10-09T22:25:28.805409+0000 INFO Request: GET http://localhost:3000/posts/string-1 from 127.0.0.1
+2025-10-09T22:28:04.422213+0000 INFO Request: GET http://localhost:3000/posts/string-1 from 127.0.0.1
+2025-10-09T22:28:12.532277+0000 INFO Response: GET http://localhost:3000/posts/string-1 Status: 200 Time: 8.1090s
+2025-10-09T22:28:24.787044+0000 INFO Request: GET http://localhost:3000/posts/top?field=like from 127.0.0.1
+2025-10-09T22:28:24.821620+0000 INFO Response: GET http://localhost:3000/posts/top?field=like Status: 200 Time: 0.0320s
+2025-10-09T22:29:25.355674+0000 INFO Request: GET http://localhost:3000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-09T22:29:25.395648+0000 INFO Response: GET http://localhost:3000/direct?offset=0&limit=10 Status: 200 Time: 0.0470s
+2025-10-09T22:29:47.562633+0000 INFO Request: PUT http://localhost:3000/direct/msg/1 from 127.0.0.1
+2025-10-09T22:30:11.667955+0000 INFO Request: POST http://localhost:3000/direct/msg/admin from 127.0.0.1
+2025-10-09T22:30:11.718479+0000 INFO Response: POST http://localhost:3000/direct/msg/admin Status: 200 Time: 0.0630s
+2025-10-09T22:30:15.274068+0000 INFO Request: POST http://localhost:3000/direct/msg/admin from 127.0.0.1
+2025-10-09T22:30:15.340546+0000 INFO Response: POST http://localhost:3000/direct/msg/admin Status: 200 Time: 0.0620s
+2025-10-09T22:30:15.705258+0000 INFO Request: POST http://localhost:3000/direct/msg/admin from 127.0.0.1
+2025-10-09T22:30:15.751178+0000 INFO Response: POST http://localhost:3000/direct/msg/admin Status: 200 Time: 0.0470s
+2025-10-09T22:30:16.092093+0000 INFO Request: POST http://localhost:3000/direct/msg/admin from 127.0.0.1
+2025-10-09T22:30:16.186450+0000 INFO Response: POST http://localhost:3000/direct/msg/admin Status: 200 Time: 0.0940s
+2025-10-09T22:30:27.597149+0000 INFO Request: GET http://localhost:3000/direct/msg/1 from 127.0.0.1
+2025-10-09T22:30:35.693044+0000 INFO Response: GET http://localhost:3000/direct/msg/1 Status: 200 Time: 8.0940s
+2025-10-09T22:30:45.473663+0000 INFO Request: PUT http://localhost:3000/direct/msg/1 from 127.0.0.1
+2025-10-09T22:30:45.500685+0000 INFO Response: PUT http://localhost:3000/direct/msg/1 Status: 200 Time: 0.0310s
+2025-10-09T22:42:42.694706+0000 INFO Request: GET http://localhost:3000/me from 127.0.0.1
+2025-10-09T22:42:42.723402+0000 INFO Response: GET http://localhost:3000/me Status: 200 Time: 0.0310s
+2025-10-10T20:00:44.086153+0000 INFO Request: GET http://localhost:3000/ from 127.0.0.1
+2025-10-10T20:00:44.086153+0000 ERROR Response: GET http://localhost:3000/ Status: 404 Time: 0.0000s
+2025-10-10T20:00:44.093927+0000 INFO Request: GET http://localhost:3000/ from 127.0.0.1
+2025-10-10T20:00:44.093927+0000 ERROR Response: GET http://localhost:3000/ Status: 404 Time: 0.0000s
+2025-10-10T20:00:44.277654+0000 INFO Request: GET http://localhost:3000/favicon.ico from 127.0.0.1
+2025-10-10T20:00:44.292378+0000 ERROR Response: GET http://localhost:3000/favicon.ico Status: 404 Time: 0.0150s
+2025-10-10T20:07:29.049356+0000 INFO Request: GET http://localhost:3000/docs from 127.0.0.1
+2025-10-10T20:07:29.049356+0000 INFO Response: GET http://localhost:3000/docs Status: 200 Time: 0.0000s
+2025-10-10T20:07:29.253229+0000 INFO Request: GET http://localhost:3000/openapi.json from 127.0.0.1
+2025-10-10T20:07:29.331392+0000 INFO Response: GET http://localhost:3000/openapi.json Status: 200 Time: 0.0780s
+2025-10-10T20:07:56.374486+0000 INFO Request: GET http://localhost:3000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:07:56.376087+0000 ERROR Response: GET http://localhost:3000/direct?offset=0&limit=10 Status: 403 Time: 0.0000s
+2025-10-10T20:08:15.861238+0000 INFO Request: POST http://localhost:3000/auth/login from 127.0.0.1
+2025-10-10T20:08:16.540016+0000 INFO Response: POST http://localhost:3000/auth/login Status: 200 Time: 0.6710s
+2025-10-10T20:08:31.236679+0000 INFO Request: GET http://localhost:3000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:09:10.780694+0000 INFO Request: GET http://localhost:3000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:12:41.518802+0000 INFO Request: GET http://localhost:3000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:14:02.494089+0000 INFO Request: GET http://localhost:3000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:16:15.552816+0000 INFO Request: GET http://localhost:3000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:16:40.610287+0000 INFO Request: GET http://localhost:3000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:16:40.658475+0000 INFO Response: GET http://localhost:3000/direct?offset=0&limit=10 Status: 200 Time: 0.0460s
+2025-10-10T20:24:25.661747+0000 INFO Request: GET http://localhost:3000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:25:47.089797+0000 INFO Request: GET http://localhost:3000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:27:13.701369+0000 INFO Request: GET http://localhost:3000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:29:08.344684+0000 INFO Request: GET http://localhost:8000/docs from 127.0.0.1
+2025-10-10T20:29:08.344684+0000 INFO Response: GET http://localhost:8000/docs Status: 200 Time: 0.0000s
+2025-10-10T20:29:08.635055+0000 INFO Request: GET http://localhost:8000/openapi.json from 127.0.0.1
+2025-10-10T20:29:08.712787+0000 INFO Response: GET http://localhost:8000/openapi.json Status: 200 Time: 0.0780s
+2025-10-10T20:29:19.392479+0000 INFO Request: POST http://localhost:8000/auth/login from 127.0.0.1
+2025-10-10T20:29:19.964142+0000 INFO Response: POST http://localhost:8000/auth/login Status: 200 Time: 0.5620s
+2025-10-10T20:29:39.071826+0000 INFO Request: GET http://localhost:8000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:32:28.024804+0000 INFO Request: GET http://localhost:8000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:32:28.081111+0000 INFO Response: GET http://localhost:8000/direct?offset=0&limit=10 Status: 200 Time: 0.0620s
+2025-10-10T20:36:05.180443+0000 INFO Request: GET http://localhost:8000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:36:33.860313+0000 INFO Request: GET http://localhost:8000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:36:33.937414+0000 INFO Response: GET http://localhost:8000/direct?offset=0&limit=10 Status: 200 Time: 0.0780s
+2025-10-10T20:37:38.245916+0000 INFO Request: GET http://localhost:8000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:37:38.305979+0000 INFO Response: GET http://localhost:8000/direct?offset=0&limit=10 Status: 200 Time: 0.0620s
+2025-10-10T20:38:35.467263+0000 INFO Request: GET http://localhost:8000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:38:35.515384+0000 INFO Response: GET http://localhost:8000/direct?offset=0&limit=10 Status: 200 Time: 0.0470s
+2025-10-10T20:39:54.304690+0000 INFO Request: GET http://localhost:8000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:39:54.339417+0000 INFO Response: GET http://localhost:8000/direct?offset=0&limit=10 Status: 200 Time: 0.0310s
+2025-10-10T20:39:57.209192+0000 INFO Request: GET http://localhost:8000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:39:57.275005+0000 INFO Response: GET http://localhost:8000/direct?offset=0&limit=10 Status: 200 Time: 0.0630s
+2025-10-10T20:39:58.039676+0000 INFO Request: GET http://localhost:8000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:39:58.100389+0000 INFO Response: GET http://localhost:8000/direct?offset=0&limit=10 Status: 200 Time: 0.0630s
+2025-10-10T20:46:20.725271+0000 INFO Request: GET http://localhost:8000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:46:22.110336+0000 INFO Request: GET http://localhost:8000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:48:49.705066+0000 INFO Request: GET http://localhost:8000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:49:43.612855+0000 INFO Request: GET http://localhost:8000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:49:45.434835+0000 INFO Request: GET http://localhost:8000/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:50:25.376645+0000 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2025-10-10T20:50:25.376645+0000 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2025-10-10T20:50:25.651281+0000 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2025-10-10T20:50:25.718104+0000 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.0780s
+2025-10-10T20:50:35.791009+0000 INFO Request: POST http://localhost:8001/auth/login from 127.0.0.1
+2025-10-10T20:50:36.359784+0000 INFO Response: POST http://localhost:8001/auth/login Status: 200 Time: 0.5790s
+2025-10-10T20:50:51.148568+0000 INFO Request: GET http://localhost:8001/direct?offset=0&limit=10 from 127.0.0.1
+2025-10-10T20:50:51.182460+0000 INFO Response: GET http://localhost:8001/direct?offset=0&limit=10 Status: 200 Time: 0.0310s
+2025-10-10T20:53:13.217056+0000 INFO Request: GET http://localhost:8001/users/@admin from 127.0.0.1
+2025-10-10T20:53:13.242023+0000 INFO Response: GET http://localhost:8001/users/@admin Status: 200 Time: 0.0160s
+2025-10-10T23:07:49.317587+0000 INFO Request: GET http://localhost:5000/docs from 127.0.0.1
+2025-10-10T23:07:49.317587+0000 INFO Response: GET http://localhost:5000/docs Status: 200 Time: 0.0000s
+2025-10-10T23:07:49.509513+0000 INFO Request: GET http://localhost:5000/openapi.json from 127.0.0.1
+2025-10-10T23:07:49.593119+0000 INFO Response: GET http://localhost:5000/openapi.json Status: 200 Time: 0.0940s
+2025-10-10T23:08:03.775282+0000 INFO Request: GET http://localhost:5000/users/@admin/top-topics from 127.0.0.1
+2025-10-10T23:08:59.255889+0000 INFO Request: GET http://localhost:5000/users/@admin/top-topics from 127.0.0.1
+2025-10-10T23:10:37.846733+0000 INFO Request: GET http://localhost:5000/docs from 127.0.0.1
+2025-10-10T23:10:37.846733+0000 INFO Response: GET http://localhost:5000/docs Status: 200 Time: 0.0000s
+2025-10-10T23:10:38.017256+0000 INFO Request: GET http://localhost:5000/openapi.json from 127.0.0.1
+2025-10-10T23:10:38.021135+0000 INFO Response: GET http://localhost:5000/openapi.json Status: 200 Time: 0.0000s
+2025-10-10T23:10:38.925603+0000 INFO Request: GET http://localhost:5000/docs from 127.0.0.1
+2025-10-10T23:10:38.925603+0000 INFO Response: GET http://localhost:5000/docs Status: 200 Time: 0.0000s
+2025-10-10T23:10:38.996242+0000 INFO Request: GET http://localhost:5000/docs from 127.0.0.1
+2025-10-10T23:10:38.996242+0000 INFO Response: GET http://localhost:5000/docs Status: 200 Time: 0.0000s
+2025-10-10T23:10:39.089429+0000 INFO Request: GET http://localhost:5000/openapi.json from 127.0.0.1
+2025-10-10T23:10:39.089429+0000 INFO Response: GET http://localhost:5000/openapi.json Status: 200 Time: 0.0000s
+2025-10-10T23:10:39.269341+0000 INFO Request: GET http://localhost:5000/docs from 127.0.0.1
+2025-10-10T23:10:39.270949+0000 INFO Response: GET http://localhost:5000/docs Status: 200 Time: 0.0000s
+2025-10-10T23:10:39.835777+0000 INFO Request: GET http://localhost:5000/docs from 127.0.0.1
+2025-10-10T23:10:39.843822+0000 INFO Response: GET http://localhost:5000/docs Status: 200 Time: 0.0160s
+2025-10-10T23:10:39.909815+0000 INFO Request: GET http://localhost:5000/openapi.json from 127.0.0.1
+2025-10-10T23:10:39.912672+0000 INFO Response: GET http://localhost:5000/openapi.json Status: 200 Time: 0.0000s
+2025-10-10T23:10:40.066359+0000 INFO Request: GET http://localhost:5000/docs from 127.0.0.1
+2025-10-10T23:10:40.067099+0000 INFO Response: GET http://localhost:5000/docs Status: 200 Time: 0.0000s
+2025-10-10T23:10:40.579841+0000 INFO Request: GET http://localhost:5000/docs from 127.0.0.1
+2025-10-10T23:11:25.113202+0000 INFO Request: GET http://localhost:5001/docs from 127.0.0.1
+2025-10-10T23:11:25.113202+0000 INFO Response: GET http://localhost:5001/docs Status: 200 Time: 0.0000s
+2025-10-10T23:11:25.289485+0000 INFO Request: GET http://localhost:5001/openapi.json from 127.0.0.1
+2025-10-10T23:11:25.363464+0000 INFO Response: GET http://localhost:5001/openapi.json Status: 200 Time: 0.0790s
+2025-10-10T23:11:32.009829+0000 INFO Request: GET http://localhost:5001/users/@admin/top-topics from 127.0.0.1
+2025-10-10T23:13:42.645339+0000 INFO Request: GET http://localhost:5001/users/@admin/top-topics from 127.0.0.1
+2025-10-10T23:15:39.110756+0000 INFO Request: GET http://localhost:5001/users/@admin/top-topics from 127.0.0.1
+2025-10-10T23:15:39.135404+0000 INFO Response: GET http://localhost:5001/users/@admin/top-topics Status: 200 Time: 0.0150s
+2025-10-10T23:20:19.775569+0000 INFO Request: GET http://localhost:5001/docs from 127.0.0.1
+2025-10-10T23:20:19.775569+0000 INFO Response: GET http://localhost:5001/docs Status: 200 Time: 0.0000s
+2025-10-10T23:20:20.058618+0000 INFO Request: GET http://localhost:5001/openapi.json from 127.0.0.1
+2025-10-10T23:20:20.165065+0000 INFO Response: GET http://localhost:5001/openapi.json Status: 200 Time: 0.1090s
+2025-10-10T23:21:02.787512+0000 INFO Request: GET http://localhost:5001/docs from 127.0.0.1
+2025-10-10T23:21:02.795523+0000 INFO Response: GET http://localhost:5001/docs Status: 200 Time: 0.0160s
+2025-10-10T23:21:02.988147+0000 INFO Request: GET http://localhost:5001/openapi.json from 127.0.0.1
+2025-10-10T23:21:03.072643+0000 INFO Response: GET http://localhost:5001/openapi.json Status: 200 Time: 0.0780s
+2025-10-10T23:21:15.003297+0000 INFO Request: POST http://localhost:5001/topics/offer from 127.0.0.1
+2025-10-10T23:21:15.003297+0000 ERROR Response: POST http://localhost:5001/topics/offer Status: 403 Time: 0.0000s
+2025-10-10T23:22:55.232081+0000 INFO Request: GET http://localhost:5001/docs from 127.0.0.1
+2025-10-10T23:22:55.232081+0000 INFO Response: GET http://localhost:5001/docs Status: 200 Time: 0.0000s
+2025-10-10T23:22:55.399052+0000 INFO Request: GET http://localhost:5001/openapi.json from 127.0.0.1
+2025-10-10T23:22:55.465897+0000 INFO Response: GET http://localhost:5001/openapi.json Status: 200 Time: 0.0780s
+2025-10-10T23:23:00.438133+0000 INFO Request: GET http://localhost:5001/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-10T23:23:00.465242+0000 INFO Response: GET http://localhost:5001/topics?offset=0&limit=10 Status: 200 Time: 0.0150s
+2025-10-10T23:23:07.414599+0000 INFO Request: POST http://localhost:5001/topics/offer from 127.0.0.1
+2025-10-10T23:23:07.418058+0000 ERROR Response: POST http://localhost:5001/topics/offer Status: 403 Time: 0.0000s
+2025-10-10T23:23:42.427291+0000 INFO Request: GET http://localhost:5001/docs from 127.0.0.1
+2025-10-10T23:23:42.427291+0000 INFO Response: GET http://localhost:5001/docs Status: 200 Time: 0.0000s
+2025-10-10T23:23:42.630357+0000 INFO Request: GET http://localhost:5001/openapi.json from 127.0.0.1
+2025-10-10T23:23:42.668567+0000 INFO Response: GET http://localhost:5001/openapi.json Status: 200 Time: 0.0310s
+2025-10-10T23:24:10.265565+0000 INFO Request: POST http://localhost:5001/auth/login from 127.0.0.1
+2025-10-10T23:24:10.865266+0000 INFO Response: POST http://localhost:5001/auth/login Status: 200 Time: 0.5940s
+2025-10-10T23:24:23.243726+0000 INFO Request: GET http://localhost:5001/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-10T23:24:23.264773+0000 INFO Response: GET http://localhost:5001/topics?offset=0&limit=10 Status: 200 Time: 0.0310s
+2025-10-10T23:24:29.687744+0000 INFO Request: POST http://localhost:5001/topics/offer from 127.0.0.1
+2025-10-10T23:24:29.755450+0000 INFO Response: POST http://localhost:5001/topics/offer Status: 201 Time: 0.0620s
+2025-10-10T23:24:47.688994+0000 INFO Request: POST http://localhost:5001/topics/offer from 127.0.0.1
+2025-10-10T23:24:47.774814+0000 INFO Response: POST http://localhost:5001/topics/offer Status: 201 Time: 0.0780s
+2025-10-10T23:28:14.786449+0000 INFO Request: POST http://localhost:5001/topics/offer from 127.0.0.1
+2025-10-10T23:28:14.862003+0000 INFO Response: POST http://localhost:5001/topics/offer Status: 201 Time: 0.0790s
+2025-10-10T23:28:45.909171+0000 INFO Request: GET http://localhost:5001/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-10T23:28:45.930070+0000 INFO Response: GET http://localhost:5001/topics?offset=0&limit=10 Status: 200 Time: 0.0160s
+2025-10-10T23:30:44.123988+0000 INFO Request: GET http://localhost:5001/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-10T23:30:44.141371+0000 INFO Response: GET http://localhost:5001/topics?offset=0&limit=10 Status: 200 Time: 0.0160s
+2025-10-10T23:30:46.256743+0000 INFO Request: GET http://localhost:5001/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-10T23:30:46.280604+0000 INFO Response: GET http://localhost:5001/topics?offset=0&limit=10 Status: 200 Time: 0.0310s
+2025-10-10T23:30:46.809449+0000 INFO Request: GET http://localhost:5001/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-10T23:30:46.815987+0000 INFO Response: GET http://localhost:5001/topics?offset=0&limit=10 Status: 200 Time: 0.0000s
+2025-10-10T23:30:46.994041+0000 INFO Request: GET http://localhost:5001/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-10T23:30:47.000121+0000 INFO Response: GET http://localhost:5001/topics?offset=0&limit=10 Status: 200 Time: 0.0150s
+2025-10-10T23:30:47.182619+0000 INFO Request: GET http://localhost:5001/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-10T23:30:47.207526+0000 INFO Response: GET http://localhost:5001/topics?offset=0&limit=10 Status: 200 Time: 0.0310s
+2025-10-10T23:31:00.190516+0000 INFO Request: GET http://localhost:5001/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-10T23:31:00.204806+0000 INFO Response: GET http://localhost:5001/topics?offset=0&limit=10 Status: 200 Time: 0.0150s
+2025-10-10T23:31:02.206969+0000 INFO Request: GET http://localhost:5001/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-10T23:31:02.218864+0000 INFO Response: GET http://localhost:5001/topics?offset=0&limit=10 Status: 200 Time: 0.0160s
+2025-10-10T23:31:02.665437+0000 INFO Request: GET http://localhost:5001/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-10T23:31:02.673702+0000 INFO Response: GET http://localhost:5001/topics?offset=0&limit=10 Status: 200 Time: 0.0160s
+2025-10-10T23:31:02.949321+0000 INFO Request: GET http://localhost:5001/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-10T23:31:02.957324+0000 INFO Response: GET http://localhost:5001/topics?offset=0&limit=10 Status: 200 Time: 0.0150s
+2025-10-10T23:31:03.232589+0000 INFO Request: GET http://localhost:5001/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-10T23:31:03.250600+0000 INFO Response: GET http://localhost:5001/topics?offset=0&limit=10 Status: 200 Time: 0.0150s
+2025-10-10T23:34:20.226379+0000 INFO Request: GET http://localhost:5001/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-10T23:34:20.242685+0000 INFO Response: GET http://localhost:5001/topics?offset=0&limit=10 Status: 200 Time: 0.0160s
+2025-10-10T23:34:22.158869+0000 INFO Request: GET http://localhost:5001/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-10T23:34:22.166876+0000 INFO Response: GET http://localhost:5001/topics?offset=0&limit=10 Status: 200 Time: 0.0000s
+2025-10-10T23:34:23.039747+0000 INFO Request: GET http://localhost:5001/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-10T23:34:23.047988+0000 INFO Response: GET http://localhost:5001/topics?offset=0&limit=10 Status: 200 Time: 0.0160s
+2025-10-10T23:35:09.018781+0000 INFO Request: GET http://localhost:5002/docs from 127.0.0.1
+2025-10-10T23:35:09.018781+0000 INFO Response: GET http://localhost:5002/docs Status: 200 Time: 0.0000s
+2025-10-10T23:35:09.239326+0000 INFO Request: GET http://localhost:5002/openapi.json from 127.0.0.1
+2025-10-10T23:35:09.316612+0000 INFO Response: GET http://localhost:5002/openapi.json Status: 200 Time: 0.0780s
+2025-10-10T23:35:16.923664+0000 INFO Request: GET http://localhost:5002/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-10T23:36:13.193857+0000 INFO Request: GET http://localhost:5002/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-10T23:38:47.318438+0000 INFO Request: GET http://localhost:5002/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-10T23:40:33.418885+0000 INFO Request: GET http://localhost:5002/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-10T23:44:35.519043+0000 INFO Request: GET http://localhost:5002/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-10T23:44:35.528418+0000 INFO Response: GET http://localhost:5002/topics?offset=0&limit=10 Status: 200 Time: 0.0150s
+2025-10-11T00:28:07.292242+0000 INFO Request: GET http://localhost:5005/docs from 127.0.0.1
+2025-10-11T00:28:07.300252+0000 INFO Response: GET http://localhost:5005/docs Status: 200 Time: 0.0160s
+2025-10-11T00:28:07.622259+0000 INFO Request: GET http://localhost:5005/openapi.json from 127.0.0.1
+2025-10-11T00:28:07.737269+0000 INFO Response: GET http://localhost:5005/openapi.json Status: 200 Time: 0.1100s
+2025-10-11T00:28:49.594199+0000 INFO Request: GET http://localhost:5005/docs from 127.0.0.1
+2025-10-11T00:28:49.594199+0000 INFO Response: GET http://localhost:5005/docs Status: 200 Time: 0.0000s
+2025-10-11T00:28:49.692624+0000 INFO Request: GET http://localhost:5005/openapi.json from 127.0.0.1
+2025-10-11T00:28:49.736313+0000 INFO Response: GET http://localhost:5005/openapi.json Status: 200 Time: 0.0470s
+2025-10-11T00:29:02.761585+0000 INFO Request: GET http://localhost:5005/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-11T00:29:02.786919+0000 INFO Response: GET http://localhost:5005/topics?offset=0&limit=10 Status: 200 Time: 0.0310s
+2025-10-11T00:29:33.125176+0000 INFO Request: GET http://localhost:5005/docs from 127.0.0.1
+2025-10-11T00:29:33.127169+0000 INFO Response: GET http://localhost:5005/docs Status: 200 Time: 0.0000s
+2025-10-11T00:29:33.319410+0000 INFO Request: GET http://localhost:5005/openapi.json from 127.0.0.1
+2025-10-11T00:29:33.412423+0000 INFO Response: GET http://localhost:5005/openapi.json Status: 200 Time: 0.0930s
+2025-10-11T00:29:51.230732+0000 INFO Request: GET http://localhost:5005/topics/sadasd from 127.0.0.1
+2025-10-11T00:30:24.556584+0000 INFO Request: POST http://localhost:5005/auth/login from 127.0.0.1
+2025-10-11T00:30:25.125705+0000 INFO Response: POST http://localhost:5005/auth/login Status: 200 Time: 0.5780s
+2025-10-11T00:30:41.091787+0000 INFO Request: GET http://localhost:5005/users/@admin/top-topics from 127.0.0.1
+2025-10-11T00:30:41.115719+0000 INFO Response: GET http://localhost:5005/users/@admin/top-topics Status: 200 Time: 0.0160s
+2025-10-11T00:33:39.769330+0000 INFO Request: GET http://localhost:5005/docs from 127.0.0.1
+2025-10-11T00:33:39.777594+0000 INFO Response: GET http://localhost:5005/docs Status: 200 Time: 0.0000s
+2025-10-11T00:33:40.145575+0000 INFO Request: GET http://localhost:5005/openapi.json from 127.0.0.1
+2025-10-11T00:33:40.282622+0000 INFO Response: GET http://localhost:5005/openapi.json Status: 200 Time: 0.1400s
+2025-10-11T00:34:49.416101+0000 INFO Request: GET http://localhost:5005/docs from 127.0.0.1
+2025-10-11T00:34:49.421443+0000 INFO Response: GET http://localhost:5005/docs Status: 200 Time: 0.0160s
+2025-10-11T00:34:49.725068+0000 INFO Request: GET http://localhost:5005/openapi.json from 127.0.0.1
+2025-10-11T00:34:49.775207+0000 INFO Response: GET http://localhost:5005/openapi.json Status: 200 Time: 0.0470s
+2025-10-11T00:35:18.131424+0000 INFO Request: GET http://localhost:5005/docs from 127.0.0.1
+2025-10-11T00:35:18.134383+0000 INFO Response: GET http://localhost:5005/docs Status: 200 Time: 0.0000s
+2025-10-11T00:35:18.261326+0000 INFO Request: GET http://localhost:5005/openapi.json from 127.0.0.1
+2025-10-11T00:35:18.344682+0000 INFO Response: GET http://localhost:5005/openapi.json Status: 200 Time: 0.0940s
+2025-10-11T00:35:44.830400+0000 INFO Request: POST http://localhost:5005/auth/login from 127.0.0.1
+2025-10-11T00:35:45.415646+0000 INFO Response: POST http://localhost:5005/auth/login Status: 200 Time: 0.5780s
+2025-10-11T00:36:00.998802+0000 INFO Request: GET http://localhost:5005/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-11T00:36:01.017488+0000 INFO Response: GET http://localhost:5005/topics?offset=0&limit=10 Status: 200 Time: 0.0160s
+2025-10-11T00:36:07.032677+0000 INFO Request: POST http://localhost:5005/topics from 127.0.0.1
+2025-10-11T00:36:07.097991+0000 INFO Response: POST http://localhost:5005/topics Status: 201 Time: 0.0630s
+2025-10-11T00:36:09.569961+0000 INFO Request: POST http://localhost:5005/topics from 127.0.0.1
+2025-10-11T00:36:14.312170+0000 INFO Request: GET http://localhost:5005/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-11T00:36:14.321168+0000 INFO Response: GET http://localhost:5005/topics?offset=0&limit=10 Status: 200 Time: 0.0000s
+2025-10-11T00:36:58.496930+0000 INFO Request: POST http://localhost:5005/topics/{slug}/posts from 127.0.0.1
+2025-10-11T00:39:09.658053+0000 INFO Request: POST http://localhost:5005/topics/{slug}/posts from 127.0.0.1
+2025-10-11T00:40:03.238563+0000 INFO Request: POST http://localhost:5005/topics/{slug}/posts from 127.0.0.1
+2025-10-11T00:40:07.504604+0000 INFO Request: POST http://localhost:5005/topics/{slug}/posts from 127.0.0.1
+2025-10-11T00:40:12.687433+0000 INFO Request: GET http://localhost:5005/docs from 127.0.0.1
+2025-10-11T00:40:12.687433+0000 INFO Response: GET http://localhost:5005/docs Status: 200 Time: 0.0000s
+2025-10-11T00:40:12.867187+0000 INFO Request: GET http://localhost:5005/openapi.json from 127.0.0.1
+2025-10-11T00:40:12.951097+0000 INFO Response: GET http://localhost:5005/openapi.json Status: 200 Time: 0.0930s
+2025-10-11T00:40:35.063537+0000 INFO Request: POST http://localhost:5005/auth/login from 127.0.0.1
+2025-10-11T00:40:35.571617+0000 INFO Response: POST http://localhost:5005/auth/login Status: 200 Time: 0.5000s
+2025-10-11T00:41:56.980773+0000 INFO Request: GET http://localhost:5005/topics?offset=0&limit=10 from 127.0.0.1
+2025-10-11T00:41:56.997495+0000 INFO Response: GET http://localhost:5005/topics?offset=0&limit=10 Status: 200 Time: 0.0310s
+2025-10-11T00:42:15.077261+0000 INFO Request: GET http://localhost:5005/topics/string/posts?offset=0&limit=10 from 127.0.0.1
+2025-10-11T00:42:15.102053+0000 INFO Response: GET http://localhost:5005/topics/string/posts?offset=0&limit=10 Status: 200 Time: 0.0160s
+2025-10-11T00:42:24.479817+0000 INFO Request: POST http://localhost:5005/topics/string/posts from 127.0.0.1
+2025-10-11T00:42:24.592180+0000 INFO Response: POST http://localhost:5005/topics/string/posts Status: 201 Time: 0.1250s
+2025-10-11T00:42:46.073162+0000 INFO Request: GET http://localhost:5005/topics/string/posts?offset=0&limit=10 from 127.0.0.1
+2025-10-11T00:42:46.095767+0000 INFO Response: GET http://localhost:5005/topics/string/posts?offset=0&limit=10 Status: 200 Time: 0.0310s
+2025-10-11T00:42:52.273953+0000 INFO Request: POST http://localhost:5005/topics/string/posts from 127.0.0.1
+2025-10-11T00:42:52.323968+0000 INFO Response: POST http://localhost:5005/topics/string/posts Status: 201 Time: 0.0470s
+2025-10-11T00:42:53.082603+0000 INFO Request: POST http://localhost:5005/topics/string/posts from 127.0.0.1
+2025-10-11T00:42:53.140508+0000 INFO Response: POST http://localhost:5005/topics/string/posts Status: 201 Time: 0.0630s
+2025-10-11T00:42:53.578216+0000 INFO Request: POST http://localhost:5005/topics/string/posts from 127.0.0.1
+2025-10-11T00:42:53.631263+0000 INFO Response: POST http://localhost:5005/topics/string/posts Status: 201 Time: 0.0470s
+2025-10-11T00:42:53.965356+0000 INFO Request: POST http://localhost:5005/topics/string/posts from 127.0.0.1
+2025-10-11T00:42:54.023943+0000 INFO Response: POST http://localhost:5005/topics/string/posts Status: 201 Time: 0.0630s
+2025-10-11T00:42:54.390266+0000 INFO Request: POST http://localhost:5005/topics/string/posts from 127.0.0.1
+2025-10-11T00:42:54.423844+0000 INFO Response: POST http://localhost:5005/topics/string/posts Status: 201 Time: 0.0310s
+2025-10-11T00:42:54.798951+0000 INFO Request: POST http://localhost:5005/topics/string/posts from 127.0.0.1
+2025-10-11T00:42:54.867839+0000 INFO Response: POST http://localhost:5005/topics/string/posts Status: 201 Time: 0.0630s
+2025-10-11T00:42:55.226353+0000 INFO Request: POST http://localhost:5005/topics/string/posts from 127.0.0.1
+2025-10-11T00:42:55.265359+0000 INFO Response: POST http://localhost:5005/topics/string/posts Status: 201 Time: 0.0470s
+2025-10-11T00:42:55.732183+0000 INFO Request: POST http://localhost:5005/topics/string/posts from 127.0.0.1
+2025-10-11T00:42:55.798862+0000 INFO Response: POST http://localhost:5005/topics/string/posts Status: 201 Time: 0.0620s
+2025-10-11T00:42:57.882990+0000 INFO Request: GET http://localhost:5005/topics/string/posts?offset=0&limit=10 from 127.0.0.1
+2025-10-11T00:42:57.893172+0000 INFO Response: GET http://localhost:5005/topics/string/posts?offset=0&limit=10 Status: 200 Time: 0.0160s
+2025-10-11T00:43:27.210640+0000 INFO Request: POST http://localhost:5005/posts/string-1/comments from 127.0.0.1
+2025-10-11T00:43:27.210640+0000 ERROR Response: POST http://localhost:5005/posts/string-1/comments Status: 422 Time: 0.0000s
+2025-10-11T00:43:32.634744+0000 INFO Request: POST http://localhost:5005/posts/string-1/comments from 127.0.0.1
+2025-10-11T00:43:32.701426+0000 INFO Response: POST http://localhost:5005/posts/string-1/comments Status: 201 Time: 0.0780s
+2025-10-11T00:43:33.342419+0000 INFO Request: POST http://localhost:5005/posts/string-1/comments from 127.0.0.1
+2025-10-11T00:43:33.401387+0000 INFO Response: POST http://localhost:5005/posts/string-1/comments Status: 201 Time: 0.0470s
+2025-10-11T00:43:35.726083+0000 INFO Request: POST http://localhost:5005/posts/string-1/comments from 127.0.0.1
+2025-10-11T00:43:35.776457+0000 INFO Response: POST http://localhost:5005/posts/string-1/comments Status: 201 Time: 0.0470s
+2025-10-11T00:43:36.083861+0000 INFO Request: POST http://localhost:5005/posts/string-1/comments from 127.0.0.1
+2025-10-11T00:43:36.142480+0000 INFO Response: POST http://localhost:5005/posts/string-1/comments Status: 201 Time: 0.0630s
+2025-10-11T00:43:36.460969+0000 INFO Request: POST http://localhost:5005/posts/string-1/comments from 127.0.0.1
+2025-10-11T00:43:36.517719+0000 INFO Response: POST http://localhost:5005/posts/string-1/comments Status: 201 Time: 0.0630s
+2025-10-11T00:43:36.826117+0000 INFO Request: POST http://localhost:5005/posts/string-1/comments from 127.0.0.1
+2025-10-11T00:43:36.876130+0000 INFO Response: POST http://localhost:5005/posts/string-1/comments Status: 201 Time: 0.0470s
+2025-10-11T00:43:37.187548+0000 INFO Request: POST http://localhost:5005/posts/string-1/comments from 127.0.0.1
+2025-10-11T00:43:37.217842+0000 INFO Response: POST http://localhost:5005/posts/string-1/comments Status: 201 Time: 0.0310s
+2025-10-11T00:43:37.483063+0000 INFO Request: POST http://localhost:5005/posts/string-1/comments from 127.0.0.1
+2025-10-11T00:43:37.542780+0000 INFO Response: POST http://localhost:5005/posts/string-1/comments Status: 201 Time: 0.0460s
+2025-10-11T00:43:37.817223+0000 INFO Request: POST http://localhost:5005/posts/string-1/comments from 127.0.0.1
+2025-10-11T00:43:37.867741+0000 INFO Response: POST http://localhost:5005/posts/string-1/comments Status: 201 Time: 0.0470s
+2025-10-11T00:43:38.201086+0000 INFO Request: POST http://localhost:5005/posts/string-1/comments from 127.0.0.1
+2025-10-11T00:43:38.251114+0000 INFO Response: POST http://localhost:5005/posts/string-1/comments Status: 201 Time: 0.0470s
+2025-10-11T00:43:38.547224+0000 INFO Request: POST http://localhost:5005/posts/string-1/comments from 127.0.0.1
+2025-10-11T00:43:38.576147+0000 INFO Response: POST http://localhost:5005/posts/string-1/comments Status: 201 Time: 0.0310s
+2025-10-11T00:43:38.926205+0000 INFO Request: POST http://localhost:5005/posts/string-1/comments from 127.0.0.1
+2025-10-11T00:43:38.975738+0000 INFO Response: POST http://localhost:5005/posts/string-1/comments Status: 201 Time: 0.0470s
+2025-10-11T00:43:39.275785+0000 INFO Request: POST http://localhost:5005/posts/string-1/comments from 127.0.0.1
+2025-10-11T00:43:39.334404+0000 INFO Response: POST http://localhost:5005/posts/string-1/comments Status: 201 Time: 0.0620s
+2025-10-11T00:43:39.625989+0000 INFO Request: POST http://localhost:5005/posts/string-1/comments from 127.0.0.1
+2025-10-11T00:43:39.684361+0000 INFO Response: POST http://localhost:5005/posts/string-1/comments Status: 201 Time: 0.0630s
+2025-10-11T00:43:39.960411+0000 INFO Request: POST http://localhost:5005/posts/string-1/comments from 127.0.0.1
+2025-10-11T00:43:39.993691+0000 INFO Response: POST http://localhost:5005/posts/string-1/comments Status: 201 Time: 0.0320s
+2025-10-11T00:43:40.300906+0000 INFO Request: POST http://localhost:5005/posts/string-1/comments from 127.0.0.1
+2025-10-11T00:43:40.350806+0000 INFO Response: POST http://localhost:5005/posts/string-1/comments Status: 201 Time: 0.0470s
+2025-10-11T00:44:12.911297+0000 INFO Request: GET http://localhost:5005/users/@admin/top-topics from 127.0.0.1
+2025-10-11T00:44:12.924708+0000 INFO Response: GET http://localhost:5005/users/@admin/top-topics Status: 200 Time: 0.0160s
+2025-10-11T00:44:23.974552+0000 INFO Request: GET http://localhost:5005/me from 127.0.0.1
+2025-10-11T00:44:23.982802+0000 INFO Response: GET http://localhost:5005/me Status: 200 Time: 0.0160s
+2025-10-11T00:44:34.363829+0000 INFO Request: GET http://localhost:5005/me/settings from 127.0.0.1
+2025-10-11T00:44:34.372158+0000 INFO Response: GET http://localhost:5005/me/settings Status: 200 Time: 0.0150s
+2025-10-11T00:44:50.780830+0000 INFO Request: POST http://localhost:5005/topics/offer from 127.0.0.1
+2025-10-11T00:44:50.801386+0000 INFO Response: POST http://localhost:5005/topics/offer Status: 201 Time: 0.0160s
+2025-10-11T00:44:56.086008+0000 INFO Request: POST http://localhost:5005/topics/offer from 127.0.0.1
+2025-10-11T00:44:56.132423+0000 INFO Response: POST http://localhost:5005/topics/offer Status: 201 Time: 0.0470s
+2025-10-11T00:44:57.839856+0000 INFO Request: POST http://localhost:5005/topics/offer from 127.0.0.1
+2025-10-11T00:44:57.896717+0000 INFO Response: POST http://localhost:5005/topics/offer Status: 201 Time: 0.0630s
+2025-10-11T00:44:58.315992+0000 INFO Request: POST http://localhost:5005/topics/offer from 127.0.0.1
+2025-10-11T00:44:58.365797+0000 INFO Response: POST http://localhost:5005/topics/offer Status: 201 Time: 0.0470s
+2025-10-11T00:44:58.982455+0000 INFO Request: POST http://localhost:5005/topics/offer from 127.0.0.1
+2025-10-11T00:44:59.007304+0000 INFO Response: POST http://localhost:5005/topics/offer Status: 201 Time: 0.0150s
+2025-10-11T00:44:59.198866+0000 INFO Request: POST http://localhost:5005/topics/offer from 127.0.0.1
+2025-10-11T00:44:59.250475+0000 INFO Response: POST http://localhost:5005/topics/offer Status: 201 Time: 0.0620s
+2025-10-11T00:44:59.423495+0000 INFO Request: POST http://localhost:5005/topics/offer from 127.0.0.1
+2025-10-11T00:44:59.473982+0000 INFO Response: POST http://localhost:5005/topics/offer Status: 201 Time: 0.0470s
+2025-10-11T00:45:13.180374+0000 INFO Request: POST http://localhost:5005/topics/offer/1/process from 127.0.0.1

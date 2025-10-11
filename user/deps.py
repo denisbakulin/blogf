@@ -1,11 +1,11 @@
 from typing import Annotated
 
-from fastapi import Depends, HTTPException, Path
-from fastapi import status as st
+from fastapi import Depends
+
 
 from core.db import getSessionDep
 from user.model import User
-from user.repository import UserRepository
+
 from user.service import UserService
 
 

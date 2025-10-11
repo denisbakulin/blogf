@@ -41,9 +41,11 @@ class BaseRepository[T]:
         else:
             stmt = select(self.model)
 
-        stmt = stmt.filter_by(**filters)
+        if filters:
+            stmt = stmt.filter_by(**filters)
 
-        stmt = self._process_stmt_with_inner_fields(inner_props, stmt)
+        if inner_props:
+            stmt = self._process_stmt_with_inner_fields(inner_props, stmt)
 
         order_func = getattr(self.model, order_by, None)
 
@@ -83,7 +85,7 @@ class BaseRepository[T]:
 
     def create(
             self,
-            **data: Unpack[T]
+            **data
     ) -> T:
         """Создает запись"""
 
@@ -97,7 +99,7 @@ class BaseRepository[T]:
     ) -> bool:
         """Проверяет существование записи"""
 
-        result = await self.get_any_by(offset=0, limit=1, **filters)
+        result = await self.get_one_by(**filters)
         return bool(result)
 
 

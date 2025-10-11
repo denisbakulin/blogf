@@ -13,10 +13,16 @@ class PostBase(PostAllows):
     public: bool = Field(default=True)
 
 
+from user.schemas import PostUserShow
 
 class PostShow(PostBase, IdMixinSchema, TimeMixinSchema):
-    author_id: int
+    author: PostUserShow
     slug: str
+
+
+class TopPostShow(BaseSchema):
+    post: PostShow
+    count: int
 
 class PostReactions(BaseModel):
     like: int = 0

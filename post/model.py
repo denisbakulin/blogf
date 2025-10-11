@@ -15,8 +15,10 @@ class Post(BaseORM, IdMixin, TimeMixin):
     allow_comments: Mapped[bool] = mapped_column(default=True)
     allow_reactions: Mapped[bool] = mapped_column(default=True)
 
+    topic_id: Mapped[int] = mapped_column(ForeignKey("topics.id"))
     author_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
 
-    author: Mapped["User"] = relationship("User")
+    author: Mapped["User"] = relationship("User", lazy="joined")
+    topic: Mapped["User"] = relationship("Topic")
 
 

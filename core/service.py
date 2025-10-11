@@ -66,6 +66,15 @@ class BaseService[T, R]:
         return item
 
 
+    async def get_items_by(
+            self,
+            pagination: Pagination,
+            **params
+    ) -> list[T]:
+        return await self.repository.get_any_by(**params, **pagination.get())
+
+
+
     async def check_already_exists(self, **fields):
         """
         Проверяет на сущесвование записи

@@ -2,11 +2,11 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.exceptions import EntityBadRequestError
 from core.service import BaseService
-from helpers.search import Pagination
+
 from post.model import Post
 from post.repository import PostRepository
-from post.schemas import PostCreate, PostUpdate
-from post.utils import PostSearchParams, generate_slug
+from post.schemas import PostCreate, PostUpdate, TopPostShow
+from post.utils import generate_slug
 from user.model import User
 
 
@@ -15,10 +15,9 @@ class PostService(BaseService[Post, PostRepository]):
     def __init__(self, session: AsyncSession):
         super().__init__(Post, session, PostRepository)
 
-    async def create_post(self, user: User, post_info: PostCreate) -> Post:
+    async def create_post(self, user: User, post_info: PostCreate, topic_id: int) -> Post:
 
-        post = self.repository.create_post(**post_info.model_dump(), author_id=user.id)
-        await self.session.commit()
+        post = await self.create_item(**post_info.model_dump(), author_id=user.id, topic_id=topic_id)
 
         slug = generate_slug(post.title, post.id)
 
@@ -26,12 +25,11 @@ class PostService(BaseService[Post, PostRepository]):
 
         return post
 
+    async def get_top_of_posts(self, q: str):
 
-    async def get_post_by_slug(
-            self,
-            slug: str,
-    ) -> Post:
-        return await self.get_item_by(slug=slug)
+        posts = await self.repository.get_top_of_posts(q)
+        return [TopPostShow(post=p[0], count=p[1]) for p in posts]
+
 
     async def update_post(self, post: Post, user: User, update_data: PostUpdate) -> Post:
 
@@ -44,18 +42,3 @@ class PostService(BaseService[Post, PostRepository]):
         await self.update_item(post, **update_data.model_dump())
 
         return post
-
-
-    async def get_posts_by_author_id(
-            self,
-            author_id: int,
-            pagination: Pagination,
-    ) -> list[Post]:
-        return await self.repository.get_any_by(author_id=author_id, **pagination.get())
-
-    async def search_posts(
-            self,
-            search: PostSearchParams,
-            pagination: Pagination
-    ) -> list[Post]:
-        return await self.search_items(search, pagination)

@@ -1,10 +1,12 @@
 from typing import Optional
 
 from sqlalchemy.ext.asyncio import AsyncSession
-
+from sqlalchemy import func, and_
 from comment.model import Comment
 from core.repository import BaseRepository
-
+from sqlalchemy import select
+from topic.model import Topic
+from post.model import Post
 
 class CommentRepository(BaseRepository[Comment]):
 
@@ -31,6 +33,31 @@ class CommentRepository(BaseRepository[Comment]):
     ) -> Optional[Comment]:
         return await self.get_one_by(**filters)
 
+
+    async def get_user_comment_count_by_topic(
+            self,
+            user_id: int,
+    ) -> list[tuple[Topic, int]]:
+        stmt = (
+            select(
+                Topic, func.count()
+            )
+            .select_from(Comment)
+            .join(Post, Post.id == Comment.post_id)
+            .where(
+                Comment.user_id == user_id
+            )
+            .group_by(Post.topic_id)
+            .limit(10)
+        )
+
+        result = await self.session.execute(stmt)
+
+        q = result.tuples().all()
+
+        print(q, 1111111111111111111111111111111111111111111)
+
+        return [*q]
 
 
 

@@ -47,7 +47,7 @@ def include_routers(app: FastAPI):
     from direct.views import direct_router
     from direct.ws import ws
     from subs.views import subs_router
-
+    from topic.views import topic_router
 
     admin_router = Admin(
         UserAdminView(table_name="Пользователи"),
@@ -57,7 +57,7 @@ def include_routers(app: FastAPI):
 
 
     routers: list[APIRouter] = [
-        user_router, me_router,
+        user_router, me_router, topic_router,
         auth_router, post_router,
         comm_router, admin_router,
         crypto_router, weather_router,
@@ -82,7 +82,7 @@ async def init_db(app: FastAPI):
     from post.model import Post
     from subs.model import Subscribe
     from reaction.model import Reaction
-
+    from topic.model import Topic, TopicOffer
 
     await init_models()
 

@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Depends
-from fastapi_cache.decorator import cache
 
 from helpers.search import Pagination
 from post.deps import postServiceDep
@@ -51,13 +50,28 @@ async def get_user_posts(
         post_service: postServiceDep,
         pagination: Pagination = Depends()
 ):
-    posts = await post_service.get_posts_by_author_id(
+    posts = await post_service.get_items_by(
         author_id=user.id,
         pagination=pagination
     )
     return posts
 
 
+
+from topic.schemas import UserCommentsCountOfTopicShow
+from comment.deps import commentServiceDep
+
+
+@user_router.get(
+    "/@{username}/top-topics",
+    summary="Получить топ обсуждений",
+    response_model=list[UserCommentsCountOfTopicShow],
+)
+async def get_top_topics(
+        user: userDep,
+        comm_service: commentServiceDep,
+):
+    return await comm_service.get_top_themes_of_user(user)
 
 
 

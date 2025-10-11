@@ -6,7 +6,7 @@ from unidecode import unidecode
 from helpers.search import search_param_fabric
 
 
-def generate_slug(title: str, index: int | None = None) -> str:
+def generate_slug(title: str, index: int) -> str:
     """Приводит строку к виду 'abc-de-f-g' путем
     транслитерации с русского(англ.) на английский
     и отброса специальных символов, убирая их или заменяя на '-'.
@@ -17,7 +17,7 @@ def generate_slug(title: str, index: int | None = None) -> str:
     result = sub(
         r"[^a-z0-9]+",
         "-",
-        unidecode(f"{title} {index if index else ''}").lower().strip("-")
+        unidecode(f"{title} {index}").lower().strip("-")
     )
 
     return result

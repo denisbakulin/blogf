@@ -57,7 +57,7 @@ class UserService(BaseService[User, UserRepository]):
 
     async def create_first_admin(self, admin_data: UserCreate) -> Optional[User]:
 
-        admin = await self.repository.get_one_by(is_admin=True)
+        admin = await self.repository.exists(is_admin=True)
 
         if admin:
             return

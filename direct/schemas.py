@@ -1,6 +1,5 @@
 from pydantic import BaseModel
-from core.schemas import TimeMixinSchema, IdMixinSchema
-
+from core.schemas import TimeMixinSchema, IdMixinSchema, BaseSchema
 
 class MessageCreate(BaseModel):
     content: str
@@ -12,9 +11,7 @@ class DirectMessageShow(MessageCreate, TimeMixinSchema, IdMixinSchema):
 
 from user.schemas import UserShow
 
-class DirectChatShow(BaseModel):
-    chat_name: str
-    user: UserShow
+
 
 
 class BaseDirectEvent(BaseModel):
@@ -26,11 +23,12 @@ class ClientDirectEvent(BaseDirectEvent):
 
 
 
-class DirectUserSettingsSchema(BaseModel):
+class DirectUserSettingsSchema(BaseSchema):
     chat_name: str | None = None
     enable_notifications: bool | None = None
 
 
-
-
+class DirectChatShow(BaseModel):
+    settings: DirectUserSettingsSchema
+    user: UserShow
 

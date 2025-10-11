@@ -11,6 +11,8 @@ from post.service import PostService
 from user.model import User
 from user.service import UserService
 
+from topic.schemas import UserCommentsCountOfTopicShow
+
 from direct.manager import WebSocketManager
 class CommentService(BaseService[Comment, CommentRepository]):
 
@@ -83,6 +85,18 @@ class CommentService(BaseService[Comment, CommentRepository]):
         return await self.repository.get_any_by(user_id=user.id, **pagination.get())
 
 
+    async def get_top_themes_of_user(
+            self,
+            user: User
+    ) -> list[UserCommentsCountOfTopicShow]:
+        top_themes = await self.repository.get_user_comment_count_by_topic(
+            user.id
+        )
+        print(top_themes, 100000000000000000)
+        return [
+            UserCommentsCountOfTopicShow(topic=topic, count=count)
+            for topic, count in top_themes
+        ]
 
 
 

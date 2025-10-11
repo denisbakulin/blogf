@@ -182,24 +182,11 @@ class DirectChatService(BaseService[DirectChat, DirectChatRepository]):
 
 
     async def get_user_chats(self, user: User, pagination: Pagination) -> list[DirectChatShow]:
-        chats = await self.repository.get_user_chats(user_id=user.id, **pagination.get())
-        tasks = [self.process_get_chat_info(user, chat) for chat in chats]
 
-        result = await gather(*tasks)
-
-        return [*result]
+        result = await self.repository.get_user_chats(user_id=user.id, **pagination.get())
+        return [DirectChatShow(settings=settings, user=user) for settings, user in result]
 
 
-
-    async def process_get_chat_info(self, user: User, chat: DirectChat) -> DirectChatShow:
-        user_settings = await self.direct_user_settings_service.get_item_by(
-            chat_id=chat.id, user_id=user.id
-        )
-
-        return DirectChatShow(
-            chat_name=user_settings.chat_name,
-            user=chat.first_user if chat.first_user_id != user.id else chat.second_user
-        )
 
     async def get_message_by_id(self, user: User, message_id: int) -> DirectMessage:
         message = await self.message_service.get_item_by_id(message_id)
