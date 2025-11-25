@@ -1,0 +1,18 @@
+from base.exceptions import AppError
+
+
+class AuthError(AppError):
+    """Ошибка аутентификации"""
+
+class InvalidTokenError(AuthError):
+    """Ошибка JWT"""
+
+
+
+class InvalidPasswordError(AuthError):
+    """Ошибка некорректного пароля"""
+
+    def __init__(self, message: str | None = None):
+        if message is None:
+            message = "Некорректный пароль"
+        super().__init__(message)

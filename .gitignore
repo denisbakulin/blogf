@@ -4,7 +4,7 @@
 *.pyo
 __pycache__/
 
-mydb.sqlite3
+data/mydb.sqlite3
 # Distribution / packaging
 .Python
 env/

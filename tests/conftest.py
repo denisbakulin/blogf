@@ -16,14 +16,13 @@ from auth.utils import TokenCreator
 from comment.service import CommentService
 from post.service import PostService
 from reaction.service import ReactionService
-from user.schemas import UserCreate
-from user.service import UserService
+from app.user import UserCreate
+from app.user import UserService
 
 users = [
     UserCreate(
         username=f"user{i}",
         password="12345",
-        email=f"user{i}@example.com"
     )
     for i in range(1, 25)
 ]
@@ -32,18 +31,18 @@ users = [
 import pytest_asyncio
 from httpx import ASGITransport, AsyncClient
 
-from core.db import get_engine
-from core.settings import SuperAdminSettings
-from core.setup import create_app
+from base.db import get_engine
+from base.settings import SuperAdminSettings
+from base.setup import create_app
 
 pytest_plugins = ['pytest_asyncio']
 
-from core.db import session_factory
+from base.db import session_factory
 
 
 @pytest_asyncio.fixture(scope="module", autouse=True)
 async def db():
-    from core.model import BaseORM
+    from base.model import BaseORM
 
     engine = get_engine()
 
@@ -109,7 +108,7 @@ async def auth_client(client):
         ))
 
         users = [
-            UserCreate(username=f"user{i}", password="12345", email=f"user{i}@test.com")
+            UserCreate(username=f"user{i}", password="12345")
             for i in range(2)
         ]
 
