@@ -1,4 +1,5 @@
-from typing import Annotated
+from operator import ge
+from typing import Annotated, Callable
 
 from fastapi import Depends, HTTPException
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
@@ -13,8 +14,6 @@ from base.exceptions import EntityLockedError
 from user.deps import get_user_service
 from user.model import User, UserRoleEnum
 from user.service import UserService
-from typing import Callable
-from operator import ge
 
 Operator = Callable[[UserRoleEnum, UserRoleEnum], bool]
 security = HTTPBearer()

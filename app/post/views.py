@@ -9,7 +9,7 @@ from comment.schemas import CommentCreate, CommentShow
 from helpers.search import Pagination
 from post.deps import postDep, postServiceDep
 from post.schemas import (FullPostShow, PostCreate, PostShow, PostUpdate,
-                          TopPostShow)
+                          TopPostShow, PostAllows)
 from post.utils import PostSearchParams
 from reaction.deps import reactionServiceDep
 from reaction.schemas import PostReactionShow
@@ -19,6 +19,19 @@ from user.deps import anonDep
 post_router = APIRouter(prefix="/posts", tags=["📝 Посты"])
 
 
+
+@post_router.post(
+    "",
+    summary="Создать пост",
+    response_model=PostShow
+)
+async def create_post(
+        post_service: postServiceDep,
+        post_create: PostCreate,
+        user: currentUserDep,
+        post_allows: PostAllows
+):
+    return await post_service.create_post(user=user, post_create=post_create, allows=post_allows)
 
 
 @post_router.get(
@@ -68,7 +81,7 @@ async def get_post(
     )
 
 
-@post_router.put(
+@post_router.patch(
     "/{slug}",
     summary="Изменить информацию о посте",
     response_model=PostShow
@@ -78,10 +91,11 @@ async def update_post(
         user: currentUserDep,
         post_update: PostUpdate,
         post_service: postServiceDep,
+        post_allows: PostAllows | None = None
 ):
 
     return await post_service.update_post(
-        post=post, post_update=post_update, user=user
+        post=post, post_update=post_update, user=user, allows=post_allows
     )
 
 
@@ -152,8 +166,8 @@ async def add_post_reaction(
         user: currentUserDep,
         like_service: reactionServiceDep,
 ):
-    return await like_service.add_reaction(
-        user=user, post=post, reaction_type=reaction
+    return await like_service.process_post_reaction(
+        user=user, post=post, reaction=reaction
     )
 
 

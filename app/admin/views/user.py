@@ -1,11 +1,11 @@
-from admin.views.base import AdminView
-
-from user.model import User, UserRoleEnum
-from user.schemas import UserShowMe, UserCreate
-from user.deps import userServiceDep, userDep
-from auth.deps import currentUserDep
-from admin.schemas import AdminUserUpdate
 from admin.deps import adminUserServiceDep
+from admin.schemas import AdminUserUpdate
+from admin.views.base import AdminView
+from auth.deps import currentUserDep
+from user.deps import userDep, userServiceDep
+from user.model import User, UserRoleEnum
+from user.schemas import UserCreate, UserShowMe
+
 
 class UserAdminView(AdminView, model=User):
     show = UserShowMe

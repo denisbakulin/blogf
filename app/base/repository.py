@@ -1,8 +1,8 @@
 from typing import Any, Optional, TypeVar, Unpack
 
-from sqlalchemy import desc, func, select
+from sqlalchemy import desc, func, select, text
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import InstrumentedAttribute
+
 
 from base.model import BaseORM
 
@@ -32,15 +32,16 @@ class BaseRepository[T]:
             _desc: bool = True,
             inner_props: dict[str, Any] = None,
             **filters,
-    ) -> list[T] | list[Any]:
-        """Возвращает отфильтрованный и отсортированый список записей
+    ) -> list[T] | list[Any] | tuple:
+        """Возвращает отфильтрованный и отсортированный список записей
         по заданным параметрам и фильтрам
        """
 
         if lines:
-            stmt = select(*lines)
+            stmt = select(*[getattr(self.model, i) for i in lines])
         else:
             stmt = select(self.model)
+
 
         if filters:
             stmt = stmt.filter_by(**filters)

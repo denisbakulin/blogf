@@ -1,22 +1,23 @@
-
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from auth.exceptions import InvalidPasswordError
 from base.service import BaseService
 from direct.service import DirectChatService
 from helpers.search import Pagination
-from user.model import Profile, Settings, User
+from user.model import Profile, Settings, User, UserRoleEnum
 from user.repository import UserRepository
-from user.schemas import UserCreate, UserSettings, UserUpdate, PasswordChange
+from user.schemas import PasswordChange, UserCreate, UserSettings, UserUpdate
 from user.utils import (UserSearchParams, generate_hashed_password,
-                      verify_password)
+                        verify_password)
 
+from base.exceptions import EntityAlreadyExists
 
 class UserService(BaseService[User, UserRepository]):
     def __init__(self, session: AsyncSession):
         super().__init__(User, session, UserRepository)
         self.direct_service = DirectChatService(session)
         self.profile_service = BaseService(Profile, session)
+
 
 
     async def create_user(self, user_create: UserCreate) -> User:
@@ -35,6 +36,26 @@ class UserService(BaseService[User, UserRepository]):
         return user
 
 
+    async def create_super_admin(self, admin_data: UserCreate) -> User | None:
+        admin = await self.repository.get_one_by(role=UserRoleEnum.SUPER_ADMIN)
+
+        if admin:
+            return admin
+
+        admin = await self.create_user(user_create=admin_data)
+
+        return await self.update_item(admin, role=UserRoleEnum.SUPER_ADMIN)
+
+    async def create_anon(self, anon_data: UserCreate) -> User:
+
+        anon = await self.repository.get_one_by(role=UserRoleEnum.ANONYMOUS)
+
+        if anon:
+            return anon
+
+        anon = await self.create_user(user_create=anon_data)
+
+        return await self.update_item(anon, role=UserRoleEnum.ANONYMOUS)
 
 
     async def get_user_by_id(self, user_id: int) -> User:
@@ -46,18 +67,23 @@ class UserService(BaseService[User, UserRepository]):
 
 
     async def update_user(self, user: User, user_update: UserUpdate) -> User:
-        await self.check_already_exists(username=user_update.username)
+        upd_user = await self.repository.get_one_by(username=user_update.username)
+
+        if upd_user and upd_user.username != user.username:
+            raise EntityAlreadyExists(entity="user", username=user_update.username)
 
         user_data = user_update.model_dump(exclude_none=True)
         profile_data: dict | None = user_data.pop("profile", None)
 
         await self.update_item(user, **user_data)
 
+
         if profile_data is not None:
             await self.profile_service.update_item(
                 user.profile, **profile_data
             )
         return user
+
 
 
 

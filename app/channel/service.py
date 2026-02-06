@@ -1,0 +1,1 @@
+from sqlalchemy.ext.asyncio import AsyncSessionfrom base.service import BaseServicefrom container.repository import ContainerRepositoryfrom container.model import Containerclass ChannelService(BaseService[Container, ContainerRepository]):    def __init__(self, session: AsyncSession):        super().__init__(Container, session, ContainerRepository)

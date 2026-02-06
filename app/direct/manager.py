@@ -1,5 +1,5 @@
 from functools import wraps
-from typing import Callable, Optional, Self
+from typing import Callable, Optional
 
 from fastapi import WebSocket
 

@@ -2,10 +2,12 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from auth.exceptions import InvalidPasswordError
 from auth.schemas import AuthCreds, LoginTokens
-from auth.utils import TokenCreator
-from user.service import UserService
+from auth.utils import TokenCreator, generate_8char_code
 from user.schemas import UserCreate
+from user.service import UserService
 from user.utils import verify_password
+from fastapi_cache import FastAPICache
+
 
 
 class AuthService:
@@ -13,6 +15,7 @@ class AuthService:
     def __init__(self, session: AsyncSession):
         self.session = session
         self.user_service = UserService(session=session)
+        self.cache_backand = FastAPICache.get_backend()
 
 
     async def login(self, creds: AuthCreds) -> LoginTokens:
@@ -37,6 +40,17 @@ class AuthService:
             access=tokens.access,
             refresh=tokens.refresh
         )
+    async def create_verify_code(self, user_id: int):
+        code = generate_8char_code()
+        await self.cache_backand.set(code, user_id, expire=600)
+        return code
+
+    async def check_verify_code(self, code):
+        user_id = await self.cache_backand.get(code)
+        return user_id
+
+
+
 
 
 

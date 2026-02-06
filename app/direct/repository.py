@@ -3,7 +3,6 @@ from typing import Optional
 from sqlalchemy import and_, case, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-
 from base.repository import BaseRepository
 from direct.model import DirectChat, DirectUserSettings
 from user.model import User

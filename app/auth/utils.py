@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 from enum import StrEnum
 
 from fastapi import Response
@@ -7,12 +8,23 @@ from auth.exceptions import InvalidTokenError
 from auth.schemas import TokenInfo
 from base.settings import jwt_auth_settings
 
-from datetime import datetime, timedelta
+
+import secrets
+import string
+
+def generate_8char_code() -> str:
+    """
+    Генерирует 8-значный код из цифр и букв (безопасный криптографически)
+    Пример: 'A3b9K7x2'
+    """
+    alphabet = string.ascii_letters + string.digits  # A-Z, a-z, 0-9
+    return ''.join(secrets.choice(alphabet) for _ in range(8))
 
 
 class TokenTypes(StrEnum):
     access = "access"
     refresh = "refresh"
+
 
 
 
@@ -70,4 +82,6 @@ def set_refresh_token_cookie(response: Response, token):
         max_age=60 * 60 * 24 * 7,
         path="/"
     )
+
+
 

@@ -11,10 +11,10 @@ if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
 
-from comment.model import Comment
-from base.db import BaseORM
-from post.model import Post
 from app.user import Profile, User
+from base.db import BaseORM
+from comment.model import Comment
+from post.model import Post
 
 target_metadata = BaseORM.metadata
 

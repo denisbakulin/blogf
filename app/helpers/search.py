@@ -1,5 +1,6 @@
 from fastapi import Query
 from pydantic import BaseModel, Field
+from typing import Annotated
 
 
 class Pagination(BaseModel):
@@ -7,13 +8,14 @@ class Pagination(BaseModel):
     limit: int = Field(ge=0, le=15, default=10)
 
 
-def search_param_fabric(allowed_fields: type[str]):
+def search_param_fabric(allowed_fields: type):
     class SearchParams:
         def __init__(
             self,
-            q: str = Query(..., min_length=1, description="Значение запроса"),
-            field: allowed_fields = Query(..., description="Критерий запроса"),
-            strict: bool = Query(False, description="Строгое совпадение"),
+            # Делаем параметры необязательными или с дефолтами
+            q: Annotated[str, Query(min_length=1, description="Значение")] = None,
+            field: Annotated[allowed_fields, Query(description="Критерий")] = "title",
+            strict: Annotated[bool, Query(description="Строгое совпадение")] = False,
         ):
             self.q = q
             self.strict = strict

@@ -1,12 +1,11 @@
+from pathlib import Path
+from typing import Annotated
+
+from fastapi import Depends
 from sqlalchemy.ext.asyncio import (AsyncSession, async_sessionmaker,
                                     create_async_engine)
 
 from base.model import BaseORM
-
-from typing import Annotated
-from fastapi import Depends
-
-from pathlib import Path
 
 # Создаем папку data если её нет
 data_dir = Path(__file__).parent.parent.parent / "data"

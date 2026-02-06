@@ -7,9 +7,7 @@ from admin.service import AdminService
 from auth.deps import role_validate
 from base.model import BaseORM, ColumnProps
 from base.schemas import BaseSchema
-
-from user.model import  UserRoleEnum
-
+from user.model import UserRoleEnum
 
 
 class Admin(APIRouter):

@@ -1,4 +1,5 @@
 from sqlalchemy.ext.asyncio import AsyncSession
+
 from base.exceptions import (EntityBadRequestError, EntityLockedError,
                              EntityNotFoundError)
 from base.repository import BaseRepository
@@ -68,6 +69,7 @@ class DirectMessageService(BaseService[DirectMessage, BaseRepository]):
 
 
 from functools import partial
+
 
 class DirectChatService(BaseService[DirectChat, DirectChatRepository]):
 

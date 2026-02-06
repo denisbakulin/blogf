@@ -1,9 +1,9 @@
-from admin.views.base import AdminView
-from post.model import Post
 from fastapi import Depends
-from post.deps import postDep, postServiceDep
-from post.schemas import PostAllows, PostShow, PostUpdate
 
+from admin.views.base import AdminView
+from post.deps import postDep, postServiceDep
+from post.model import Post
+from post.schemas import PostAllows, PostShow, PostUpdate
 
 
 class PostAdminView(AdminView, model=Post, delete_=True):

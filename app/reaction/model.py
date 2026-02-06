@@ -1,7 +1,7 @@
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from base.model import BaseORM, TimeMixin, IdMixin
+from base.model import BaseORM, IdMixin, TimeMixin
 
 
 class Reaction(BaseORM, TimeMixin, IdMixin):
@@ -11,12 +11,12 @@ class Reaction(BaseORM, TimeMixin, IdMixin):
     post_id: Mapped[int | None] = mapped_column(
         ForeignKey("posts.id", ondelete="CASCADE")
     )
-    topic_id: Mapped[int | None] = mapped_column(
-        ForeignKey("topics.id", ondelete="CASCADE")
+    container_id: Mapped[int | None] = mapped_column(
+        ForeignKey("containers.id", ondelete="CASCADE")
     )
 
     post: Mapped["Post"] = relationship("Post", lazy="selectin")
-    topic: Mapped["Topic"] = relationship("Topic", lazy="selectin")
+    container: Mapped["Container"] = relationship("Container", lazy="selectin")
     user: Mapped["User"] = relationship("User", lazy="selectin")
 
 

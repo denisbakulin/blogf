@@ -1,4 +1,4 @@
-from user.schemas import  UserUpdate
+from user.schemas import UserUpdate
 
 
 class AdminUserUpdate(UserUpdate):

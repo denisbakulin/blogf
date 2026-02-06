@@ -1,15 +1,17 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, status
 
 from auth.deps import currentUserDep
 from comment.deps import commentServiceDep
 from comment.schemas import CommentShow
 from helpers.search import Pagination
 from reaction.deps import reactionServiceDep
-
-from reaction.types import UserReactions
+from reaction.types import ReactionsGetParams
 from user.deps import userServiceDep
-from user.schemas import (PasswordChange,  UserSettings,
-                      UserShowMe, UserUpdate)
+from user.schemas import PasswordChange, UserSettings, UserShowMe, UserUpdate
+
+from post.deps import postServiceDep
+from post.schemas import PostShow, PostAllows, PostCreate
+from reaction.schemas import PostReactionShow, TopicReactionShow
 
 me_router = APIRouter(prefix="/me", tags=["👤 Личный кабинет"])
 
@@ -27,14 +29,15 @@ async def get_me(
 
 @me_router.patch(
     "",
-    summary="Изменить информацию текущего пользователя"
+    summary="Изменить информацию текущего пользователя",
+    response_model=UserShowMe
 )
 async def patch_my_info(
         user_update: UserUpdate,
         user: currentUserDep,
         user_service: userServiceDep,
 ):
-    await user_service.update_user(user=user, user_update=user_update)
+    return await user_service.update_user(user=user, user_update=user_update)
 
 
 
@@ -91,7 +94,9 @@ async def get_my_comments(
 ):
     return await comment_service.get_user_comments(user=user, pagination=pagination)
 
-from reaction.schemas import PostReactionShow, TopicReactionShow
+
+
+
 @me_router.get(
     "/reactions",
     summary="Получить реакции пользователя",
@@ -101,16 +106,12 @@ from reaction.schemas import PostReactionShow, TopicReactionShow
 async def get_my_reactions(
         user: currentUserDep,
         like_service: reactionServiceDep,
-        v: UserReactions,
+        v: ReactionsGetParams,
         pagination: Pagination = Depends()
 ):
     return await like_service.get_user_reactions(user, v, pagination)
 
 
-from fastapi import status
-
-from post.deps import postServiceDep
-from post.schemas import PostShow, UserPostCreate
 
 
 @me_router.post(
@@ -121,11 +122,13 @@ from post.schemas import PostShow, UserPostCreate
 
 )
 async def create_post(
-        post_info: UserPostCreate,
+        post_create: PostCreate,
+        post_allows: PostAllows,
         user: currentUserDep,
         post_service: postServiceDep,
 ):
-    return await post_service.create_post(user, post_info)
+    return await post_service.create_post(user=user, post_create=post_create, allows=post_allows)
+
 
 
 

@@ -3,10 +3,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from base.exceptions import EntityBadRequestError
 from base.repository import BaseRepository
 from base.service import BaseService
-from user.service import UserService
-
 from user.model import User, UserRoleEnum
-from user.schemas import UserCreate
+
+from user.service import UserService
 
 
 class AdminService[T](BaseService[T, BaseRepository]):
@@ -19,27 +18,6 @@ class AdminService[T](BaseService[T, BaseRepository]):
 
 
 class AdminUserService(UserService):
-
-    async def create_super_admin(self, admin_data: UserCreate) -> User | None:
-        admin = await self.repository.get_one_by(role=UserRoleEnum.SUPER_ADMIN)
-
-        if admin:
-            return admin
-
-        admin = await self.create_user(user_create=admin_data)
-
-        return await self.update_item(admin, role=UserRoleEnum.SUPER_ADMIN)
-
-    async def create_anon(self, anon_data: UserCreate) -> User:
-
-        anon = await self.repository.get_one_by(role=UserRoleEnum.ANONYMOUS)
-
-        if anon:
-            return anon
-
-        anon = await self.create_user(user_create=anon_data)
-
-        return await self.update_item(anon, role=UserRoleEnum.ANONYMOUS)
 
     async def edit_user_role(
             self,

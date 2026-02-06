@@ -35,6 +35,10 @@ class EntityBadRequestError(AppError):
 
         self.entity = entity
 
+class InsufficientPermissionsError(AppError):
+
+    def __init__(self):
+        super().__init__("НЕДОСТАТОЧНО ПРАВ")
 
 class EntityAlreadyExists(AppError):
     """Ресурс уже существует"""

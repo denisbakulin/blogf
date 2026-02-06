@@ -1,12 +1,10 @@
-from typing import Optional
-
-from sqlalchemy import  func, select
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from comment.model import Comment
 from base.repository import BaseRepository
+from comment.model import Comment
 from post.model import Post
-from topic.model import Topic
+from container.model import Container
 
 
 class CommentRepository(BaseRepository[Comment]):
@@ -23,20 +21,20 @@ class CommentRepository(BaseRepository[Comment]):
     async def get_user_comment_count_by_topic(
             self,
             user_id: int,
-    ) -> list[tuple[Topic, int]]:
+    ) -> list[tuple[Container, int]]:
         stmt = (
             select(
-                Topic,
+                Container,
                 func.count(Comment.id)
             )
             .join(
-                Post, Post.topic_id == Topic.id
+                Post, Post.container_id == Container.id
             )
             .join(
                 Comment, Comment.post_id == Post.id
             )
             .where(Comment.user_id == user_id)
-            .group_by(Topic.id)
+            .group_by(Container.id)
             .limit(10)
         )
 

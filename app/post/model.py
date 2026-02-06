@@ -11,16 +11,11 @@ class Post(BaseORM, IdMixin, TimeMixin):
     slug: Mapped[str] = mapped_column(index=True, unique=True, nullable=True)
     content: Mapped[str] = mapped_column(nullable=False)
 
-    public: Mapped[bool] = mapped_column(default=True)
     allow_comments: Mapped[bool] = mapped_column(default=True)
     allow_reactions: Mapped[bool] = mapped_column(default=True)
 
-    topic_id: Mapped[int | None] = mapped_column(ForeignKey("topics.id"))
+    container_id: Mapped[int | None] = mapped_column(ForeignKey("containers.id"))
     author_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
 
     author: Mapped["User"] = relationship("User", lazy="selectin")
-    topic: Mapped["User"] = relationship("Topic", lazy="selectin" )
-
-    @property
-    def is_personal(self) -> bool:
-        return not bool(self.topic_id)
+    container: Mapped["Container"] = relationship("Container", lazy="selectin" )

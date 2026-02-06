@@ -1,0 +1,9 @@
+services:
+  backend:
+    container_name: backend
+    build: .
+    env_file: .env
+
+
+  nginx:
+

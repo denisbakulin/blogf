@@ -1,14 +1,13 @@
 from fastapi import APIRouter, Depends
 
+from comment.deps import commentServiceDep
 from helpers.search import Pagination
 from post.deps import postServiceDep
 from post.schemas import PostShow
+from topic.release.schemas import UserCommentsCountOfTopicShow
 from user.deps import userDep, userServiceDep
 from user.schemas import UserShow
 from user.utils import UserSearchParams
-from comment.deps import commentServiceDep
-from topic.schemas import UserCommentsCountOfTopicShow
-
 
 user_router = APIRouter(prefix="/users", tags=["👨 Пользователи"])
 
@@ -47,7 +46,7 @@ async def get_user_posts(
         post_service: postServiceDep,
         pagination: Pagination = Depends()
 ):
-    return post_service.get_user_posts(user=user, pagination=pagination)
+    return await post_service.get_user_posts(user=user, pagination=pagination)
 
 
 

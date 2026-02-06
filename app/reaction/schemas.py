@@ -1,7 +1,8 @@
 from pydantic import BaseModel
 
-from base.schemas import TimeMixinSchema, BaseSchema
+from base.schemas import BaseSchema, TimeMixinSchema
 from user.schemas import UserUsername
+
 
 class ReactionsCount(BaseModel):
     like: int = 0
@@ -21,6 +22,7 @@ class PostReactionShow(BaseReactionShow, TimeMixinSchema):
     post: Slug
 
 class TopicReactionShow(BaseReactionShow, TimeMixinSchema):
-    topic: Slug
+    container: Slug
+
 
 

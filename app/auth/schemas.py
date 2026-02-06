@@ -20,3 +20,8 @@ class AuthCreds(BaseModel):
     password: str = "admin"
 
 
+class VerifyCode(BaseModel):
+    code: str
+
+class BotVerifyCode(VerifyCode):
+    tg_id: int

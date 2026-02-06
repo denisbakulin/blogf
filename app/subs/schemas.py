@@ -1,5 +1,16 @@
-from base.schemas import BaseSchema, TimeMixinSchema
-from user.schemas import UserShow
+from base.schemas import BaseSchema
+from typing import Literal
 
-class SubscribeShow(BaseSchema, TimeMixinSchema):
-    creator: UserShow
+
+class ListOfSubscribes(BaseSchema):
+    user_subs: list[int]
+    topic_subs: list[int]
+
+
+subscribe_type = Literal["user", "topic"]
+
+
+
+
+
+

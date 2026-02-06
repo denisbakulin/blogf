@@ -3,8 +3,8 @@ from typing import Annotated
 from fastapi import Depends
 
 from base.db import getSessionDep
-from topic.model import Topic, TopicOffer
-from topic.service import TopicOfferService, TopicService
+from topic.offrer.model import Topic, TopicOffer
+from topic.release.service import TopicOfferService, TopicService
 
 
 def get_topic_service(

@@ -2,9 +2,9 @@ from typing import Annotated
 
 from fastapi import Depends
 
+from base.db import getSessionDep
 from comment.model import Comment
 from comment.service import CommentService
-from base.db import getSessionDep
 
 
 async def get_comment_service(

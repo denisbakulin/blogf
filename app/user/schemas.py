@@ -1,9 +1,8 @@
-from pydantic import  Field, field_serializer, field_validator
+from pydantic import Field, field_serializer, field_validator
 
 from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
-
 from user.model import UserRoleEnum
-
+from  typing import Annotated
 
 class UserUsername(BaseSchema):
     username: str
@@ -19,10 +18,10 @@ class UserCreate(BaseSchema):
 
 
 class UserProfile(BaseSchema):
-    bio: str | None = None
-    age: int | None = None
-    city: str | None = None
-    foreign_link: str | None = None
+    bio: Annotated[str | None, Field(default=None, max_length=500)] = None
+    age: Annotated[int | None, Field(default=None, ge=0, le=120)] = None
+    city: Annotated[str | None, Field(default=None, max_length=100)] = None
+    foreign_link: Annotated[str | None, Field(default=None, max_length=255)] = None
 
 
 class UserUpdate(BaseSchema):
@@ -34,10 +33,10 @@ class UserShow(BaseSchema, IdMixinSchema, TimeMixinSchema):
     username: str
     profile: UserProfile
     is_active: bool
+    is_verified: bool
 
 
 class UserShowMe(UserShow):
-    password_login: bool
     role: UserRoleEnum
 
 

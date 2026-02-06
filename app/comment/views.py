@@ -1,8 +1,9 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 
-from auth.deps import currentUserDep
+from auth.deps import currentUserDep, role_validate
 from comment.deps import commentDep, commentServiceDep
 from comment.schemas import CommentShow, CommentUpdate
+from user.model import UserRoleEnum
 
 comm_router = APIRouter(prefix="/comments", tags=["💬 Комментарии"])
 
@@ -26,12 +27,25 @@ async def get_comment(
 async def update_comment(
         user: currentUserDep,
         comment: commentDep,
-        comment_update: CommentUpdate,
         comment_service: commentServiceDep,
+        comment_update: CommentUpdate,
+
 ):
     return await comment_service.update_comment(
         comment=comment, comment_update=comment_update, user=user,
     )
+
+@comm_router.delete(
+    "/{comment_id}",
+    summary="Удалить комментарий",
+    dependencies=[Depends(role_validate(UserRoleEnum.MODERATOR))]
+)
+async def delete_comment(
+    comment: commentDep,
+    comment_service: commentServiceDep,
+):
+    return await comment_service.delete_item(comment)
+
 
 
 

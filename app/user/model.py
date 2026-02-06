@@ -20,7 +20,6 @@ class Profile(BaseORM, IdMixin):
     bio: Mapped[str | None]
     age: Mapped[int | None]
     city: Mapped[str | None]
-    foreign_link: Mapped[str | None]
 
 
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), unique=True)
@@ -59,12 +58,9 @@ class User(BaseORM, IdMixin, TimeMixin):
     password: Mapped[str]
 
     is_active: Mapped[bool] = mapped_column(default=True)
+    is_verified: Mapped[bool] = mapped_column(default=False)
     role: Mapped[UserRoleEnum] = mapped_column(default=UserRoleEnum.USER)
 
-
-    @property
-    def password_login(self):
-        return bool(self.password)
 
     profile: Mapped["Profile"] = relationship(
         back_populates="user",

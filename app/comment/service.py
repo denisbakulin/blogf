@@ -1,15 +1,14 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from base.exceptions import EntityBadRequestError
+from base.service import BaseService
 from comment.model import Comment
 from comment.repository import CommentRepository
 from comment.schemas import CommentCreate, CommentUpdate
-from base.exceptions import EntityBadRequestError
-from base.service import BaseService
-from direct.manager import WebSocketManager
 from helpers.search import Pagination
 from post.model import Post
 from post.service import PostService
-from topic.schemas import UserCommentsCountOfTopicShow
+from topic.release.schemas import UserCommentsCountOfTopicShow
 from user.model import User
 from user.service import UserService
 
@@ -20,7 +19,7 @@ class CommentService(BaseService[Comment, CommentRepository]):
         super().__init__(Comment, session, CommentRepository)
         self.user_service = UserService(session=session)
         self.post_service = PostService(session=session)
-        self.ws_manager = WebSocketManager()
+
 
 
     async def create_comment(
@@ -45,16 +44,8 @@ class CommentService(BaseService[Comment, CommentRepository]):
 
         comment = await self.create_item(
             **comment_create.model_dump(exclude_none=True),
-            user_id=user.id, post_id=post.id,
+            author_id=user.id, post_id=post.id,
         )
-
-        if post.author.settings.comment_notifications:
-            await self.ws_manager.comment_notify(
-                recipient_id=post.author_id,
-                username=user.username,
-                comment=comment.content[:100],
-                comment_id=comment.id
-            )
 
         return comment
 

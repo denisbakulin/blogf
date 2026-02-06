@@ -5,8 +5,9 @@ from starlette.requests import Request
 from starlette.responses import JSONResponse
 
 from auth.exceptions import AuthError
-from base.exceptions import (EntityAlreadyExists, EntityBadRequestError,
-                             EntityLockedError, EntityNotFoundError, AppError)
+from base.exceptions import (AppError, EntityAlreadyExists,
+                             EntityBadRequestError, EntityLockedError,
+                             EntityNotFoundError, InsufficientPermissionsError)
 
 
 class ErrorResponse(JSONResponse):
@@ -25,7 +26,7 @@ class AppExceptionMiddleware(BaseHTTPMiddleware):
         except EntityNotFoundError as exc:
             return ErrorResponse(status.HTTP_404_NOT_FOUND, exc)
 
-        except EntityAlreadyExists as exc:
+        except (EntityAlreadyExists, InsufficientPermissionsError) as exc:
             return ErrorResponse(status.HTTP_403_FORBIDDEN, exc)
 
         except EntityBadRequestError as exc:

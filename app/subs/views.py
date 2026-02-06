@@ -2,13 +2,11 @@ from fastapi import APIRouter, Depends
 
 from auth.deps import currentUserDep
 from helpers.search import Pagination
+from post.deps import postServiceDep
 from post.schemas import PostShow
 from subs.deps import subscribeServiceDep
-from user.deps import userDep
+from subs.schemas import ListOfSubscribes, subscribe_type
 
-
-from post.deps import postServiceDep
-from subs.schemas import SubscribeShow
 
 
 subs_router = APIRouter(prefix="/subs", tags=["🔔 Подписки"])
@@ -17,16 +15,28 @@ subs_router = APIRouter(prefix="/subs", tags=["🔔 Подписки"])
 @subs_router.get(
     "",
     summary="Получить подписки пользователя",
-    response_model=list[SubscribeShow]
+    response_model=ListOfSubscribes
 )
 async def get_subs(
         user: currentUserDep,
         subscribe_service: subscribeServiceDep,
-        pagination: Pagination = Depends()
 ):
-    return await subscribe_service.get_items_by(
-        subscriber_id=user.id, pagination=pagination
-    )
+    return await subscribe_service.get_subs(user=user)
+
+
+@subs_router.post(
+    "",
+    summary="Подписаться/отписаться на пользователя/топик"
+)
+async def process_subscribe(
+        user: currentUserDep,
+        sub_type: subscribe_type,
+        entity_id: int,
+        subscribe_service: subscribeServiceDep,
+):
+     await subscribe_service.process_subscribe(
+        user=user, sub_type=sub_type, entity_id=entity_id
+     )
 
 
 @subs_router.get(
@@ -36,29 +46,13 @@ async def get_subs(
 )
 async def get_subs_content(
         user: currentUserDep,
-        post_service: postServiceDep,
-        pagination: Pagination = Depends()
-):
-    return await post_service.repository.get_posts_by_user_subscribes(
-        user_id=user.id, **pagination.dict()
-    )
-
-
-@subs_router.post(
-    "/{username}",
-    summary="Подписаться/отписаться на пользователя",
-    response_model=SubscribeShow
-)
-async def subscribe(
-        user: currentUserDep,
-        creator: userDep,
         subscribe_service: subscribeServiceDep,
+        sub_type: subscribe_type | None = None,
+        pagination: Pagination = Depends(),
 ):
-    return await subscribe_service.process_subscribe(
-        subscriber=user, creator=creator
+    return await subscribe_service.get_content(
+        user=user, sub_type=sub_type, pagination=pagination
     )
-
-
 
 
 
