@@ -6,7 +6,7 @@ origins = [
     "http://localhost:5173",
     "http://localhost:3000",
     "http://127.0.0.1:5173",
-"http://localhost:5173"
+    "http://localhost:5173"
 ]
 
 
@@ -45,7 +45,7 @@ def include_routers(app: FastAPI):
     from integrations.crypto.views import crypto_router
     from integrations.weather.views import weather_router
     from post.views import post_router
-    from subs.views import subs_router
+    from sub.views import subs_router
     from topic.release.view import topic_router
     from topic.offrer.view import offer_router
     from user.views.me import me_router
@@ -54,7 +54,7 @@ def include_routers(app: FastAPI):
 
     routers: list[APIRouter] = [
         auth_router, user_router,
-        me_router, topic_router, offer_router,
+        me_router, topic_router, channel_router, offer_router,
         post_router, comm_router,
         crypto_router, weather_router,
          subs_router,

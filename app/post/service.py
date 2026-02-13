@@ -11,7 +11,7 @@ from user.model import User
 
 from topic.release.service import TopicService
 from container.service import ContainerService
-from container.model import ContainerType
+from container.model import ContainerType as ct
 
 
 class PostService(BaseService[Post, PostRepository]):
@@ -50,14 +50,14 @@ class PostService(BaseService[Post, PostRepository]):
         if post_create.container_id:
             container = await self.container_service.get_item_by_id(post_create.container_id)
 
-        if container is None or container.type == ContainerType.topic:
+        if container is None or container.type == ct.topic:
             return await self._create_post(author_id=user.id, post_create=post_create, allows=allows)
 
         props = dict(user=user, post_create=post_create, allows=allows)
 
         process_func = {
-            ContainerType.public_channel: self.create_post_public_channel(**props),
-            ContainerType.private_channel: self.create_post_private_channel(**props)
+            ct.public_channel: self.create_post_public_channel(**props),
+            ct.private_channel: self.create_post_private_channel(**props)
         }[container.type]
 
         return await process_func

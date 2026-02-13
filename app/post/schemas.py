@@ -15,11 +15,11 @@ class PostBase(BaseSchema):
     content: str = Field(max_length=5000)
 
 
-from user.schemas import UserUsername
+from user.schemas import ShortUserInfo
 
 
 class PostShow(PostBase, IdMixinSchema, TimeMixinSchema):
-    author: UserUsername
+    author: ShortUserInfo
     slug: str
     container: ContainerShow | None
     allow_comments: bool

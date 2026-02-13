@@ -13,7 +13,7 @@ offer_router = APIRouter(prefix="/topic-offers", tags=["📚 Предложен�
 
 
 @offer_router.post(
-    "/offers",
+    "",
     summary="Предложить тему для обсуждений",
     response_model=TopicOfferShow,
     status_code=status.HTTP_201_CREATED,
@@ -29,7 +29,7 @@ async def offer_theme(
 
 
 @offer_router.get(
-    "/offers",
+    "",
     summary="Посмотреть предложенные темы",
     response_model=list[TopicOfferShow],
 )
@@ -41,7 +41,7 @@ async def offer_theme(
 
 
 @offer_router.post(
-    "/offers/{offer_id}/process",
+    "/{offer_id}/process",
     summary="Принять/отклонить тему",
     response_model=TopicOfferShow,
     status_code=status.HTTP_201_CREATED

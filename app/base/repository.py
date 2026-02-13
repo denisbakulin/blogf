@@ -1,6 +1,6 @@
 from typing import Any, Optional, TypeVar, Unpack
 
-from sqlalchemy import desc, func, select, text
+from sqlalchemy import desc, func, select, text, or_
 from sqlalchemy.ext.asyncio import AsyncSession
 
 
@@ -22,6 +22,14 @@ class BaseRepository[T]:
         self.model = model
         self.session = session
 
+    def _process_or(self, stmt, **filters):
+        for key, value in filters.items():
+            column = getattr(self.model, key)
+            if isinstance(value, list):
+                stmt = stmt.where(column.in_(value))
+            else:
+                stmt = stmt.where(column == value)
+        return stmt
 
     async def get_any_by(
             self,
@@ -44,7 +52,7 @@ class BaseRepository[T]:
 
 
         if filters:
-            stmt = stmt.filter_by(**filters)
+           stmt = self._process_or(stmt=stmt, **filters)
 
         if inner_props:
             stmt = self._process_stmt_with_inner_fields(inner_props, stmt)
@@ -76,7 +84,9 @@ class BaseRepository[T]:
         """Возвращает уникальную запись или None по указанным параметрам,
         если > 1 - Ошибка"""
 
-        stmt = select(self.model).filter_by(**filters)
+        stmt = select(self.model)
+
+        stmt = self._process_or(stmt=stmt, **filters)
 
         stmt = self._process_stmt_with_inner_fields(inner_props, stmt)
 
@@ -101,7 +111,7 @@ class BaseRepository[T]:
     ) -> bool:
         """Проверяет существование записи"""
 
-        result = await self.get_one_by(**filters)
+        result = await self.get_any_by(**filters)
         return bool(result)
 
 

@@ -19,6 +19,7 @@ class AuthService:
 
 
     async def login(self, creds: AuthCreds) -> LoginTokens:
+
         user = await self.user_service.get_user_by_username(creds.username)
 
         if not verify_password(creds.password, user.password):
@@ -40,6 +41,7 @@ class AuthService:
             access=tokens.access,
             refresh=tokens.refresh
         )
+
     async def create_verify_code(self, user_id: int):
         code = generate_8char_code()
         await self.cache_backand.set(code, user_id, expire=600)

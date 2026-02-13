@@ -3,8 +3,6 @@ from pathlib import Path
 
 path_dir = Path(__file__).parent.parent.parent
 
-print(__name__, __file__)
-
 
 class BaseConfig(BaseSettings):
     model_config = SettingsConfigDict(

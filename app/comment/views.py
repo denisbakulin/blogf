@@ -27,11 +27,11 @@ async def get_comment(
 async def update_comment(
         user: currentUserDep,
         comment: commentDep,
-        comment_service: commentServiceDep,
+        service: commentServiceDep,
         comment_update: CommentUpdate,
 
 ):
-    return await comment_service.update_comment(
+    return await service.update_comment(
         comment=comment, comment_update=comment_update, user=user,
     )
 
@@ -42,9 +42,9 @@ async def update_comment(
 )
 async def delete_comment(
     comment: commentDep,
-    comment_service: commentServiceDep,
+    service: commentServiceDep,
 ):
-    return await comment_service.delete_item(comment)
+    return await service.delete_item(comment)
 
 
 

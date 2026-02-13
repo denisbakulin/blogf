@@ -17,11 +17,11 @@ user_router = APIRouter(prefix="/users", tags=["👨 Пользователи"])
     response_model=list[UserShow],
 )
 async def search_users(
-        user_service: userServiceDep,
+        service: userServiceDep,
         search: UserSearchParams = Depends(),
         pagination: Pagination = Depends(),
 ):
-    return await user_service.search_users(search=search, pagination=pagination)
+    return await service.search_users(search=search, pagination=pagination)
 
 
 @user_router.get(
@@ -43,10 +43,10 @@ async def get_user(
 )
 async def get_user_posts(
         user: userDep,
-        post_service: postServiceDep,
+        service: postServiceDep,
         pagination: Pagination = Depends()
 ):
-    return await post_service.get_user_posts(user=user, pagination=pagination)
+    return await service.get_user_posts(user=user, pagination=pagination)
 
 
 
@@ -59,9 +59,9 @@ async def get_user_posts(
 )
 async def get_top_topics(
         user: userDep,
-        comm_service: commentServiceDep,
+        service: commentServiceDep,
 ):
-    return await comm_service.get_top_themes_of_user(user)
+    return await service.get_top_themes_of_user(user)
 
 
 

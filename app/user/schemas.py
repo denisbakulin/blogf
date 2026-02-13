@@ -4,8 +4,10 @@ from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
 from user.model import UserRoleEnum
 from  typing import Annotated
 
-class UserUsername(BaseSchema):
+
+class ShortUserInfo(BaseSchema, IdMixinSchema):
     username: str
+    name: str | None
 
 
 class UserCreate(BaseSchema):
@@ -26,6 +28,7 @@ class UserProfile(BaseSchema):
 
 class UserUpdate(BaseSchema):
     username: str | None = None
+    name: str | None = None
     profile: UserProfile | None = None
 
 
@@ -34,6 +37,7 @@ class UserShow(BaseSchema, IdMixinSchema, TimeMixinSchema):
     profile: UserProfile
     is_active: bool
     is_verified: bool
+    name: str | None
 
 
 class UserShowMe(UserShow):

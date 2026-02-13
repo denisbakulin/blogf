@@ -9,8 +9,11 @@ from auth.utils import (TokenCreator, TokenTypes, decode_token,
 from user.schemas import UserCreate
 from user.deps import userServiceDep
 from base.settings import tg_bot_settings
+from auth.tg_verified import tgvServiceDep
+
 
 auth_router = APIRouter(prefix="/auth", tags=["🔐 Авторизация"])
+
 
 @auth_router.post(
     "/login",
@@ -20,10 +23,10 @@ auth_router = APIRouter(prefix="/auth", tags=["🔐 Авторизация"])
 async def login_user(
         response: Response,
         creds: AuthCreds,
-        auth_service: authServiceDep
+        service: authServiceDep
 ):
 
-    tokens = await auth_service.login(creds)
+    tokens = await service.login(creds)
     set_refresh_token_cookie(response, tokens.refresh)
     return AccessTokenResponse(access_token=tokens.access)
 
@@ -34,9 +37,9 @@ async def login_user(
 async def register_user(
         response: Response,
         user_create: UserCreate,
-        auth_service: authServiceDep
+        service: authServiceDep
 ):
-    tokens = await auth_service.register(user_create)
+    tokens = await service.register(user_create)
     set_refresh_token_cookie(response, tokens.refresh)
     return AccessTokenResponse(access_token=tokens.access)
 
@@ -85,7 +88,7 @@ async def get_verify_code(
     return VerifyCode(code=code)
 
 
-from auth.tg_verified import tgvServiceDep
+
 @auth_router.post(
     "/bot-verify",
     summary="Ручка для TG бота"

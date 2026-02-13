@@ -1,5 +1,5 @@
 from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
-from user.schemas import UserUsername
+from user.schemas import ShortUserInfo
 from container.model import ContainerType
 
 class ContainerShow(BaseSchema, IdMixinSchema, TimeMixinSchema):
@@ -8,7 +8,7 @@ class ContainerShow(BaseSchema, IdMixinSchema, TimeMixinSchema):
     description: str
     type: ContainerType
 
-    author: UserUsername
+    author: ShortUserInfo
 
 
 

@@ -3,7 +3,7 @@ from typing import Annotated
 from fastapi import Depends
 
 from base.db import getSessionDep
-from subs.service import SubscribeService
+from sub.service import SubscribeService
 
 
 def get_subs_service(

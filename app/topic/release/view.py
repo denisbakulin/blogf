@@ -13,6 +13,8 @@ from topic.release.schemas import (CreateTopic)
 from container.schemas import FullContainerShow, ContainerShow
 from typing import Literal
 from helpers.search import search_param_fabric
+from sub.deps import subscribeServiceDep
+
 TopicSearchParams = search_param_fabric(Literal["slug", "id", "title"])
 
 
@@ -25,10 +27,10 @@ topic_router = APIRouter(prefix="/topics", tags=["📚 Темы"])
     response_model=list[FullContainerShow]
 )
 async def get_topics(
-        topic_service: topicServiceDep,
+        service: topicServiceDep,
         pagination: Pagination = Depends()
 ):
-    return await topic_service.container_service.get_full_containers(pagination)
+    return await service.container_service.get_full_containers(pagination)
 
 
 
@@ -55,11 +57,11 @@ async def create_topic(
     response_model=list[ContainerShow],
 )
 async def search_topics(
-        topic_service: topicServiceDep,
+        service: topicServiceDep,
         pagination: Pagination = Pagination(),
         search: TopicSearchParams = Depends(),
 ):
-    return await topic_service.search_containers(search=search, pagination=pagination)
+    return await service.search_containers(search=search, pagination=pagination)
 
 
 
@@ -70,9 +72,21 @@ async def search_topics(
 )
 async def get_topic(
         topic: topicDep,
-        topic_service: topicServiceDep
+        service: topicServiceDep
 ):
-    return await topic_service.container_service.get_full_container(topic)
+    return await service.container_service.get_full_container(topic)
+
+
+@topic_router.get(
+    "/{slug}/sub",
+    summary="Подписаться на тему",
+)
+async def sub_to_topic(
+        topic: topicDep,
+        service: subscribeServiceDep,
+        user: currentUserDep
+):
+    return await service.process_subscribe(user=user, topic=topic)
 
 
 @topic_router.post(
@@ -85,9 +99,9 @@ async def set_topic_reactions(
         topic: topicDep,
         user: currentUserDep,
         reaction: ReactionsSetParams,
-        reaction_service: reactionServiceDep
+        service: reactionServiceDep
 ):
-    return await reaction_service.process_topic_reaction(
+    return await service.process_topic_reaction(
         user=user, topic=topic, reaction=reaction
     )
 
@@ -101,10 +115,10 @@ async def set_topic_reactions(
 async def get_topic_reactions(
         topic: topicDep,
         reaction_type: ReactionsGetParams,
-        reaction_service: reactionServiceDep,
+        service: reactionServiceDep,
         pagination: Pagination = Depends()
 ):
-    return await reaction_service.get_topic_reactions(
+    return await service.get_topic_reactions(
         topic=topic, reaction_type=reaction_type, pagination=pagination
     )
 
@@ -120,13 +134,13 @@ async def create_post(
         topic: topicDep,
         post_create: PostCreate,
         user: currentUserDep,
-        post_service: postServiceDep,
+        service: postServiceDep,
         post_allows: PostAllows
 
 ):
     post_create.container_id = topic.id
 
-    return await post_service.create_post(
+    return await service.create_post(
         user=user, post_create=post_create, allows=post_allows
     )
 
@@ -138,10 +152,10 @@ async def create_post(
 )
 async def get_topic_posts(
         topic: topicDep,
-        post_service: postServiceDep,
+        service: postServiceDep,
         pagination: Pagination = Depends()
 ):
-    return await post_service.get_items_by(
+    return await service.get_items_by(
         container_id=topic.id, pagination=pagination
     )
 

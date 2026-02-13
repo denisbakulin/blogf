@@ -1,6 +1,5 @@
-from base.schemas import BaseSchema, IdMixinSchema
+from base.schemas import BaseSchema
 from topic.offrer.model import TopicOfferStatus
-from user.schemas import UserUsername
 
 
 class TopicBase(BaseSchema):

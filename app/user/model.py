@@ -60,7 +60,7 @@ class User(BaseORM, IdMixin, TimeMixin):
     is_active: Mapped[bool] = mapped_column(default=True)
     is_verified: Mapped[bool] = mapped_column(default=False)
     role: Mapped[UserRoleEnum] = mapped_column(default=UserRoleEnum.USER)
-
+    name: Mapped[str | None]
 
     profile: Mapped["Profile"] = relationship(
         back_populates="user",

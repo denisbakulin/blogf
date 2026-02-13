@@ -1,0 +1,25 @@
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+
+from base.model import BaseORM, IdMixin, TimeMixin
+
+
+
+class JoinRequest(BaseORM, IdMixin, TimeMixin):
+    __tablename__ = "join_requests"
+
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
+    container_id: Mapped[int] = mapped_column(ForeignKey("containers.id"))
+
+    user: Mapped["User"] = relationship("User", lazy="selectin")
+
+
+
+
+
+
+
+
+
+
+

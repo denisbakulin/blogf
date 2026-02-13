@@ -7,14 +7,14 @@ from sqlalchemy.ext.asyncio import (AsyncSession, async_sessionmaker,
 
 from base.model import BaseORM
 
-# Создаем папку data если её нет
+
 data_dir = Path(__file__).parent.parent.parent / "data"
 data_dir.mkdir(exist_ok=True)
 
-# Путь к базе данных в папке data
+
 DB_PATH = data_dir / "blogf.db"
 
-# Подключение к SQLite
+
 engine = create_async_engine(
     url=f"sqlite+aiosqlite:///{DB_PATH}",
     echo=True

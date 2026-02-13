@@ -1,4 +1,9 @@
-from base.schemas import BaseSchema, IdMixinSchema
-from topic.offrer.model import TopicOfferStatus
-from user.schemas import UserUsername
+from base.schemas import BaseSchema
+
+
+class ChannelCreate(BaseSchema):
+    slug: str
+    title: str
+    description: str | None = None
+    is_private: bool = False
 

@@ -16,7 +16,7 @@ class Container(BaseORM, IdMixin, TimeMixin):
     __tablename__ = "containers"
 
     title: Mapped[str]
-    slug: Mapped[str] = mapped_column(index=True, unique=True, nullable=True)
+    slug: Mapped[str] = mapped_column(index=True, nullable=True)
     description: Mapped[str | None]
     type: Mapped[ContainerType]
 

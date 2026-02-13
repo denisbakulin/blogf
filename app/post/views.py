@@ -26,12 +26,12 @@ post_router = APIRouter(prefix="/posts", tags=["📝 Посты"])
     response_model=PostShow
 )
 async def create_post(
-        post_service: postServiceDep,
+        service: postServiceDep,
         post_create: PostCreate,
         user: currentUserDep,
         post_allows: PostAllows
 ):
-    return await post_service.create_post(user=user, post_create=post_create, allows=post_allows)
+    return await service.create_post(user=user, post_create=post_create, allows=post_allows)
 
 
 @post_router.get(
@@ -40,10 +40,10 @@ async def create_post(
     response_model=list[TopPostShow],
 )
 async def get_top_of_posts(
-        post_service: postServiceDep,
+        service: postServiceDep,
         field: Literal["like", "dislike"]
 ):
-    return await post_service.get_top_of_posts(field)
+    return await service.get_top_of_posts(field)
 
 
 

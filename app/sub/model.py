@@ -1,5 +1,5 @@
 from sqlalchemy import ForeignKey
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from base.model import BaseORM, TimeMixin,  IdMixin
 
@@ -11,8 +11,7 @@ class Subscribe(BaseORM, TimeMixin, IdMixin):
     creator_id: Mapped[int | None] = mapped_column(ForeignKey("users.id"))
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"))
 
-
-
-
-
+    user: Mapped["User"] = relationship("User", lazy="selectin", foreign_keys=[user_id])
+    creator: Mapped["User"] = relationship("User", lazy="selectin", foreign_keys=[creator_id])
+    container: Mapped["Container"] = relationship("Container", lazy="selectin", foreign_keys=[container_id])
 

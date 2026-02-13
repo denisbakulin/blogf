@@ -35,9 +35,9 @@ async def get_me(
 async def patch_my_info(
         user_update: UserUpdate,
         user: currentUserDep,
-        user_service: userServiceDep,
+        service: userServiceDep,
 ):
-    return await user_service.update_user(user=user, user_update=user_update)
+    return await service.update_user(user=user, user_update=user_update)
 
 
 
@@ -49,9 +49,9 @@ async def patch_my_info(
 async def change_password(
         pwd: PasswordChange,
         user: currentUserDep,
-        user_service: userServiceDep,
+        service: userServiceDep,
 ):
-    await user_service.change_password(
+    await service.change_password(
         user, pwd.old_password, pwd.new_password
     )
 
@@ -74,10 +74,10 @@ async def get_settings(
 )
 async def edit_settings(
         user: currentUserDep,
-        user_service: userServiceDep,
+        service: userServiceDep,
         settings: UserSettings
 ):
-    return await user_service.edit_user_settings(user, settings)
+    return await service.edit_user_settings(user, settings)
 
 
 @me_router.get(
@@ -88,11 +88,11 @@ async def edit_settings(
 )
 async def get_my_comments(
         user: currentUserDep,
-        comment_service: commentServiceDep,
+        service: commentServiceDep,
         pagination: Pagination = Depends()
 
 ):
-    return await comment_service.get_user_comments(user=user, pagination=pagination)
+    return await service.get_user_comments(user=user, pagination=pagination)
 
 
 

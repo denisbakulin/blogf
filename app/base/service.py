@@ -1,8 +1,9 @@
 from typing import Any, TypeVar
 
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.exc import SQLAlchemyError
 
-from base.exceptions import EntityAlreadyExists, EntityNotFoundError
+from base.exceptions import EntityAlreadyExists, EntityNotFoundError, EntityBadRequestError
 from base.model import BaseORM
 from base.repository import BaseRepository
 from helpers.search import Pagination
@@ -53,16 +54,18 @@ class BaseService[T, R]:
         :raise
             EntityNotFoundError: Если запись не найдена
         """
-
-        item = await self.repository.get_one_by(**params)
-
-        if not item:
-            raise EntityNotFoundError(
-                self.model.__name__,
-                **params
+        try:
+            item = await self.repository.get_one_by(**params)
+            if not item:
+                raise EntityNotFoundError(
+                    self.model.__name__,
+                    **params
+                )
+            return item
+        except SQLAlchemyError:
+            raise EntityBadRequestError(
+                entity=self.model.__name__, message="Больше 1 объекта в базе"
             )
-
-        return item
 
 
     async def get_items_by(
