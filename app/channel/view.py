@@ -90,3 +90,14 @@ async def process_subscribe(
 ):
     return await service.get_subscribers(user=user, container=channel, pagination=pagination)
 
+
+@channel_router.post(
+    "/{slug}/sub",
+    summary="Подписаться на публичный канал",
+)
+async def create_subscribe(
+        service: channelServiceDep,
+        user: currentUserDep,
+        channel: channelDep,
+):
+    return await service.public.subscribe(user=user, container=channel)

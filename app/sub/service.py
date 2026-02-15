@@ -8,10 +8,8 @@ from sub.schemas import subscribe_type
 from sub.model import Subscribe
 from sub.repository import SubscribeRepository
 from user.model import User
-from topic.release.service import TopicService
-from user.service import UserService
+
 from container.model import Container, ContainerType as ct
-from post.service import PostService
 from container.service import ContainerService
 from sub.schemas import ListOfSubscribes, ContainerSubs
 from user.schemas import ShortUserInfo
@@ -21,9 +19,6 @@ class SubscribeService(BaseService[Subscribe, SubscribeRepository]):
 
     def __init__(self, session: AsyncSession):
         super().__init__(Subscribe, session, SubscribeRepository)
-        self.user_service = UserService(session=session)
-        self.topic_service = TopicService(session=session)
-        self.post_service = PostService(session=session)
         self.container_service = ContainerService(session=session)
 
 

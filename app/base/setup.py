@@ -51,6 +51,7 @@ def include_routers(app: FastAPI):
     from user.views.me import me_router
     from user.views.other import user_router
     from channel.view import channel_router
+    from allows.view import allow_router
 
     routers: list[APIRouter] = [
         auth_router, user_router,
@@ -58,7 +59,7 @@ def include_routers(app: FastAPI):
         post_router, comm_router,
         crypto_router, weather_router,
          subs_router,
-        admin_router, root
+        admin_router, root, allow_router
     ]
 
 

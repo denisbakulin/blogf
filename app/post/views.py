@@ -173,7 +173,7 @@ async def add_post_reaction(
 
 @post_router.get(
     "/{slug}/reactions",
-    summary="Получить реакци поста",
+    summary="Получить реакции поста",
     response_model=list[PostReactionShow],
 )
 async def get_post_reactions(

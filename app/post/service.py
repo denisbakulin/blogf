@@ -1,6 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from base.exceptions import EntityBadRequestError
+from base.exceptions import EntityBadRequestError, InsufficientPermissionsError
 from base.service import BaseService
 from helpers.search import Pagination
 from post.model import Post
@@ -11,7 +11,8 @@ from user.model import User
 
 from topic.release.service import TopicService
 from container.service import ContainerService
-from container.model import ContainerType as ct
+from container.model import Container, ContainerType as ct
+from allows.service import AllowPostService
 
 
 class PostService(BaseService[Post, PostRepository]):
@@ -20,6 +21,7 @@ class PostService(BaseService[Post, PostRepository]):
         super().__init__(Post, session, PostRepository)
         self.topic_service = TopicService(session=session)
         self.container_service = ContainerService(session=session)
+        self.allows = AllowPostService(session=session)
 
 
     async def _create_post(self, author_id: int, post_create: PostCreate, allows: PostAllows) -> Post:
@@ -36,12 +38,35 @@ class PostService(BaseService[Post, PostRepository]):
         return post
 
 
-    async def create_post_private_channel(self, user: User, post_create: PostCreate, allows: PostAllows) -> Post:
-        ...
+    async def create_post_private_channel(
+            self, user: User,
+            post_create: PostCreate,
+            allows: PostAllows,
+            channel: Container
+    ) -> Post:
+        can_create = await self.allows.can_create_private(user=user, channel=channel)
 
-    async def create_post_public_channel(self, user: User, post_create: PostCreate, allows: PostAllows) -> Post:
-        ...
+        if not can_create:
+            raise InsufficientPermissionsError()
 
+        return await self._create_post(
+            author_id=user.id, post_create=post_create, allows=allows
+        )
+
+    async def create_post_public_channel(
+            self, user: User,
+            post_create: PostCreate,
+            allows: PostAllows,
+            channel: Container
+    ) -> Post:
+        can_create = await self.allows.can_create_public(user=user, channel=channel)
+
+        if not can_create:
+            raise InsufficientPermissionsError()
+
+        return await self._create_post(
+            author_id=user.id, post_create=post_create, allows=allows
+        )
 
     async def create_post(self, user: User, post_create: PostCreate, allows: PostAllows) -> Post:
 
@@ -50,10 +75,15 @@ class PostService(BaseService[Post, PostRepository]):
         if post_create.container_id:
             container = await self.container_service.get_item_by_id(post_create.container_id)
 
+        can_create = await self.allows.can_create(user=user, container=container)
+
+        if not can_create:
+            raise InsufficientPermissionsError()
+
         if container is None or container.type == ct.topic:
             return await self._create_post(author_id=user.id, post_create=post_create, allows=allows)
 
-        props = dict(user=user, post_create=post_create, allows=allows)
+        props = dict(user=user, post_create=post_create, allows=allows, channel=container)
 
         process_func = {
             ct.public_channel: self.create_post_public_channel(**props),
@@ -72,11 +102,13 @@ class PostService(BaseService[Post, PostRepository]):
 
     async def update_post(self, post: Post, post_update: PostUpdate, user: User, allows: PostAllows) -> Post:
 
-        if post.author_id != user.id:
+        can_update = await self.allows.can_update(user=user, post=post)
+        if not can_update:
             raise EntityBadRequestError(
                 "Post",
                 f"Пост id={post.id} не принадлежит user={user.username}"
             )
+
         if allows is None:
             await self.update_item(post, **post_update.model_dump())
         else:
@@ -87,7 +119,7 @@ class PostService(BaseService[Post, PostRepository]):
     async def get_user_posts(self, user: User, pagination: Pagination) -> list[Post]:
         return await self.get_items_by(
             author_id=user.id,
-            topic_id=None,
+            container_id=None,
             pagination=pagination
         )
 

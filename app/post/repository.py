@@ -5,7 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from base.repository import BaseRepository
 from post.model import Post
 from reaction.model import Reaction
-
+from container.model import Container, ContainerType
 
 class PostRepository(BaseRepository[Post]):
 
@@ -20,7 +20,9 @@ class PostRepository(BaseRepository[Post]):
                 func.count(Reaction.post_id).label("like_count")
             )
             .join(Reaction, Reaction.post_id == Post.id)
+            .join(Container, Post.container_id == Container.id)
             .where(Reaction.reaction == reaction)
+            .where(Container.type != ContainerType.private_channel)
             .group_by(Post.id)
             .order_by(desc("like_count"))
             .limit(10)
