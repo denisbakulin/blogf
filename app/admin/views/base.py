@@ -1,12 +1,11 @@
 from typing import Optional, Type
 
-from fastapi import APIRouter, Depends
-
 from admin.deps import get_admin_service
 from admin.service import AdminService
 from auth.deps import role_validate
 from base.model import BaseORM, ColumnProps
 from base.schemas import BaseSchema
+from fastapi import APIRouter, Depends
 from user.model import UserRoleEnum
 
 

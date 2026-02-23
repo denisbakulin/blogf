@@ -1,19 +1,17 @@
-from fastapi import APIRouter, Depends, status
+from typing import Literal
 
 from auth.deps import currentUserDep
-from helpers.search import Pagination
+from container.schemas import ContainerShow, FullContainerShow
+from fastapi import APIRouter, Depends, status
+from helpers.search import Pagination, search_param_fabric
 from post.deps import postServiceDep
-from post.schemas import PostCreate, PostShow, PostAllows
+from post.schemas import PostAllows, PostCreate, PostShow
 from reaction.deps import reactionServiceDep
 from reaction.schemas import TopicReactionShow
-from reaction.types import ReactionsSetParams, ReactionsGetParams
-from topic.release.deps import (topicDep,
-                                topicServiceDep)
-from topic.release.schemas import (CreateTopic)
-from container.schemas import FullContainerShow, ContainerShow
-from typing import Literal
-from helpers.search import search_param_fabric
+from reaction.types import ReactionsGetParams, ReactionsSetParams
 from sub.deps import subscribeServiceDep
+from topic.release.deps import topicDep, topicServiceDep
+from topic.release.schemas import CreateTopic
 
 TopicSearchParams = search_param_fabric(Literal["slug", "id", "title"])
 
@@ -53,7 +51,7 @@ async def create_topic(
 
 @topic_router.get(
     "/search",
-    summary="Поиск пользователя по ключевым параметрам",
+    summary="Поиск темы по ключевым параметрам",
     response_model=list[ContainerShow],
 )
 async def search_topics(
@@ -86,7 +84,7 @@ async def sub_to_topic(
         service: subscribeServiceDep,
         user: currentUserDep
 ):
-    return await service.process_subscribe(user=user, topic=topic)
+    return await service.create_subscribe(user=user, container_id=topic.id)
 
 
 @topic_router.post(
@@ -102,7 +100,7 @@ async def set_topic_reactions(
         service: reactionServiceDep
 ):
     return await service.process_topic_reaction(
-        user=user, topic=topic, reaction=reaction
+        user=user, container=topic, reaction=reaction
     )
 
 

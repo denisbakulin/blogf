@@ -1,16 +1,16 @@
-from fastapi import APIRouter, Depends
-
 from auth.deps import currentUserDep, role_validate
 from comment.deps import commentDep, commentServiceDep
 from comment.schemas import CommentShow, CommentUpdate
+from fastapi import APIRouter, Depends
 from user.model import UserRoleEnum
 
 allow_router = APIRouter(prefix="/allows", tags=["💬 Права"])
-from allows.schema import AllowShow, AllowBase
-from allows.service import AllowService, AllowPostService
+from allows.deps import allowServiceDep
+from allows.schema import AllowBase, AllowShow
+from allows.service import AllowPostService, AllowService
 from helpers.search import Pagination
 
-from allows.deps import allowServiceDep
+
 @allow_router.get(
     "/",
     response_model=list[AllowShow],

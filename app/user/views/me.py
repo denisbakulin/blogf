@@ -1,17 +1,15 @@
-from fastapi import APIRouter, Depends, status
-
 from auth.deps import currentUserDep
 from comment.deps import commentServiceDep
 from comment.schemas import CommentShow
+from fastapi import APIRouter, Depends, status
 from helpers.search import Pagination
+from post.deps import postServiceDep
+from post.schemas import PostAllows, PostCreate, PostShow
 from reaction.deps import reactionServiceDep
+from reaction.schemas import PostReactionShow, TopicReactionShow
 from reaction.types import ReactionsGetParams
 from user.deps import userServiceDep
 from user.schemas import PasswordChange, UserSettings, UserShowMe, UserUpdate
-
-from post.deps import postServiceDep
-from post.schemas import PostShow, PostAllows, PostCreate
-from reaction.schemas import PostReactionShow, TopicReactionShow
 
 me_router = APIRouter(prefix="/me", tags=["👤 Личный кабинет"])
 

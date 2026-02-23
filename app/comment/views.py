@@ -1,8 +1,7 @@
-from fastapi import APIRouter, Depends
-
 from auth.deps import currentUserDep, role_validate
 from comment.deps import commentDep, commentServiceDep
 from comment.schemas import CommentShow, CommentUpdate
+from fastapi import APIRouter, Depends
 from user.model import UserRoleEnum
 
 comm_router = APIRouter(prefix="/comments", tags=["💬 Комментарии"])

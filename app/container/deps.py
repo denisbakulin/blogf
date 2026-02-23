@@ -1,11 +1,11 @@
 from typing import Annotated
 
-from fastapi import Depends
-
 from base.db import getSessionDep
-from topic.offrer.model import Topic, TopicOffer
+from fastapi import Depends
+from topic.offrer.model import TopicOffer
 from topic.release.service import TopicOfferService, TopicService
-
+from container.model import Container
+from container.service import ContainerService
 
 def get_topic_service(
         session: getSessionDep
@@ -25,7 +25,7 @@ topicOfferServiceDep = Annotated[TopicOfferService, Depends(get_topic_offer_serv
 async def get_topic(
         slug: str,
         topic_service: topicServiceDep,
-) -> Topic:
+) -> Container:
     return await topic_service.get_item_by(slug=slug)
 
 async def get_topic_offer(
@@ -35,8 +35,16 @@ async def get_topic_offer(
     return await topic_service.get_item_by_id(offer_id)
 
 
+
+async def get_container_service(
+    session: getSessionDep
+) -> ContainerService:
+    return ContainerService(session=session)
+
+
 topicOfferDep = Annotated[TopicOffer, Depends(get_topic_offer)]
-topicDep = Annotated[Topic, Depends(get_topic)]
+containerServiceDep = Annotated[ContainerService, Depends(get_container_service)]
+topicDep = Annotated[Container, Depends(get_topic)]
 
 
 

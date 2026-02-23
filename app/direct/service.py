@@ -1,5 +1,3 @@
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from base.exceptions import (EntityBadRequestError, EntityLockedError,
                              EntityNotFoundError)
 from base.repository import BaseRepository
@@ -10,6 +8,7 @@ from direct.repository import DirectChatRepository
 from direct.schemas import (DirectChatShow, DirectUserSettingsSchema,
                             MessageCreate)
 from helpers.search import Pagination
+from sqlalchemy.ext.asyncio import AsyncSession
 from user.model import User
 
 

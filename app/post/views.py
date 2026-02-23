@@ -1,20 +1,21 @@
 from typing import Literal
 
-from fastapi import APIRouter, Depends, status
-from fastapi_cache.decorator import cache
-
 from auth.deps import currentUserDep
 from comment.deps import commentServiceDep
 from comment.schemas import CommentCreate, CommentShow
+from fastapi import APIRouter, Depends, status
+from fastapi_cache.decorator import cache
 from helpers.search import Pagination
 from post.deps import postDep, postServiceDep
-from post.schemas import (FullPostShow, PostCreate, PostShow, PostUpdate,
-                          TopPostShow, PostAllows)
+from post.schemas import ( PostCreate, PostShow,
+                          PostUpdate, TopPostShow)
 from post.utils import PostSearchParams
 from reaction.deps import reactionServiceDep
 from reaction.schemas import PostReactionShow
 from reaction.types import ReactionsGetParams, ReactionsSetParams
-from user.deps import anonDep
+from auth.deps import anonDep
+from post.deps import postLogicDep
+
 
 post_router = APIRouter(prefix="/posts", tags=["📝 Посты"])
 
@@ -26,12 +27,11 @@ post_router = APIRouter(prefix="/posts", tags=["📝 Посты"])
     response_model=PostShow
 )
 async def create_post(
-        service: postServiceDep,
-        post_create: PostCreate,
+        logic: postLogicDep,
+        post: PostCreate,
         user: currentUserDep,
-        post_allows: PostAllows
 ):
-    return await service.create_post(user=user, post_create=post_create, allows=post_allows)
+    return await logic.create_post(user=user, post=post)
 
 
 @post_router.get(
@@ -62,23 +62,22 @@ async def search_posts(
 ):
     return await post_service.search_items(search=search, pagination=pagination)
 
+
+from auth.deps import getCurrentOrAnonUser
 @post_router.get(
     "/{slug}",
     summary="Получить пост",
-    response_model=FullPostShow,
+    response_model=PostShow,
 
 )
 @cache(expire=60)
 async def get_post(
+        logic: postLogicDep,
         post: postDep,
-        reaction_service: reactionServiceDep
+        user: getCurrentOrAnonUser,
 ):
-    reactions = await reaction_service.get_post_reaction_count(post)
 
-    return FullPostShow(
-        post=PostShow.model_validate(post),
-        reactions=reactions
-    )
+    return await logic.get_post(post=post, user=user)
 
 
 @post_router.patch(
@@ -87,15 +86,14 @@ async def get_post(
     response_model=PostShow
 )
 async def update_post(
+        logic: postLogicDep,
         post: postDep,
         user: currentUserDep,
         post_update: PostUpdate,
-        post_service: postServiceDep,
-        post_allows: PostAllows | None = None
-):
 
-    return await post_service.update_post(
-        post=post, post_update=post_update, user=user, allows=post_allows
+):
+    return await logic.update_post(
+        post=post, post_update=post_update, user=user
     )
 
 

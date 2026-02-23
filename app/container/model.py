@@ -1,14 +1,16 @@
 from enum import StrEnum
+
+from base.model import BaseORM, IdMixin, TimeMixin
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from base.model import BaseORM, IdMixin, TimeMixin
-
 
 class ContainerType(StrEnum):
+    wall = "wall"
     topic = "topic"
     public_channel = "public_channel"
     private_channel = "private_channel"
+
 
 
 

@@ -1,6 +1,5 @@
-from pydantic import BaseModel
-
 from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
+from pydantic import BaseModel
 
 
 class MessageCreate(BaseModel):

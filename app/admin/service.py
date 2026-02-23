@@ -1,10 +1,8 @@
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from base.exceptions import EntityBadRequestError
 from base.repository import BaseRepository
 from base.service import BaseService
+from sqlalchemy.ext.asyncio import AsyncSession
 from user.model import User, UserRoleEnum
-
 from user.service import UserService
 
 

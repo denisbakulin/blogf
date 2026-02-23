@@ -1,16 +1,17 @@
-import logging
 import asyncio
+import logging
+
 from aiogram import Bot, Dispatcher
-from aiogram.types import Message
-from aiogram.filters import Command
-from app.base.settings import tg_bot_settings
-from aiogram.fsm.context import FSMContext
 from aiogram.client.default import DefaultBotProperties
-
-from text import AUTH_TEXT
-from check import check_verify_code
-
+from aiogram.filters import Command
+from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
+from aiogram.types import Message
+from check import check_verify_code
+from text import AUTH_TEXT
+
+from app.base.settings import tg_bot_settings
+
 
 class Waiting(StatesGroup):
     code = State()

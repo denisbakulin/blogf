@@ -1,21 +1,18 @@
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from auth.exceptions import InvalidPasswordError
+from base.exceptions import EntityAlreadyExists
 from base.service import BaseService
-from direct.service import DirectChatService
 from helpers.search import Pagination
+from sqlalchemy.ext.asyncio import AsyncSession
 from user.model import Profile, Settings, User, UserRoleEnum
 from user.repository import UserRepository
 from user.schemas import PasswordChange, UserCreate, UserSettings, UserUpdate
 from user.utils import (UserSearchParams, generate_hashed_password,
                         verify_password)
 
-from base.exceptions import EntityAlreadyExists
 
 class UserService(BaseService[User, UserRepository]):
     def __init__(self, session: AsyncSession):
         super().__init__(User, session, UserRepository)
-        self.direct_service = DirectChatService(session)
         self.profile_service = BaseService(Profile, session)
 
 
@@ -31,7 +28,6 @@ class UserService(BaseService[User, UserRepository]):
             **user_create.model_dump(),
         )
 
-        await self.direct_service.create_favorites_chat(user)
 
         return user
 
@@ -57,6 +53,8 @@ class UserService(BaseService[User, UserRepository]):
 
         return await self.update_item(anon, role=UserRoleEnum.ANONYMOUS)
 
+    async def get_anonymous(self) -> User:
+        return await self.get_item_by(role=UserRoleEnum.ANONYMOUS)
 
     async def get_user_by_id(self, user_id: int) -> User:
         return await self.get_item_by_id(user_id)

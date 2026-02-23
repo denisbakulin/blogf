@@ -1,5 +1,5 @@
-from base.schemas import BaseSchema
 from allows.model import AllowAction, AllowEntity
+from base.schemas import BaseSchema
 
 
 class AllowBase(BaseSchema):

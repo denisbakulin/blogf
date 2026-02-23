@@ -1,10 +1,8 @@
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from base.service import BaseService
+from sqlalchemy.ext.asyncio import AsyncSession
 from topic.offrer.model import TopicOffer
 from topic.offrer.repository import TopicOfferRepository
-from topic.offrer.schemas import (CreateTopicOffer,
-                                   )
+from topic.offrer.schemas import CreateTopicOffer
 from user.model import User
 
 

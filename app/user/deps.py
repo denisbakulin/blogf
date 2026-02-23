@@ -1,8 +1,7 @@
 from typing import Annotated
 
-from fastapi import Depends
-
 from base.db import getSessionDep
+from fastapi import Depends
 from user.model import User, UserRoleEnum
 from user.service import UserService
 
@@ -23,12 +22,6 @@ async def get_user(
     return await user_service.get_user_by_username(username)
 
 
-async def get_anon(
-        user_service: userServiceDep
-) -> User:
-    return await user_service.get_item_by(role=UserRoleEnum.ANONYMOUS)
 
-
-anonDep = Annotated[User, Depends(get_anon)]
 userDep = Annotated[User, Depends(get_user)]
 

@@ -1,7 +1,6 @@
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from base.repository import BaseRepository
 from join_request.model import JoinRequest
+from sqlalchemy.ext.asyncio import AsyncSession
 
 
 class JoinRequestRepository(BaseRepository[JoinRequest]):

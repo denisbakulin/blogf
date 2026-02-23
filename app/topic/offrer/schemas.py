@@ -1,7 +1,7 @@
 from base.schemas import IdMixinSchema
 from topic.offrer.model import TopicOfferStatus
-from user.schemas import ShortUserInfo
 from topic.release.schemas import TopicBase
+from user.schemas import ShortUserInfo
 
 
 class CreateTopicOffer(TopicBase):

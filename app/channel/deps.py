@@ -1,12 +1,9 @@
 from typing import Annotated
 
-from fastapi import Depends
-
 from base.db import getSessionDep
-
 from channel.service import ChannelService
-
 from container.model import Container
+from fastapi import Depends
 
 
 def get_channel_service(

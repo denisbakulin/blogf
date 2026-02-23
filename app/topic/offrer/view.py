@@ -1,13 +1,11 @@
-from fastapi import APIRouter, Depends, status
-
 from auth.deps import currentUserDep, role_validate
+from fastapi import APIRouter, Depends, status
 from helpers.search import Pagination
-from topic.offrer.deps import ( topicOfferServiceDep, offerTopicDep)
-from topic.release.deps import  topicServiceDep
-from topic.release.schemas import (AddTopicByOffer)
-from topic.offrer.schemas import TopicOfferShow, CreateTopicOffer
+from topic.offrer.deps import offerTopicDep, topicOfferServiceDep
+from topic.offrer.schemas import CreateTopicOffer, TopicOfferShow
+from topic.release.deps import topicServiceDep
+from topic.release.schemas import AddTopicByOffer
 from user.model import User, UserRoleEnum
-
 
 offer_router = APIRouter(prefix="/topic-offers", tags=["📚 Предложенные Темы"])
 

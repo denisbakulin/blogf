@@ -1,8 +1,9 @@
+from enum import StrEnum
+
+from base.model import BaseORM, IdMixin
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from base.model import BaseORM, IdMixin
-from enum import StrEnum
 
 class AllowAction(StrEnum):
     CREATE = "create"

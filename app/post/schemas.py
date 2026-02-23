@@ -1,13 +1,7 @@
-from pydantic import Field
-
 from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
-from reaction.schemas import ReactionsCount
 from container.schemas import ContainerShow
-
-
-class PostAllows(BaseSchema):
-    allow_comments: bool | None = None
-    allow_reactions:  bool | None = None
+from pydantic import Field
+from reaction.schemas import ReactionsCount
 
 
 class PostBase(BaseSchema):
@@ -42,7 +36,8 @@ class FullPostShow(BaseSchema):
 
 class PostCreate(PostBase):
     container_id: int | None = None
-
+    allow_comments: bool | None = None
+    allow_reactions: bool | None = None
 
 
 class PostUpdate(BaseSchema):

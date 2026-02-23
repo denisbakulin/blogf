@@ -1,10 +1,10 @@
 from typing import Annotated
 
-from fastapi import Depends
-
 from base.db import getSessionDep
-from topic.release.service import TopicService
 from container.model import Container
+from fastapi import Depends
+from topic.release.service import TopicService
+
 
 def get_topic_service(
         session: getSessionDep

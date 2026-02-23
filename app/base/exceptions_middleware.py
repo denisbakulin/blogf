@@ -1,14 +1,13 @@
+from auth.exceptions import AuthError
+from base.exceptions import (AppError, EntityAlreadyExists,
+                             EntityBadRequestError, EntityLockedError,
+                             EntityNotFoundError, InsufficientPermissionsError)
 from fastapi import status
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
 from starlette.responses import JSONResponse
 
-from auth.exceptions import AuthError
-from base.exceptions import (AppError, EntityAlreadyExists,
-                             EntityBadRequestError, EntityLockedError,
-                             EntityNotFoundError, InsufficientPermissionsError)
-
-
+from abac.exceptions import Forbidden
 class ErrorResponse(JSONResponse):
 
     def __init__(self, status_code: status, exc: Exception):
@@ -25,8 +24,9 @@ class AppExceptionMiddleware(BaseHTTPMiddleware):
         except EntityNotFoundError as exc:
             return ErrorResponse(status.HTTP_404_NOT_FOUND, exc)
 
-        except (EntityAlreadyExists, InsufficientPermissionsError) as exc:
+        except (EntityAlreadyExists, InsufficientPermissionsError, Forbidden) as exc:
             return ErrorResponse(status.HTTP_403_FORBIDDEN, exc)
+
 
         except EntityBadRequestError as exc:
             return ErrorResponse(status.HTTP_422_UNPROCESSABLE_ENTITY, exc)

@@ -1,8 +1,8 @@
-from pydantic import Field, field_serializer, field_validator
+from typing import Annotated
 
 from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
+from pydantic import Field, field_serializer, field_validator
 from user.model import UserRoleEnum
-from  typing import Annotated
 
 
 class ShortUserInfo(BaseSchema, IdMixinSchema):

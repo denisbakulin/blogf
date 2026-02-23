@@ -1,9 +1,8 @@
 from re import sub
 from typing import Literal
 
-from unidecode import unidecode
-
 from helpers.search import search_param_fabric
+from unidecode import unidecode
 
 
 def generate_slug(title: str, index: int | None = None) -> str:

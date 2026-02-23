@@ -1,5 +1,3 @@
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from base.exceptions import EntityBadRequestError
 from base.service import BaseService
 from comment.model import Comment
@@ -8,6 +6,7 @@ from comment.schemas import CommentCreate, CommentUpdate
 from helpers.search import Pagination
 from post.model import Post
 from post.service import PostService
+from sqlalchemy.ext.asyncio import AsyncSession
 from topic.release.schemas import UserCommentsCountOfTopicShow
 from user.model import User
 from user.service import UserService

@@ -1,12 +1,9 @@
-from fastapi import APIRouter, Depends
-
-from channel.deps import channelServiceDep, channelDep
-
-from container.schemas import ContainerShow
-from channel.schemas import ChannelCreate
 from auth.deps import currentUserDep
+from channel.deps import channelDep, channelServiceDep
+from channel.schemas import ChannelCreate
+from container.schemas import ContainerShow
+from fastapi import APIRouter, Depends
 from helpers.search import Pagination
-
 from join_request.schemas import JRShow
 from sub.schemas import SubscriberOfContainerShow
 
@@ -101,3 +98,23 @@ async def create_subscribe(
         channel: channelDep,
 ):
     return await service.public.subscribe(user=user, container=channel)
+
+
+from reaction.schemas import TopicReactionShow
+from reaction.deps import reactionServiceDep
+from reaction.types import ReactionsSetParams
+
+@channel_router.post(
+    "/{slug}/reactions",
+    summary="Оставить реакцию под каналом",
+    response_model=TopicReactionShow,
+)
+async def set_channel_reactions(
+        channel: channelDep,
+        user: currentUserDep,
+        reaction: ReactionsSetParams,
+        service: reactionServiceDep
+):
+    return await service.process_topic_reaction(
+        user=user, container=channel, reaction=reaction
+    )

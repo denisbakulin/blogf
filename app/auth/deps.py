@@ -1,26 +1,27 @@
 from operator import ge
 from typing import Annotated, Callable
 
-from fastapi import Depends, HTTPException
-from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from auth.exceptions import InvalidTokenError
 from auth.schemas import TokenInfo
 from auth.service import AuthService
 from auth.utils import decode_token
 from base.db import get_session
 from base.exceptions import EntityLockedError
+from fastapi import Depends, HTTPException, Request
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from sqlalchemy.ext.asyncio import AsyncSession
 from user.deps import get_user_service
 from user.model import User, UserRoleEnum
 from user.service import UserService
 
-Operator = Callable[[UserRoleEnum, UserRoleEnum], bool]
-security = HTTPBearer()
 
-async def get_user_token(
-        creds: HTTPAuthorizationCredentials = Depends(security),
-) -> TokenInfo:
+Operator = Callable[[UserRoleEnum, UserRoleEnum], bool]
+
+security = HTTPBearer()
+optional_security = HTTPBearer(auto_error=False)
+
+
+def decode_token_from_creds(creds: HTTPAuthorizationCredentials) -> TokenInfo:
     if creds.scheme != "Bearer":
         raise InvalidTokenError(
             f"Invalid auth schema: {creds.scheme} (Bearer need)"
@@ -29,6 +30,19 @@ async def get_user_token(
 
     return decode_token(token)
 
+async def get_user_token(
+        creds: HTTPAuthorizationCredentials = Depends(security),
+) -> TokenInfo:
+    return decode_token_from_creds(creds)
+
+
+async def get_anon(
+        user_service: UserService = Depends(get_user_service)
+) -> User:
+    return await user_service.get_anonymous()
+
+
+anonDep = Annotated[User, Depends(get_anon)]
 
 async def get_current_user(
     token: TokenInfo = Depends(get_user_token),
@@ -61,5 +75,20 @@ async def get_auth_service(
     return AuthService(session=session)
 
 
+
+async def get_anon_or_current_user(
+        creds: HTTPAuthorizationCredentials | None = Depends(optional_security),
+        user_service: UserService = Depends(get_user_service)
+):
+    if creds is None:
+        return await user_service.get_anonymous()
+    try:
+        user_id = decode_token_from_creds(creds).user_id
+        return await user_service.get_user_by_id(user_id)
+    except InvalidTokenError:
+        return await user_service.get_anonymous()
+
+
+getCurrentOrAnonUser = Annotated[User, Depends(get_anon_or_current_user)]
 currentUserDep = Annotated[User, Depends(get_current_user)]
 authServiceDep = Annotated[AuthService, Depends(get_auth_service)]

@@ -1,16 +1,14 @@
-from fastapi import APIRouter, Cookie,  HTTPException, Response, Request
-
 from auth.deps import authServiceDep, currentUserDep
 from auth.exceptions import InvalidTokenError
-from auth.schemas import AccessTokenResponse, AuthCreds, VerifyCode, BotVerifyCode
-
+from auth.schemas import (AccessTokenResponse, AuthCreds, BotVerifyCode,
+                          VerifyCode)
+from auth.tg_verified import tgvServiceDep
 from auth.utils import (TokenCreator, TokenTypes, decode_token,
                         set_refresh_token_cookie)
-from user.schemas import UserCreate
-from user.deps import userServiceDep
 from base.settings import tg_bot_settings
-from auth.tg_verified import tgvServiceDep
-
+from fastapi import APIRouter, Cookie, HTTPException, Request, Response
+from user.deps import userServiceDep
+from user.schemas import UserCreate
 
 auth_router = APIRouter(prefix="/auth", tags=["🔐 Авторизация"])
 

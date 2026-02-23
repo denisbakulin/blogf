@@ -1,11 +1,9 @@
 from typing import Annotated
 
-from fastapi import Depends
-
 from base.db import getSessionDep
+from fastapi import Depends
 from topic.offrer.model import TopicOffer
 from topic.release.service import TopicOfferService
-
 
 
 def get_topic_offer_service(

@@ -1,6 +1,13 @@
+from base.model import BaseORM, IdMixin
 from sqlalchemy.orm import Mapped, mapped_column
 
-from base.model import BaseORM, IdMixin
+from base.repository import BaseRepository
+from sqlalchemy.ext.asyncio import AsyncSession
+from base.service import BaseService
+from typing import Annotated
+
+from base.db import get_session
+from fastapi import Depends
 
 
 class TgVerified(BaseORM, IdMixin):
@@ -10,8 +17,6 @@ class TgVerified(BaseORM, IdMixin):
 
 
 
-from sqlalchemy.ext.asyncio import AsyncSession
-from base.repository import BaseRepository
 
 
 class TgVerifiedRepository(BaseRepository[TgVerified]):
@@ -21,16 +26,16 @@ class TgVerifiedRepository(BaseRepository[TgVerified]):
 
 
 
-from base.service import BaseService
+
+
 class TgVerifiedService(BaseService[TgVerified, TgVerifiedRepository]):
 
     def __init__(self, session: AsyncSession):
         super().__init__(TgVerified, session, TgVerifiedRepository)
 
 
-from typing import Annotated
-from fastapi import Depends
-from base.db import get_session
+
+
 
 async def get_tgver_service(
         session: AsyncSession = Depends(get_session)

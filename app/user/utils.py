@@ -1,8 +1,7 @@
 from typing import Literal
 
-from passlib.context import CryptContext
-
 from helpers.search import search_param_fabric
+from passlib.context import CryptContext
 
 pwd_context = CryptContext(
     schemes=["bcrypt"],

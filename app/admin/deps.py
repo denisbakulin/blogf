@@ -1,9 +1,8 @@
 from typing import Callable
 
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from admin.service import AdminService
 from base.db import getSessionDep
+from sqlalchemy.ext.asyncio import AsyncSession
 
 
 def get_admin_service(
@@ -16,9 +15,8 @@ def get_admin_service(
 
 from typing import Annotated
 
-from fastapi import Depends
-
 from admin.service import AdminUserService
+from fastapi import Depends
 
 
 async def get_admin_user_service(

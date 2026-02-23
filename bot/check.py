@@ -1,5 +1,7 @@
 import aiohttp
+
 from app.base.settings import tg_bot_settings
+
 
 async def check_verify_code(code: str, tg_id: int) -> dict[str, str]:
     headers = {

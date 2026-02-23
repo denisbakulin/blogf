@@ -1,6 +1,5 @@
-from pydantic import BaseModel
-
 from base.schemas import BaseSchema, TimeMixinSchema
+from pydantic import BaseModel
 from user.schemas import ShortUserInfo
 
 

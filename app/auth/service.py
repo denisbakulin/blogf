@@ -1,13 +1,11 @@
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from auth.exceptions import InvalidPasswordError
 from auth.schemas import AuthCreds, LoginTokens
 from auth.utils import TokenCreator, generate_8char_code
+from fastapi_cache import FastAPICache
+from sqlalchemy.ext.asyncio import AsyncSession
 from user.schemas import UserCreate
 from user.service import UserService
 from user.utils import verify_password
-from fastapi_cache import FastAPICache
-
 
 
 class AuthService:

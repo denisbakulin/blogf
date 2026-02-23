@@ -1,5 +1,5 @@
-from sqlalchemy.ext.asyncio import AsyncSession
 from base.repository import BaseRepository
+from sqlalchemy.ext.asyncio import AsyncSession
 from sub.model import Subscribe
 
 

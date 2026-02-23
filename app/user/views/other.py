@@ -1,6 +1,5 @@
-from fastapi import APIRouter, Depends
-
 from comment.deps import commentServiceDep
+from fastapi import APIRouter, Depends
 from helpers.search import Pagination
 from post.deps import postServiceDep
 from post.schemas import PostShow

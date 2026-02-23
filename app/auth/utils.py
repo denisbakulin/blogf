@@ -1,16 +1,14 @@
+import secrets
+import string
 from datetime import datetime, timedelta
 from enum import StrEnum
-
-from fastapi import Response
-from jose import JWTError, jwt
 
 from auth.exceptions import InvalidTokenError
 from auth.schemas import TokenInfo
 from base.settings import jwt_auth_settings
+from fastapi import Response
+from jose import JWTError, jwt
 
-
-import secrets
-import string
 
 def generate_8char_code() -> str:
     """
@@ -24,6 +22,7 @@ def generate_8char_code() -> str:
 class TokenTypes(StrEnum):
     access = "access"
     refresh = "refresh"
+
 
 
 

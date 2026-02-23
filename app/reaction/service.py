@@ -1,17 +1,16 @@
 
 from functools import partial
 
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from base.exceptions import EntityBadRequestError
 from base.service import BaseService
+from container.model import Container
 from helpers.search import Pagination
 from post.model import Post
 from reaction.model import Reaction
 from reaction.repository import ReactionRepository
 from reaction.schemas import ReactionsCount
 from reaction.types import ReactionsSetParams
-from container.model import Container
+from sqlalchemy.ext.asyncio import AsyncSession
 from user.model import User
 
 
@@ -40,15 +39,15 @@ class ReactionService(BaseService[Reaction, ReactionRepository]):
 
     async def process_topic_reaction(
             self, user: User,
-            topic: Container,
+            container: Container,
             reaction: ReactionsSetParams
     ):
-        _reaction = await self.repository.get_one_by(user_id=user.id, container_id=topic.id)
+        _reaction = await self.repository.get_one_by(user_id=user.id, container_id=container.id)
 
         if _reaction:
             await self.delete_item(_reaction)
 
-        await self.create_item(user_id=user.id, container_id=topic.id, reaction=reaction)
+        await self.create_item(user_id=user.id, container_id=container.id, reaction=reaction)
 
 
 

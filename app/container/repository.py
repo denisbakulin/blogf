@@ -1,14 +1,11 @@
 from typing import TypeAlias
 
-from sqlalchemy import distinct, func, select
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from base.repository import BaseRepository
 from comment.model import Comment
-from post.model import Post
-
 from container.model import Container
-
+from post.model import Post
+from sqlalchemy import distinct, func, select
+from sqlalchemy.ext.asyncio import AsyncSession
 
 full_topic: TypeAlias = tuple[Container, int, int]
 
