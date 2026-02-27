@@ -9,7 +9,7 @@ from direct.schemas import (DirectChatShow, DirectUserSettingsSchema,
                             MessageCreate)
 from helpers.search import Pagination
 from sqlalchemy.ext.asyncio import AsyncSession
-from user.model import User
+from user import User
 
 
 class DirectUserSettingsService(BaseService[DirectUserSettings, BaseRepository]):

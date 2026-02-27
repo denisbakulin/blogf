@@ -19,18 +19,7 @@ class ColumnProps(BaseModel):
 class BaseORM(DeclarativeBase):
     __abstract__ = True
 
-
-    depends: Optional[list[tuple[str, Type["BaseORM"]]]] = None
-    """depends = [("profile", Profile), ...]
-    создает поля (связанные таблицы) при создании записи 
-    """
-
-
     def __init__(self, **kwargs):
-        if self.depends is not None:
-            for dep_name, dep in self.depends:
-                setattr(self, dep_name, dep())
-
         for key, value in kwargs.items():
             if hasattr(self, key):
                 setattr(self, key, value)

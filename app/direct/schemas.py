@@ -10,7 +10,6 @@ class DirectMessageShow(MessageCreate, TimeMixinSchema, IdMixinSchema):
     recipient_id: int
     sender_id: int
 
-from user.schemas import UserShow
 
 
 class BaseDirectEvent(BaseModel):

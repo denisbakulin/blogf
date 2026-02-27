@@ -1,12 +1,7 @@
 from allows.model import Allow, AllowAction, AllowEntity
 from allows.repository import AllowRepository
 from base.service import BaseService
-from container.model import Container
-from container.model import ContainerType as ct
-from post.model import Post
 from sqlalchemy.ext.asyncio import AsyncSession
-from sub.service import SubscribeService
-from user.model import User
 
 
 class AllowService(BaseService[Allow, AllowRepository]):

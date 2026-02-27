@@ -1,24 +1,39 @@
 from typing import Any, Optional, TypeVar, Unpack
 
 from base.model import BaseORM
-from sqlalchemy import desc, func, or_, select, text
+from sqlalchemy import desc, func, or_, select, text, delete
 from sqlalchemy.ext.asyncio import AsyncSession
+from utils.default import to_dto
 
 T = TypeVar("T", bound=BaseORM)
+D = TypeVar("D") #DTO
 Q = TypeVar("Q") #Любой sqlalchemy запрос
 
-class BaseRepository[T]:
+
+class BaseRepository[T, D]:
     """Базовый класс-repository проекта
     для взаимодействия с БД с
     операциями создания, получения, удаления записи
     """
 
-    def __init__(self, model: T, session: AsyncSession):
+    def __init__(self, model: T, session: AsyncSession, dto: type[D]):
         """При наследовании обязательно переопределить и указать модель,
         чтобы пользоваться методами класса"""
 
         self.model = model
         self.session = session
+        self.dto = dto
+
+    def to_dto(self, entity: T) -> D:
+        return to_dto(entity, self.dto)
+
+
+    def paginator(self, stmt: Q,  offset: int | None = None, limit: int | None = None) -> Q:
+        if limit is not None:
+            stmt = stmt.limit(limit)
+        if offset is not None:
+            stmt = stmt.offset(offset)
+        return stmt
 
     def _process_or(self, stmt, **filters):
         for key, value in filters.items():
@@ -38,7 +53,7 @@ class BaseRepository[T]:
             _desc: bool = True,
             inner_props: dict[str, Any] = None,
             **filters,
-    ) -> list[T] | list[Any] | tuple:
+    ) -> list[D] | list[Any] | tuple:
         """Возвращает отфильтрованный и отсортированный список записей
         по заданным параметрам и фильтрам
        """
@@ -47,7 +62,6 @@ class BaseRepository[T]:
             stmt = select(*[getattr(self.model, i) for i in lines])
         else:
             stmt = select(self.model)
-
 
         if filters:
            stmt = self._process_or(stmt=stmt, **filters)
@@ -60,27 +74,22 @@ class BaseRepository[T]:
         if order_func is not None:
             stmt = stmt.order_by(desc(order_func) if _desc else order_func)
 
-        if offset:
-            stmt = stmt.offset(offset)
+        stmt = self.paginator(stmt)
 
-        if limit:
-            stmt = stmt.limit(limit)
 
         result = await self.session.execute(stmt)
 
         if lines:
-            return [*result.all()]
+            return list(result.all())
 
-        return [*result.scalars().all()]
+        return list(self.to_dto(i) for i in result.scalars().all())
 
 
-    async def get_one_by(
+    async def get_orm(
             self,
             inner_props: dict[str, Any] = None,
             **filters
     ) -> Optional[T]:
-        """Возвращает уникальную запись или None по указанным параметрам,
-        если > 1 - Ошибка"""
 
         stmt = select(self.model)
 
@@ -93,6 +102,19 @@ class BaseRepository[T]:
         return result.scalar_one_or_none()
 
 
+    async def get_one_by(
+            self,
+            inner_props: dict[str, Any] = None,
+            **filters
+    ) -> Optional[D]:
+        """Возвращает уникальную запись или None по указанным параметрам,
+        если > 1 - Ошибка"""
+        result = await self.get_orm(inner_props=inner_props, **filters)
+
+        if result is not None:
+            return self.to_dto(result)
+
+
     def create(
             self,
             **data
@@ -102,6 +124,7 @@ class BaseRepository[T]:
         item = self.model(**data)
         self.session.add(item)
         return item
+
 
     async def exists(
             self,
@@ -119,17 +142,9 @@ class BaseRepository[T]:
     ):
         """Удаляет запись по id"""
 
-        item = await self.get_one_by(id=item_id)
-        await self.delete(item)
-
-    async def delete(
-            self,
-            item: T
-    ):
-        """Удаляет запись без подтверждения сверху (commit)"""
-
-        await self.session.delete(item)
-        await self.session.commit()
+        await self.session.execute(
+            delete(self.model).where(id=item_id)
+        )
 
 
     async def get_items_count(self, **filters) -> int:
@@ -143,30 +158,13 @@ class BaseRepository[T]:
         count = await self.session.execute(stmt)
         return count.scalar_one()
 
-    async def update(self, item: T, **updates) -> T:
+    async def update(self, item_id: int, **updates) -> D:
+        item = await self.get_orm(id=item_id)
+
         for key, value in updates.items():
             setattr(item, key, value)
 
-        return item
-
-
-    async def search(
-        self,
-        field: str,
-        query: Any,
-        offset: int,
-        limit: int,
-        inner_props: dict[str, Any] | None = None,
-    ) -> list[T]:
-        stmt = select(self.model).where(getattr(self.model, field).ilike(f"%{query}%"))
-
-        stmt = self._process_stmt_with_inner_fields(inner_props, stmt)
-
-        stmt = stmt.offset(offset).limit(limit)
-
-        result = await self.session.execute(stmt)
-
-        return list(result.scalars().all())
+        return self.to_dto(item)
 
 
     def _process_stmt_with_inner_fields(self, inner_props: dict[str, Any] | None, stmt: Q) -> Q:

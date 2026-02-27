@@ -10,9 +10,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 T = TypeVar("T", bound=BaseORM)
 R = TypeVar("R", bound=BaseRepository)
+D = TypeVar("D")
 
-
-class BaseService[T, R]:
+class BaseService[T, R, D]:
     """
     Базовый класс-service проекта
     с базовой бизнес-логикой для получения,
@@ -23,31 +23,28 @@ class BaseService[T, R]:
             self,
             model: T,
             session: AsyncSession,
-            repository: type[R] = None
+            repository: type[R]
     ):
         """При наследовании обязательно переопределить и указать модель,
         чтобы пользоваться методами класса"""
 
         self.model = model
         self.session = session
-        if repository is not None:
-            self.repository: R = repository(session=session)
-        else:
-            self.repository: R = BaseRepository(model, session)
+        self.repository: R = repository(session=session)
 
-    async def get_item_by_id(self, item_id: int) -> T:
-        return await self.get_item_by(id=item_id)
 
-    async def create_item(self, **params) -> T:
+
+
+    async def create_item(self, **params) -> D:
         item = self.repository.create(**params)
 
         await self.session.commit()
         await self.session.refresh(item)
 
-        return item
+        return self.repository.to_dto(item)
 
 
-    async def get_item_by(self, **params) -> T:
+    async def get_item_by(self, **params) -> D:
         """
         Возвращает запись по совпадениям params
 
@@ -66,13 +63,14 @@ class BaseService[T, R]:
             raise EntityBadRequestError(
                 entity=self.model.__name__, message="Больше 1 объекта в базе"
             )
-
+    async def get_item_by_id(self, item_id: int) -> D:
+        return await self.get_item_by(id=item_id)
 
     async def get_items_by(
             self,
             pagination: Pagination,
             **params
-    ) -> list[T]:
+    ) -> list[D]:
         return await self.repository.get_any_by(**params, **pagination.dict())
 
 
@@ -101,16 +99,16 @@ class BaseService[T, R]:
         await self.repository.delete_by_id(item_id)
 
 
-    async def delete_item(self, item: T):
-        await self.repository.delete(item)
 
+    async def update_item(self, item_id: int, **updates) -> D:
+        await self.get_item_by_id(item_id)
+        item = await self.repository.get_orm(id=item_id)
 
-    async def update_item(self, item: T, **updates) -> T:
-        await self.repository.update(item, **updates)
+        await self.repository.update(item_id, **updates)
         await self.session.commit()
         await self.session.refresh(item)
 
-        return item
+        return self.repository.to_dto(item)
 
     async def search_items(
             self,
@@ -118,7 +116,7 @@ class BaseService[T, R]:
             pagination: Pagination,
             inner_props: dict[str, Any] | None = None,
             **filters,
-    ) -> list[T]:
+    ) -> list[D]:
 
         if search.strict:
             return await self.repository.get_any_by(
