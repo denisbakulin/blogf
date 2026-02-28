@@ -1,5 +1,5 @@
 from base.schemas import BaseSchema
-from models.topic_offer import TopicOfferStatus
+from entities.topic_offer import TopicOfferStatus
 
 
 class TopicBase(BaseSchema):

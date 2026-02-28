@@ -1,38 +1,31 @@
 from base.repository import BaseRepository
-from models.comment import Comment
-from models.container import Container, ContainerType
-from models.post import Post
+from entities.comment import Comment
+from entities.container import Container
+from entities.post import Post
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from DTO.comment import CommentDTO, CommentCountInTopic, FullCommentDTO
 
 from sqlalchemy.sql import Select
-
-from models.user import User
-
-from dataclasses import asdict
+from entities.user import User
+from entities.container import ContainerType
 
 
-class CommentRepository(BaseRepository[Comment, CommentDTO]):
+class CommentRepository(BaseRepository[Comment]):
 
     def __init__(self, session: AsyncSession):
-        super().__init__(Comment, session, CommentDTO)
-
-    async def create_comment(
-            self,
-            **comment_data,
-    ) -> Comment:
-        return self.create(**comment_data)
+        super().__init__(Comment, session)
 
 
-    async def get_user_comment_count_in_topics(
-            self,
-            user_id: int,
-    ) -> list[CommentCountInTopic]:
+    async def get_user_comment_count_in_container(
+            self, user_id: int,
+            container_type: ContainerType,
+            offset: int | None = None,
+            limit: int | None = None,
+    ) -> list[tuple[Container, int]]:
         # можно потом разные типы контейнеров сделать
         stmt = (
             select(
-                Container.slug,
+                Container,
                 func.count(Comment.id)
             )
             .join(
@@ -42,61 +35,67 @@ class CommentRepository(BaseRepository[Comment, CommentDTO]):
                 Comment, Comment.post_id == Post.id
             )
             .where(Comment.author_id == user_id)
-            .where(Container.type == ContainerType.topic)
+            .where(Container.type == container_type)
             .group_by(Container.id)
-            .limit(10)
         )
 
-        result = await self.session.execute(stmt)
+        stmt = self.process_paginate_stmt(stmt, offset, limit)
+        comments = await self.session.execute(stmt)
 
         return [
-            CommentCountInTopic(topic_slug=slug, count=count)
-            for slug, count in result.tuples().all()
+            (container, count)
+            for container, count in comments.all()
         ]
 
     def get_full_comment_stmt(self) -> Select:
         return (
             select(
-                Comment,
-                User.username,
-                Post.slug
+                Comment, User, Post
             )
             .join(User, Comment.author_id == User.id)
             .join(Post, Comment.post_id == Post.id)
         )
 
-    async def _get_comments(self, stmt: Select) -> list[FullCommentDTO]:
+    async def _get_full_comments_from_stmt(self, stmt: Select) -> list[tuple[Container, User, Post]]:
         res = await self.session.execute(stmt)
 
         return [
-            FullCommentDTO(**asdict(comment), author_username=author, post_slug=post)
-            for comment, author, post in res.all()
+            (comment, user, post)
+            for comment, user, post in res.all()
         ]
 
     async def get_post_comments(
             self, post_id: int,
             offset: int | None = None,
             limit: int | None = None
-    ) -> list[FullCommentDTO]:
+    ) -> list[tuple[Container, User, Post]]:
         stmt = self.get_full_comment_stmt().where(post_id=post_id)
         stmt = self.process_paginate_stmt(stmt, offset, limit)
-        return await self._get_comments(stmt)
+
+
+        return await self._get_full_comments_from_stmt(stmt)
 
     async def get_user_comments(
             self, user_id: int,
             offset: int | None = None,
             limit: int | None = None
-    ) -> list[FullCommentDTO]:
+    ) -> list[tuple[Container, User, Post]]:
         stmt = self.get_full_comment_stmt().where(user_id=user_id)
         stmt = self.process_paginate_stmt(stmt, offset, limit)
-        return await self._get_comments(stmt)
 
-    async def get_comment_by_id(self, comment_id) -> FullCommentDTO:
+
+        return await self._get_full_comments_from_stmt(stmt)
+
+
+
+    async def get_comment_by_id(self, comment_id) -> tuple[Container, User, Post]:
         stmt = self.get_full_comment_stmt().where(id=comment_id)
-        res = await self.session.execute(stmt)
+        result = await self.session.execute(stmt)
 
-        comment, author, post = res.first()
-        return FullCommentDTO(**asdict(comment), author_username=author, post_slug=post)
+        comment, user, post = result.first()
+
+        return (comment, user, post)
+
 
 
 

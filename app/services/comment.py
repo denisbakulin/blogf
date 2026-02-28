@@ -1,14 +1,13 @@
 from base.exceptions import EntityBadRequestError
 from base.service import BaseService
 from helpers.search import Pagination
-from models.comment import Comment
+from entities.comment import Comment
 from repositories.comment import CommentRepository
 from schemas.comment import CommentCreate, CommentUpdate
 from sqlalchemy.ext.asyncio import AsyncSession
-from DTO.comment import CommentDTO, CommentCountInTopic, FullCommentDTO
 
 
-class CommentService(BaseService[Comment, CommentRepository, CommentDTO]):
+class CommentService(BaseService[Comment, CommentRepository]):
 
     def __init__(self, session: AsyncSession):
         super().__init__(Comment, session, CommentRepository)
@@ -19,7 +18,7 @@ class CommentService(BaseService[Comment, CommentRepository, CommentDTO]):
             create: CommentCreate,
             user_id: int,
             post_id: int
-    ) -> CommentDTO:
+    ) -> Comment:
         if create.parent_id is not None:
             parent = await self.get_comment_by_id(create.parent_id)
             if parent.post_id != post_id:
@@ -37,11 +36,11 @@ class CommentService(BaseService[Comment, CommentRepository, CommentDTO]):
 
     async def update_comment(
             self,
-            comment: CommentDTO,
+            comment_id: int,
             comment_update: CommentUpdate,
-    ) -> CommentDTO:
+    ) -> Comment:
 
-        return await self.update_item(comment.id, **comment_update.model_dump())
+        return await self.update_item(comment_id, **comment_update.model_dump())
 
 
 
@@ -58,7 +57,7 @@ class CommentService(BaseService[Comment, CommentRepository, CommentDTO]):
 
     async def get_top_themes_of_user(
             self, user_id: int
-    ) -> list[CommentCountInTopic]:
+    ) -> list[CommentCountInContainer]:
 
         return await self.repository.get_user_comment_count_in_topics(user_id)
 

@@ -6,8 +6,8 @@ from exceptions.auth import InvalidTokenError
 from fastapi import Depends
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from schemas.auth import TokenInfo
-from logic.auth import AuthLogic
-from models.user import User
+from usecases.auth import AuthLogic
+from entities.user import User
 from sqlalchemy.ext.asyncio import AsyncSession
 from deps.user import userServiceDep
 from utils.auth import decode_token

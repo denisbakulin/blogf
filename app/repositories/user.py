@@ -1,36 +1,25 @@
 from base.repository import BaseRepository
-from models.user import User, Profile, Settings
+from entities.user import User, Profile, Settings
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 
-from DTO.user import UserDTO, UserCreds, ProfileDTO, SettingsDTO
-
 from typing import Any
 
-class ProfileRepository(BaseRepository[Profile, ProfileDTO]):
+class ProfileRepository(BaseRepository[Profile]):
     def __init__(self, session: AsyncSession):
-        super().__init__(Profile, session, ProfileDTO)
+        super().__init__(Profile, session)
 
 
-class SettingsRepository(BaseRepository[Settings, SettingsDTO]):
+class SettingsRepository(BaseRepository[Settings]):
     def __init__(self, session: AsyncSession):
-        super().__init__(Settings, session, SettingsDTO)
+        super().__init__(Settings, session)
 
 
 
-
-class UserRepository(BaseRepository[User, UserDTO]):
+class UserRepository(BaseRepository[User]):
     def __init__(self, session: AsyncSession):
-        super().__init__(User, session, UserDTO)
+        super().__init__(User, session)
 
-
-    async def get_user_creds_by_username(self, username: str) -> UserCreds:
-        user = await self.get_orm(username=username)
-
-        return UserCreds(
-            id=user.id,
-            password=user.password
-        )
 
     async def search(
             self, field: str,
@@ -38,7 +27,7 @@ class UserRepository(BaseRepository[User, UserDTO]):
             strict: bool = False,
             offset: int | None = None,
             limit: int | None = None
-    ) -> list[UserDTO]:
+    ) -> list[User]:
 
         stmt = (
             select(
@@ -47,16 +36,13 @@ class UserRepository(BaseRepository[User, UserDTO]):
             .join(Settings, Settings.user_id == User.id)
             .where(Settings.is_profile_public == False)
         )
-        if strict:
-            stmt = stmt.where(getattr(self.model, field) == value)
-        else:
-            stmt = stmt.where(getattr(self.model, field).ilike(f"%{value}%"))
 
+        stmt = self.process_search_stmt(stmt, strict, field, value)
         stmt = self.process_paginate_stmt(stmt, limit, offset)
 
         result = await self.session.execute(stmt)
 
-        return list(self.to_dto(user) for user in result.scalars())
+        return list(user for user in result.scalars())
 
 
 

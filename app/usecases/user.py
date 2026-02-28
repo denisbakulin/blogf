@@ -1,4 +1,4 @@
-from models.user import User
+from entities.user import User
 from schemas.user import UserUpdate
 from DTO.user import  UserDTO
 from schemas.user import UserProfileShow, UserProfile, UserShow, UserSettings

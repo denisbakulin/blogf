@@ -1,14 +1,15 @@
 from base.repository import BaseRepository
-from models.join_request import JoinRequest
+from entities.join_request import JoinRequest
 from sqlalchemy.ext.asyncio import AsyncSession
-from DTO.join_request import JoinRequestDTO
 
-class JoinRequestRepository(BaseRepository[JoinRequest, JoinRequestDTO]):
+
+class JoinRequestRepository(BaseRepository[JoinRequest]):
 
     def __init__(self, session: AsyncSession):
-        super().__init__(JoinRequest, session, JoinRequestRepository)
+        super().__init__(JoinRequest, session)
 
 
+    #todo получение запросов по группе
 
 
 

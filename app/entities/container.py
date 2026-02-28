@@ -1,7 +1,13 @@
 from base.model import BaseORM, IdMixin, TimeMixin
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column
-from DTO.container import ContainerType
+from enum import StrEnum
+
+class ContainerType(StrEnum):
+    wall = "wall"
+    topic = "topic"
+    public_channel = "public_channel"
+    private_channel = "private_channel"
 
 
 class Container(BaseORM, IdMixin, TimeMixin):

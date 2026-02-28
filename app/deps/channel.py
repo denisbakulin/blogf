@@ -2,7 +2,7 @@ from typing import Annotated
 
 from base.db import getSessionDep
 from fastapi import Depends
-from models.container import Container
+from entities.container import Container
 from services.channel import ChannelService
 
 

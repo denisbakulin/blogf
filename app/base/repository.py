@@ -1,31 +1,25 @@
-from typing import Any, Optional, TypeVar, Unpack
-
+from typing import Any, Optional, TypeVar
 from base.model import BaseORM
-from sqlalchemy import desc, func, or_, select, text, delete, Select
+from sqlalchemy import desc, func, select,  delete, Select
 from sqlalchemy.ext.asyncio import AsyncSession
-from utils.default import to_dto
+
 
 
 T = TypeVar("T", bound=BaseORM)
-D = TypeVar("D") #DTO
 
 
-class BaseRepository[T, D]:
+class BaseRepository[T]:
     """Базовый класс-repository проекта
     для взаимодействия с БД с
     операциями создания, получения, удаления записи
     """
 
-    def __init__(self, model: T, session: AsyncSession, dto: type[D]):
+    def __init__(self, model: T, session: AsyncSession):
         """При наследовании обязательно переопределить и указать модель,
         DTO представление"""
 
         self.model = model
         self.session = session
-        self.dto = dto
-
-    def to_dto(self, entity: T) -> D:
-        return to_dto(entity, self.dto)
 
 
     def process_paginate_stmt(
@@ -71,7 +65,7 @@ class BaseRepository[T, D]:
             order_by: str = "id",
             _desc: bool = True,
             **filters,
-    ) -> list[D] | list[Any] | tuple:
+    ) -> list[T] | list[Any] | tuple:
         """Возвращает отфильтрованный и отсортированный список записей
         по заданным параметрам и фильтрам
        """
@@ -97,7 +91,7 @@ class BaseRepository[T, D]:
         if lines:
             return list(result.all())
 
-        return list(self.to_dto(i) for i in result.scalars().all())
+        return list(i for i in result.scalars().all())
 
 
     async def get_orm(
@@ -113,13 +107,13 @@ class BaseRepository[T, D]:
 
     async def get_one_by(
             self, **filters
-    ) -> Optional[D]:
+    ) -> Optional[T]:
         """Возвращает уникальную запись или None по указанным параметрам,
         если > 1 - Ошибка"""
         result = await self.get_orm(**filters)
 
         if result is not None:
-            return self.to_dto(result)
+            return result
 
 
     def create(
@@ -162,13 +156,13 @@ class BaseRepository[T, D]:
         count = await self.session.execute(stmt)
         return count.scalar_one()
 
-    async def update(self, item_id: int, **updates) -> D:
+    async def update(self, item_id: int, **updates) -> T:
         item = await self.get_orm(id=item_id)
 
         for key, value in updates.items():
             setattr(item, key, value)
 
-        return self.to_dto(item)
+        return item
 
 
 

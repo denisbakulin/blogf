@@ -3,11 +3,11 @@ from typing import Annotated
 from base.db import getSessionDep
 from deps.subscribe import SubscribeService
 from fastapi import Depends
-from models.post import Post
+from entities.post import Post
 from services.post import PostService
 
 from deps.container import containerServiceDep
-from logic.post import PostLogic
+from usecases.post import PostLogic
 
 def get_post_service(
         session: getSessionDep

@@ -1,6 +1,6 @@
 from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
-from models.container import ContainerType
-
+from entities.container import ContainerType
+from schemas.user import UserUsername
 
 class ContainerShow(BaseSchema, IdMixinSchema, TimeMixinSchema):
     title: str
@@ -8,7 +8,7 @@ class ContainerShow(BaseSchema, IdMixinSchema, TimeMixinSchema):
     description: str
     type: ContainerType
 
-    author_username: str
+    author: UserUsername
 
 class ContainerSlug(BaseSchema):
     slug: str

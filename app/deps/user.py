@@ -4,7 +4,7 @@ from base.db import getSessionDep
 from fastapi import Depends
 from DTO.user import UserDTO
 from services.user import UserService
-from logic.user import UserLogic
+from usecases.user import UserLogic
 
 
 def get_user_service(

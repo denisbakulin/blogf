@@ -12,7 +12,6 @@ class TopicOfferStatus(StrEnum):
 
 
 
-
 class TopicOffer(BaseORM, IdMixin, TimeMixin):
     __tablename__ = "topic_offers"
 
@@ -22,7 +21,7 @@ class TopicOffer(BaseORM, IdMixin, TimeMixin):
 
     author_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     process_user_id: Mapped[int | None] = mapped_column(ForeignKey("users.id"), nullable=True)
-    # release_topic_id: Mapped[int | None] = mapped_column(ForeignKey("containers.id"), nullable=True)
+    release_topic_id: Mapped[int | None] = mapped_column(ForeignKey("containers.id"), nullable=True)
 
 
 

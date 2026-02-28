@@ -10,13 +10,12 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 T = TypeVar("T", bound=BaseORM)
 R = TypeVar("R", bound=BaseRepository)
-D = TypeVar("D")
 
-class BaseService[T, R, D]:
+
+class BaseService[T, R]:
     """
     Базовый класс-service проекта
-    с базовой бизнес-логикой для получения,
-    удаления, проверки на существования объектов
+    с бизнес-логикой для crud объектов
     """
 
     def __init__(
@@ -35,7 +34,7 @@ class BaseService[T, R, D]:
 
 
 
-    async def create_item(self, **params) -> D:
+    async def create_item(self, **params) -> T:
         item = self.repository.create(**params)
 
         await self.session.commit()
@@ -44,7 +43,7 @@ class BaseService[T, R, D]:
         return self.repository.to_dto(item)
 
 
-    async def get_by_or_raise(self, **params) -> D:
+    async def get_by_or_raise(self, **params) -> T:
         """
         Возвращает запись по совпадениям params
 
@@ -63,21 +62,22 @@ class BaseService[T, R, D]:
             raise EntityBadRequestError(
                 entity=self.model.__name__, message="Больше 1 объекта в базе"
             )
-    async def get_item_by_id(self, item_id: int) -> D:
+
+    async def get_item_by_id(self, item_id: int) -> T:
         return await self.get_by_or_raise(id=item_id)
 
     async def get_items_by(
             self,
             pagination: Pagination,
             **params
-    ) -> list[D]:
+    ) -> list[T]:
         return await self.repository.get_any_by(**params, **pagination.dict())
 
 
 
     async def check_already_exists(self, **fields):
         """
-        Проверяет на сущесвование записи
+        Проверяет на существование записи
 
         :raise
             EntityAlreadyExists: Если запись существует
@@ -100,15 +100,14 @@ class BaseService[T, R, D]:
 
 
 
-    async def update_item(self, item_id: int, **updates) -> D:
-        await self.get_item_by_id(item_id)
-        item = await self.repository.get_orm(id=item_id)
+    async def update_item(self, item_id: int, **updates) -> T:
+        item = await self.get_item_by_id(item_id)
 
         await self.repository.update(item_id, **updates)
         await self.session.commit()
         await self.session.refresh(item)
 
-        return self.repository.to_dto(item)
+        return item
 
     async def search_items(
             self,
@@ -116,7 +115,7 @@ class BaseService[T, R, D]:
             pagination: Pagination,
             inner_props: dict[str, Any] | None = None,
             **filters,
-    ) -> list[D]:
+    ) -> list[T]:
 
         if search.strict:
             return await self.repository.get_any_by(

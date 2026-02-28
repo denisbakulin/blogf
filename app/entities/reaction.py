@@ -1,7 +1,11 @@
 from base.model import BaseORM, IdMixin, TimeMixin
 from sqlalchemy import ForeignKey
-from sqlalchemy.orm import Mapped, mapped_column, relationship
-from DTO.reaction import ReactionType
+from sqlalchemy.orm import Mapped, mapped_column
+from enum import StrEnum
+
+class ReactionType(StrEnum):
+    LIKE = "LIKE"
+    DISLIKE = "DISLIKE"
 
 
 class Reaction(BaseORM, TimeMixin, IdMixin):
@@ -15,7 +19,7 @@ class Reaction(BaseORM, TimeMixin, IdMixin):
         ForeignKey("containers.id", ondelete="CASCADE")
     )
 
-    reaction: Mapped[ReactionType]
+    type: Mapped[ReactionType]
 
 
 

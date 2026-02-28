@@ -11,7 +11,7 @@ from schemas.post import PostCreate, PostShow
 from schemas.reaction import PostReactionShow, TopicReactionShow
 from schemas.user import PasswordChange, UserSettings, UserUpdate, UserShow, UserProfile, UserProfileShow
 from deps.user import userServiceDep, userLogicDep
-from logic.user import UserLogic
+from usecases.user import UserLogic
 from DTO.user import UserProfileDTO
 
 me_router = APIRouter(prefix="/me", tags=["👤 Личный кабинет"])
