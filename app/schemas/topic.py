@@ -19,5 +19,5 @@ class AddTopicByOffer(BaseSchema):
 
 
 class UserCommentsCountOfTopicShow(BaseSchema):
-    topic: TopicBase
+    topic_slug: str
     count: int

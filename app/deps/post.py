@@ -21,7 +21,7 @@ async def get_post(
         slug: str,
         post_service: postServiceDep,
 ) -> Post:
-    return await post_service.get_item_by(slug=slug)
+    return await post_service.get_by_or_raise(slug=slug)
 
 postDep = Annotated[Post, Depends(get_post)]
 

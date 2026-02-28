@@ -1,6 +1,5 @@
 from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
 from models.container import ContainerType
-from schemas.user import ShortUserInfo
 
 
 class ContainerShow(BaseSchema, IdMixinSchema, TimeMixinSchema):
@@ -9,7 +8,10 @@ class ContainerShow(BaseSchema, IdMixinSchema, TimeMixinSchema):
     description: str
     type: ContainerType
 
-    author: ShortUserInfo
+    author_username: str
+
+class ContainerSlug(BaseSchema):
+    slug: str
 
 
 

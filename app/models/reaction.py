@@ -1,6 +1,7 @@
 from base.model import BaseORM, IdMixin, TimeMixin
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
+from DTO.reaction import ReactionType
 
 
 class Reaction(BaseORM, TimeMixin, IdMixin):
@@ -14,13 +15,7 @@ class Reaction(BaseORM, TimeMixin, IdMixin):
         ForeignKey("containers.id", ondelete="CASCADE")
     )
 
-    post: Mapped["Post"] = relationship("Post", lazy="selectin")
-    container: Mapped["Container"] = relationship("Container", lazy="selectin")
-    user: Mapped["User"] = relationship("User", lazy="selectin")
-
-
-
-    reaction: Mapped[str] = mapped_column(nullable=False)
+    reaction: Mapped[ReactionType]
 
 
 

@@ -43,10 +43,10 @@ def include_routers(app: FastAPI):
     # from integrations.weather.views import weather_router
     from views.auth import auth_router
     # from views.channel import channel_router
-    # from views.comment import comm_router
+    from views.comment import comm_router
     # from views.post import post_router
     # from views.subscribe import subs_router
-    # from views.topic import topic_router
+    from views.topic import topic_router
     from views.topic_offer import offer_router
     from views.user_me import me_router
     from views.user_other import user_router
@@ -54,8 +54,9 @@ def include_routers(app: FastAPI):
     routers: list[APIRouter] = [
         auth_router, user_router,
          me_router, offer_router,
-        # topic_router, channel_router,
-        # post_router, comm_router,
+        comm_router,
+        topic_router,
+        # post_router, channel_router,
         # crypto_router, weather_router,
         #  subs_router,
        # root, allow_router

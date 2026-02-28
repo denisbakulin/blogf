@@ -1,6 +1,6 @@
 from base.model import BaseORM, IdMixin, TimeMixin
 from sqlalchemy import ForeignKey
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy.orm import Mapped, mapped_column
 
 
 class Profile(BaseORM, IdMixin):
@@ -29,12 +29,12 @@ class Settings(BaseORM, IdMixin):
 class User(BaseORM, IdMixin, TimeMixin):
     __tablename__ = "users"
 
-    username: Mapped[str] = mapped_column(
-        nullable=False, unique=True
-    )
+    username: Mapped[str] = mapped_column(nullable=False, unique=True)
+    name: Mapped[str | None]
+
     password: Mapped[str]
 
     is_active: Mapped[bool] = mapped_column(default=True)
     is_verified: Mapped[bool] = mapped_column(default=False)
 
-    name: Mapped[str | None]
+

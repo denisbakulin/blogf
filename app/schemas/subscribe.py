@@ -2,7 +2,7 @@ from typing import Literal
 
 from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
 from schemas.container import ContainerShow
-from schemas.user import ShortUserInfo
+from schemas.user import UserUsername
 
 
 class ContainerSubs(BaseSchema):
@@ -12,19 +12,19 @@ class ContainerSubs(BaseSchema):
 
 
 class ListOfSubscribes(BaseSchema):
-    creator_subs: list[ShortUserInfo]
+    creator_subs: list[UserUsername]
     container_subs: ContainerSubs
 
 
 
 class SubscribeBase(BaseSchema, IdMixinSchema, TimeMixinSchema):
-    user: ShortUserInfo
+    user: UserUsername
 
 class SubscriberOfContainerShow(SubscribeBase):
     container: ContainerShow
 
 class SubscribeOfUserShow(SubscribeBase):
-    creator: ShortUserInfo
+    creator: UserUsername
 
 
 subscribe_type = Literal["user", "topic", "channel"]

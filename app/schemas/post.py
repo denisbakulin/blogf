@@ -2,29 +2,29 @@ from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
 from pydantic import Field
 from schemas.container import ContainerShow
 from schemas.reaction import ReactionsCount
-from schemas.user import ShortUserInfo
+from schemas.user import UserUsername
 
 
 class PostBase(BaseSchema):
     title: str = Field(min_length=1, max_length=100)
     content: str = Field(max_length=5000)
 
-
-
-class PostShow(PostBase, IdMixinSchema, TimeMixinSchema):
-    author: ShortUserInfo
-    slug: str
-    container: ContainerShow | None
-    allow_comments: bool
-    allow_reactions: bool
-
-
 class PostSlug(BaseSchema):
     slug: str
 
+
+class PostShow(PostBase, IdMixinSchema, TimeMixinSchema):
+    slug: str
+    allow_comments: bool
+    allow_reactions: bool
+    author: UserUsername
+    container: ContainerShow
+
+
+
 class TopPostShow(BaseSchema):
     post: PostShow
-    count: int
+    like_count: int
 
 
 class FullPostShow(BaseSchema):
@@ -34,7 +34,7 @@ class FullPostShow(BaseSchema):
 
 
 class PostCreate(PostBase):
-    container_id: int | None = None
+    container_id: int
     allow_comments: bool | None = None
     allow_reactions: bool | None = None
 

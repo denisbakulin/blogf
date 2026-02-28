@@ -7,7 +7,7 @@ from schemas.container import ContainerShow
 from schemas.subscribe import ContainerSubs, ListOfSubscribes
 from services.container import ContainerService
 from sqlalchemy.ext.asyncio import AsyncSession
-from schemas.user import ShortUserInfo
+from schemas.user import UserUsername
 from models.user import  User
 
 
@@ -42,7 +42,7 @@ class SubscribeService(BaseService[Subscribe, SubscribeRepository]):
 
     async def get_subs(self, user: User) -> ListOfSubscribes:
         subs = await self.repository.get_any_by(user_id=user.id)
-        creators = [ShortUserInfo.from_orm(i.creator) for i in subs if i.creator_id is not None]
+        creators = [UserUsername.from_orm(i.creator) for i in subs if i.creator_id is not None]
         topics = [ContainerShow.from_orm(i.container) for i in subs if i.container.type == ct.topic]
         private = [ContainerShow.from_orm(i.container) for i in subs if i.container.type == ct.private_channel]
         public = [ContainerShow.from_orm(i.container) for i in subs if i.container.type == ct.public_channel]

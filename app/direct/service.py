@@ -35,7 +35,7 @@ class DirectUserSettingsService(BaseService[DirectUserSettings, BaseRepository])
     ) -> tuple[DirectUserSettings, DirectUserSettings]:
 
         settings_partial = partial(
-            self.get_item_by,
+            self.get_by_or_raise,
             chat_id=chat_id
         )
 
@@ -155,14 +155,9 @@ class DirectChatService(BaseService[DirectChat, DirectChatRepository]):
             self, user: User, recipient: User
     ) -> DirectUserSettings:
 
-        chat = await self.get_item_by(
-            first_user_id=user.id, second_user_id=recipient.id
-        )
+        chat = await self.get_by_or_raise(first_user_id=user.id, second_user_id=recipient.id)
 
-        user_settings = await self.settings_service.get_item_by(
-            chat_id=chat.id,
-            user_id=recipient.id
-        )
+        user_settings = await self.settings_service.get_by_or_raise(chat_id=chat.id, user_id=recipient.id)
 
         return user_settings
 
@@ -194,9 +189,7 @@ class DirectChatService(BaseService[DirectChat, DirectChatRepository]):
     ):
         chat = await self.get_direct(current_user, to_ban_user)
 
-        cu_settings = await self.settings_service.get_item_by(
-            chat_id=chat.id, user_id=current_user.id
-        )
+        cu_settings = await self.settings_service.get_by_or_raise(chat_id=chat.id, user_id=current_user.id)
 
         if cu_settings.banned:
             raise EntityBadRequestError(str(chat), "Чат уже заблокирован")
@@ -212,9 +205,7 @@ class DirectChatService(BaseService[DirectChat, DirectChatRepository]):
     ):
         chat = await self.get_direct(current_user, to_unban_user)
 
-        cu_settings = await self.settings_service.get_item_by(
-            chat_id=chat.id, user_id=current_user.id
-        )
+        cu_settings = await self.settings_service.get_by_or_raise(chat_id=chat.id, user_id=current_user.id)
 
         if not cu_settings.banned:
             raise EntityBadRequestError(str(chat), "Чат уже разблокирован")

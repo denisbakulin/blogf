@@ -52,7 +52,7 @@ class UserRepository(BaseRepository[User, UserDTO]):
         else:
             stmt = stmt.where(getattr(self.model, field).ilike(f"%{value}%"))
 
-        stmt = self.paginator(stmt, limit, offset)
+        stmt = self.process_paginate_stmt(stmt, limit, offset)
 
         result = await self.session.execute(stmt)
 

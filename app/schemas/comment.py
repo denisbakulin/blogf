@@ -1,6 +1,5 @@
 from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
-from schemas.post import PostSlug
-from user import ShortUserInfo
+
 
 
 class CommentBase(BaseSchema):
@@ -12,8 +11,8 @@ class CommentCreate(CommentBase):
 
 
 class CommentShow(CommentCreate, IdMixinSchema, TimeMixinSchema):
-    author: ShortUserInfo
-    post: PostSlug
+    author_username: str
+    post_slug: str
 
 
 class CommentUpdate(CommentBase):

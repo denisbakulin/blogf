@@ -1,12 +1,7 @@
 from base.model import BaseORM, IdMixin, TimeMixin
 from sqlalchemy import ForeignKey
-from sqlalchemy.orm import Mapped, mapped_column, relationship
-
+from sqlalchemy.orm import Mapped, mapped_column
 from DTO.container import ContainerType
-
-
-
-
 
 
 class Container(BaseORM, IdMixin, TimeMixin):
@@ -18,10 +13,6 @@ class Container(BaseORM, IdMixin, TimeMixin):
     type: Mapped[ContainerType]
 
     author_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
-
-    author: Mapped["User"] = relationship(
-        "User", lazy="selectin"
-    )
 
 
 

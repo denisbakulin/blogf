@@ -50,7 +50,7 @@ class TopicOfferRepository(BaseRepository[TopicOffer, TopicOfferDTO]):
     ) -> list[FullTopicOfferDTO]:
 
         stmt = self.get_full_offer_stmt()
-        stmt = self.paginator(stmt, offset, limit)
+        stmt = self.process_paginate_stmt(stmt, offset, limit)
 
         result = await self.session.execute(stmt)
         offers = result.all()

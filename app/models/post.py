@@ -16,5 +16,5 @@ class Post(BaseORM, IdMixin, TimeMixin):
     container_id: Mapped[int] = mapped_column(ForeignKey("containers.id"))
     author_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
 
-    author: Mapped["User"] = relationship("User", lazy="selectin")
-    container: Mapped["Container"] = relationship("Container", lazy="selectin")
+    # author: Mapped["User"] = relationship("User", lazy="selectin")
+    # container: Mapped["Container"] = relationship("Container", lazy="selectin")

@@ -37,9 +37,8 @@ async def create_post(
 )
 async def get_top_of_posts(
         service: postServiceDep,
-        field: Literal["like", "dislike"]
 ):
-    return await service.get_top_of_topic_posts(field)
+    return await service.get_top_of_topic_posts()
 
 
 

@@ -29,7 +29,7 @@ class UserService(BaseService[User, UserRepository, UserDTO]):
 
 
     async def get_user_profile(self, user: UserDTO) -> UserProfileDTO:
-        profile = await self.profile_service.get_item_by(user_id=user.id)
+        profile = await self.profile_service.get_by_or_raise(user_id=user.id)
 
         return UserProfileDTO(user=user, profile=profile)
 
@@ -57,7 +57,7 @@ class UserService(BaseService[User, UserRepository, UserDTO]):
 
 
     async def get_user_by_username(self, username: str) -> UserDTO:
-        return await self.get_item_by(username=username)
+        return await self.get_by_or_raise(username=username)
 
     async def get_user_creds_by_username(self, username: str) -> UserCreds:
         await self.get_user_by_username(username)

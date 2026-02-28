@@ -2,9 +2,10 @@ from dataclasses import dataclass
 
 from abac.access import AccessResolver
 from abac.access_level import AccessLevel
-from models.container import Container, ContainerType
+
 from services.subscribe import SubscribeService
-from user import User
+from DTO.user import UserDTO
+from DTO.container import ContainerDTO, ContainerType
 
 
 @dataclass
@@ -36,7 +37,7 @@ def ctx_from_access(access: AccessContext, level: AccessLevel) -> Context:
 
 
 class PublicChannelContextBuilder(ContainerContexBuilder):
-    async def build(self, user: User, container: Container, is_owner: bool) -> Context:
+    async def build(self, user: UserDTO, container: ContainerDTO, is_owner: bool) -> Context:
         access_ctx = AccessContext(auth=AuthContext(user_id=user.id), is_owner=is_owner)
         level = await AccessResolver().resolve(
             user=user, context=access_ctx, container=container
@@ -52,7 +53,7 @@ class PublicChannelContextBuilder(ContainerContexBuilder):
 
 
 class PrivateChannelContextBuilder(ContainerContexBuilder):
-    async def build(self, user: User, container: Container, is_owner: bool) -> Context:
+    async def build(self, user: UserDTO, container: ContainerDTO, is_owner: bool) -> Context:
         access_ctx = AccessContext(auth=AuthContext(user_id=user.id), is_owner=is_owner)
         level = await AccessResolver().resolve(
             user=user, context=access_ctx, container=container
@@ -66,7 +67,7 @@ class PrivateChannelContextBuilder(ContainerContexBuilder):
         return ctx_from_access(access_ctx, level)
 
 class TopicContextBuilder(ContainerContexBuilder):
-    async def build(self, user: User, container: Container, is_owner: bool) -> Context:
+    async def build(self, user: UserDTO, container: ContainerDTO, is_owner: bool) -> Context:
         access_ctx = AccessContext(auth=AuthContext(user_id=user.id), is_owner=is_owner)
         level = await AccessResolver().resolve(
             user=user, context=access_ctx, container=container
@@ -78,7 +79,7 @@ class TopicContextBuilder(ContainerContexBuilder):
 
 
 class WallContextBuilder(ContainerContexBuilder):
-    async def build(self, user: User, container: Container, is_owner: bool) -> Context:
+    async def build(self, user: UserDTO, container: ContainerDTO, is_owner: bool) -> Context:
         access_ctx = AccessContext(auth=AuthContext(user_id=user.id), is_owner=is_owner)
         is_wall_owner = container.author_id == user.id
 
@@ -97,7 +98,7 @@ class ContextResolver:
         }
         self.sub_service = sub_service
 
-    async def resolve(self, user: User, container: Container, is_owner: bool = False) -> Context:
+    async def resolve(self, user: UserDTO, container: ContainerDTO, is_owner: bool = False) -> Context:
         return await self.builders[container.type](self.sub_service).build(
             user=user, container=container, is_owner=is_owner
         )

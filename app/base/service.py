@@ -44,7 +44,7 @@ class BaseService[T, R, D]:
         return self.repository.to_dto(item)
 
 
-    async def get_item_by(self, **params) -> D:
+    async def get_by_or_raise(self, **params) -> D:
         """
         Возвращает запись по совпадениям params
 
@@ -64,7 +64,7 @@ class BaseService[T, R, D]:
                 entity=self.model.__name__, message="Больше 1 объекта в базе"
             )
     async def get_item_by_id(self, item_id: int) -> D:
-        return await self.get_item_by(id=item_id)
+        return await self.get_by_or_raise(id=item_id)
 
     async def get_items_by(
             self,
