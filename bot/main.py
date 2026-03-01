@@ -4,7 +4,7 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
-from aiogram.types import Message
+from aiogram.types import Message, BotCommand
 from text import VERIFY_TEXT, START_TEXT
 
 from settings import bot_settings
@@ -22,6 +22,19 @@ bot = Bot(
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
+cmd_menu = [
+    ("/start", "Start work"),
+    ("/verify", "Verify account"),
+]
+
+def get_cmd_menu(
+    cmd_list: list[tuple[str, str]]
+) -> list[BotCommand]:
+    return [
+        BotCommand(command=command, description=description)
+        for command, description in cmd_list
+    ]
+
 
 
 @dp.message(Command("start"))
@@ -34,16 +47,14 @@ async def verify(message: Message, state: FSMContext):
     await state.set_state(Waiting.code)
 
 
-@dp.message(Command("start"))
-async def start(message: Message, state: FSMContext):
-    await message.answer(AUTH_TEXT.format(name=message.from_user.first_name))
-    await state.set_state(Waiting.code)
 
 @dp.message()
 async def try_code(message: Message, state: FSMContext):
-    print({"code": message.text, "tg_id": message.from_user.id})
     response = await broker.request(
-        {"code": message.text, "tg_id": message.from_user.id}, "tg-verification"
+        {
+            "code": message.text,
+            "tg_id": message.from_user.id
+        }, "tg-verification"
     )
 
     data = await response.decode()
@@ -58,6 +69,7 @@ async def try_code(message: Message, state: FSMContext):
 
 
 async def main() -> None:
+    await bot.set_my_commands(get_cmd_menu(cmd_menu))
     await broker.start()
     await bot.delete_webhook(drop_pending_updates=True)
 
@@ -66,3 +78,4 @@ async def main() -> None:
 
 if __name__ == "__main__":
     asyncio.run(main())
+
