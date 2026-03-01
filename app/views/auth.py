@@ -1,7 +1,6 @@
-from base.settings import tg_bot_settings
 from deps.auth import authServiceDep, currentUserDep
-from deps.tg_verified import tgvServiceDep
-from deps.user import userServiceDep
+# from deps.tg_verified import tgvServiceDep
+# from deps.user import userServiceDep
 from exceptions.auth import InvalidTokenError
 from fastapi import APIRouter, Cookie, HTTPException, Request, Response
 from schemas.auth import (AccessTokenResponse, AuthCreds, BotVerifyCode,
@@ -88,40 +87,4 @@ async def get_verify_code(
 
 
 
-@auth_router.post(
-    "/bot-verify",
-    summary="Ручка для TG бота"
-)
-async def bot_verify(
-        request: Request,
-        code: BotVerifyCode,
-        user_service: userServiceDep,
-        auth_service: authServiceDep,
-        tgv_service: tgvServiceDep
 
-):
-    secret = request.headers.get("X-Bot-Secret")
-
-    if secret != tg_bot_settings.secret:
-        raise HTTPException(status_code=401)
-
-    user_id = await auth_service.check_verify_code(code.code)
-
-    tg_id = await tgv_service.repository.get_one_by(tg_id=code.tg_id)
-
-    if tg_id:
-        return {"status": False, "msg": "Вы уже верифицировали аккаунт через Telegram"}
-    await tgv_service.create_item(tg_id=code.tg_id)
-
-    if not user_id:
-        return {"status": False, "msg": "Код устарел или недействителен, попробуйте еще раз!"}
-
-    if isinstance(user_id, bytes):
-        user_id = user_id.decode("utf-8")
-
-    user = await user_service.get_user_by_id(int(user_id))
-
-    await user_service.update_item(user, is_verified=True)
-    await auth_service.cache_backand.set(code.code, 0, expire=1)
-
-    return {"status": True, "msg": "Аккаунт успешно верифицирован!"}

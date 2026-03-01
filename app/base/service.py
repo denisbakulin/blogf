@@ -40,7 +40,7 @@ class BaseService[T, R]:
         await self.session.commit()
         await self.session.refresh(item)
 
-        return self.repository.to_dto(item)
+        return item
 
 
     async def get_by_or_raise(self, **params) -> T:

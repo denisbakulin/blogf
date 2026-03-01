@@ -2,7 +2,7 @@ from typing import Annotated
 
 from base.db import getSessionDep
 from fastapi import Depends
-from DTO.user import UserDTO
+from entities.user import User
 from services.user import UserService
 from usecases.user import UserLogic
 
@@ -19,7 +19,7 @@ userServiceDep = Annotated[UserService, Depends(get_user_service)]
 async def get_user(
         user_service: userServiceDep,
         username: str
-) -> UserDTO:
+) -> User:
     return await user_service.get_user_by_username(username)
 
 
@@ -30,5 +30,5 @@ async def get_user_logic(
 
 
 userLogicDep = Annotated[UserLogic, Depends(get_user_logic)]
-userDep = Annotated[UserDTO, Depends(get_user)]
+userDep = Annotated[User, Depends(get_user)]
 

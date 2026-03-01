@@ -9,6 +9,9 @@ from utils.user import verify_password
 # from models.container import ContainerType
 # from services.container import ContainerService
 
+
+from deps.tg_verified import TgVerifiedService
+
 class AuthLogic:
 
     def __init__(self, session: AsyncSession):
@@ -21,13 +24,13 @@ class AuthLogic:
 
     async def login(self, creds: AuthCreds) -> LoginTokens:
 
-        user_creds = await self.user_service.get_user_creds_by_username(creds.username)
+        user = await self.user_service.get_by_or_raise(username=creds.username)
 
-        if not verify_password(creds.password, user_creds.password):
+        if not verify_password(creds.password, user.password):
 
             raise InvalidPasswordError()
 
-        return self._create_auth_tokens(user_creds.id)
+        return self._create_auth_tokens(user.id)
 
 
     async def register(self, user_create: UserCreate) -> LoginTokens:
@@ -52,9 +55,34 @@ class AuthLogic:
         return code
 
     async def check_verify_code(self, code):
-        user_id = await self.cache_backand.get(code)
-        return user_id
+        return  await self.cache_backand.get(code)
 
+
+    async def bot_verify(
+            self, code: str,
+            tg_id: int,
+            tgv_service: TgVerifiedService
+    ):
+        tg_verified = await tgv_service.repository.get_one_by(tg_id=tg_id)
+
+        if tg_verified:
+            return {"status": False, "msg": "Вы уже верифицировали аккаунт через Telegram"}
+
+        user_id = await self.check_verify_code(code)
+
+        if not user_id:
+            return {"status": False, "msg": "Код устарел или недействителен, попробуйте еще раз!"}
+
+        if isinstance(user_id, bytes):
+            user_id = user_id.decode("utf-8")
+
+        user = await self.user_service.get_user_by_id(int(user_id))
+
+        await tgv_service.create_item(tg_id=tg_id)
+        await self.user_service.update_item(user.id, is_verified=True)
+        await self.cache_backand.set(code, 1, expire=1)
+
+        return {"status": True, "msg": "Аккаунт успешно верифицирован!"}
 
 
 

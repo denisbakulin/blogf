@@ -41,16 +41,6 @@ class AnonUserSettings(BaseConfig):
     password: str
 
 
-class TgBotSettings(BaseConfig):
-    model_config = SettingsConfigDict(
-        env_prefix="TG_BOT_"
-    )
-
-    token: str
-    secret: str
-
-
 jwt_auth_settings = JWTAuthSettings()
 super_admin_settings = SuperAdminSettings()
 anon_settings = AnonUserSettings()
-tg_bot_settings = TgBotSettings()

@@ -17,7 +17,7 @@ class TgVerified(BaseORM, IdMixin):
 
 
 
-class TgVerifiedRepository(BaseRepository[TgVerified, TgVerified]):
+class TgVerifiedRepository(BaseRepository[TgVerified]):
 
     def __init__(self, session: AsyncSession):
         super().__init__(TgVerified, session)
@@ -26,7 +26,7 @@ class TgVerifiedRepository(BaseRepository[TgVerified, TgVerified]):
 
 
 
-class TgVerifiedService(BaseService[TgVerified, TgVerifiedRepository, TgVerified]):
+class TgVerifiedService(BaseService[TgVerified, TgVerifiedRepository]):
 
     def __init__(self, session: AsyncSession):
         super().__init__(TgVerified, session, TgVerifiedRepository)

@@ -1,0 +1,1237 @@
+2026-02-05T02:22:20.555443+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-02-05T02:22:20.555443+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-02-05T02:22:21.222990+0700 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2026-02-05T02:22:21.289544+0700 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.0620s
+2026-02-05T02:22:26.681371+0700 INFO Request: POST http://localhost:8001/auth/login from 127.0.0.1
+2026-02-05T02:22:26.978599+0700 INFO Response: POST http://localhost:8001/auth/login Status: 200 Time: 0.2970s
+2026-02-05T02:22:40.530139+0700 INFO Request: GET http://localhost:8001/me from 127.0.0.1
+2026-02-05T02:22:40.566567+0700 INFO Response: GET http://localhost:8001/me Status: 200 Time: 0.0470s
+2026-02-05T02:23:12.846391+0700 INFO Request: GET http://localhost:8001/subs from 127.0.0.1
+2026-02-05T02:24:38.551419+0700 INFO Request: GET http://localhost:8001/subs from 127.0.0.1
+2026-02-05T02:25:23.186035+0700 INFO Request: GET http://localhost:8001/subs from 127.0.0.1
+2026-02-05T02:27:56.346078+0700 INFO Request: GET http://localhost:8000/docs from 127.0.0.1
+2026-02-05T02:27:56.346078+0700 INFO Response: GET http://localhost:8000/docs Status: 200 Time: 0.0000s
+2026-02-05T02:27:56.721053+0700 INFO Request: GET http://localhost:8000/openapi.json from 127.0.0.1
+2026-02-05T02:27:56.879308+0700 INFO Response: GET http://localhost:8000/openapi.json Status: 200 Time: 0.1560s
+2026-02-05T02:28:08.650901+0700 INFO Request: GET http://localhost:8000/me from 127.0.0.1
+2026-02-05T02:28:08.659846+0700 INFO Response: GET http://localhost:8000/me Status: 200 Time: 0.0150s
+2026-02-05T02:28:16.647635+0700 INFO Request: GET http://localhost:8000/subs from 127.0.0.1
+2026-02-05T02:29:45.766415+0700 INFO Request: GET http://localhost:8000/subs from 127.0.0.1
+2026-02-05T02:30:12.126743+0700 INFO Request: GET http://localhost:8000/subs from 127.0.0.1
+2026-02-05T02:30:12.143041+0700 INFO Response: GET http://localhost:8000/subs Status: 200 Time: 0.0160s
+2026-02-05T02:30:35.672033+0700 INFO Request: POST http://localhost:8000/subs?sub_type=topic&entity_id=1 from 127.0.0.1
+2026-02-05T02:31:21.433488+0700 INFO Request: POST http://localhost:8000/subs?sub_type=topic&entity_id=1 from 127.0.0.1
+2026-02-05T02:31:32.335252+0700 INFO Request: POST http://localhost:8000/subs?sub_type=user&entity_id=1 from 127.0.0.1
+2026-02-05T02:31:42.516923+0700 INFO Request: POST http://localhost:8000/subs?sub_type=user&entity_id=2 from 127.0.0.1
+2026-02-05T02:31:42.551149+0700 INFO Response: POST http://localhost:8000/subs?sub_type=user&entity_id=2 Status: 200 Time: 0.0310s
+2026-02-05T02:31:48.544585+0700 INFO Request: GET http://localhost:8000/subs from 127.0.0.1
+2026-02-05T02:33:02.691053+0700 INFO Request: GET http://localhost:8000/subs from 127.0.0.1
+2026-02-05T02:33:34.473348+0700 INFO Request: GET http://localhost:8000/subs from 127.0.0.1
+2026-02-05T02:37:50.975299+0700 INFO Request: GET http://localhost:8000/subs from 127.0.0.1
+2026-02-05T02:39:22.906772+0700 INFO Request: GET http://localhost:8000/subs from 127.0.0.1
+2026-02-05T02:40:02.325740+0700 INFO Request: GET http://localhost:8000/subs from 127.0.0.1
+2026-02-05T02:40:02.351577+0700 INFO Response: GET http://localhost:8000/subs Status: 200 Time: 0.0310s
+2026-02-05T02:40:29.691789+0700 INFO Request: GET http://localhost:8000/topics?offset=0&limit=10 from 127.0.0.1
+2026-02-05T02:40:29.699662+0700 INFO Response: GET http://localhost:8000/topics?offset=0&limit=10 Status: 200 Time: 0.0000s
+2026-02-05T02:40:39.619069+0700 INFO Request: POST http://localhost:8000/topics from 127.0.0.1
+2026-02-05T02:40:39.669036+0700 INFO Response: POST http://localhost:8000/topics Status: 201 Time: 0.0470s
+2026-02-05T02:40:41.605913+0700 INFO Request: POST http://localhost:8000/topics from 127.0.0.1
+2026-02-05T02:40:46.521414+0700 INFO Request: POST http://localhost:8000/topics from 127.0.0.1
+2026-02-05T02:40:46.556179+0700 INFO Response: POST http://localhost:8000/topics Status: 201 Time: 0.0310s
+2026-02-05T02:41:14.118383+0700 INFO Request: GET http://localhost:8000/subs from 127.0.0.1
+2026-02-05T02:41:14.128909+0700 INFO Response: GET http://localhost:8000/subs Status: 200 Time: 0.0160s
+2026-02-05T02:41:24.237387+0700 INFO Request: POST http://localhost:8000/subs?sub_type=topic&entity_id=1 from 127.0.0.1
+2026-02-05T02:42:05.084312+0700 INFO Request: POST http://localhost:8000/subs?sub_type=topic&entity_id=1 from 127.0.0.1
+2026-02-05T02:44:29.291985+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-02-05T02:44:29.291985+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-02-05T02:44:29.291985+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-02-05T02:44:29.291985+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-02-05T02:44:29.291985+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-02-05T02:44:29.291985+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-02-05T02:44:29.291985+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-02-05T02:44:29.291985+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-02-05T02:44:29.291985+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-02-05T02:44:29.291985+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-02-05T02:45:25.858489+0700 INFO Request: POST http://localhost:8000/subs?sub_type=topic&entity_id=1 from 127.0.0.1
+2026-02-05T02:45:38.002295+0700 INFO Request: POST http://localhost:8000/topics from 127.0.0.1
+2026-02-05T02:45:38.047579+0700 INFO Response: POST http://localhost:8000/topics Status: 201 Time: 0.0470s
+2026-02-05T02:45:42.060301+0700 INFO Request: POST http://localhost:8000/topics from 127.0.0.1
+2026-02-05T02:45:42.749950+0700 INFO Request: POST http://localhost:8000/topics from 127.0.0.1
+2026-02-05T02:45:46.222703+0700 INFO Request: POST http://localhost:8000/topics from 127.0.0.1
+2026-02-05T02:45:46.275470+0700 INFO Response: POST http://localhost:8000/topics Status: 201 Time: 0.0470s
+2026-02-05T02:45:48.190469+0700 INFO Request: POST http://localhost:8000/topics from 127.0.0.1
+2026-02-05T02:45:48.233692+0700 INFO Response: POST http://localhost:8000/topics Status: 201 Time: 0.0310s
+2026-02-05T02:46:32.752494+0700 INFO Request: POST http://localhost:8000/subs?sub_type=topic&entity_id=1 from 127.0.0.1
+2026-02-05T02:46:32.805693+0700 INFO Response: POST http://localhost:8000/subs?sub_type=topic&entity_id=1 Status: 200 Time: 0.0470s
+2026-02-05T02:46:37.445072+0700 INFO Request: POST http://localhost:8000/subs?sub_type=topic&entity_id=2 from 127.0.0.1
+2026-02-05T02:46:37.477545+0700 INFO Response: POST http://localhost:8000/subs?sub_type=topic&entity_id=2 Status: 200 Time: 0.0310s
+2026-02-05T02:46:41.268616+0700 INFO Request: POST http://localhost:8000/subs?sub_type=topic&entity_id=3 from 127.0.0.1
+2026-02-05T02:46:41.413717+0700 INFO Response: POST http://localhost:8000/subs?sub_type=topic&entity_id=3 Status: 200 Time: 0.1400s
+2026-02-05T02:46:44.857064+0700 INFO Request: POST http://localhost:8000/subs?sub_type=topic&entity_id=4 from 127.0.0.1
+2026-02-05T02:46:49.609689+0700 INFO Request: GET http://localhost:8000/subs from 127.0.0.1
+2026-02-05T02:47:42.078879+0700 INFO Request: GET http://localhost:8000/subs from 127.0.0.1
+2026-02-05T02:48:35.065808+0700 INFO Request: GET http://localhost:8000/subs from 127.0.0.1
+2026-02-05T02:48:35.092420+0700 INFO Response: GET http://localhost:8000/subs Status: 200 Time: 0.0150s
+2026-02-05T02:48:47.390012+0700 INFO Request: POST http://localhost:8000/subs?sub_type=user&entity_id=2 from 127.0.0.1
+2026-02-05T02:48:47.490449+0700 INFO Response: POST http://localhost:8000/subs?sub_type=user&entity_id=2 Status: 200 Time: 0.0930s
+2026-02-05T02:48:50.662055+0700 INFO Request: GET http://localhost:8000/subs from 127.0.0.1
+2026-02-05T02:48:50.669330+0700 INFO Response: GET http://localhost:8000/subs Status: 200 Time: 0.0000s
+2026-02-05T02:49:20.089876+0700 INFO Request: GET http://localhost:8000/subs/content?offset=0&limit=10 from 127.0.0.1
+2026-02-05T03:30:13.430318+0700 INFO Request: GET http://localhost:800/ from 127.0.0.1
+2026-02-05T03:30:13.434277+0700 INFO Response: GET http://localhost:800/ Status: 200 Time: 0.0000s
+2026-02-05T03:30:13.509922+0700 INFO Request: GET http://localhost:800/favicon.ico from 127.0.0.1
+2026-02-05T03:30:13.515922+0700 ERROR Response: GET http://localhost:800/favicon.ico Status: 404 Time: 0.0160s
+2026-02-05T03:30:22.369488+0700 INFO Request: GET http://localhost:800/docs from 127.0.0.1
+2026-02-05T03:30:22.370483+0700 INFO Response: GET http://localhost:800/docs Status: 200 Time: 0.0000s
+2026-02-05T03:30:22.551483+0700 INFO Request: GET http://localhost:800/openapi.json from 127.0.0.1
+2026-02-05T03:30:22.733522+0700 INFO Response: GET http://localhost:800/openapi.json Status: 200 Time: 0.1720s
+2026-02-05T03:30:26.628605+0700 INFO Request: POST http://localhost:800/auth/login from 127.0.0.1
+2026-02-05T03:30:26.961607+0700 INFO Response: POST http://localhost:800/auth/login Status: 200 Time: 0.3280s
+2026-02-05T03:31:04.343646+0700 INFO Request: GET http://localhost:800/subs/content?offset=0&limit=10 from 127.0.0.1
+2026-02-05T03:32:34.117279+0700 INFO Request: GET http://localhost:800/subs/content?offset=0&limit=10 from 127.0.0.1
+2026-02-05T03:32:34.149209+0700 INFO Response: GET http://localhost:800/subs/content?offset=0&limit=10 Status: 200 Time: 0.0320s
+2026-02-05T03:32:56.058511+0700 INFO Request: GET http://localhost:800/topics?offset=0&limit=10 from 127.0.0.1
+2026-02-05T03:32:56.104508+0700 INFO Response: GET http://localhost:800/topics?offset=0&limit=10 Status: 200 Time: 0.0470s
+2026-02-05T03:33:52.332172+0700 INFO Request: POST http://localhost:800/topics/string/posts from 127.0.0.1
+2026-02-05T03:38:11.679916+0700 INFO Request: POST http://localhost:800/topics/string/posts from 127.0.0.1
+2026-02-05T03:38:29.591677+0700 INFO Request: GET http://localhost:800/topics?offset=0&limit=10 from 127.0.0.1
+2026-02-05T03:38:29.622724+0700 INFO Response: GET http://localhost:800/topics?offset=0&limit=10 Status: 200 Time: 0.0310s
+2026-02-05T03:38:55.106489+0700 INFO Request: POST http://localhost:800/topics/strwwwwing/posts from 127.0.0.1
+2026-02-05T03:38:55.196091+0700 INFO Response: POST http://localhost:800/topics/strwwwwing/posts Status: 201 Time: 0.0940s
+2026-02-05T03:38:59.275484+0700 INFO Request: POST http://localhost:800/topics/strwwwwing/posts from 127.0.0.1
+2026-02-05T03:38:59.375223+0700 INFO Response: POST http://localhost:800/topics/strwwwwing/posts Status: 201 Time: 0.1090s
+2026-02-05T03:38:59.793415+0700 INFO Request: POST http://localhost:800/topics/strwwwwing/posts from 127.0.0.1
+2026-02-05T03:38:59.870459+0700 INFO Response: POST http://localhost:800/topics/strwwwwing/posts Status: 201 Time: 0.0780s
+2026-02-05T03:39:02.217700+0700 INFO Request: POST http://localhost:800/topics/strwwwwing/posts from 127.0.0.1
+2026-02-05T03:39:02.286981+0700 INFO Response: POST http://localhost:800/topics/strwwwwing/posts Status: 201 Time: 0.0780s
+2026-02-05T03:39:02.709371+0700 INFO Request: POST http://localhost:800/topics/strwwwwing/posts from 127.0.0.1
+2026-02-05T03:39:02.791296+0700 INFO Response: POST http://localhost:800/topics/strwwwwing/posts Status: 201 Time: 0.0780s
+2026-02-05T03:39:03.112290+0700 INFO Request: POST http://localhost:800/topics/strwwwwing/posts from 127.0.0.1
+2026-02-05T03:39:03.187864+0700 INFO Response: POST http://localhost:800/topics/strwwwwing/posts Status: 201 Time: 0.0790s
+2026-02-05T03:39:03.381905+0700 INFO Request: POST http://localhost:800/topics/strwwwwing/posts from 127.0.0.1
+2026-02-05T03:39:03.462267+0700 INFO Response: POST http://localhost:800/topics/strwwwwing/posts Status: 201 Time: 0.0780s
+2026-02-05T03:39:03.834453+0700 INFO Request: POST http://localhost:800/topics/strwwwwing/posts from 127.0.0.1
+2026-02-05T03:39:03.899011+0700 INFO Response: POST http://localhost:800/topics/strwwwwing/posts Status: 201 Time: 0.0630s
+2026-02-05T03:39:16.655528+0700 INFO Request: GET http://localhost:800/subs from 127.0.0.1
+2026-02-05T03:39:16.670091+0700 INFO Response: GET http://localhost:800/subs Status: 200 Time: 0.0150s
+2026-02-05T03:39:21.241850+0700 INFO Request: GET http://localhost:800/subs/content?offset=0&limit=10 from 127.0.0.1
+2026-02-05T03:41:44.648387+0700 INFO Request: GET http://localhost:800/subs/content?offset=0&limit=10 from 127.0.0.1
+2026-02-05T03:42:56.981711+0700 INFO Request: GET http://localhost:800/subs/content?offset=0&limit=10 from 127.0.0.1
+2026-02-05T03:42:57.056031+0700 INFO Response: GET http://localhost:800/subs/content?offset=0&limit=10 Status: 200 Time: 0.0780s
+2026-02-05T03:43:30.893091+0700 INFO Request: GET http://localhost:800/subs/content?sub_type=user&offset=0&limit=10 from 127.0.0.1
+2026-02-05T03:43:30.918152+0700 INFO Response: GET http://localhost:800/subs/content?sub_type=user&offset=0&limit=10 Status: 200 Time: 0.0150s
+2026-02-05T03:43:35.771712+0700 INFO Request: GET http://localhost:800/subs/content?sub_type=topic&offset=0&limit=10 from 127.0.0.1
+2026-02-05T03:43:35.806766+0700 INFO Response: GET http://localhost:800/subs/content?sub_type=topic&offset=0&limit=10 Status: 200 Time: 0.0310s
+2026-02-05T03:44:11.886929+0700 INFO Request: GET http://localhost:800/docs from 127.0.0.1
+2026-02-05T03:44:11.889055+0700 INFO Response: GET http://localhost:800/docs Status: 200 Time: 0.0000s
+2026-02-05T03:44:12.043954+0700 INFO Request: GET http://localhost:800/openapi.json from 127.0.0.1
+2026-02-05T03:44:12.225927+0700 INFO Response: GET http://localhost:800/openapi.json Status: 200 Time: 0.1880s
+2026-02-05T03:44:16.729977+0700 INFO Request: GET http://localhost:800/docs from 127.0.0.1
+2026-02-05T03:44:16.731976+0700 INFO Response: GET http://localhost:800/docs Status: 200 Time: 0.0000s
+2026-02-05T03:44:16.804003+0700 INFO Request: GET http://localhost:800/openapi.json from 127.0.0.1
+2026-02-05T03:44:16.806975+0700 INFO Response: GET http://localhost:800/openapi.json Status: 200 Time: 0.0000s
+2026-02-05T03:44:17.470770+0700 INFO Request: GET http://localhost:800/docs from 127.0.0.1
+2026-02-05T03:44:17.471771+0700 INFO Response: GET http://localhost:800/docs Status: 200 Time: 0.0000s
+2026-02-05T03:44:17.632565+0700 INFO Request: GET http://localhost:800/openapi.json from 127.0.0.1
+2026-02-05T03:44:17.635569+0700 INFO Response: GET http://localhost:800/openapi.json Status: 200 Time: 0.0000s
+2026-02-05T03:44:17.981604+0700 INFO Request: GET http://localhost:800/docs from 127.0.0.1
+2026-02-05T03:44:17.981604+0700 INFO Response: GET http://localhost:800/docs Status: 200 Time: 0.0000s
+2026-02-05T03:44:18.039563+0700 INFO Request: GET http://localhost:800/openapi.json from 127.0.0.1
+2026-02-05T03:44:18.042563+0700 INFO Response: GET http://localhost:800/openapi.json Status: 200 Time: 0.0000s
+2026-02-05T03:44:30.618227+0700 INFO Request: GET http://localhost:800/docs from 127.0.0.1
+2026-02-05T03:44:30.620176+0700 INFO Response: GET http://localhost:800/docs Status: 200 Time: 0.0000s
+2026-02-05T03:44:30.702822+0700 INFO Request: GET http://localhost:800/openapi.json from 127.0.0.1
+2026-02-05T03:44:30.858821+0700 INFO Response: GET http://localhost:800/openapi.json Status: 200 Time: 0.1560s
+2026-02-05T03:45:30.638443+0700 INFO Request: POST http://localhost:800/posts/string-1/as-anon/comments from 127.0.0.1
+2026-02-05T03:45:30.755571+0700 INFO Response: POST http://localhost:800/posts/string-1/as-anon/comments Status: 201 Time: 0.1250s
+2026-02-05T03:45:50.560278+0700 INFO Request: GET http://localhost:800/posts/string-1/comments?offset=0&limit=10 from 127.0.0.1
+2026-02-05T03:45:50.659270+0700 INFO Response: GET http://localhost:800/posts/string-1/comments?offset=0&limit=10 Status: 200 Time: 0.1090s
+2026-02-05T03:47:28.192128+0700 INFO Request: GET http://localhost:800/admin/users/table-info from 127.0.0.1
+2026-02-05T03:47:28.193129+0700 ERROR Response: GET http://localhost:800/admin/users/table-info Status: 401 Time: 0.0000s
+2026-02-05T03:47:39.759162+0700 INFO Request: POST http://localhost:800/auth/login from 127.0.0.1
+2026-02-05T03:47:40.171197+0700 INFO Response: POST http://localhost:800/auth/login Status: 200 Time: 0.4060s
+2026-02-05T03:47:52.502606+0700 INFO Request: GET http://localhost:800/admin/users/table-info from 127.0.0.1
+2026-02-05T03:47:52.520651+0700 INFO Response: GET http://localhost:800/admin/users/table-info Status: 200 Time: 0.0160s
+2026-02-05T17:33:07.728843+0700 INFO Request: GET http://localhost:800/docs from 127.0.0.1
+2026-02-05T17:33:07.728843+0700 INFO Response: GET http://localhost:800/docs Status: 200 Time: 0.0000s
+2026-02-05T17:33:07.877176+0700 INFO Request: GET http://localhost:800/openapi.json from 127.0.0.1
+2026-02-05T17:33:08.019480+0700 INFO Response: GET http://localhost:800/openapi.json Status: 200 Time: 0.1410s
+2026-02-05T17:33:13.550383+0700 INFO Request: POST http://localhost:800/auth/login from 127.0.0.1
+2026-02-05T17:33:13.836233+0700 INFO Response: POST http://localhost:800/auth/login Status: 200 Time: 0.2810s
+2026-02-05T17:33:33.371885+0700 INFO Request: POST http://localhost:800/auth/login from 127.0.0.1
+2026-02-05T17:33:33.726634+0700 INFO Response: POST http://localhost:800/auth/login Status: 200 Time: 0.3600s
+2026-02-05T17:34:06.947378+0700 INFO Request: POST http://localhost:800/topics/offer from 127.0.0.1
+2026-02-05T17:34:06.997100+0700 INFO Response: POST http://localhost:800/topics/offer Status: 201 Time: 0.0460s
+2026-02-05T17:34:15.136772+0700 INFO Request: POST http://localhost:800/topics/offer from 127.0.0.1
+2026-02-05T17:34:15.181571+0700 INFO Response: POST http://localhost:800/topics/offer Status: 201 Time: 0.0470s
+2026-02-05T17:34:16.955444+0700 INFO Request: POST http://localhost:800/topics/offer from 127.0.0.1
+2026-02-05T17:34:16.990362+0700 INFO Response: POST http://localhost:800/topics/offer Status: 201 Time: 0.0310s
+2026-02-05T17:34:17.468311+0700 INFO Request: POST http://localhost:800/topics/offer from 127.0.0.1
+2026-02-05T17:34:17.516415+0700 INFO Response: POST http://localhost:800/topics/offer Status: 201 Time: 0.0470s
+2026-02-05T17:34:26.169333+0700 INFO Request: GET http://localhost:800/topics/offer?offset=0&limit=10 from 127.0.0.1
+2026-02-05T17:34:26.177759+0700 INFO Response: GET http://localhost:800/topics/offer?offset=0&limit=10 Status: 200 Time: 0.0160s
+2026-02-05T17:34:38.466175+0700 INFO Request: POST http://localhost:800/auth/login from 127.0.0.1
+2026-02-05T17:34:38.764465+0700 INFO Response: POST http://localhost:800/auth/login Status: 200 Time: 0.2970s
+2026-02-05T17:34:50.116176+0700 INFO Request: GET http://localhost:800/topics/offer?offset=0&limit=10 from 127.0.0.1
+2026-02-05T17:34:50.125170+0700 INFO Response: GET http://localhost:800/topics/offer?offset=0&limit=10 Status: 200 Time: 0.0160s
+2026-02-05T17:35:16.212675+0700 INFO Request: POST http://localhost:800/topics/offer/1/process from 127.0.0.1
+2026-02-05T17:35:16.226016+0700 ERROR Response: POST http://localhost:800/topics/offer/1/process Status: 422 Time: 0.0160s
+2026-02-05T17:35:27.964147+0700 INFO Request: POST http://localhost:800/topics/offer/1/process from 127.0.0.1
+2026-02-05T17:36:19.602293+0700 INFO Request: POST http://localhost:800/topics/offer/1/process from 127.0.0.1
+2026-02-05T17:39:11.368715+0700 INFO Request: POST http://localhost:800/topics/offer/1/process from 127.0.0.1
+2026-02-05T17:40:07.517941+0700 INFO Request: POST http://localhost:800/topics/offer/1/process from 127.0.0.1
+2026-02-05T17:40:17.836739+0700 INFO Request: POST http://localhost:800/topics/offer/2/process from 127.0.0.1
+2026-02-06T00:41:05.406644+0700 INFO Request: GET http://localhost:800/docs from 127.0.0.1
+2026-02-06T00:41:05.406644+0700 INFO Response: GET http://localhost:800/docs Status: 200 Time: 0.0000s
+2026-02-06T00:41:05.679273+0700 INFO Request: GET http://localhost:800/openapi.json from 127.0.0.1
+2026-02-06T00:41:05.906524+0700 INFO Response: GET http://localhost:800/openapi.json Status: 200 Time: 0.2340s
+2026-02-06T00:41:25.169562+0700 INFO Request: POST http://localhost:800/auth/login from 127.0.0.1
+2026-02-06T00:41:25.628299+0700 INFO Response: POST http://localhost:800/auth/login Status: 200 Time: 0.4690s
+2026-02-06T00:41:51.126638+0700 INFO Request: POST http://localhost:800/posts from 127.0.0.1
+2026-02-06T00:41:51.218679+0700 INFO Response: POST http://localhost:800/posts Status: 200 Time: 0.0940s
+2026-02-06T00:41:58.312499+0700 INFO Request: POST http://localhost:800/posts from 127.0.0.1
+2026-02-06T00:41:58.379228+0700 INFO Response: POST http://localhost:800/posts Status: 200 Time: 0.0620s
+2026-02-06T00:41:59.121127+0700 INFO Request: POST http://localhost:800/posts from 127.0.0.1
+2026-02-06T00:41:59.204849+0700 INFO Response: POST http://localhost:800/posts Status: 200 Time: 0.0940s
+2026-02-06T00:42:06.646327+0700 INFO Request: POST http://localhost:800/posts from 127.0.0.1
+2026-02-06T01:07:06.398295+0700 INFO Request: GET http://localhost:800/docs from 127.0.0.1
+2026-02-06T01:07:06.398295+0700 INFO Response: GET http://localhost:800/docs Status: 200 Time: 0.0000s
+2026-02-06T01:07:06.596603+0700 INFO Request: GET http://localhost:800/openapi.json from 127.0.0.1
+2026-02-06T01:07:06.600714+0700 INFO Response: GET http://localhost:800/openapi.json Status: 200 Time: 0.0000s
+2026-02-06T01:07:11.904601+0700 INFO Request: GET http://localhost:800/docs from 127.0.0.1
+2026-02-06T01:07:11.904601+0700 INFO Response: GET http://localhost:800/docs Status: 200 Time: 0.0000s
+2026-02-06T01:07:12.073431+0700 INFO Request: GET http://localhost:800/openapi.json from 127.0.0.1
+2026-02-06T01:07:12.073431+0700 INFO Response: GET http://localhost:800/openapi.json Status: 200 Time: 0.0000s
+2026-02-06T01:07:13.030056+0700 INFO Request: GET http://localhost:800/docs from 127.0.0.1
+2026-02-06T01:07:13.030056+0700 INFO Response: GET http://localhost:800/docs Status: 200 Time: 0.0000s
+2026-02-06T01:07:13.140132+0700 INFO Request: GET http://localhost:800/openapi.json from 127.0.0.1
+2026-02-06T01:07:13.145464+0700 INFO Response: GET http://localhost:800/openapi.json Status: 200 Time: 0.0000s
+2026-02-06T01:07:24.814340+0700 INFO Request: GET http://localhost:800/docs from 127.0.0.1
+2026-02-06T01:07:24.814340+0700 INFO Response: GET http://localhost:800/docs Status: 200 Time: 0.0000s
+2026-02-06T01:07:24.942671+0700 INFO Request: GET http://localhost:800/openapi.json from 127.0.0.1
+2026-02-06T01:07:24.950928+0700 INFO Response: GET http://localhost:800/openapi.json Status: 200 Time: 0.0000s
+2026-02-06T01:07:28.060089+0700 INFO Request: GET http://localhost:800/docs from 127.0.0.1
+2026-02-06T01:07:28.060089+0700 INFO Response: GET http://localhost:800/docs Status: 200 Time: 0.0000s
+2026-02-06T01:07:28.212133+0700 INFO Request: GET http://localhost:800/openapi.json from 127.0.0.1
+2026-02-06T01:07:28.223758+0700 INFO Response: GET http://localhost:800/openapi.json Status: 200 Time: 0.0160s
+2026-02-06T01:08:51.862231+0700 INFO Request: GET http://localhost:800/docs from 127.0.0.1
+2026-02-06T01:08:51.862231+0700 INFO Response: GET http://localhost:800/docs Status: 200 Time: 0.0000s
+2026-02-06T01:08:52.107294+0700 INFO Request: GET http://localhost:800/openapi.json from 127.0.0.1
+2026-02-06T01:08:52.109154+0700 INFO Response: GET http://localhost:800/openapi.json Status: 200 Time: 0.0150s
+2026-02-06T01:09:00.589772+0700 INFO Request: GET http://localhost:8000/docs from 127.0.0.1
+2026-02-06T01:09:00.597712+0700 INFO Response: GET http://localhost:8000/docs Status: 200 Time: 0.0160s
+2026-02-06T01:09:00.786834+0700 INFO Request: GET http://localhost:8000/openapi.json from 127.0.0.1
+2026-02-06T01:09:00.964401+0700 INFO Response: GET http://localhost:8000/openapi.json Status: 200 Time: 0.1720s
+2026-02-06T01:18:53.254788+0700 INFO Request: GET http://localhost:8002/docs from 127.0.0.1
+2026-02-06T01:18:53.254788+0700 INFO Response: GET http://localhost:8002/docs Status: 200 Time: 0.0000s
+2026-02-06T01:18:53.531933+0700 INFO Request: GET http://localhost:8002/openapi.json from 127.0.0.1
+2026-02-06T01:18:53.738124+0700 INFO Response: GET http://localhost:8002/openapi.json Status: 200 Time: 0.2030s
+2026-02-06T01:19:07.670961+0700 INFO Request: GET http://localhost:8002/posts/top?field=like from 127.0.0.1
+2026-02-06T01:19:07.687834+0700 INFO Response: GET http://localhost:8002/posts/top?field=like Status: 200 Time: 0.0320s
+2026-02-06T01:19:23.188045+0700 INFO Request: GET http://localhost:8002/posts/string-1 from 127.0.0.1
+2026-02-06T01:19:23.257685+0700 INFO Response: GET http://localhost:8002/posts/string-1 Status: 200 Time: 0.0620s
+2026-02-06T01:20:04.621784+0700 INFO Request: POST http://localhost:8002/auth/login from 127.0.0.1
+2026-02-06T01:20:05.163506+0700 INFO Response: POST http://localhost:8002/auth/login Status: 200 Time: 0.5470s
+2026-02-06T01:21:45.196539+0700 INFO Request: PATCH http://localhost:8002/posts/string-1 from 127.0.0.1
+2026-02-06T01:23:07.126188+0700 INFO Request: PATCH http://localhost:8002/posts/string-1 from 127.0.0.1
+2026-02-06T01:23:07.214673+0700 INFO Response: PATCH http://localhost:8002/posts/string-1 Status: 200 Time: 0.0780s
+2026-02-06T01:27:57.402910+0700 INFO Request: PATCH http://localhost:8002/posts/string-1 from 127.0.0.1
+2026-02-06T01:27:57.419972+0700 INFO Response: PATCH http://localhost:8002/posts/string-1 Status: 200 Time: 0.0150s
+2026-02-06T01:28:33.667218+0700 INFO Request: PATCH http://localhost:8002/posts/string-1 from 127.0.0.1
+2026-02-06T01:28:33.700034+0700 INFO Response: PATCH http://localhost:8002/posts/string-1 Status: 200 Time: 0.0320s
+2026-02-06T01:29:19.911002+0700 INFO Request: PATCH http://localhost:8002/posts/string-1 from 127.0.0.1
+2026-02-06T01:29:19.927478+0700 INFO Response: PATCH http://localhost:8002/posts/string-1 Status: 200 Time: 0.0160s
+2026-02-06T01:29:29.010344+0700 INFO Request: PATCH http://localhost:8002/posts/string-1 from 127.0.0.1
+2026-02-06T01:29:29.011497+0700 ERROR Response: PATCH http://localhost:8002/posts/string-1 Status: 422 Time: 0.0000s
+2026-02-06T01:29:42.375436+0700 INFO Request: PATCH http://localhost:8002/posts/string-1 from 127.0.0.1
+2026-02-06T01:29:42.375436+0700 ERROR Response: PATCH http://localhost:8002/posts/string-1 Status: 422 Time: 0.0000s
+2026-02-06T01:30:26.429389+0700 INFO Request: PATCH http://localhost:8002/posts/string-1 from 127.0.0.1
+2026-02-06T01:30:26.431622+0700 ERROR Response: PATCH http://localhost:8002/posts/string-1 Status: 422 Time: 0.0000s
+2026-02-06T01:31:46.229632+0700 INFO Request: PATCH http://localhost:8002/posts/string-1 from 127.0.0.1
+2026-02-06T01:31:46.229869+0700 ERROR Response: PATCH http://localhost:8002/posts/string-1 Status: 422 Time: 0.0000s
+2026-02-06T01:32:37.767992+0700 INFO Request: POST http://localhost:8002/posts/string-1/comments from 127.0.0.1
+2026-02-06T01:32:37.768993+0700 ERROR Response: POST http://localhost:8002/posts/string-1/comments Status: 422 Time: 0.0000s
+2026-02-06T01:34:09.842664+0700 INFO Request: POST http://localhost:8002/posts/string-1/comments from 127.0.0.1
+2026-02-06T01:35:19.370541+0700 INFO Request: GET http://localhost:8002/users/@admin/top-topics from 127.0.0.1
+2026-02-06T01:35:19.384221+0700 INFO Response: GET http://localhost:8002/users/@admin/top-topics Status: 200 Time: 0.0160s
+2026-02-06T01:35:25.990028+0700 INFO Request: GET http://localhost:8002/users/@admin/posts?offset=0&limit=10 from 127.0.0.1
+2026-02-06T01:35:26.000848+0700 INFO Response: GET http://localhost:8002/users/@admin/posts?offset=0&limit=10 Status: 200 Time: 0.0160s
+2026-02-07T01:30:51.689311+0700 INFO Request: GET http://localhost:8002/docs from 127.0.0.1
+2026-02-07T01:30:51.689311+0700 INFO Response: GET http://localhost:8002/docs Status: 200 Time: 0.0000s
+2026-02-07T01:30:51.923449+0700 INFO Request: GET http://localhost:8002/openapi.json from 127.0.0.1
+2026-02-07T01:30:52.105909+0700 INFO Response: GET http://localhost:8002/openapi.json Status: 200 Time: 0.1720s
+2026-02-07T01:30:55.725116+0700 INFO Request: POST http://localhost:8002/auth/login from 127.0.0.1
+2026-02-07T01:30:56.014981+0700 INFO Response: POST http://localhost:8002/auth/login Status: 200 Time: 0.2970s
+2026-02-07T01:31:02.387910+0700 INFO Request: GET http://localhost:8002/topics?offset=0&limit=10 from 127.0.0.1
+2026-02-07T01:32:15.579299+0700 INFO Request: GET http://localhost:8002/topics?offset=0&limit=10 from 127.0.0.1
+2026-02-07T01:32:53.793346+0700 INFO Request: GET http://localhost:8000/docs from 127.0.0.1
+2026-02-07T01:32:53.793346+0700 INFO Response: GET http://localhost:8000/docs Status: 200 Time: 0.0000s
+2026-02-07T01:32:53.910049+0700 INFO Request: GET http://localhost:8000/openapi.json from 127.0.0.1
+2026-02-07T01:32:53.977303+0700 INFO Response: GET http://localhost:8000/openapi.json Status: 200 Time: 0.0630s
+2026-02-07T01:33:00.104204+0700 INFO Request: GET http://localhost:8000/topics?offset=0&limit=10 from 127.0.0.1
+2026-02-07T01:33:00.110729+0700 INFO Response: GET http://localhost:8000/topics?offset=0&limit=10 Status: 200 Time: 0.0150s
+2026-02-07T01:33:11.395408+0700 INFO Request: POST http://localhost:8000/auth/login from 127.0.0.1
+2026-02-07T01:33:11.724134+0700 INFO Response: POST http://localhost:8000/auth/login Status: 200 Time: 0.3280s
+2026-02-07T01:33:27.751376+0700 INFO Request: POST http://localhost:8000/topics from 127.0.0.1
+2026-02-07T01:33:58.667419+0700 INFO Request: POST http://localhost:8000/topics from 127.0.0.1
+2026-02-07T01:33:58.741117+0700 INFO Response: POST http://localhost:8000/topics Status: 201 Time: 0.0780s
+2026-02-07T01:34:02.667482+0700 INFO Request: GET http://localhost:8000/topics?offset=0&limit=10 from 127.0.0.1
+2026-02-07T01:34:02.677791+0700 INFO Response: GET http://localhost:8000/topics?offset=0&limit=10 Status: 200 Time: 0.0160s
+2026-02-07T01:34:10.245912+0700 INFO Request: POST http://localhost:8000/topics from 127.0.0.1
+2026-02-07T01:34:24.901564+0700 INFO Request: POST http://localhost:8000/topics from 127.0.0.1
+2026-02-07T01:34:24.943493+0700 INFO Response: POST http://localhost:8000/topics Status: 201 Time: 0.0470s
+2026-02-07T01:34:30.467724+0700 INFO Request: GET http://localhost:8000/topics?offset=0&limit=10 from 127.0.0.1
+2026-02-07T01:34:30.482882+0700 INFO Response: GET http://localhost:8000/topics?offset=0&limit=10 Status: 200 Time: 0.0160s
+2026-02-07T01:34:46.975805+0700 INFO Request: POST http://localhost:8000/topics/string/posts from 127.0.0.1
+2026-02-07T01:36:35.771822+0700 INFO Request: POST http://localhost:8000/topics/string/posts from 127.0.0.1
+2026-02-07T01:39:06.485520+0700 INFO Request: POST http://localhost:8000/topics/string/posts from 127.0.0.1
+2026-02-07T01:39:06.593693+0700 INFO Response: POST http://localhost:8000/topics/string/posts Status: 201 Time: 0.1100s
+2026-02-07T01:39:20.595498+0700 INFO Request: POST http://localhost:8000/topics/string/posts from 127.0.0.1
+2026-02-07T01:39:20.653858+0700 INFO Response: POST http://localhost:8000/topics/string/posts Status: 201 Time: 0.0470s
+2026-02-07T01:39:53.863186+0700 INFO Request: GET http://localhost:8000/topics/string/posts?offset=0&limit=10 from 127.0.0.1
+2026-02-07T01:39:53.896186+0700 INFO Response: GET http://localhost:8000/topics/string/posts?offset=0&limit=10 Status: 200 Time: 0.0320s
+2026-02-07T01:40:00.071637+0700 INFO Request: POST http://localhost:8000/topics/string/posts from 127.0.0.1
+2026-02-07T01:40:00.154449+0700 INFO Response: POST http://localhost:8000/topics/string/posts Status: 201 Time: 0.0780s
+2026-02-07T01:40:10.385804+0700 INFO Request: POST http://localhost:8000/topics/string/reactions?reaction=like from 127.0.0.1
+2026-02-07T02:04:09.065418+0700 INFO Request: POST http://localhost:8000/topics/string/posts from 127.0.0.1
+2026-02-07T02:04:09.164604+0700 INFO Response: POST http://localhost:8000/topics/string/posts Status: 201 Time: 0.0930s
+2026-02-07T02:04:24.639562+0700 INFO Request: GET http://localhost:8000/topics/string/reactions?reaction_type=like&offset=0&limit=10 from 127.0.0.1
+2026-02-07T02:04:24.673351+0700 INFO Response: GET http://localhost:8000/topics/string/reactions?reaction_type=like&offset=0&limit=10 Status: 200 Time: 0.0470s
+2026-02-07T02:04:42.049656+0700 INFO Request: GET http://localhost:8000/topics/string/reactions?reaction_type=like&offset=0&limit=10 from 127.0.0.1
+2026-02-07T02:04:42.076016+0700 INFO Response: GET http://localhost:8000/topics/string/reactions?reaction_type=like&offset=0&limit=10 Status: 200 Time: 0.0160s
+2026-02-07T02:04:50.245018+0700 INFO Request: POST http://localhost:8000/topics/string/reactions?reaction=like from 127.0.0.1
+2026-02-07T02:06:00.421416+0700 INFO Request: GET http://localhost:8000/topics/string/reactions?reaction_type=dislike&offset=0&limit=10 from 127.0.0.1
+2026-02-07T02:06:00.431976+0700 INFO Response: GET http://localhost:8000/topics/string/reactions?reaction_type=dislike&offset=0&limit=10 Status: 200 Time: 0.0000s
+2026-02-07T02:06:48.193023+0700 INFO Request: GET http://localhost:8000/docs from 127.0.0.1
+2026-02-07T02:06:48.193023+0700 INFO Response: GET http://localhost:8000/docs Status: 200 Time: 0.0000s
+2026-02-07T02:06:48.331334+0700 INFO Request: GET http://localhost:8000/openapi.json from 127.0.0.1
+2026-02-07T02:06:48.393443+0700 INFO Response: GET http://localhost:8000/openapi.json Status: 200 Time: 0.0630s
+2026-02-07T02:07:21.726031+0700 INFO Request: GET http://localhost:8000/docs from 127.0.0.1
+2026-02-07T02:07:21.726031+0700 INFO Response: GET http://localhost:8000/docs Status: 200 Time: 0.0000s
+2026-02-07T02:07:21.824318+0700 INFO Request: GET http://localhost:8000/openapi.json from 127.0.0.1
+2026-02-07T02:07:21.829268+0700 INFO Response: GET http://localhost:8000/openapi.json Status: 200 Time: 0.0150s
+2026-02-07T02:07:49.807047+0700 INFO Request: GET http://localhost:8000/topics/string from 127.0.0.1
+2026-02-07T02:09:22.174283+0700 INFO Request: GET http://localhost:8000/topics/string from 127.0.0.1
+2026-02-07T02:09:24.012740+0700 INFO Request: GET http://localhost:8000/topics/string from 127.0.0.1
+2026-02-07T02:11:19.712867+0700 INFO Request: GET http://localhost:8005/docs from 127.0.0.1
+2026-02-07T02:11:19.719192+0700 INFO Response: GET http://localhost:8005/docs Status: 200 Time: 0.0160s
+2026-02-07T02:11:19.969624+0700 INFO Request: GET http://localhost:8005/openapi.json from 127.0.0.1
+2026-02-07T02:11:20.168795+0700 INFO Response: GET http://localhost:8005/openapi.json Status: 200 Time: 0.1870s
+2026-02-07T02:11:28.868784+0700 INFO Request: GET http://localhost:8005/topics/string from 127.0.0.1
+2026-02-07T02:12:32.251769+0700 INFO Request: GET http://localhost:8005/topics/string from 127.0.0.1
+2026-02-07T02:12:32.283964+0700 INFO Response: GET http://localhost:8005/topics/string Status: 200 Time: 0.0310s
+2026-02-07T02:13:56.993869+0700 INFO Request: GET http://localhost:8005/topics?offset=0&limit=10 from 127.0.0.1
+2026-02-07T02:16:31.158724+0700 INFO Request: GET http://localhost:8005/topics?offset=0&limit=10 from 127.0.0.1
+2026-02-07T02:16:31.173368+0700 INFO Response: GET http://localhost:8005/topics?offset=0&limit=10 Status: 200 Time: 0.0160s
+2026-02-07T02:17:04.262236+0700 INFO Request: POST http://localhost:8005/auth/login from 127.0.0.1
+2026-02-07T02:17:04.528223+0700 INFO Response: POST http://localhost:8005/auth/login Status: 200 Time: 0.2660s
+2026-02-07T02:17:16.618893+0700 INFO Request: GET http://localhost:8005/topics?offset=0&limit=10 from 127.0.0.1
+2026-02-07T02:17:16.627705+0700 INFO Response: GET http://localhost:8005/topics?offset=0&limit=10 Status: 200 Time: 0.0160s
+2026-02-07T02:17:21.269443+0700 INFO Request: POST http://localhost:8005/topics from 127.0.0.1
+2026-02-07T02:17:31.750215+0700 INFO Request: POST http://localhost:8005/topics from 127.0.0.1
+2026-02-07T02:17:31.771067+0700 INFO Response: POST http://localhost:8005/topics Status: 201 Time: 0.0160s
+2026-02-07T02:17:38.790141+0700 INFO Request: GET http://localhost:8005/topics/string from 127.0.0.1
+2026-02-07T02:17:38.805194+0700 INFO Response: GET http://localhost:8005/topics/string Status: 200 Time: 0.0160s
+2026-02-07T02:17:54.399259+0700 INFO Request: GET http://localhost:8005/topics/string/reactions?reaction_type=all&offset=0&limit=10 from 127.0.0.1
+2026-02-07T02:17:54.418228+0700 INFO Response: GET http://localhost:8005/topics/string/reactions?reaction_type=all&offset=0&limit=10 Status: 200 Time: 0.0150s
+2026-02-07T02:19:47.207966+0700 INFO Request: GET http://localhost:8005/topics/string/posts?offset=0&limit=10 from 127.0.0.1
+2026-02-07T02:19:47.242186+0700 INFO Response: GET http://localhost:8005/topics/string/posts?offset=0&limit=10 Status: 200 Time: 0.0310s
+2026-02-07T02:19:59.008618+0700 INFO Request: POST http://localhost:8005/topics/sdad/posts from 127.0.0.1
+2026-02-07T02:20:06.673891+0700 INFO Request: POST http://localhost:8005/topics/sdadasd/posts from 127.0.0.1
+2026-02-07T02:20:14.731542+0700 INFO Request: POST http://localhost:8005/topics/string/posts from 127.0.0.1
+2026-02-07T02:20:14.771037+0700 INFO Response: POST http://localhost:8005/topics/string/posts Status: 201 Time: 0.0470s
+2026-02-07T02:20:22.855181+0700 INFO Request: GET http://localhost:8005/topic-offers/offers?offset=0&limit=10 from 127.0.0.1
+2026-02-07T02:20:22.857391+0700 INFO Response: GET http://localhost:8005/topic-offers/offers?offset=0&limit=10 Status: 200 Time: 0.0000s
+2026-02-07T02:20:28.260244+0700 INFO Request: POST http://localhost:8005/topic-offers/offers from 127.0.0.1
+2026-02-07T02:20:28.279221+0700 INFO Response: POST http://localhost:8005/topic-offers/offers Status: 201 Time: 0.0160s
+2026-02-07T02:20:41.036578+0700 INFO Request: POST http://localhost:8005/topic-offers/offers/1/process from 127.0.0.1
+2026-02-07T02:20:48.576353+0700 INFO Request: POST http://localhost:8005/topic-offers/offers/1/process from 127.0.0.1
+2026-02-07T02:21:05.913305+0700 INFO Request: GET http://localhost:8005/topics?offset=0&limit=10 from 127.0.0.1
+2026-02-07T02:21:05.921401+0700 INFO Response: GET http://localhost:8005/topics?offset=0&limit=10 Status: 200 Time: 0.0160s
+2026-02-07T02:22:39.364791+0700 INFO Request: GET http://localhost:8005/topic-offers/offers?offset=0&limit=10 from 127.0.0.1
+2026-02-07T02:22:39.390586+0700 INFO Response: GET http://localhost:8005/topic-offers/offers?offset=0&limit=10 Status: 200 Time: 0.0320s
+2026-02-07T02:23:48.016842+0700 INFO Request: GET http://localhost:8005/topic-offers/offers?offset=0&limit=10 from 127.0.0.1
+2026-02-07T02:23:48.031968+0700 INFO Response: GET http://localhost:8005/topic-offers/offers?offset=0&limit=10 Status: 200 Time: 0.0150s
+2026-02-07T02:26:01.439045+0700 INFO Request: GET http://localhost:8005/topic-offers/offers?offset=0&limit=10 from 127.0.0.1
+2026-02-07T02:26:01.447829+0700 INFO Response: GET http://localhost:8005/topic-offers/offers?offset=0&limit=10 Status: 200 Time: 0.0000s
+2026-02-07T02:26:05.896510+0700 INFO Request: POST http://localhost:8005/topic-offers/offers from 127.0.0.1
+2026-02-07T02:26:05.922430+0700 INFO Response: POST http://localhost:8005/topic-offers/offers Status: 201 Time: 0.0310s
+2026-02-07T02:26:15.151064+0700 INFO Request: POST http://localhost:8005/topic-offers/offers/2/process from 127.0.0.1
+2026-02-07T02:26:15.193639+0700 INFO Response: POST http://localhost:8005/topic-offers/offers/2/process Status: 201 Time: 0.0470s
+2026-02-07T03:04:45.734747+0700 INFO Request: GET http://localhost:8005/topics?offset=0&limit=10 from 127.0.0.1
+2026-02-07T03:05:53.537288+0700 INFO Request: GET http://localhost:8005/topics?offset=0&limit=10 from 127.0.0.1
+2026-02-07T03:06:42.070771+0700 INFO Request: GET http://localhost:8005/topics?offset=0&limit=10 from 127.0.0.1
+2026-02-07T03:06:42.084268+0700 INFO Response: GET http://localhost:8005/topics?offset=0&limit=10 Status: 200 Time: 0.0150s
+2026-02-07T03:09:36.091768+0700 INFO Request: POST http://localhost:8005/auth/login from 127.0.0.1
+2026-02-07T03:09:36.357219+0700 INFO Response: POST http://localhost:8005/auth/login Status: 200 Time: 0.2660s
+2026-02-07T03:09:49.794914+0700 INFO Request: POST http://localhost:8005/me/posts from 127.0.0.1
+2026-02-07T03:09:49.830518+0700 INFO Response: POST http://localhost:8005/me/posts Status: 201 Time: 0.0470s
+2026-02-08T02:05:25.563254+0700 INFO Request: GET http://localhost:8000/docs from 127.0.0.1
+2026-02-08T02:05:25.563254+0700 INFO Response: GET http://localhost:8000/docs Status: 200 Time: 0.0000s
+2026-02-08T02:05:25.788395+0700 INFO Request: GET http://localhost:8000/openapi.json from 127.0.0.1
+2026-02-08T02:05:25.914027+0700 INFO Response: GET http://localhost:8000/openapi.json Status: 200 Time: 0.1250s
+2026-02-08T02:05:33.929468+0700 INFO Request: GET http://localhost:8000/channels?offset=0&limit=10 from 127.0.0.1
+2026-02-08T02:05:33.976172+0700 INFO Response: GET http://localhost:8000/channels?offset=0&limit=10 Status: 200 Time: 0.0470s
+2026-02-08T02:05:48.924697+0700 INFO Request: POST http://localhost:8000/channels from 127.0.0.1
+2026-02-08T02:05:48.925012+0700 ERROR Response: POST http://localhost:8000/channels Status: 401 Time: 0.0000s
+2026-02-08T02:05:57.989606+0700 INFO Request: POST http://localhost:8000/auth/login from 127.0.0.1
+2026-02-08T02:05:58.338627+0700 INFO Response: POST http://localhost:8000/auth/login Status: 200 Time: 0.3440s
+2026-02-08T02:06:12.158622+0700 INFO Request: POST http://localhost:8000/channels from 127.0.0.1
+2026-02-08T02:07:02.481678+0700 INFO Request: POST http://localhost:8000/channels from 127.0.0.1
+2026-02-08T02:08:26.709827+0700 INFO Request: POST http://localhost:8000/channels from 127.0.0.1
+2026-02-08T02:08:26.755792+0700 INFO Response: POST http://localhost:8000/channels Status: 200 Time: 0.0470s
+2026-02-08T02:08:49.660938+0700 INFO Request: POST http://localhost:8000/channels from 127.0.0.1
+2026-02-08T02:08:49.693082+0700 INFO Response: POST http://localhost:8000/channels Status: 200 Time: 0.0320s
+2026-02-08T02:44:29.234775+0700 INFO Request: POST http://localhost:8000/channels from 127.0.0.1
+2026-02-08T02:44:41.639580+0700 INFO Request: POST http://localhost:8000/channels from 127.0.0.1
+2026-02-08T02:46:06.458537+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-02-08T02:46:06.458537+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-02-08T02:46:06.808782+0700 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2026-02-08T02:46:06.974375+0700 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.1720s
+2026-02-08T02:46:11.761482+0700 INFO Request: POST http://localhost:8001/auth/login from 127.0.0.1
+2026-02-08T02:46:12.099278+0700 INFO Response: POST http://localhost:8001/auth/login Status: 200 Time: 0.3440s
+2026-02-08T02:46:35.615293+0700 INFO Request: GET http://localhost:8001/channels?offset=0&limit=10 from 127.0.0.1
+2026-02-08T02:46:53.319262+0700 INFO Request: POST http://localhost:8001/channels from 127.0.0.1
+2026-02-08T02:46:53.388033+0700 INFO Response: POST http://localhost:8001/channels Status: 200 Time: 0.0620s
+2026-02-08T02:46:56.510418+0700 INFO Request: POST http://localhost:8001/channels from 127.0.0.1
+2026-02-08T02:46:56.584853+0700 INFO Response: POST http://localhost:8001/channels Status: 200 Time: 0.0780s
+2026-02-08T02:46:58.931636+0700 INFO Request: POST http://localhost:8001/channels from 127.0.0.1
+2026-02-08T02:46:59.040259+0700 INFO Response: POST http://localhost:8001/channels Status: 200 Time: 0.1090s
+2026-02-08T02:47:03.422502+0700 INFO Request: POST http://localhost:8001/channels from 127.0.0.1
+2026-02-08T02:47:03.529874+0700 INFO Response: POST http://localhost:8001/channels Status: 200 Time: 0.0940s
+2026-02-08T02:48:50.759922+0700 INFO Request: POST http://localhost:8001/channels from 127.0.0.1
+2026-02-08T02:51:41.147161+0700 INFO Request: POST http://localhost:8001/channels from 127.0.0.1
+2026-02-08T02:51:57.174917+0700 INFO Request: POST http://localhost:8001/channels from 127.0.0.1
+2026-02-08T02:51:57.248595+0700 INFO Response: POST http://localhost:8001/channels Status: 200 Time: 0.0620s
+2026-02-08T02:54:23.189563+0700 INFO Request: POST http://localhost:8001/channels from 127.0.0.1
+2026-02-08T02:56:04.115588+0700 INFO Request: POST http://localhost:8001/channels from 127.0.0.1
+2026-02-08T03:12:14.391111+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-02-08T03:12:14.391111+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-02-08T03:12:14.676200+0700 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2026-02-08T03:12:14.740504+0700 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.0620s
+2026-02-08T03:12:23.682758+0700 INFO Request: POST http://localhost:8001/channels from 127.0.0.1
+2026-02-08T03:12:23.685363+0700 ERROR Response: POST http://localhost:8001/channels Status: 401 Time: 0.0000s
+2026-02-08T03:12:31.786602+0700 INFO Request: POST http://localhost:8001/auth/login from 127.0.0.1
+2026-02-08T03:12:32.119886+0700 INFO Response: POST http://localhost:8001/auth/login Status: 200 Time: 0.3280s
+2026-02-08T03:12:45.419988+0700 INFO Request: POST http://localhost:8001/channels from 127.0.0.1
+2026-02-08T03:13:04.139912+0700 INFO Request: POST http://localhost:8001/channels from 127.0.0.1
+2026-02-08T03:13:04.201756+0700 INFO Response: POST http://localhost:8001/channels Status: 200 Time: 0.0630s
+2026-02-08T03:13:07.502931+0700 INFO Request: POST http://localhost:8001/channels from 127.0.0.1
+2026-02-08T03:13:17.367352+0700 INFO Request: GET http://localhost:8001/channels/lolker from 127.0.0.1
+2026-02-08T03:13:17.383916+0700 INFO Response: GET http://localhost:8001/channels/lolker Status: 200 Time: 0.0160s
+2026-02-13T21:38:08.197672+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-02-13T21:38:08.197672+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-02-13T21:38:08.634016+0700 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2026-02-13T21:38:08.742297+0700 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.1090s
+2026-02-13T21:38:19.946240+0700 INFO Request: POST http://localhost:8001/auth/login from 127.0.0.1
+2026-02-13T21:38:20.314022+0700 INFO Response: POST http://localhost:8001/auth/login Status: 200 Time: 0.3750s
+2026-02-13T21:38:56.612020+0700 INFO Request: POST http://localhost:8001/channels from 127.0.0.1
+2026-02-13T21:39:13.706997+0700 INFO Request: POST http://localhost:8001/channels from 127.0.0.1
+2026-02-13T21:39:13.759961+0700 INFO Response: POST http://localhost:8001/channels Status: 200 Time: 0.0470s
+2026-02-13T21:39:25.895328+0700 INFO Request: GET http://localhost:8001/channels/test from 127.0.0.1
+2026-02-13T21:39:25.903084+0700 INFO Response: GET http://localhost:8001/channels/test Status: 200 Time: 0.0000s
+2026-02-13T21:40:26.774292+0700 INFO Request: POST http://localhost:8001/channels/test/join from 127.0.0.1
+2026-02-13T21:45:28.925123+0700 INFO Request: POST http://localhost:8001/channels/test/join from 127.0.0.1
+2026-02-13T21:45:34.573464+0700 INFO Request: POST http://localhost:8001/channels from 127.0.0.1
+2026-02-13T21:45:34.622399+0700 INFO Response: POST http://localhost:8001/channels Status: 200 Time: 0.0460s
+2026-02-13T21:45:43.755145+0700 INFO Request: POST http://localhost:8001/channels/test/join from 127.0.0.1
+2026-02-13T21:45:43.793615+0700 INFO Response: POST http://localhost:8001/channels/test/join Status: 200 Time: 0.0310s
+2026-02-13T21:51:00.885844+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-02-13T21:51:00.885844+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-02-13T21:51:01.058461+0700 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2026-02-13T21:51:01.118932+0700 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.0620s
+2026-02-13T21:51:18.674476+0700 INFO Request: GET http://localhost:8001/channels/test from 127.0.0.1
+2026-02-13T21:51:18.699444+0700 INFO Response: GET http://localhost:8001/channels/test Status: 200 Time: 0.0160s
+2026-02-13T21:51:30.510909+0700 INFO Request: GET http://localhost:8001/channels/test/join?offset=0&limit=10 from 127.0.0.1
+2026-02-13T21:51:30.513167+0700 ERROR Response: GET http://localhost:8001/channels/test/join?offset=0&limit=10 Status: 401 Time: 0.0000s
+2026-02-13T21:51:39.468563+0700 INFO Request: POST http://localhost:8001/auth/login from 127.0.0.1
+2026-02-13T21:51:39.794206+0700 INFO Response: POST http://localhost:8001/auth/login Status: 200 Time: 0.3120s
+2026-02-13T21:52:05.779422+0700 INFO Request: GET http://localhost:8001/channels/test/join?offset=0&limit=10 from 127.0.0.1
+2026-02-13T21:52:05.813779+0700 INFO Response: GET http://localhost:8001/channels/test/join?offset=0&limit=10 Status: 200 Time: 0.0470s
+2026-02-13T21:52:28.981136+0700 INFO Request: POST http://localhost:8001/channels/test/join from 127.0.0.1
+2026-02-13T21:52:29.056847+0700 INFO Response: POST http://localhost:8001/channels/test/join Status: 200 Time: 0.0780s
+2026-02-13T21:52:33.030557+0700 INFO Request: GET http://localhost:8001/channels/test/join?offset=0&limit=10 from 127.0.0.1
+2026-02-13T21:52:33.046527+0700 INFO Response: GET http://localhost:8001/channels/test/join?offset=0&limit=10 Status: 200 Time: 0.0310s
+2026-02-13T21:54:46.459254+0700 INFO Request: POST http://localhost:8001/channels/join-process/2?approve=true from 127.0.0.1
+2026-02-13T21:54:53.150366+0700 INFO Request: POST http://localhost:8001/channels/join-process/1?approve=true from 127.0.0.1
+2026-02-13T21:54:53.258417+0700 INFO Response: POST http://localhost:8001/channels/join-process/1?approve=true Status: 200 Time: 0.1090s
+2026-02-13T22:48:16.063157+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-02-13T22:48:16.071338+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-02-13T22:48:16.237787+0700 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2026-02-13T22:48:16.421291+0700 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.1880s
+2026-02-13T22:48:21.425630+0700 INFO Request: POST http://localhost:8001/auth/login from 127.0.0.1
+2026-02-13T22:48:21.755947+0700 INFO Response: POST http://localhost:8001/auth/login Status: 200 Time: 0.3280s
+2026-02-13T22:48:38.458195+0700 INFO Request: GET http://localhost:8001/channels/test/sub?offset=0&limit=10 from 127.0.0.1
+2026-02-13T22:50:10.962510+0700 INFO Request: GET http://localhost:8001/channels/test/join?offset=0&limit=10 from 127.0.0.1
+2026-02-13T22:53:28.838760+0700 INFO Request: GET http://localhost:8001/channels/test/join?offset=0&limit=10 from 127.0.0.1
+2026-02-13T22:53:55.425621+0700 INFO Request: GET http://localhost:8005/docs from 127.0.0.1
+2026-02-13T22:53:55.425621+0700 INFO Response: GET http://localhost:8005/docs Status: 200 Time: 0.0000s
+2026-02-13T22:53:55.630575+0700 INFO Request: GET http://localhost:8005/openapi.json from 127.0.0.1
+2026-02-13T22:53:55.834366+0700 INFO Response: GET http://localhost:8005/openapi.json Status: 200 Time: 0.2030s
+2026-02-13T22:54:01.763662+0700 INFO Request: POST http://localhost:8005/auth/login from 127.0.0.1
+2026-02-13T22:54:02.100973+0700 INFO Response: POST http://localhost:8005/auth/login Status: 200 Time: 0.3440s
+2026-02-13T22:54:17.071400+0700 INFO Request: GET http://localhost:8005/channels/test/join?offset=0&limit=10 from 127.0.0.1
+2026-02-13T22:54:17.105129+0700 INFO Response: GET http://localhost:8005/channels/test/join?offset=0&limit=10 Status: 200 Time: 0.0310s
+2026-02-13T22:54:28.877521+0700 INFO Request: GET http://localhost:8005/channels/test/sub?offset=0&limit=10 from 127.0.0.1
+2026-02-13T22:54:28.892478+0700 INFO Response: GET http://localhost:8005/channels/test/sub?offset=0&limit=10 Status: 200 Time: 0.0160s
+2026-02-13T23:00:09.077314+0700 INFO Request: GET http://localhost:8005/channels/test/sub?offset=0&limit=10 from 127.0.0.1
+2026-02-13T23:00:09.092883+0700 INFO Response: GET http://localhost:8005/channels/test/sub?offset=0&limit=10 Status: 200 Time: 0.0150s
+2026-02-13T23:00:12.685655+0700 INFO Request: GET http://localhost:8005/channels/test/sub?offset=0&limit=10 from 127.0.0.1
+2026-02-13T23:00:12.751733+0700 INFO Response: GET http://localhost:8005/channels/test/sub?offset=0&limit=10 Status: 200 Time: 0.0780s
+2026-02-13T23:18:51.781351+0700 INFO Request: GET http://localhost:8005/channels/test/sub?offset=0&limit=10 from 127.0.0.1
+2026-02-13T23:18:51.822800+0700 INFO Response: GET http://localhost:8005/channels/test/sub?offset=0&limit=10 Status: 200 Time: 0.0320s
+2026-02-13T23:19:01.727409+0700 INFO Request: GET http://localhost:8005/docs from 127.0.0.1
+2026-02-13T23:19:01.728429+0700 INFO Response: GET http://localhost:8005/docs Status: 200 Time: 0.0000s
+2026-02-13T23:19:01.822684+0700 INFO Request: GET http://localhost:8005/openapi.json from 127.0.0.1
+2026-02-13T23:19:01.903715+0700 INFO Response: GET http://localhost:8005/openapi.json Status: 200 Time: 0.0780s
+2026-02-13T23:19:02.400302+0700 INFO Request: GET http://localhost:8005/docs from 127.0.0.1
+2026-02-13T23:19:02.401324+0700 INFO Response: GET http://localhost:8005/docs Status: 200 Time: 0.0000s
+2026-02-13T23:19:02.620604+0700 INFO Request: GET http://localhost:8005/openapi.json from 127.0.0.1
+2026-02-13T23:19:02.622166+0700 INFO Response: GET http://localhost:8005/openapi.json Status: 200 Time: 0.0000s
+2026-02-13T23:19:02.756056+0700 INFO Request: GET http://localhost:8005/docs from 127.0.0.1
+2026-02-13T23:19:02.757044+0700 INFO Response: GET http://localhost:8005/docs Status: 200 Time: 0.0000s
+2026-02-13T23:19:03.239015+0700 INFO Request: GET http://localhost:8005/openapi.json from 127.0.0.1
+2026-02-13T23:19:03.241024+0700 INFO Response: GET http://localhost:8005/openapi.json Status: 200 Time: 0.0000s
+2026-02-13T23:19:03.298960+0700 INFO Request: GET http://localhost:8005/docs from 127.0.0.1
+2026-02-13T23:19:03.299993+0700 INFO Response: GET http://localhost:8005/docs Status: 200 Time: 0.0000s
+2026-02-13T23:19:03.382963+0700 INFO Request: GET http://localhost:8005/openapi.json from 127.0.0.1
+2026-02-13T23:19:03.384015+0700 INFO Response: GET http://localhost:8005/openapi.json Status: 200 Time: 0.0000s
+2026-02-13T23:19:03.475005+0700 INFO Request: GET http://localhost:8005/docs from 127.0.0.1
+2026-02-13T23:19:03.476009+0700 INFO Response: GET http://localhost:8005/docs Status: 200 Time: 0.0000s
+2026-02-13T23:21:08.873280+0700 INFO Request: GET http://localhost:8008/docs from 127.0.0.1
+2026-02-13T23:21:08.874245+0700 INFO Response: GET http://localhost:8008/docs Status: 200 Time: 0.0000s
+2026-02-13T23:21:09.196134+0700 INFO Request: GET http://localhost:8008/openapi.json from 127.0.0.1
+2026-02-13T23:21:09.413582+0700 INFO Response: GET http://localhost:8008/openapi.json Status: 200 Time: 0.2180s
+2026-02-13T23:21:20.356280+0700 INFO Request: POST http://localhost:8008/auth/login from 127.0.0.1
+2026-02-13T23:21:20.841658+0700 INFO Response: POST http://localhost:8008/auth/login Status: 200 Time: 0.4840s
+2026-02-13T23:21:36.556250+0700 INFO Request: GET http://localhost:8008/me from 127.0.0.1
+2026-02-13T23:21:36.573253+0700 INFO Response: GET http://localhost:8008/me Status: 200 Time: 0.0160s
+2026-02-13T23:22:17.937378+0700 INFO Request: POST http://localhost:8008/channels from 127.0.0.1
+2026-02-13T23:22:47.420874+0700 INFO Request: POST http://localhost:8008/channels from 127.0.0.1
+2026-02-13T23:25:09.673264+0700 INFO Request: POST http://localhost:8008/channels from 127.0.0.1
+2026-02-13T23:25:17.608431+0700 INFO Request: POST http://localhost:8008/channels from 127.0.0.1
+2026-02-13T23:26:09.300515+0700 INFO Request: POST http://localhost:8008/channels from 127.0.0.1
+2026-02-13T23:26:09.380065+0700 INFO Response: POST http://localhost:8008/channels Status: 200 Time: 0.0780s
+2026-02-13T23:26:25.367227+0700 INFO Request: POST http://localhost:8008/channels/test/join from 127.0.0.1
+2026-02-13T23:26:57.208716+0700 INFO Request: POST http://localhost:8008/channels/test/join from 127.0.0.1
+2026-02-13T23:27:13.498073+0700 INFO Request: POST http://localhost:8008/channels/test/join from 127.0.0.1
+2026-02-13T23:27:13.592315+0700 INFO Response: POST http://localhost:8008/channels/test/join Status: 200 Time: 0.0940s
+2026-02-13T23:27:23.568516+0700 INFO Request: GET http://localhost:8008/channels/test/join?offset=0&limit=10 from 127.0.0.1
+2026-02-13T23:27:23.619523+0700 INFO Response: GET http://localhost:8008/channels/test/join?offset=0&limit=10 Status: 200 Time: 0.0460s
+2026-02-13T23:27:38.927351+0700 INFO Request: POST http://localhost:8008/channels/join-process/1?approve=true from 127.0.0.1
+2026-02-13T23:28:09.848750+0700 INFO Request: POST http://localhost:8008/channels/join-process/1?approve=true from 127.0.0.1
+2026-02-13T23:28:56.075792+0700 INFO Request: POST http://localhost:8008/channels/join-process/1?approve=true from 127.0.0.1
+2026-02-13T23:28:56.189242+0700 INFO Response: POST http://localhost:8008/channels/join-process/1?approve=true Status: 200 Time: 0.1250s
+2026-02-13T23:29:06.985763+0700 INFO Request: GET http://localhost:8008/channels/test/sub?offset=0&limit=10 from 127.0.0.1
+2026-02-13T23:29:07.051726+0700 INFO Response: GET http://localhost:8008/channels/test/sub?offset=0&limit=10 Status: 200 Time: 0.0630s
+2026-02-13T23:29:25.436382+0700 INFO Request: GET http://localhost:8008/channels/test/sub?offset=0&limit=10 from 127.0.0.1
+2026-02-13T23:29:25.474345+0700 INFO Response: GET http://localhost:8008/channels/test/sub?offset=0&limit=10 Status: 200 Time: 0.0470s
+2026-02-13T23:50:26.930175+0700 INFO Request: GET http://localhost:8008/subs from 127.0.0.1
+2026-02-13T23:51:22.234421+0700 INFO Request: GET http://localhost:8008/subs from 127.0.0.1
+2026-02-13T23:51:41.846315+0700 INFO Request: GET http://localhost:8008/subs from 127.0.0.1
+2026-02-13T23:53:48.236163+0700 INFO Request: GET http://localhost:8008/subs from 127.0.0.1
+2026-02-13T23:54:03.984329+0700 INFO Request: GET http://localhost:8008/subs from 127.0.0.1
+2026-02-13T23:54:29.450817+0700 INFO Request: GET http://localhost:8008/subs from 127.0.0.1
+2026-02-13T23:55:51.694685+0700 INFO Request: GET http://localhost:8008/subs from 127.0.0.1
+2026-02-13T23:58:34.137076+0700 INFO Request: GET http://localhost:8008/subs from 127.0.0.1
+2026-02-13T23:58:34.199114+0700 INFO Response: GET http://localhost:8008/subs Status: 200 Time: 0.0630s
+2026-02-14T00:01:48.152366+0700 INFO Request: GET http://localhost:8008/topic-offers?offset=0&limit=10 from 127.0.0.1
+2026-02-14T00:01:48.163370+0700 INFO Response: GET http://localhost:8008/topic-offers?offset=0&limit=10 Status: 200 Time: 0.0150s
+2026-02-14T00:01:54.147915+0700 INFO Request: POST http://localhost:8008/topic-offers from 127.0.0.1
+2026-02-14T00:01:54.211679+0700 INFO Response: POST http://localhost:8008/topic-offers Status: 201 Time: 0.0620s
+2026-02-14T00:01:56.402750+0700 INFO Request: POST http://localhost:8008/topic-offers from 127.0.0.1
+2026-02-14T00:01:56.458136+0700 INFO Response: POST http://localhost:8008/topic-offers Status: 201 Time: 0.0620s
+2026-02-14T00:02:00.469306+0700 INFO Request: GET http://localhost:8008/topic-offers?offset=0&limit=10 from 127.0.0.1
+2026-02-14T00:02:00.491309+0700 INFO Response: GET http://localhost:8008/topic-offers?offset=0&limit=10 Status: 200 Time: 0.0150s
+2026-02-14T00:02:09.042590+0700 INFO Request: GET http://localhost:8008/channels/test/sub?offset=0&limit=10 from 127.0.0.1
+2026-02-14T00:02:09.097310+0700 INFO Response: GET http://localhost:8008/channels/test/sub?offset=0&limit=10 Status: 200 Time: 0.0630s
+2026-02-15T14:38:25.548909+0700 INFO Request: GET http://localhost:8005/docs from 127.0.0.1
+2026-02-15T14:38:25.548909+0700 INFO Response: GET http://localhost:8005/docs Status: 200 Time: 0.0000s
+2026-02-15T14:38:25.775833+0700 INFO Request: GET http://localhost:8005/openapi.json from 127.0.0.1
+2026-02-15T14:38:25.965553+0700 INFO Response: GET http://localhost:8005/openapi.json Status: 200 Time: 0.1870s
+2026-02-15T14:38:58.439418+0700 INFO Request: GET http://localhost:8005/allows/?offset=0&limit=10 from 127.0.0.1
+2026-02-15T14:38:58.447062+0700 INFO Response: GET http://localhost:8005/allows/?offset=0&limit=10 Status: 200 Time: 0.0000s
+2026-02-15T14:39:27.095133+0700 INFO Request: POST http://localhost:8005/allows/ from 127.0.0.1
+2026-02-15T14:40:53.735119+0700 INFO Request: POST http://localhost:8005/allows/ from 127.0.0.1
+2026-02-15T14:40:53.787138+0700 INFO Response: POST http://localhost:8005/allows/ Status: 200 Time: 0.0470s
+2026-02-15T14:41:00.316540+0700 INFO Request: GET http://localhost:8005/allows/?offset=0&limit=10 from 127.0.0.1
+2026-02-15T14:41:00.333155+0700 INFO Response: GET http://localhost:8005/allows/?offset=0&limit=10 Status: 200 Time: 0.0150s
+2026-02-15T14:41:25.323418+0700 INFO Request: POST http://localhost:8005/allows/ from 127.0.0.1
+2026-02-15T14:41:25.389660+0700 INFO Response: POST http://localhost:8005/allows/ Status: 200 Time: 0.0620s
+2026-02-15T14:41:28.957690+0700 INFO Request: GET http://localhost:8005/allows/?offset=0&limit=10 from 127.0.0.1
+2026-02-15T14:41:28.962694+0700 INFO Response: GET http://localhost:8005/allows/?offset=0&limit=10 Status: 200 Time: 0.0000s
+2026-02-15T15:41:19.625528+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-02-15T15:41:19.625528+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-02-15T15:41:19.806159+0700 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2026-02-15T15:41:19.875652+0700 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.0780s
+2026-02-15T15:41:23.867657+0700 INFO Request: GET http://localhost:8001/allows/?offset=0&limit=10 from 127.0.0.1
+2026-02-15T15:41:23.884031+0700 INFO Response: GET http://localhost:8001/allows/?offset=0&limit=10 Status: 200 Time: 0.0160s
+2026-02-15T15:42:28.759634+0700 INFO Request: POST http://localhost:8001/allows/ from 127.0.0.1
+2026-02-15T15:42:28.850039+0700 INFO Response: POST http://localhost:8001/allows/ Status: 200 Time: 0.0940s
+2026-02-15T15:42:43.157789+0700 INFO Request: POST http://localhost:8001/auth/login from 127.0.0.1
+2026-02-15T15:42:43.488436+0700 INFO Response: POST http://localhost:8001/auth/login Status: 200 Time: 0.3280s
+2026-02-15T15:43:23.394184+0700 INFO Request: POST http://localhost:8001/me/posts from 127.0.0.1
+2026-02-15T15:45:31.861276+0700 INFO Request: POST http://localhost:8001/me/posts from 127.0.0.1
+2026-02-15T15:45:53.743223+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-02-15T15:45:53.751487+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0160s
+2026-02-15T15:45:53.945831+0700 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2026-02-15T15:45:53.948978+0700 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.0000s
+2026-02-15T15:45:59.485796+0700 INFO Request: POST http://localhost:8001/me/posts from 127.0.0.1
+2026-02-15T15:45:59.487909+0700 ERROR Response: POST http://localhost:8001/me/posts Status: 401 Time: 0.0000s
+2026-02-15T15:46:07.154710+0700 INFO Request: POST http://localhost:8001/auth/login from 127.0.0.1
+2026-02-15T15:46:07.459036+0700 INFO Response: POST http://localhost:8001/auth/login Status: 200 Time: 0.3120s
+2026-02-15T15:46:19.958948+0700 INFO Request: POST http://localhost:8001/me/posts from 127.0.0.1
+2026-02-15T15:46:41.810008+0700 INFO Request: GET http://localhost:8003/docs from 127.0.0.1
+2026-02-15T15:46:41.816823+0700 INFO Response: GET http://localhost:8003/docs Status: 200 Time: 0.0160s
+2026-02-15T15:46:41.900078+0700 INFO Request: GET http://localhost:8003/openapi.json from 127.0.0.1
+2026-02-15T15:46:41.983558+0700 INFO Response: GET http://localhost:8003/openapi.json Status: 200 Time: 0.0780s
+2026-02-15T15:47:03.108035+0700 INFO Request: POST http://localhost:8003/me/posts from 127.0.0.1
+2026-02-15T15:47:59.118589+0700 INFO Request: POST http://localhost:8003/allows/ from 127.0.0.1
+2026-02-15T15:47:59.209290+0700 INFO Response: POST http://localhost:8003/allows/ Status: 200 Time: 0.0940s
+2026-02-15T15:48:18.017624+0700 INFO Request: POST http://localhost:8003/me/posts from 127.0.0.1
+2026-02-15T15:48:31.586554+0700 INFO Request: GET http://localhost:8003/allows/?offset=0&limit=10 from 127.0.0.1
+2026-02-15T15:48:31.604357+0700 INFO Response: GET http://localhost:8003/allows/?offset=0&limit=10 Status: 200 Time: 0.0160s
+2026-02-15T15:49:23.377307+0700 INFO Request: POST http://localhost:8003/me/posts from 127.0.0.1
+2026-02-15T15:53:13.839203+0700 INFO Request: POST http://localhost:8003/me/posts from 127.0.0.1
+2026-02-15T15:53:13.947498+0700 INFO Response: POST http://localhost:8003/me/posts Status: 201 Time: 0.1100s
+2026-02-15T15:55:20.970696+0700 INFO Request: GET http://localhost:8003/topics?offset=0&limit=10 from 127.0.0.1
+2026-02-15T15:55:20.975064+0700 INFO Response: GET http://localhost:8003/topics?offset=0&limit=10 Status: 200 Time: 0.0000s
+2026-02-15T15:55:34.113577+0700 INFO Request: GET http://localhost:8003/channels/string from 127.0.0.1
+2026-02-15T15:55:45.916608+0700 INFO Request: POST http://localhost:8003/channels from 127.0.0.1
+2026-02-15T15:55:45.960428+0700 INFO Response: POST http://localhost:8003/channels Status: 200 Time: 0.0470s
+2026-02-15T15:56:25.525576+0700 INFO Request: POST http://localhost:8003/posts from 127.0.0.1
+2026-02-15T15:56:25.602742+0700 INFO Response: POST http://localhost:8003/posts Status: 200 Time: 0.0780s
+2026-02-15T15:57:12.508807+0700 INFO Request: POST http://localhost:8003/allows/ from 127.0.0.1
+2026-02-15T15:57:12.558818+0700 INFO Response: POST http://localhost:8003/allows/ Status: 200 Time: 0.0470s
+2026-02-15T15:57:18.458630+0700 INFO Request: POST http://localhost:8003/posts from 127.0.0.1
+2026-02-15T15:57:18.569453+0700 INFO Response: POST http://localhost:8003/posts Status: 200 Time: 0.1250s
+2026-02-15T15:57:21.729496+0700 INFO Request: POST http://localhost:8003/posts from 127.0.0.1
+2026-02-15T15:57:21.808174+0700 INFO Response: POST http://localhost:8003/posts Status: 200 Time: 0.0780s
+2026-02-15T15:58:10.626759+0700 INFO Request: GET http://localhost:8003/channels/string from 127.0.0.1
+2026-02-15T15:58:10.647453+0700 INFO Response: GET http://localhost:8003/channels/string Status: 200 Time: 0.0160s
+2026-02-15T15:58:26.724906+0700 INFO Request: GET http://localhost:8003/allows/?offset=0&limit=10 from 127.0.0.1
+2026-02-15T15:58:26.744182+0700 INFO Response: GET http://localhost:8003/allows/?offset=0&limit=10 Status: 200 Time: 0.0150s
+2026-02-15T15:58:45.261236+0700 INFO Request: POST http://localhost:8003/posts from 127.0.0.1
+2026-02-15T15:58:45.362162+0700 INFO Response: POST http://localhost:8003/posts Status: 200 Time: 0.1090s
+2026-02-15T16:03:59.791013+0700 INFO Request: POST http://localhost:8003/posts from 127.0.0.1
+2026-02-15T16:03:59.842285+0700 INFO Response: POST http://localhost:8003/posts Status: 200 Time: 0.0470s
+2026-02-15T16:04:45.152812+0700 INFO Request: POST http://localhost:8003/posts from 127.0.0.1
+2026-02-15T16:04:45.237304+0700 INFO Response: POST http://localhost:8003/posts Status: 200 Time: 0.0930s
+2026-02-15T16:05:11.309116+0700 INFO Request: GET http://localhost:8003/allows/?offset=0&limit=10 from 127.0.0.1
+2026-02-15T16:05:11.328220+0700 INFO Response: GET http://localhost:8003/allows/?offset=0&limit=10 Status: 200 Time: 0.0310s
+2026-02-15T16:14:50.298325+0700 INFO Request: GET http://localhost:8003/allows/?offset=0&limit=10 from 127.0.0.1
+2026-02-15T16:14:50.317021+0700 INFO Response: GET http://localhost:8003/allows/?offset=0&limit=10 Status: 200 Time: 0.0160s
+2026-02-15T16:14:58.347900+0700 INFO Request: POST http://localhost:8003/posts from 127.0.0.1
+2026-02-15T16:14:58.454073+0700 INFO Response: POST http://localhost:8003/posts Status: 200 Time: 0.1090s
+2026-02-15T16:25:24.457663+0700 INFO Request: POST http://localhost:8003/posts from 127.0.0.1
+2026-02-15T16:25:24.597249+0700 INFO Response: POST http://localhost:8003/posts Status: 200 Time: 0.1410s
+2026-02-15T16:25:31.977798+0700 INFO Request: GET http://localhost:8003/allows/?offset=0&limit=10 from 127.0.0.1
+2026-02-15T16:25:31.985488+0700 INFO Response: GET http://localhost:8003/allows/?offset=0&limit=10 Status: 200 Time: 0.0150s
+2026-02-15T16:25:57.249670+0700 INFO Request: GET http://localhost:8003/channels/string from 127.0.0.1
+2026-02-15T16:25:57.261152+0700 INFO Response: GET http://localhost:8003/channels/string Status: 200 Time: 0.0000s
+2026-02-15T16:26:30.009555+0700 INFO Request: POST http://localhost:8003/posts from 127.0.0.1
+2026-02-15T16:26:30.061285+0700 INFO Response: POST http://localhost:8003/posts Status: 200 Time: 0.0470s
+2026-02-15T16:27:43.484326+0700 INFO Request: POST http://localhost:8003/posts from 127.0.0.1
+2026-02-15T16:27:50.670150+0700 INFO Request: GET http://localhost:8003/allows/?offset=0&limit=10 from 127.0.0.1
+2026-02-15T16:27:50.697978+0700 INFO Response: GET http://localhost:8003/allows/?offset=0&limit=10 Status: 200 Time: 0.0320s
+2026-02-15T16:28:07.067040+0700 INFO Request: POST http://localhost:8003/allows/ from 127.0.0.1
+2026-02-15T16:28:07.134456+0700 INFO Response: POST http://localhost:8003/allows/ Status: 200 Time: 0.0620s
+2026-02-15T16:28:17.739100+0700 INFO Request: POST http://localhost:8003/posts from 127.0.0.1
+2026-02-15T16:28:17.838790+0700 INFO Response: POST http://localhost:8003/posts Status: 200 Time: 0.0940s
+2026-02-15T17:10:14.470838+0700 INFO Request: GET http://localhost:8003/docs from 127.0.0.1
+2026-02-15T17:10:14.470838+0700 INFO Response: GET http://localhost:8003/docs Status: 200 Time: 0.0000s
+2026-02-15T17:10:14.661899+0700 INFO Request: GET http://localhost:8003/openapi.json from 127.0.0.1
+2026-02-15T17:10:14.753792+0700 INFO Response: GET http://localhost:8003/openapi.json Status: 200 Time: 0.0940s
+2026-02-15T17:10:18.936708+0700 INFO Request: POST http://localhost:8003/auth/login from 127.0.0.1
+2026-02-15T17:10:19.190554+0700 INFO Response: POST http://localhost:8003/auth/login Status: 200 Time: 0.2660s
+2026-02-15T17:10:43.669705+0700 INFO Request: GET http://localhost:8003/channels/string from 127.0.0.1
+2026-02-15T17:10:43.703315+0700 INFO Response: GET http://localhost:8003/channels/string Status: 200 Time: 0.0470s
+2026-02-15T17:11:02.040209+0700 INFO Request: POST http://localhost:8003/channels from 127.0.0.1
+2026-02-15T17:11:02.100258+0700 INFO Response: POST http://localhost:8003/channels Status: 200 Time: 0.0630s
+2026-02-15T17:11:27.175638+0700 INFO Request: POST http://localhost:8003/posts from 127.0.0.1
+2026-02-15T17:12:00.199358+0700 INFO Request: GET http://localhost:8003/channels/string from 127.0.0.1
+2026-02-15T17:12:00.207771+0700 INFO Response: GET http://localhost:8003/channels/string Status: 200 Time: 0.0150s
+2026-02-15T17:12:04.004611+0700 INFO Request: GET http://localhost:8003/channels/stringss from 127.0.0.1
+2026-02-15T17:12:04.055293+0700 INFO Response: GET http://localhost:8003/channels/stringss Status: 200 Time: 0.0470s
+2026-02-15T17:13:23.436488+0700 INFO Request: POST http://localhost:8003/posts from 127.0.0.1
+2026-02-15T17:14:44.108934+0700 INFO Request: POST http://localhost:8003/posts from 127.0.0.1
+2026-02-15T17:15:23.296765+0700 INFO Request: GET http://localhost:8009/docs from 127.0.0.1
+2026-02-15T17:15:23.305315+0700 INFO Response: GET http://localhost:8009/docs Status: 200 Time: 0.0000s
+2026-02-15T17:15:23.501406+0700 INFO Request: GET http://localhost:8009/openapi.json from 127.0.0.1
+2026-02-15T17:15:23.696835+0700 INFO Response: GET http://localhost:8009/openapi.json Status: 200 Time: 0.1880s
+2026-02-15T17:15:30.124480+0700 INFO Request: POST http://localhost:8009/auth/login from 127.0.0.1
+2026-02-15T17:15:30.448549+0700 INFO Response: POST http://localhost:8009/auth/login Status: 200 Time: 0.3130s
+2026-02-15T17:15:51.670664+0700 INFO Request: POST http://localhost:8009/posts from 127.0.0.1
+2026-02-15T17:15:51.769864+0700 INFO Response: POST http://localhost:8009/posts Status: 200 Time: 0.1100s
+2026-02-15T17:16:03.863310+0700 INFO Request: POST http://localhost:8009/posts from 127.0.0.1
+2026-02-15T17:16:03.948810+0700 INFO Response: POST http://localhost:8009/posts Status: 200 Time: 0.0790s
+2026-02-15T17:16:23.489420+0700 INFO Request: POST http://localhost:8009/auth/login from 127.0.0.1
+2026-02-15T17:16:23.900281+0700 INFO Response: POST http://localhost:8009/auth/login Status: 200 Time: 0.4070s
+2026-02-15T17:16:38.129837+0700 INFO Request: POST http://localhost:8009/posts from 127.0.0.1
+2026-02-15T17:18:31.800741+0700 INFO Request: GET http://localhost:8009/me from 127.0.0.1
+2026-02-15T17:18:31.805508+0700 INFO Response: GET http://localhost:8009/me Status: 200 Time: 0.0000s
+2026-02-15T17:18:41.744012+0700 INFO Request: GET http://localhost:8009/me/reactions?v=all&offset=0&limit=10 from 127.0.0.1
+2026-02-15T17:18:41.750695+0700 INFO Response: GET http://localhost:8009/me/reactions?v=all&offset=0&limit=10 Status: 200 Time: 0.0160s
+2026-02-15T17:18:43.703670+0700 INFO Request: GET http://localhost:8009/me/reactions?v=all&offset=0&limit=10 from 127.0.0.1
+2026-02-15T17:18:43.711556+0700 INFO Response: GET http://localhost:8009/me/reactions?v=all&offset=0&limit=10 Status: 200 Time: 0.0000s
+2026-02-15T17:18:43.834167+0700 INFO Request: GET http://localhost:8009/me/reactions?v=all&offset=0&limit=10 from 127.0.0.1
+2026-02-15T17:18:43.843414+0700 INFO Response: GET http://localhost:8009/me/reactions?v=all&offset=0&limit=10 Status: 200 Time: 0.0160s
+2026-02-15T17:18:52.278659+0700 INFO Request: POST http://localhost:8009/me/posts from 127.0.0.1
+2026-02-15T17:18:52.327712+0700 INFO Response: POST http://localhost:8009/me/posts Status: 201 Time: 0.0620s
+2026-02-15T17:18:57.002301+0700 INFO Request: POST http://localhost:8009/me/posts from 127.0.0.1
+2026-02-15T17:19:01.708131+0700 INFO Request: POST http://localhost:8009/me/posts from 127.0.0.1
+2026-02-15T17:19:01.793872+0700 INFO Response: POST http://localhost:8009/me/posts Status: 201 Time: 0.0780s
+2026-02-15T17:22:25.570873+0700 INFO Request: POST http://localhost:8009/me/posts from 127.0.0.1
+2026-02-15T17:22:38.407104+0700 INFO Request: GET http://localhost:8009/channels/string/sub?offset=0&limit=10 from 127.0.0.1
+2026-02-15T17:26:31.474571+0700 INFO Request: GET http://localhost:8009/docs from 127.0.0.1
+2026-02-15T17:26:31.474571+0700 INFO Response: GET http://localhost:8009/docs Status: 200 Time: 0.0000s
+2026-02-15T17:26:31.640834+0700 INFO Request: GET http://localhost:8009/openapi.json from 127.0.0.1
+2026-02-15T17:26:31.866143+0700 INFO Response: GET http://localhost:8009/openapi.json Status: 200 Time: 0.2180s
+2026-02-15T17:26:57.623728+0700 INFO Request: POST http://localhost:8009/auth/login from 127.0.0.1
+2026-02-15T17:26:57.952216+0700 INFO Response: POST http://localhost:8009/auth/login Status: 200 Time: 0.3290s
+2026-02-15T17:27:16.784939+0700 INFO Request: POST http://localhost:8009/channels/string/sub from 127.0.0.1
+2026-02-15T17:27:16.858033+0700 INFO Response: POST http://localhost:8009/channels/string/sub Status: 200 Time: 0.0630s
+2026-02-15T17:27:36.497357+0700 INFO Request: GET http://localhost:8009/subs/content?sub_type=channel&offset=0&limit=10 from 127.0.0.1
+2026-02-15T17:27:48.088315+0700 INFO Request: GET http://localhost:8009/subs from 127.0.0.1
+2026-02-15T17:27:48.112506+0700 INFO Response: GET http://localhost:8009/subs Status: 200 Time: 0.0310s
+2026-02-15T17:28:06.588196+0700 INFO Request: POST http://localhost:8009/posts from 127.0.0.1
+2026-02-15T17:28:31.765362+0700 INFO Request: POST http://localhost:8009/posts from 127.0.0.1
+2026-02-15T17:28:53.097862+0700 INFO Request: GET http://localhost:8009/allows/?offset=0&limit=10 from 127.0.0.1
+2026-02-15T17:28:53.107624+0700 INFO Response: GET http://localhost:8009/allows/?offset=0&limit=10 Status: 200 Time: 0.0000s
+2026-02-15T17:29:07.472156+0700 INFO Request: GET http://localhost:8009/me from 127.0.0.1
+2026-02-15T17:29:07.477366+0700 INFO Response: GET http://localhost:8009/me Status: 200 Time: 0.0000s
+2026-02-15T17:29:21.380503+0700 INFO Request: POST http://localhost:8009/posts from 127.0.0.1
+2026-02-15T17:29:25.547852+0700 INFO Request: POST http://localhost:8009/posts from 127.0.0.1
+2026-02-15T17:29:29.765381+0700 INFO Request: POST http://localhost:8009/posts from 127.0.0.1
+2026-02-15T17:31:25.392621+0700 INFO Request: POST http://localhost:8009/posts from 127.0.0.1
+2026-02-15T17:33:37.837233+0700 INFO Request: GET http://localhost:8004/docs from 127.0.0.1
+2026-02-15T17:33:37.843330+0700 INFO Response: GET http://localhost:8004/docs Status: 200 Time: 0.0160s
+2026-02-15T17:33:38.042626+0700 INFO Request: GET http://localhost:8004/openapi.json from 127.0.0.1
+2026-02-15T17:33:38.251482+0700 INFO Response: GET http://localhost:8004/openapi.json Status: 200 Time: 0.2190s
+2026-02-15T17:33:57.979789+0700 INFO Request: POST http://localhost:8004/posts from 127.0.0.1
+2026-02-15T17:35:00.154408+0700 INFO Request: POST http://localhost:8004/posts from 127.0.0.1
+2026-02-15T17:36:14.841917+0700 INFO Request: POST http://localhost:8004/posts from 127.0.0.1
+2026-02-15T17:36:26.747294+0700 INFO Request: POST http://localhost:8004/posts from 127.0.0.1
+2026-02-15T17:36:45.500028+0700 INFO Request: POST http://localhost:8004/posts from 127.0.0.1
+2026-02-15T17:37:37.749114+0700 INFO Request: POST http://localhost:8004/posts from 127.0.0.1
+2026-02-15T17:38:08.434988+0700 INFO Request: POST http://localhost:8004/posts from 127.0.0.1
+2026-02-15T17:38:51.329397+0700 INFO Request: POST http://localhost:8004/posts from 127.0.0.1
+2026-02-15T17:38:51.468947+0700 INFO Response: POST http://localhost:8004/posts Status: 200 Time: 0.1410s
+2026-02-15T17:39:19.887977+0700 INFO Request: POST http://localhost:8004/channels/string/sub from 127.0.0.1
+2026-02-15T17:39:19.980809+0700 INFO Response: POST http://localhost:8004/channels/string/sub Status: 200 Time: 0.0940s
+2026-02-15T17:39:28.564883+0700 INFO Request: POST http://localhost:8004/posts from 127.0.0.1
+2026-02-16T22:09:13.114953+0700 INFO Request: GET http://localhost:8004/docs from 127.0.0.1
+2026-02-16T22:09:13.114953+0700 INFO Response: GET http://localhost:8004/docs Status: 200 Time: 0.0000s
+2026-02-16T22:09:13.312554+0700 INFO Request: GET http://localhost:8004/openapi.json from 127.0.0.1
+2026-02-16T22:09:13.548075+0700 INFO Response: GET http://localhost:8004/openapi.json Status: 200 Time: 0.2340s
+2026-02-16T22:11:09.271092+0700 INFO Request: GET http://localhost:8004/posts/string from 127.0.0.1
+2026-02-16T22:12:07.224218+0700 INFO Request: GET http://localhost:8004/posts/string from 127.0.0.1
+2026-02-16T22:12:27.310751+0700 INFO Request: POST http://localhost:8004/auth/login from 127.0.0.1
+2026-02-16T22:12:27.660180+0700 INFO Response: POST http://localhost:8004/auth/login Status: 200 Time: 0.3590s
+2026-02-16T22:12:37.980372+0700 INFO Request: GET http://localhost:8004/posts/string from 127.0.0.1
+2026-02-16T22:13:37.528121+0700 INFO Request: GET http://localhost:8004/posts/string from 127.0.0.1
+2026-02-16T22:13:53.536830+0700 INFO Request: GET http://localhost:8004/posts/string from 127.0.0.1
+2026-02-16T22:14:12.514799+0700 INFO Request: GET http://localhost:8004/posts/string from 127.0.0.1
+2026-02-16T22:14:34.861359+0700 INFO Request: GET http://localhost:8004/posts/string from 127.0.0.1
+2026-02-16T22:16:53.984634+0700 INFO Request: GET http://localhost:8004/me from 127.0.0.1
+2026-02-16T22:16:54.027629+0700 INFO Response: GET http://localhost:8004/me Status: 200 Time: 0.0320s
+2026-02-16T22:24:16.395973+0700 INFO Request: GET http://localhost:8004/posts/string from 127.0.0.1
+2026-02-16T22:25:09.527081+0700 INFO Request: GET http://localhost:8004/docs from 127.0.0.1
+2026-02-16T22:25:09.527081+0700 INFO Response: GET http://localhost:8004/docs Status: 200 Time: 0.0000s
+2026-02-16T22:25:09.711584+0700 INFO Request: GET http://localhost:8004/openapi.json from 127.0.0.1
+2026-02-16T22:25:09.923518+0700 INFO Response: GET http://localhost:8004/openapi.json Status: 200 Time: 0.2190s
+2026-02-16T22:25:30.212128+0700 INFO Request: GET http://localhost:8004/posts/string from 127.0.0.1
+2026-02-16T22:26:48.238795+0700 INFO Request: GET http://localhost:8004/docs from 127.0.0.1
+2026-02-16T22:26:48.246798+0700 INFO Response: GET http://localhost:8004/docs Status: 200 Time: 0.0000s
+2026-02-16T22:26:48.353343+0700 INFO Request: GET http://localhost:8004/openapi.json from 127.0.0.1
+2026-02-16T22:26:48.440751+0700 INFO Response: GET http://localhost:8004/openapi.json Status: 200 Time: 0.0940s
+2026-02-16T22:26:55.341738+0700 INFO Request: POST http://localhost:8004/auth/login from 127.0.0.1
+2026-02-16T22:26:55.675274+0700 INFO Response: POST http://localhost:8004/auth/login Status: 200 Time: 0.3440s
+2026-02-16T22:27:18.605729+0700 INFO Request: GET http://localhost:8004/posts/string from 127.0.0.1
+2026-02-16T22:27:34.818877+0700 INFO Request: GET http://localhost:8004/posts/string from 127.0.0.1
+2026-02-26T19:00:56.638869+0700 INFO Request: GET http://localhost:8004/docs from 127.0.0.1
+2026-02-26T19:00:56.638869+0700 INFO Response: GET http://localhost:8004/docs Status: 200 Time: 0.0000s
+2026-02-26T19:00:57.415202+0700 INFO Request: GET http://localhost:8004/openapi.json from 127.0.0.1
+2026-02-26T19:00:57.505645+0700 INFO Response: GET http://localhost:8004/openapi.json Status: 200 Time: 0.0940s
+2026-02-26T19:01:08.962917+0700 INFO Request: POST http://localhost:8004/auth/login from 127.0.0.1
+2026-02-26T19:01:09.505134+0700 INFO Response: POST http://localhost:8004/auth/login Status: 200 Time: 0.5470s
+2026-02-26T19:01:24.281343+0700 INFO Request: GET http://localhost:8004/me from 127.0.0.1
+2026-02-26T19:11:01.389938+0700 INFO Request: GET http://localhost:8004/me from 127.0.0.1
+2026-02-26T19:11:40.846764+0700 INFO Request: GET http://localhost:8004/docs from 127.0.0.1
+2026-02-26T19:11:40.846764+0700 INFO Response: GET http://localhost:8004/docs Status: 200 Time: 0.0000s
+2026-02-26T19:11:41.398612+0700 INFO Request: GET http://localhost:8004/openapi.json from 127.0.0.1
+2026-02-26T19:11:41.402403+0700 INFO Response: GET http://localhost:8004/openapi.json Status: 200 Time: 0.0000s
+2026-02-26T19:11:50.928155+0700 INFO Request: POST http://localhost:8004/auth/login from 127.0.0.1
+2026-02-26T19:11:51.387815+0700 INFO Response: POST http://localhost:8004/auth/login Status: 200 Time: 0.4530s
+2026-02-26T20:57:20.324056+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-02-26T20:57:20.324056+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-02-26T20:57:20.565388+0700 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2026-02-26T20:57:20.624541+0700 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.0620s
+2026-02-26T21:06:41.596413+0700 INFO Request: GET http://localhost:8000/docs from 127.0.0.1
+2026-02-26T21:06:41.612067+0700 INFO Response: GET http://localhost:8000/docs Status: 200 Time: 0.0150s
+2026-02-26T21:06:41.890921+0700 INFO Request: GET http://localhost:8000/openapi.json from 127.0.0.1
+2026-02-26T21:06:41.946476+0700 INFO Response: GET http://localhost:8000/openapi.json Status: 200 Time: 0.0470s
+2026-02-26T21:06:49.592970+0700 INFO Request: POST http://localhost:8000/auth/register from 127.0.0.1
+2026-02-26T21:11:35.760024+0700 INFO Request: POST http://localhost:8000/auth/register from 127.0.0.1
+2026-02-26T21:26:31.725391+0700 INFO Request: POST http://localhost:8000/auth/register from 127.0.0.1
+2026-02-26T21:26:39.963600+0700 INFO Request: POST http://localhost:8000/auth/register from 127.0.0.1
+2026-02-26T21:26:40.708517+0700 INFO Response: POST http://localhost:8000/auth/register Status: 200 Time: 0.7500s
+2026-02-26T21:26:58.987913+0700 INFO Request: GET http://localhost:8000/me from 127.0.0.1
+2026-02-26T21:28:05.667132+0700 INFO Request: GET http://localhost:8000/me from 127.0.0.1
+2026-02-26T21:28:59.609676+0700 INFO Request: GET http://localhost:8000/me from 127.0.0.1
+2026-02-26T21:29:47.198480+0700 INFO Request: GET http://localhost:8000/me from 127.0.0.1
+2026-02-26T21:29:47.268079+0700 INFO Response: GET http://localhost:8000/me Status: 200 Time: 0.0780s
+2026-02-26T21:52:44.206150+0700 INFO Request: GET http://localhost:8000/me from 127.0.0.1
+2026-02-26T21:52:48.463624+0700 INFO Request: GET http://localhost:8000/me from 127.0.0.1
+2026-02-26T21:52:48.981706+0700 INFO Request: GET http://localhost:8000/me from 127.0.0.1
+2026-02-26T21:53:38.654839+0700 INFO Request: GET http://localhost:8000/me from 127.0.0.1
+2026-02-26T21:53:40.224696+0700 INFO Request: GET http://localhost:8000/me from 127.0.0.1
+2026-02-26T21:54:13.044474+0700 INFO Request: GET http://localhost:8007/docs from 127.0.0.1
+2026-02-26T21:54:13.046514+0700 INFO Response: GET http://localhost:8007/docs Status: 200 Time: 0.0160s
+2026-02-26T21:54:13.346191+0700 INFO Request: GET http://localhost:8007/openapi.json from 127.0.0.1
+2026-02-26T21:54:13.404959+0700 INFO Response: GET http://localhost:8007/openapi.json Status: 200 Time: 0.0470s
+2026-02-26T21:54:34.014819+0700 INFO Request: POST http://localhost:8007/auth/login from 127.0.0.1
+2026-02-26T21:55:13.836234+0700 INFO Request: POST http://localhost:8007/auth/login from 127.0.0.1
+2026-02-26T21:55:14.379542+0700 INFO Response: POST http://localhost:8007/auth/login Status: 200 Time: 0.5470s
+2026-02-26T21:55:43.809621+0700 INFO Request: POST http://localhost:8007/auth/login from 127.0.0.1
+2026-02-26T21:55:44.379642+0700 INFO Response: POST http://localhost:8007/auth/login Status: 200 Time: 0.5780s
+2026-02-26T21:55:55.862662+0700 INFO Request: GET http://localhost:8007/me from 127.0.0.1
+2026-02-26T21:55:55.882699+0700 INFO Response: GET http://localhost:8007/me Status: 200 Time: 0.0160s
+2026-02-26T21:56:04.965616+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T21:56:19.944825+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T21:59:02.189533+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T21:59:44.746766+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:01:54.679639+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:01:54.821271+0700 INFO Response: PATCH http://localhost:8007/me Status: 200 Time: 0.1410s
+2026-02-26T22:02:06.227794+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:02:06.377288+0700 INFO Response: PATCH http://localhost:8007/me Status: 200 Time: 0.1560s
+2026-02-26T22:02:39.582504+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:02:39.687224+0700 INFO Response: PATCH http://localhost:8007/me Status: 200 Time: 0.1100s
+2026-02-26T22:03:02.821535+0700 INFO Request: GET http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:03:02.835573+0700 INFO Response: GET http://localhost:8007/me Status: 200 Time: 0.0150s
+2026-02-26T22:04:54.728492+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:04:54.846495+0700 INFO Response: PATCH http://localhost:8007/me Status: 200 Time: 0.1250s
+2026-02-26T22:04:59.913369+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:04:59.993575+0700 INFO Response: PATCH http://localhost:8007/me Status: 200 Time: 0.0780s
+2026-02-26T22:07:40.690134+0700 INFO Request: GET http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:07:40.762915+0700 INFO Response: GET http://localhost:8007/me Status: 200 Time: 0.0620s
+2026-02-26T22:13:31.992785+0700 INFO Request: GET http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:13:32.030500+0700 INFO Response: GET http://localhost:8007/me Status: 200 Time: 0.0320s
+2026-02-26T22:13:36.084694+0700 INFO Request: GET http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:13:36.098625+0700 INFO Response: GET http://localhost:8007/me Status: 200 Time: 0.0160s
+2026-02-26T22:13:36.978119+0700 INFO Request: GET http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:13:37.007120+0700 INFO Response: GET http://localhost:8007/me Status: 200 Time: 0.0310s
+2026-02-26T22:13:52.413108+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:13:52.529595+0700 INFO Response: PATCH http://localhost:8007/me Status: 200 Time: 0.1100s
+2026-02-26T22:19:33.260973+0700 INFO Request: GET http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:20:26.074832+0700 INFO Request: GET http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:23:36.263198+0700 INFO Request: GET http://localhost:8007/docs from 127.0.0.1
+2026-02-26T22:23:36.265247+0700 INFO Response: GET http://localhost:8007/docs Status: 200 Time: 0.0160s
+2026-02-26T22:23:36.464184+0700 INFO Request: GET http://localhost:8007/openapi.json from 127.0.0.1
+2026-02-26T22:23:36.498689+0700 INFO Response: GET http://localhost:8007/openapi.json Status: 200 Time: 0.0310s
+2026-02-26T22:23:47.209960+0700 INFO Request: POST http://localhost:8007/auth/register from 127.0.0.1
+2026-02-26T22:23:55.934944+0700 INFO Request: POST http://localhost:8007/auth/register from 127.0.0.1
+2026-02-26T22:24:22.057378+0700 INFO Request: POST http://localhost:8007/auth/register from 127.0.0.1
+2026-02-26T22:24:22.632945+0700 INFO Response: POST http://localhost:8007/auth/register Status: 200 Time: 0.5780s
+2026-02-26T22:24:37.135339+0700 INFO Request: GET http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:24:37.151778+0700 INFO Response: GET http://localhost:8007/me Status: 200 Time: 0.0160s
+2026-02-26T22:24:48.896910+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:24:49.036693+0700 INFO Response: PATCH http://localhost:8007/me Status: 200 Time: 0.1400s
+2026-02-26T22:24:54.730748+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:24:54.825662+0700 INFO Response: PATCH http://localhost:8007/me Status: 200 Time: 0.0940s
+2026-02-26T22:25:09.191971+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:25:09.328975+0700 INFO Response: PATCH http://localhost:8007/me Status: 200 Time: 0.1400s
+2026-02-26T22:26:37.670419+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:26:37.748435+0700 INFO Response: PATCH http://localhost:8007/me Status: 200 Time: 0.0780s
+2026-02-26T22:26:38.888780+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:26:38.955751+0700 INFO Response: PATCH http://localhost:8007/me Status: 200 Time: 0.0780s
+2026-02-26T22:26:42.829414+0700 INFO Request: GET http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:26:42.845412+0700 INFO Response: GET http://localhost:8007/me Status: 200 Time: 0.0160s
+2026-02-26T22:26:45.290305+0700 INFO Request: GET http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:26:45.302338+0700 INFO Response: GET http://localhost:8007/me Status: 200 Time: 0.0160s
+2026-02-26T22:26:45.735045+0700 INFO Request: GET http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:26:45.748089+0700 INFO Response: GET http://localhost:8007/me Status: 200 Time: 0.0000s
+2026-02-26T22:26:46.304036+0700 INFO Request: GET http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:26:46.317993+0700 INFO Response: GET http://localhost:8007/me Status: 200 Time: 0.0160s
+2026-02-26T22:26:46.481992+0700 INFO Request: GET http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:26:46.494536+0700 INFO Response: GET http://localhost:8007/me Status: 200 Time: 0.0150s
+2026-02-26T22:26:46.653766+0700 INFO Request: GET http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:26:46.667728+0700 INFO Response: GET http://localhost:8007/me Status: 200 Time: 0.0150s
+2026-02-26T22:26:50.438994+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:26:50.496994+0700 INFO Response: PATCH http://localhost:8007/me Status: 200 Time: 0.0460s
+2026-02-26T22:27:00.915784+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:27:01.030637+0700 INFO Response: PATCH http://localhost:8007/me Status: 200 Time: 0.1250s
+2026-02-26T22:27:05.592906+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:27:05.660036+0700 INFO Response: PATCH http://localhost:8007/me Status: 200 Time: 0.0780s
+2026-02-26T22:27:06.258476+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:27:06.314474+0700 INFO Response: PATCH http://localhost:8007/me Status: 200 Time: 0.0630s
+2026-02-26T22:27:07.500572+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:27:07.568614+0700 INFO Response: PATCH http://localhost:8007/me Status: 200 Time: 0.0630s
+2026-02-26T22:27:08.120927+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:27:08.181201+0700 INFO Response: PATCH http://localhost:8007/me Status: 200 Time: 0.0630s
+2026-02-26T22:27:15.136873+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:27:15.198510+0700 INFO Response: PATCH http://localhost:8007/me Status: 200 Time: 0.0630s
+2026-02-26T22:27:15.669715+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:27:15.742686+0700 INFO Response: PATCH http://localhost:8007/me Status: 200 Time: 0.0780s
+2026-02-26T22:27:19.332805+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:27:19.335805+0700 ERROR Response: PATCH http://localhost:8007/me Status: 422 Time: 0.0000s
+2026-02-26T22:27:25.359284+0700 INFO Request: PATCH http://localhost:8007/me from 127.0.0.1
+2026-02-26T22:27:25.425267+0700 INFO Response: PATCH http://localhost:8007/me Status: 200 Time: 0.0630s
+2026-02-26T23:13:54.909146+0700 INFO Request: GET http://localhost:8011/docs from 127.0.0.1
+2026-02-26T23:13:54.911194+0700 INFO Response: GET http://localhost:8011/docs Status: 200 Time: 0.0000s
+2026-02-26T23:13:55.205176+0700 INFO Request: GET http://localhost:8011/openapi.json from 127.0.0.1
+2026-02-26T23:13:55.257826+0700 INFO Response: GET http://localhost:8011/openapi.json Status: 200 Time: 0.0470s
+2026-02-26T23:14:06.408317+0700 INFO Request: POST http://localhost:8011/auth/register from 127.0.0.1
+2026-02-26T23:14:07.025762+0700 INFO Response: POST http://localhost:8011/auth/register Status: 200 Time: 0.6100s
+2026-02-26T23:14:19.415450+0700 INFO Request: GET http://localhost:8011/me from 127.0.0.1
+2026-02-26T23:14:19.433121+0700 INFO Response: GET http://localhost:8011/me Status: 200 Time: 0.0160s
+2026-02-26T23:14:27.989947+0700 INFO Request: PATCH http://localhost:8011/me from 127.0.0.1
+2026-02-26T23:14:28.110508+0700 INFO Response: PATCH http://localhost:8011/me Status: 200 Time: 0.1250s
+2026-02-27T11:50:11.837077+0700 INFO Request: GET http://localhost:8000/docs from 127.0.0.1
+2026-02-27T11:50:11.837077+0700 INFO Response: GET http://localhost:8000/docs Status: 200 Time: 0.0000s
+2026-02-27T11:50:12.287126+0700 INFO Request: GET http://localhost:8000/openapi.json from 127.0.0.1
+2026-02-27T11:50:12.344373+0700 INFO Response: GET http://localhost:8000/openapi.json Status: 200 Time: 0.0630s
+2026-02-27T11:50:16.661309+0700 INFO Request: POST http://localhost:8000/auth/login from 127.0.0.1
+2026-02-27T11:50:23.297838+0700 INFO Request: POST http://localhost:8000/auth/register from 127.0.0.1
+2026-02-27T11:50:36.102962+0700 INFO Request: POST http://localhost:8000/auth/register from 127.0.0.1
+2026-02-27T11:50:36.806888+0700 INFO Response: POST http://localhost:8000/auth/register Status: 200 Time: 0.7030s
+2026-02-27T11:51:05.976301+0700 INFO Request: GET http://localhost:8000/me from 127.0.0.1
+2026-02-27T11:51:06.025038+0700 INFO Response: GET http://localhost:8000/me Status: 200 Time: 0.0470s
+2026-02-27T11:51:23.670023+0700 INFO Request: PATCH http://localhost:8000/me from 127.0.0.1
+2026-02-27T11:51:23.670870+0700 ERROR Response: PATCH http://localhost:8000/me Status: 422 Time: 0.0000s
+2026-02-27T11:51:48.125651+0700 INFO Request: PATCH http://localhost:8000/me from 127.0.0.1
+2026-02-27T11:51:54.345518+0700 INFO Request: PATCH http://localhost:8000/me from 127.0.0.1
+2026-02-27T11:51:54.479036+0700 INFO Response: PATCH http://localhost:8000/me Status: 200 Time: 0.1250s
+2026-02-27T11:52:04.671646+0700 INFO Request: PUT http://localhost:8000/me/password from 127.0.0.1
+2026-02-27T11:53:15.152307+0700 INFO Request: PUT http://localhost:8000/me/password from 127.0.0.1
+2026-02-27T11:53:58.766658+0700 INFO Request: PUT http://localhost:8000/me/password from 127.0.0.1
+2026-02-27T11:54:21.847157+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-02-27T11:54:21.858138+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-02-27T11:54:22.382532+0700 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2026-02-27T11:54:22.439238+0700 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.0630s
+2026-02-27T11:54:28.165137+0700 INFO Request: POST http://localhost:8001/auth/login from 127.0.0.1
+2026-02-27T11:54:35.085342+0700 INFO Request: POST http://localhost:8001/auth/login from 127.0.0.1
+2026-02-27T11:55:28.059008+0700 INFO Request: POST http://localhost:8001/auth/login from 127.0.0.1
+2026-02-27T11:55:28.600759+0700 INFO Response: POST http://localhost:8001/auth/login Status: 200 Time: 0.5470s
+2026-02-27T11:55:39.933680+0700 INFO Request: PUT http://localhost:8001/me/password from 127.0.0.1
+2026-02-27T11:55:40.992442+0700 INFO Response: PUT http://localhost:8001/me/password Status: 200 Time: 1.0620s
+2026-02-27T11:56:08.822586+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T11:57:30.440450+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T11:57:46.935319+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T11:57:47.018729+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0940s
+2026-02-27T12:01:55.799868+0700 INFO Request: PATCH http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:01:55.916829+0700 INFO Response: PATCH http://localhost:8001/me/settings Status: 200 Time: 0.1090s
+2026-02-27T12:02:02.301830+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:02:02.316058+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0160s
+2026-02-27T12:02:03.335094+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:02:03.368796+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0310s
+2026-02-27T12:02:03.505174+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:02:03.509704+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0000s
+2026-02-27T12:02:06.936368+0700 INFO Request: PATCH http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:02:06.974104+0700 INFO Response: PATCH http://localhost:8001/me/settings Status: 200 Time: 0.0470s
+2026-02-27T12:02:26.690431+0700 INFO Request: PATCH http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:02:26.749173+0700 INFO Response: PATCH http://localhost:8001/me/settings Status: 200 Time: 0.0460s
+2026-02-27T12:02:29.983908+0700 INFO Request: PATCH http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:02:30.018474+0700 INFO Response: PATCH http://localhost:8001/me/settings Status: 200 Time: 0.0320s
+2026-02-27T12:11:20.096447+0700 INFO Request: PATCH http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:13:03.087152+0700 INFO Request: PATCH http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:14:03.978565+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:14:46.636591+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:14:46.683480+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0470s
+2026-02-27T12:14:52.076812+0700 INFO Request: PATCH http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:16:52.446834+0700 INFO Request: PATCH http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:16:52.496284+0700 INFO Response: PATCH http://localhost:8001/me/settings Status: 200 Time: 0.0460s
+2026-02-27T12:16:57.318863+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:16:57.327900+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0150s
+2026-02-27T12:16:58.661263+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:16:58.671995+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0160s
+2026-02-27T12:16:59.799925+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:16:59.812284+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0160s
+2026-02-27T12:17:00.004905+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:17:00.018665+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0160s
+2026-02-27T12:17:00.673285+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:17:00.683617+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0000s
+2026-02-27T12:17:00.848257+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:17:00.859564+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0150s
+2026-02-27T12:17:01.004411+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:17:01.015859+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0160s
+2026-02-27T12:17:01.161789+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:17:01.167555+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0000s
+2026-02-27T12:17:01.340718+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:17:01.345229+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0160s
+2026-02-27T12:17:01.506638+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:17:01.511347+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0000s
+2026-02-27T12:17:01.675840+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:17:01.679645+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0000s
+2026-02-27T12:17:01.854576+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:17:01.859191+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0150s
+2026-02-27T12:17:02.018176+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:17:02.023382+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0000s
+2026-02-27T12:17:02.153016+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:17:02.157090+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0150s
+2026-02-27T12:17:04.615072+0700 INFO Request: PATCH http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:17:04.640907+0700 INFO Response: PATCH http://localhost:8001/me/settings Status: 200 Time: 0.0320s
+2026-02-27T12:17:08.948321+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:17:08.960248+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0150s
+2026-02-27T12:18:23.848894+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:18:23.882366+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0310s
+2026-02-27T12:18:25.480610+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:18:25.502365+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0310s
+2026-02-27T12:18:26.033889+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:18:26.045450+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0000s
+2026-02-27T12:18:26.210781+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:18:26.226497+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0160s
+2026-02-27T12:18:26.450417+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:18:26.461102+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0150s
+2026-02-27T12:18:26.611431+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:18:26.627708+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0160s
+2026-02-27T12:18:26.760595+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:18:26.772294+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0160s
+2026-02-27T12:18:26.914993+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:18:26.919662+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0000s
+2026-02-27T12:18:29.950053+0700 INFO Request: PATCH http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:18:29.990989+0700 INFO Response: PATCH http://localhost:8001/me/settings Status: 200 Time: 0.0460s
+2026-02-27T12:18:32.107167+0700 INFO Request: PATCH http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:18:32.141924+0700 INFO Response: PATCH http://localhost:8001/me/settings Status: 200 Time: 0.0470s
+2026-02-27T12:18:34.482849+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:18:34.515566+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0470s
+2026-02-27T12:18:35.163592+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:18:35.180651+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0160s
+2026-02-27T12:18:35.314689+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:18:35.332083+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0150s
+2026-02-27T12:19:20.302609+0700 INFO Request: PATCH http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:19:20.356126+0700 INFO Response: PATCH http://localhost:8001/me/settings Status: 200 Time: 0.0470s
+2026-02-27T12:19:24.022356+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:19:24.047583+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0310s
+2026-02-27T12:22:25.014995+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:22:25.055671+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0310s
+2026-02-27T12:23:02.849123+0700 INFO Request: PATCH http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:23:02.919593+0700 INFO Response: PATCH http://localhost:8001/me/settings Status: 200 Time: 0.0620s
+2026-02-27T12:28:50.697295+0700 INFO Request: PATCH http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:31:16.152671+0700 INFO Request: PATCH http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:32:08.962997+0700 INFO Request: PATCH http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:32:20.113040+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:32:20.126904+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0160s
+2026-02-27T12:32:23.229435+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:32:23.263583+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0310s
+2026-02-27T12:32:23.720030+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:32:23.731421+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0000s
+2026-02-27T12:32:28.347849+0700 INFO Request: PATCH http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:32:46.146860+0700 INFO Request: PATCH http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:32:46.196706+0700 INFO Response: PATCH http://localhost:8001/me/settings Status: 200 Time: 0.0470s
+2026-02-27T12:32:49.905503+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:32:49.914595+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0150s
+2026-02-27T12:32:50.706870+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:32:50.722074+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0160s
+2026-02-27T12:32:51.112944+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:32:51.130410+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0160s
+2026-02-27T12:32:51.286816+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:32:51.302511+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0160s
+2026-02-27T12:32:51.439883+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:32:51.453235+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0150s
+2026-02-27T12:32:51.585836+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:32:51.589452+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0000s
+2026-02-27T12:32:51.731370+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:32:51.766143+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0470s
+2026-02-27T12:32:51.874121+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:32:51.881939+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0160s
+2026-02-27T12:33:32.232732+0700 INFO Request: PATCH http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:33:32.271122+0700 INFO Response: PATCH http://localhost:8001/me/settings Status: 200 Time: 0.0470s
+2026-02-27T12:34:26.659981+0700 INFO Request: PATCH http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:42:36.939145+0700 INFO Request: PATCH http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:42:37.030373+0700 INFO Response: PATCH http://localhost:8001/me/settings Status: 200 Time: 0.0780s
+2026-02-27T12:42:40.532604+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:42:40.539021+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0000s
+2026-02-27T12:42:41.611187+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:42:41.631637+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0160s
+2026-02-27T12:42:41.763875+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:42:41.776086+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0160s
+2026-02-27T12:42:41.904151+0700 INFO Request: GET http://localhost:8001/me/settings from 127.0.0.1
+2026-02-27T12:42:41.920828+0700 INFO Response: GET http://localhost:8001/me/settings Status: 200 Time: 0.0150s
+2026-02-27T12:44:02.077729+0700 INFO Request: GET http://localhost:8001/users/search?q=a&field=username&strict=false&offset=0&limit=10 from 127.0.0.1
+2026-02-27T17:35:27.244099+0700 INFO Request: GET http://localhost:8002/docs from 127.0.0.1
+2026-02-27T17:35:27.244099+0700 INFO Response: GET http://localhost:8002/docs Status: 200 Time: 0.0000s
+2026-02-27T17:35:27.548527+0700 INFO Request: GET http://localhost:8002/openapi.json from 127.0.0.1
+2026-02-27T17:35:27.617322+0700 INFO Response: GET http://localhost:8002/openapi.json Status: 200 Time: 0.0620s
+2026-02-27T17:35:41.993315+0700 INFO Request: GET http://localhost:8002/users/search?q=a&field=name&strict=false&offset=0&limit=10 from 127.0.0.1
+2026-02-27T17:36:17.176588+0700 INFO Request: GET http://localhost:8002/users/search?q=a&field=username&strict=false&offset=0&limit=10 from 127.0.0.1
+2026-02-27T17:36:17.211580+0700 INFO Response: GET http://localhost:8002/users/search?q=a&field=username&strict=false&offset=0&limit=10 Status: 200 Time: 0.0310s
+2026-02-27T17:53:21.438989+0700 INFO Request: GET http://localhost:8002/users/search?q=a&field=username&strict=false&offset=0&limit=10 from 127.0.0.1
+2026-02-27T17:53:21.464013+0700 INFO Response: GET http://localhost:8002/users/search?q=a&field=username&strict=false&offset=0&limit=10 Status: 200 Time: 0.0150s
+2026-02-27T17:53:26.489320+0700 INFO Request: GET http://localhost:8002/users/search?q=a&field=username&strict=true&offset=0&limit=10 from 127.0.0.1
+2026-02-27T17:53:26.497408+0700 INFO Response: GET http://localhost:8002/users/search?q=a&field=username&strict=true&offset=0&limit=10 Status: 200 Time: 0.0000s
+2026-02-27T17:53:29.818101+0700 INFO Request: GET http://localhost:8002/users/search?q=a&field=username&strict=true&offset=0&limit=10 from 127.0.0.1
+2026-02-27T17:53:29.826173+0700 INFO Response: GET http://localhost:8002/users/search?q=a&field=username&strict=true&offset=0&limit=10 Status: 200 Time: 0.0000s
+2026-02-27T17:53:39.915602+0700 INFO Request: GET http://localhost:8002/users/search?q=s&field=username&strict=false&offset=0&limit=10 from 127.0.0.1
+2026-02-27T17:53:39.925451+0700 INFO Response: GET http://localhost:8002/users/search?q=s&field=username&strict=false&offset=0&limit=10 Status: 200 Time: 0.0160s
+2026-02-27T17:53:55.602513+0700 INFO Request: GET http://localhost:8002/users/search?q=1&field=id&strict=false&offset=0&limit=10 from 127.0.0.1
+2026-02-27T17:53:55.627497+0700 INFO Response: GET http://localhost:8002/users/search?q=1&field=id&strict=false&offset=0&limit=10 Status: 200 Time: 0.0310s
+2026-02-27T17:55:45.368865+0700 INFO Request: GET http://localhost:8002/users/search?q=asd&field=username&strict=true&offset=0&limit=10 from 127.0.0.1
+2026-02-27T17:55:45.411675+0700 INFO Response: GET http://localhost:8002/users/search?q=asd&field=username&strict=true&offset=0&limit=10 Status: 200 Time: 0.0470s
+2026-02-27T17:55:48.939852+0700 INFO Request: GET http://localhost:8002/users/search?q=asd&field=username&strict=false&offset=0&limit=10 from 127.0.0.1
+2026-02-27T17:55:48.947655+0700 INFO Response: GET http://localhost:8002/users/search?q=asd&field=username&strict=false&offset=0&limit=10 Status: 200 Time: 0.0000s
+2026-02-27T17:58:43.531875+0700 INFO Request: GET http://localhost:8002/users/search?q=asd&field=username&strict=false&offset=0&limit=10 from 127.0.0.1
+2026-02-27T17:58:43.564666+0700 INFO Response: GET http://localhost:8002/users/search?q=asd&field=username&strict=false&offset=0&limit=10 Status: 200 Time: 0.0320s
+2026-02-27T17:59:50.912224+0700 INFO Request: GET http://localhost:8002/users/search?q=asd&field=username&strict=false&offset=0&limit=10 from 127.0.0.1
+2026-02-27T17:59:50.943466+0700 INFO Response: GET http://localhost:8002/users/search?q=asd&field=username&strict=false&offset=0&limit=10 Status: 200 Time: 0.0320s
+2026-02-27T18:00:52.486856+0700 INFO Request: GET http://localhost:8002/users/search?q=asd&field=username&strict=false&offset=0&limit=10 from 127.0.0.1
+2026-02-27T18:00:52.502482+0700 INFO Response: GET http://localhost:8002/users/search?q=asd&field=username&strict=false&offset=0&limit=10 Status: 200 Time: 0.0160s
+2026-02-27T18:01:22.206773+0700 INFO Request: GET http://localhost:8002/docs from 127.0.0.1
+2026-02-27T18:01:22.206773+0700 INFO Response: GET http://localhost:8002/docs Status: 200 Time: 0.0000s
+2026-02-27T18:01:22.496467+0700 INFO Request: GET http://localhost:8002/openapi.json from 127.0.0.1
+2026-02-27T18:01:22.558151+0700 INFO Response: GET http://localhost:8002/openapi.json Status: 200 Time: 0.0630s
+2026-02-27T18:01:32.170973+0700 INFO Request: GET http://localhost:8002/users/search?value=a&field=username&strict=false&offset=0&limit=10 from 127.0.0.1
+2026-02-27T18:01:32.227426+0700 INFO Response: GET http://localhost:8002/users/search?value=a&field=username&strict=false&offset=0&limit=10 Status: 200 Time: 0.0630s
+2026-02-27T18:01:51.202365+0700 INFO Request: GET http://localhost:8002/users/search?value=None&field=name&strict=false&offset=0&limit=10 from 127.0.0.1
+2026-02-27T18:01:51.216231+0700 INFO Response: GET http://localhost:8002/users/search?value=None&field=name&strict=false&offset=0&limit=10 Status: 200 Time: 0.0150s
+2026-02-27T18:02:17.041825+0700 INFO Request: GET http://localhost:8002/users/search?value=a&field=username&strict=false&offset=0&limit=10 from 127.0.0.1
+2026-02-27T18:02:17.057531+0700 INFO Response: GET http://localhost:8002/users/search?value=a&field=username&strict=false&offset=0&limit=10 Status: 200 Time: 0.0160s
+2026-02-27T18:02:17.345391+0700 INFO Request: GET http://localhost:8002/users/search?value=a&field=username&strict=false&offset=0&limit=10 from 127.0.0.1
+2026-02-27T18:02:17.375566+0700 INFO Response: GET http://localhost:8002/users/search?value=a&field=username&strict=false&offset=0&limit=10 Status: 200 Time: 0.0310s
+2026-02-27T18:02:20.434695+0700 INFO Request: GET http://localhost:8002/users/search?value=s&field=username&strict=false&offset=0&limit=10 from 127.0.0.1
+2026-02-27T18:02:20.442551+0700 INFO Response: GET http://localhost:8002/users/search?value=s&field=username&strict=false&offset=0&limit=10 Status: 200 Time: 0.0160s
+2026-02-27T18:03:46.946587+0700 INFO Request: GET http://localhost:8002/users/search?value=s&field=username&strict=false&offset=0&limit=10 from 127.0.0.1
+2026-02-27T18:03:46.971563+0700 INFO Response: GET http://localhost:8002/users/search?value=s&field=username&strict=false&offset=0&limit=10 Status: 200 Time: 0.0310s
+2026-02-27T18:04:38.361010+0700 INFO Request: GET http://localhost:8002/users/@string from 127.0.0.1
+2026-02-27T18:04:38.395223+0700 INFO Response: GET http://localhost:8002/users/@string Status: 200 Time: 0.0320s
+2026-02-27T18:04:40.876299+0700 INFO Request: GET http://localhost:8002/users/@string from 127.0.0.1
+2026-02-27T18:04:40.883509+0700 INFO Response: GET http://localhost:8002/users/@string Status: 200 Time: 0.0000s
+2026-02-27T18:04:41.348176+0700 INFO Request: GET http://localhost:8002/users/@string from 127.0.0.1
+2026-02-27T18:04:41.356607+0700 INFO Response: GET http://localhost:8002/users/@string Status: 200 Time: 0.0000s
+2026-02-27T18:04:41.633900+0700 INFO Request: GET http://localhost:8002/users/@string from 127.0.0.1
+2026-02-27T18:04:41.652574+0700 INFO Response: GET http://localhost:8002/users/@string Status: 200 Time: 0.0160s
+2026-02-27T18:04:41.819707+0700 INFO Request: GET http://localhost:8002/users/@string from 127.0.0.1
+2026-02-27T18:04:41.826314+0700 INFO Response: GET http://localhost:8002/users/@string Status: 200 Time: 0.0000s
+2026-02-27T18:04:41.996308+0700 INFO Request: GET http://localhost:8002/users/@string from 127.0.0.1
+2026-02-27T18:04:42.001461+0700 INFO Response: GET http://localhost:8002/users/@string Status: 200 Time: 0.0160s
+2026-02-27T18:04:42.161965+0700 INFO Request: GET http://localhost:8002/users/@string from 127.0.0.1
+2026-02-27T18:04:42.167301+0700 INFO Response: GET http://localhost:8002/users/@string Status: 200 Time: 0.0000s
+2026-02-27T18:04:42.327659+0700 INFO Request: GET http://localhost:8002/users/@string from 127.0.0.1
+2026-02-27T18:04:42.333406+0700 INFO Response: GET http://localhost:8002/users/@string Status: 200 Time: 0.0000s
+2026-02-27T18:04:42.479603+0700 INFO Request: GET http://localhost:8002/users/@string from 127.0.0.1
+2026-02-27T18:04:42.485165+0700 INFO Response: GET http://localhost:8002/users/@string Status: 200 Time: 0.0150s
+2026-02-27T18:06:18.910538+0700 INFO Request: GET http://localhost:8002/users/@string from 127.0.0.1
+2026-02-27T18:06:18.957453+0700 INFO Response: GET http://localhost:8002/users/@string Status: 200 Time: 0.0470s
+2026-02-27T20:28:18.868126+0700 INFO Request: GET http://localhost:8000/docs from 127.0.0.1
+2026-02-27T20:28:18.883902+0700 INFO Response: GET http://localhost:8000/docs Status: 200 Time: 0.0160s
+2026-02-27T20:28:19.149614+0700 INFO Request: GET http://localhost:8000/openapi.json from 127.0.0.1
+2026-02-27T20:28:19.217290+0700 INFO Response: GET http://localhost:8000/openapi.json Status: 200 Time: 0.0620s
+2026-02-27T20:28:25.147292+0700 INFO Request: POST http://localhost:8000/auth/login from 127.0.0.1
+2026-02-27T20:28:30.998088+0700 INFO Request: POST http://localhost:8000/auth/register from 127.0.0.1
+2026-02-27T20:28:42.542446+0700 INFO Request: POST http://localhost:8000/auth/register from 127.0.0.1
+2026-02-27T20:30:15.502173+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-02-27T20:30:15.502173+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-02-27T20:30:15.801939+0700 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2026-02-27T20:30:15.843486+0700 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.0470s
+2026-02-27T20:30:21.748448+0700 INFO Request: POST http://localhost:8001/auth/login from 127.0.0.1
+2026-02-27T20:30:22.304914+0700 INFO Response: POST http://localhost:8001/auth/login Status: 200 Time: 0.5630s
+2026-02-27T20:30:42.470968+0700 INFO Request: GET http://localhost:8001/me from 127.0.0.1
+2026-02-27T20:30:55.139395+0700 INFO Request: GET http://localhost:8001/topic-offers?offset=0&limit=10 from 127.0.0.1
+2026-02-27T20:30:55.155550+0700 INFO Response: GET http://localhost:8001/topic-offers?offset=0&limit=10 Status: 200 Time: 0.0160s
+2026-02-27T20:31:00.763224+0700 INFO Request: POST http://localhost:8001/topic-offers from 127.0.0.1
+2026-02-27T20:31:19.769195+0700 INFO Request: GET http://localhost:8001/topic-offers?offset=0&limit=10 from 127.0.0.1
+2026-02-27T20:31:57.291699+0700 INFO Request: GET http://localhost:8001/topic-offers?offset=0&limit=10 from 127.0.0.1
+2026-02-27T20:32:01.095832+0700 INFO Request: POST http://localhost:8001/topic-offers from 127.0.0.1
+2026-02-27T20:33:12.770051+0700 INFO Request: POST http://localhost:8001/topic-offers from 127.0.0.1
+2026-02-27T20:34:22.339771+0700 INFO Request: GET http://localhost:8001/topic-offers?offset=0&limit=10 from 127.0.0.1
+2026-02-27T20:36:18.986003+0700 INFO Request: GET http://localhost:8001/topic-offers?offset=0&limit=10 from 127.0.0.1
+2026-02-27T20:36:53.904658+0700 INFO Request: GET http://localhost:8001/topic-offers/1 from 127.0.0.1
+2026-02-27T20:37:46.055735+0700 INFO Request: GET http://localhost:8001/topic-offers/1 from 127.0.0.1
+2026-02-27T20:38:33.727322+0700 INFO Request: GET http://localhost:8001/topic-offers/1 from 127.0.0.1
+2026-02-27T20:39:10.977378+0700 INFO Request: GET http://localhost:8001/topic-offers/1 from 127.0.0.1
+2026-02-27T20:39:57.896176+0700 INFO Request: GET http://localhost:8001/topic-offers/1 from 127.0.0.1
+2026-02-27T20:41:13.547358+0700 INFO Request: GET http://localhost:8001/topic-offers/1 from 127.0.0.1
+2026-02-27T20:41:36.633224+0700 INFO Request: GET http://localhost:8001/topic-offers/1 from 127.0.0.1
+2026-02-27T20:41:36.657423+0700 INFO Response: GET http://localhost:8001/topic-offers/1 Status: 200 Time: 0.0310s
+2026-02-27T20:41:42.563807+0700 INFO Request: GET http://localhost:8001/topic-offers?offset=0&limit=10 from 127.0.0.1
+2026-02-27T20:51:34.159733+0700 INFO Request: GET http://localhost:8001/topic-offers?offset=0&limit=10 from 127.0.0.1
+2026-02-27T20:51:34.184610+0700 INFO Response: GET http://localhost:8001/topic-offers?offset=0&limit=10 Status: 200 Time: 0.0160s
+2026-02-27T20:51:39.687252+0700 INFO Request: GET http://localhost:8001/topic-offers?offset=0&limit=10 from 127.0.0.1
+2026-02-27T20:51:39.699428+0700 INFO Response: GET http://localhost:8001/topic-offers?offset=0&limit=10 Status: 200 Time: 0.0000s
+2026-02-27T20:51:57.450258+0700 INFO Request: GET http://localhost:8001/topic-offers/1 from 127.0.0.1
+2026-02-27T20:51:57.465837+0700 INFO Response: GET http://localhost:8001/topic-offers/1 Status: 200 Time: 0.0150s
+2026-02-27T20:53:24.039869+0700 INFO Request: GET http://localhost:8001/topic-offers?offset=0&limit=10 from 127.0.0.1
+2026-02-27T20:53:24.064936+0700 INFO Response: GET http://localhost:8001/topic-offers?offset=0&limit=10 Status: 200 Time: 0.0320s
+2026-02-27T20:53:46.686131+0700 INFO Request: GET http://localhost:8001/topic-offers?offset=0&limit=10 from 127.0.0.1
+2026-02-27T20:53:46.711176+0700 INFO Response: GET http://localhost:8001/topic-offers?offset=0&limit=10 Status: 200 Time: 0.0310s
+2026-02-27T20:54:10.132465+0700 INFO Request: GET http://localhost:8001/topic-offers?offset=0&limit=10 from 127.0.0.1
+2026-02-27T20:54:10.164283+0700 INFO Response: GET http://localhost:8001/topic-offers?offset=0&limit=10 Status: 200 Time: 0.0310s
+2026-02-27T20:54:17.313452+0700 INFO Request: GET http://localhost:8001/topic-offers?offset=0&limit=2 from 127.0.0.1
+2026-02-27T20:54:17.339255+0700 INFO Response: GET http://localhost:8001/topic-offers?offset=0&limit=2 Status: 200 Time: 0.0150s
+2026-02-27T22:37:20.529483+0700 INFO Request: GET http://localhost:8000/docs from 127.0.0.1
+2026-02-27T22:37:20.531306+0700 INFO Response: GET http://localhost:8000/docs Status: 200 Time: 0.0000s
+2026-02-27T22:37:20.674308+0700 INFO Request: GET http://localhost:8000/openapi.json from 127.0.0.1
+2026-02-27T22:37:20.729367+0700 INFO Response: GET http://localhost:8000/openapi.json Status: 200 Time: 0.0470s
+2026-02-27T22:37:25.523334+0700 INFO Request: POST http://localhost:8000/auth/login from 127.0.0.1
+2026-02-27T22:37:30.798552+0700 INFO Request: POST http://localhost:8000/auth/register from 127.0.0.1
+2026-02-27T22:37:31.231826+0700 INFO Response: POST http://localhost:8000/auth/register Status: 200 Time: 0.4370s
+2026-02-27T22:37:45.686775+0700 INFO Request: GET http://localhost:8000/me from 127.0.0.1
+2026-02-27T22:37:45.700255+0700 INFO Response: GET http://localhost:8000/me Status: 200 Time: 0.0150s
+2026-02-27T22:37:56.829648+0700 INFO Request: GET http://localhost:8000/topic-offers?offset=0&limit=10 from 127.0.0.1
+2026-02-27T22:37:56.846768+0700 INFO Response: GET http://localhost:8000/topic-offers?offset=0&limit=10 Status: 200 Time: 0.0160s
+2026-02-27T22:38:02.092000+0700 INFO Request: POST http://localhost:8000/topic-offers from 127.0.0.1
+2026-02-27T22:38:15.276969+0700 INFO Request: GET http://localhost:8000/topic-offers?offset=0&limit=10 from 127.0.0.1
+2026-02-27T22:38:15.284276+0700 INFO Response: GET http://localhost:8000/topic-offers?offset=0&limit=10 Status: 200 Time: 0.0000s
+2026-02-27T22:38:29.941971+0700 INFO Request: GET http://localhost:8000/comments/1 from 127.0.0.1
+2026-02-28T04:09:19.823222+0700 INFO Request: GET http://localhost:8000/docs from 127.0.0.1
+2026-02-28T04:09:19.823222+0700 INFO Response: GET http://localhost:8000/docs Status: 200 Time: 0.0000s
+2026-02-28T04:09:20.156657+0700 INFO Request: GET http://localhost:8000/openapi.json from 127.0.0.1
+2026-02-28T04:09:20.320854+0700 INFO Response: GET http://localhost:8000/openapi.json Status: 200 Time: 0.1570s
+2026-02-28T04:09:26.049854+0700 INFO Request: POST http://localhost:8000/auth/login from 127.0.0.1
+2026-02-28T04:09:36.993938+0700 INFO Request: GET http://localhost:8000/comments/1 from 127.0.0.1
+2026-02-28T04:09:49.766172+0700 INFO Request: GET http://localhost:8000/topics?offset=0&limit=10 from 127.0.0.1
+2026-02-28T04:09:49.782704+0700 INFO Response: GET http://localhost:8000/topics?offset=0&limit=10 Status: 200 Time: 0.0150s
+2026-02-28T04:09:57.822424+0700 INFO Request: POST http://localhost:8000/topics from 127.0.0.1
+2026-02-28T04:09:57.827607+0700 ERROR Response: POST http://localhost:8000/topics Status: 401 Time: 0.0150s
+2026-02-28T04:10:17.418556+0700 INFO Request: POST http://localhost:8000/auth/login from 127.0.0.1
+2026-02-28T04:10:18.013751+0700 INFO Response: POST http://localhost:8000/auth/login Status: 200 Time: 0.5940s
+2026-02-28T04:10:32.444528+0700 INFO Request: POST http://localhost:8000/topics from 127.0.0.1
+2026-02-28T04:11:33.522186+0700 INFO Request: POST http://localhost:8000/topics from 127.0.0.1
+2026-02-28T04:11:41.942969+0700 INFO Request: POST http://localhost:8000/topics from 127.0.0.1
+2026-02-28T04:11:50.616628+0700 INFO Request: GET http://localhost:8000/topics?offset=0&limit=10 from 127.0.0.1
+2026-02-28T04:27:24.605732+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-02-28T04:27:24.605732+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-02-28T04:27:24.951458+0700 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2026-02-28T04:27:25.038965+0700 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.0780s
+2026-02-28T04:27:31.500717+0700 INFO Request: GET http://localhost:8001/topics?offset=0&limit=10 from 127.0.0.1
+2026-02-28T04:27:52.004088+0700 INFO Request: GET http://localhost:8001/topics/string from 127.0.0.1
+2026-02-28T04:30:10.728590+0700 INFO Request: GET http://localhost:8009/docs from 127.0.0.1
+2026-02-28T04:30:10.728590+0700 INFO Response: GET http://localhost:8009/docs Status: 200 Time: 0.0000s
+2026-02-28T04:30:11.064576+0700 INFO Request: GET http://localhost:8009/openapi.json from 127.0.0.1
+2026-02-28T04:30:11.162217+0700 INFO Response: GET http://localhost:8009/openapi.json Status: 200 Time: 0.0930s
+2026-02-28T04:30:49.603252+0700 INFO Request: GET http://localhost:8009/topics?offset=0&limit=10 from 127.0.0.1
+2026-02-28T04:32:12.004860+0700 INFO Request: GET http://localhost:8009/topics?offset=0&limit=10 from 127.0.0.1
+2026-02-28T04:32:12.049040+0700 INFO Response: GET http://localhost:8009/topics?offset=0&limit=10 Status: 200 Time: 0.0470s
+2026-02-28T04:32:45.135106+0700 INFO Request: GET http://localhost:8009/topics/string from 127.0.0.1
+2026-02-28T04:32:53.702989+0700 INFO Request: GET http://localhost:8009/topics?offset=0&limit=10 from 127.0.0.1
+2026-02-28T04:32:53.719870+0700 INFO Response: GET http://localhost:8009/topics?offset=0&limit=10 Status: 200 Time: 0.0160s
+2026-03-01T15:42:58.726321+0700 INFO Request: GET http://localhost:8000/docs from 127.0.0.1
+2026-03-01T15:42:58.773327+0700 INFO Response: GET http://localhost:8000/docs Status: 200 Time: 0.0470s
+2026-03-01T15:42:59.124228+0700 INFO Request: GET http://localhost:8000/openapi.json from 127.0.0.1
+2026-03-01T15:42:59.145705+0700 INFO Response: GET http://localhost:8000/openapi.json Status: 200 Time: 0.0160s
+2026-03-01T15:43:06.546530+0700 INFO Request: POST http://localhost:8000/auth/login from 127.0.0.1
+2026-03-01T15:43:20.783808+0700 INFO Request: POST http://localhost:8000/auth/login from 127.0.0.1
+2026-03-01T15:43:27.699865+0700 INFO Request: POST http://localhost:8000/auth/register from 127.0.0.1
+2026-03-01T15:48:09.206259+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-03-01T15:48:09.208432+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-03-01T15:48:09.574987+0700 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2026-03-01T15:48:09.605219+0700 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.0160s
+2026-03-01T15:48:12.814633+0700 INFO Request: POST http://localhost:8001/auth/register from 127.0.0.1
+2026-03-01T15:48:34.005066+0700 INFO Request: POST http://localhost:8001/auth/login from 127.0.0.1
+2026-03-01T15:48:34.558962+0700 INFO Response: POST http://localhost:8001/auth/login Status: 200 Time: 0.5630s
+2026-03-01T15:48:46.792820+0700 INFO Request: GET http://localhost:8001/auth/get-verify-code from 127.0.0.1
+2026-03-01T15:48:46.822395+0700 INFO Response: GET http://localhost:8001/auth/get-verify-code Status: 200 Time: 0.0160s
+2026-03-01T15:54:28.035905+0700 INFO Request: GET http://localhost:8001/auth/get-verify-code from 127.0.0.1
+2026-03-01T15:54:28.070161+0700 INFO Response: GET http://localhost:8001/auth/get-verify-code Status: 200 Time: 0.0320s
+2026-03-01T16:14:42.068513+0700 INFO Request: GET http://localhost:8001/auth/get-verify-code from 127.0.0.1
+2026-03-01T16:14:42.092342+0700 INFO Response: GET http://localhost:8001/auth/get-verify-code Status: 200 Time: 0.0310s
+2026-03-01T16:21:13.875244+0700 INFO Request: GET http://localhost:8001/auth/get-verify-code from 127.0.0.1
+2026-03-01T16:21:13.888454+0700 INFO Response: GET http://localhost:8001/auth/get-verify-code Status: 200 Time: 0.0160s
+2026-03-01T16:28:28.902341+0700 INFO Request: GET http://localhost:8002/docs from 127.0.0.1
+2026-03-01T16:28:28.904584+0700 INFO Response: GET http://localhost:8002/docs Status: 200 Time: 0.0000s
+2026-03-01T16:28:29.204360+0700 INFO Request: GET http://localhost:8002/openapi.json from 127.0.0.1
+2026-03-01T16:28:29.225354+0700 INFO Response: GET http://localhost:8002/openapi.json Status: 200 Time: 0.0160s
+2026-03-01T16:28:51.385592+0700 INFO Request: POST http://localhost:8002/auth/login from 127.0.0.1
+2026-03-01T16:28:51.946741+0700 INFO Response: POST http://localhost:8002/auth/login Status: 200 Time: 0.5630s
+2026-03-01T16:29:03.549057+0700 INFO Request: GET http://localhost:8002/auth/get-verify-code from 127.0.0.1
+2026-03-01T16:29:03.570453+0700 INFO Response: GET http://localhost:8002/auth/get-verify-code Status: 200 Time: 0.0160s

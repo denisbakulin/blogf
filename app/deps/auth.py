@@ -7,11 +7,10 @@ from fastapi import Depends
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from schemas.auth import TokenInfo
 from usecases.auth import AuthLogic
-from entities.user import User
 from sqlalchemy.ext.asyncio import AsyncSession
 from deps.user import userServiceDep
 from utils.auth import decode_token
-from DTO.user import UserDTO
+from entities.user import User
 
 security = HTTPBearer()
 optional_security = HTTPBearer(auto_error=False)
@@ -35,7 +34,7 @@ async def get_user_token(
 async def get_current_user(
     user_service: userServiceDep,
     token: TokenInfo = Depends(get_user_token),
-) -> UserDTO:
+) -> User:
 
     user = await user_service.get_user_by_id(token.user_id)
 
@@ -53,5 +52,5 @@ async def get_auth_logic(
     return AuthLogic(session=session)
 
 
-currentUserDep = Annotated[UserDTO, Depends(get_current_user)]
+currentUserDep = Annotated[User, Depends(get_current_user)]
 authServiceDep = Annotated[AuthLogic, Depends(get_auth_logic)]

@@ -1,27 +1,37 @@
 import asyncio
-import logging
-
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import Message
-from check import check_verify_code
-from text import AUTH_TEXT
+from text import VERIFY_TEXT, START_TEXT
 
-from app.base.settings import tg_bot_settings
-
+from settings import bot_settings
+from fs import broker
 
 class Waiting(StatesGroup):
     code = State()
 
-bot = Bot(
-    token=tg_bot_settings.token,
-    default=DefaultBotProperties(parse_mode='HTML')
-)
 
 dp = Dispatcher()
+bot = Bot(
+    token=bot_settings.token,
+    default=DefaultBotProperties(parse_mode='HTML'),
+)
+import logging
+logging.basicConfig(level=logging.DEBUG)
+
+
+
+@dp.message(Command("start"))
+async def start(message: Message):
+    await message.answer(START_TEXT.format(name=message.from_user.first_name))
+
+@dp.message(Command("verify"))
+async def verify(message: Message, state: FSMContext):
+    await message.answer(VERIFY_TEXT)
+    await state.set_state(Waiting.code)
 
 
 @dp.message(Command("start"))
@@ -31,18 +41,26 @@ async def start(message: Message, state: FSMContext):
 
 @dp.message()
 async def try_code(message: Message, state: FSMContext):
+    print({"code": message.text, "tg_id": message.from_user.id})
+    response = await broker.request(
+        {"code": message.text, "tg_id": message.from_user.id}, "tg-verification"
+    )
 
-    response = await check_verify_code(message.text, message.from_user.id)
-    msg = response.get("msg") or "err"
+    data = await response.decode()
+    success = data.get("status", False)
+    msg = data.get("msg", "default")
 
-    if response.get("status"):
+    if success:
         await message.reply(msg)
         await state.clear()
     else:
         await message.reply(msg)
 
+
 async def main() -> None:
+    await broker.start()
     await bot.delete_webhook(drop_pending_updates=True)
+
     await dp.start_polling(bot)
 
 
