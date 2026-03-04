@@ -4,7 +4,7 @@ from exceptions.auth import InvalidPasswordError
 from helpers.search import Pagination
 from entities.user import Profile, Settings, User
 from repositories.user import UserRepository, ProfileRepository, SettingsRepository
-from schemas.user import PasswordChange, UserCreate, UserSettings, UserUpdate
+from schemas.user import  UserCreate, UserSettings, UserUpdate
 from sqlalchemy.ext.asyncio import AsyncSession
 from utils.user import (UserSearchParams, generate_hashed_password,
                         verify_password)
@@ -59,6 +59,7 @@ class UserService(BaseService[User, UserRepository]):
 
 
     async def update_user(self, user: User, update: UserUpdate) -> User:
+
         upd_user = await self.repository.get_one_by(username=update.username)
 
         if upd_user and upd_user.username != user.username:
@@ -80,15 +81,6 @@ class UserService(BaseService[User, UserRepository]):
         return user
 
 
-    async def change_password(self, user: User, pwd: PasswordChange):
-
-        if not verify_password(pwd.old_password, user.password):
-            raise InvalidPasswordError()
-
-        password = generate_hashed_password(pwd.new_password)
-
-        await self.update_item(user.id, password=password)
-
 
     async def search_users(self, search: UserSearchParams, pagination: Pagination) -> list[User]:
         return await self.repository.search(
@@ -105,6 +97,8 @@ class UserService(BaseService[User, UserRepository]):
         return settings
 
 
+    async def get_user_by_tg_id(self, tg_id: int, ) -> User | None:
+        return await self.repository.get_user_by_tg_id(tg_id)
 
 
 

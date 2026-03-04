@@ -9,14 +9,13 @@ from fastapi import Response
 from jose import JWTError, jwt
 from schemas.auth import TokenInfo
 
+def generate_auth_code() -> str:
+    """
+    XkP_1_v8QJzS8V9_Z_5v8QJzS8V9_Z_5v8QJzS8V9_Z
+    """
 
-def generate_8char_code() -> str:
-    """
-    Генерирует 8-значный код из цифр и букв (безопасный криптографически)
-    Пример: 'A3b9K7x2'
-    """
-    alphabet = string.ascii_letters + string.digits  # A-Z, a-z, 0-9
-    return ''.join(secrets.choice(alphabet) for _ in range(8))
+    return secrets.token_urlsafe(32)
+
 
 
 class TokenTypes(StrEnum):

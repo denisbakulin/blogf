@@ -1,12 +1,11 @@
 from typing import Annotated
 
 from base.db import get_session
-from base.exceptions import EntityLockedError
 from exceptions.auth import InvalidTokenError
 from fastapi import Depends
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from schemas.auth import TokenInfo
-from usecases.auth import AuthLogic
+from usecases.auth import AuthLogic, TelegramAuth
 from sqlalchemy.ext.asyncio import AsyncSession
 from deps.user import userServiceDep
 from utils.auth import decode_token
@@ -35,15 +34,8 @@ async def get_current_user(
     user_service: userServiceDep,
     token: TokenInfo = Depends(get_user_token),
 ) -> User:
+    return await user_service.get_user_by_id(token.user_id)
 
-    user = await user_service.get_user_by_id(token.user_id)
-
-    if user.is_active:
-        return user
-
-    raise EntityLockedError(
-        message=f"Пользователь {user.username} временно заблокирован"
-    )
 
 
 async def get_auth_logic(
@@ -51,6 +43,11 @@ async def get_auth_logic(
 ) -> AuthLogic:
     return AuthLogic(session=session)
 
+async def get_tg_auth(
+        session: AsyncSession = Depends(get_session)
+) -> TelegramAuth:
+    return TelegramAuth(session)
 
 currentUserDep = Annotated[User, Depends(get_current_user)]
 authServiceDep = Annotated[AuthLogic, Depends(get_auth_logic)]
+tgAuthServiceDep = Annotated[TelegramAuth, Depends(get_tg_auth)]

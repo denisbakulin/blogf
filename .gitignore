@@ -36,4 +36,4 @@ htmlcov/
 .localized
 Thumbs.db
 
-.env
+envs/

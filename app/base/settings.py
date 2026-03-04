@@ -2,12 +2,12 @@ from pathlib import Path
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-path_dir = Path(__file__).parent.parent.parent
+env_dir = Path(__file__).parent.parent.parent / "envs"
 
 
 class BaseConfig(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file=path_dir / ".env",
+        env_file=env_dir / ".env.backend",
         extra="ignore"
     )
 
@@ -23,24 +23,19 @@ class JWTAuthSettings(BaseConfig):
     refresh_token_expire_days: int
 
 
-class SuperAdminSettings(BaseConfig):
+
+
+
+
+class TgBotSettings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_prefix="SUPER_ADMIN_"
+        env_file=env_dir / ".env.bot",
+        extra = "ignore"
     )
 
-    username: str
-    password: str
+
+    token: str
 
 
-class AnonUserSettings(BaseConfig):
-    model_config = SettingsConfigDict(
-        env_prefix="ANON_"
-    )
-
-    username: str
-    password: str
-
-
+bot_settings = TgBotSettings()
 jwt_auth_settings = JWTAuthSettings()
-super_admin_settings = SuperAdminSettings()
-anon_settings = AnonUserSettings()

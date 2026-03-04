@@ -41,7 +41,7 @@ def include_routers(app: FastAPI):
     # from base.views import root
     # from integrations.crypto.views import crypto_router
     # from integrations.weather.views import weather_router
-    from views.auth import auth_router
+    from interfaces.views.auth import auth_router
     # from views.channel import channel_router
     # from views.comment import comm_router
     # from views.post import post_router
@@ -69,8 +69,8 @@ def include_routers(app: FastAPI):
 
 
 async def init_db(app: FastAPI):
-    from base.db import init_models, session_factory
-
+    from base.db import init_models
+    from deps.tg_verified import TgVerified
     await init_models()
 
 
@@ -83,14 +83,7 @@ async def lifespan(
         app: FastAPI,
 ):
     include_routers(app)
-
-    from fastapi_cache import FastAPICache
-    from fastapi_cache.backends.redis import RedisBackend
-    from redis import asyncio as aioredis
-    from base.fs import broker
-
-    redis = aioredis.from_url("redis://localhost")
-    FastAPICache.init(RedisBackend(redis), prefix="fastapi-cache")
+    from base.broker import broker
 
     await init_db(app)
 

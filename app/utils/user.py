@@ -3,6 +3,7 @@ from typing import Literal
 from helpers.search import search_param_fabric
 from passlib.context import CryptContext
 
+
 pwd_context = CryptContext(
     schemes=["bcrypt"],
     deprecated="auto",

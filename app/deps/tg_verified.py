@@ -1,18 +1,21 @@
 from typing import Annotated
 
 from base.db import get_session
-from base.model import BaseORM, IdMixin
+from base.model import BaseORM, IdMixin, TimeMixin
 from base.repository import BaseRepository
 from base.service import BaseService
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import ForeignKey
 
 
-class TgVerified(BaseORM, IdMixin):
+class TgVerified(BaseORM, IdMixin, TimeMixin):
 
-    __tablename__ = "tg_ids"
+    __tablename__ = "tg_verified"
     tg_id: Mapped[int] = mapped_column(unique=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
+
 
 
 

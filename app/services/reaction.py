@@ -16,31 +16,30 @@ class ReactionService(BaseService[Reaction, ReactionRepository]):
         super().__init__(Reaction, session, ReactionRepository)
 
 
-    # async def process_post_reaction(
-    #         self, user_id: int,
-    #         reaction: ReactionType,
-    #         post: Post
-    # ):
-    #
-    #     _reaction = await self.repository.get_one_by(user_id=user_id, post_id=post.id)
-    #
-    #     if _reaction:
-    #         await self.delete_item_by_id(_reaction.id)
-    #
-    #     await self.create_item(user_id=user_id, post_id=post.id, reaction=reaction)
-    #
-    # async def process_topic_reaction(
-    #         self, user_id: int,
-    #         container_id: ,
-    #         reaction: ReactionsSetParams
-    # ):
-    #     _reaction = await self.repository.get_one_by(user_id=user.id, container_id=container.id)
-    #
-    #     if _reaction:
-    #         await self.delete_item(_reaction)
-    #
-    #     await self.create_item(user_id=user.id, container_id=container.id, reaction=reaction)
-    #todo переписать под контейнер
+    async def process_post_reaction(
+            self,
+            user_id: int,
+            post_id: int,
+            reaction: ReactionType,
+    ):
+        _reaction = await self.repository.get_one_by(user_id=user_id, post_id=post_id)
+
+        if _reaction:
+            await self.delete_item_by_id(_reaction.id)
+
+        await self.create_item(user_id=user_id, post_id=post_id, type=reaction)
+
+    async def process_topic_reaction(
+            self, user_id: int,
+            container_id: int,
+            reaction: ReactionType
+    ):
+        _reaction = await self.repository.get_one_by(user_id=user_id, container_id=container_id)
+
+        if _reaction:
+            await self.delete_item_by_id(_reaction.id)
+
+        await self.create_item(user_id=user_id, container_id=container_id, type=reaction)
 
 
     async def get_post_reactions(

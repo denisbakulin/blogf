@@ -7,7 +7,6 @@ from sqlalchemy.sql import Select
 from sqlalchemy.orm import aliased
 
 
-# Создаем два разных алиаса для одной таблицы User
 Author = aliased(User, name="author")
 Processor = aliased(User, name="processor")
 

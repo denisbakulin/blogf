@@ -18,11 +18,11 @@ engine = create_async_engine(
     echo=True
 )
 
-session_factory = async_sessionmaker(bind=engine, expire_on_commit=False)
+session_maker = async_sessionmaker(bind=engine, expire_on_commit=False)
 
 
 async def get_session() -> AsyncSession:
-    async with session_factory() as session:
+    async with session_maker() as session:
         yield session
 
 

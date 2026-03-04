@@ -1,4 +1,10 @@
 from faststream.redis import RedisBroker
 
-broker = RedisBroker()
+
+broker: RedisBroker = RedisBroker()
+
+
+
+
+
 

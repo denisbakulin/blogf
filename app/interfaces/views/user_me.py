@@ -12,7 +12,6 @@ from schemas.reaction import PostReactionShow, TopicReactionShow
 from schemas.user import PasswordChange, UserSettings, UserUpdate, UserShow, UserProfile, UserProfileShow
 from deps.user import userServiceDep, userLogicDep
 from usecases.user import UserLogic
-from DTO.user import UserProfileDTO
 
 me_router = APIRouter(prefix="/me", tags=["👤 Личный кабинет"])
 from dataclasses import asdict
@@ -42,16 +41,7 @@ async def patch_my_info(
     return await logic.update(user=user, update=update)
 
 
-@me_router.put(
-    "/password",
-    summary="Изменить пароль"
-) #work
-async def change_password(
-        pwd: PasswordChange,
-        user: currentUserDep,
-        service: userServiceDep,
-):
-    await service.change_password(user=user, pwd=pwd)
+
 
 
 

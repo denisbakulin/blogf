@@ -1,4 +1,5 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+
 
 
 class AccessTokenResponse(BaseModel):
@@ -8,6 +9,10 @@ class AccessTokenResponse(BaseModel):
 class LoginTokens(BaseModel):
     access: str
     refresh: str
+
+class TgLoginAnswer(LoginTokens):
+    success_verify: bool
+
 
 
 class TokenInfo(BaseModel):
@@ -19,9 +24,15 @@ class AuthCreds(BaseModel):
     username: str = "admin"
     password: str = "admin"
 
-
-class VerifyCode(BaseModel):
+class TgAuthCode(BaseModel):
     code: str
 
-class BotVerifyCode(VerifyCode):
-    tg_id: int
+class PasswordChange(BaseModel):
+    old_password: str = Field(min_length=5)
+    new_password: str = Field(min_length=5, max_length=72)
+
+
+
+class ForgetPassword(BaseModel):
+    username: str
+

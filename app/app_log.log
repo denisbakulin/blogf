@@ -1235,3 +1235,428 @@
 2026-03-01T16:28:51.946741+0700 INFO Response: POST http://localhost:8002/auth/login Status: 200 Time: 0.5630s
 2026-03-01T16:29:03.549057+0700 INFO Request: GET http://localhost:8002/auth/get-verify-code from 127.0.0.1
 2026-03-01T16:29:03.570453+0700 INFO Response: GET http://localhost:8002/auth/get-verify-code Status: 200 Time: 0.0160s
+2026-03-02T16:53:41.978627+0700 INFO Request: GET http://localhost:8002/docs from 127.0.0.1
+2026-03-02T16:53:42.003599+0700 INFO Response: GET http://localhost:8002/docs Status: 200 Time: 0.0310s
+2026-03-02T16:53:42.246223+0700 INFO Request: GET http://localhost:8002/openapi.json from 127.0.0.1
+2026-03-02T16:53:42.268304+0700 INFO Response: GET http://localhost:8002/openapi.json Status: 200 Time: 0.0160s
+2026-03-02T16:53:47.616746+0700 INFO Request: GET http://localhost:8002/auth/get-verify-code from 127.0.0.1
+2026-03-02T16:53:47.620934+0700 ERROR Response: GET http://localhost:8002/auth/get-verify-code Status: 401 Time: 0.0160s
+2026-03-02T20:08:02.382154+0700 INFO Request: GET http://localhost:8000/docs from 127.0.0.1
+2026-03-02T20:08:02.384311+0700 INFO Response: GET http://localhost:8000/docs Status: 200 Time: 0.0000s
+2026-03-02T20:08:02.578372+0700 INFO Request: GET http://localhost:8000/openapi.json from 127.0.0.1
+2026-03-02T20:08:02.601460+0700 INFO Response: GET http://localhost:8000/openapi.json Status: 200 Time: 0.0160s
+2026-03-02T20:08:07.414771+0700 INFO Request: POST http://localhost:8000/auth/register from 127.0.0.1
+2026-03-02T20:08:08.124777+0700 INFO Response: POST http://localhost:8000/auth/register Status: 200 Time: 0.7190s
+2026-03-02T20:08:27.131743+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-02T20:08:27.161002+0700 INFO Response: GET http://localhost:8000/auth/get-verify-code Status: 200 Time: 0.0310s
+2026-03-02T20:20:26.355173+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-02T20:20:26.400016+0700 INFO Response: GET http://localhost:8000/auth/get-verify-code Status: 200 Time: 0.0320s
+2026-03-03T01:49:18.371009+0700 INFO Request: GET http://localhost:8000/docs from 127.0.0.1
+2026-03-03T01:49:18.374683+0700 INFO Response: GET http://localhost:8000/docs Status: 200 Time: 0.0000s
+2026-03-03T01:49:18.464633+0700 INFO Request: GET http://localhost:8000/openapi.json from 127.0.0.1
+2026-03-03T01:49:18.473633+0700 INFO Response: GET http://localhost:8000/openapi.json Status: 200 Time: 0.0000s
+2026-03-03T01:49:36.171273+0700 INFO Request: POST http://localhost:8000/auth/login from 127.0.0.1
+2026-03-03T01:49:36.442437+0700 INFO Response: POST http://localhost:8000/auth/login Status: 200 Time: 0.2660s
+2026-03-03T01:49:50.677700+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-03T01:49:50.684748+0700 ERROR Response: GET http://localhost:8000/auth/get-verify-code Status: 400 Time: 0.0160s
+2026-03-03T01:50:09.363924+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-03T01:50:09.368003+0700 ERROR Response: GET http://localhost:8000/auth/get-verify-code Status: 400 Time: 0.0000s
+2026-03-03T01:50:09.992722+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-03T01:50:09.998737+0700 ERROR Response: GET http://localhost:8000/auth/get-verify-code Status: 400 Time: 0.0160s
+2026-03-03T01:50:17.479203+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-03T01:50:17.488495+0700 ERROR Response: GET http://localhost:8000/auth/get-verify-code Status: 400 Time: 0.0150s
+2026-03-03T01:50:18.957615+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-03T01:50:18.961615+0700 ERROR Response: GET http://localhost:8000/auth/get-verify-code Status: 400 Time: 0.0000s
+2026-03-03T01:50:19.117428+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-03T01:50:19.121628+0700 ERROR Response: GET http://localhost:8000/auth/get-verify-code Status: 400 Time: 0.0160s
+2026-03-03T01:50:19.404913+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-03T01:50:19.409911+0700 ERROR Response: GET http://localhost:8000/auth/get-verify-code Status: 400 Time: 0.0000s
+2026-03-03T01:50:19.596958+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-03T01:50:19.601958+0700 ERROR Response: GET http://localhost:8000/auth/get-verify-code Status: 400 Time: 0.0000s
+2026-03-03T01:50:19.756250+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-03T01:50:19.760313+0700 ERROR Response: GET http://localhost:8000/auth/get-verify-code Status: 400 Time: 0.0000s
+2026-03-03T01:51:03.513080+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-03T01:51:03.522079+0700 ERROR Response: GET http://localhost:8000/auth/get-verify-code Status: 400 Time: 0.0000s
+2026-03-03T01:51:04.214524+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-03T01:51:04.217636+0700 ERROR Response: GET http://localhost:8000/auth/get-verify-code Status: 400 Time: 0.0000s
+2026-03-03T01:51:04.799831+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-03T01:51:04.803832+0700 ERROR Response: GET http://localhost:8000/auth/get-verify-code Status: 400 Time: 0.0000s
+2026-03-03T01:51:05.188323+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-03T01:51:05.193407+0700 ERROR Response: GET http://localhost:8000/auth/get-verify-code Status: 400 Time: 0.0000s
+2026-03-03T01:51:05.413047+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-03T01:51:05.420276+0700 ERROR Response: GET http://localhost:8000/auth/get-verify-code Status: 400 Time: 0.0160s
+2026-03-03T01:51:05.579074+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-03T01:51:05.585229+0700 ERROR Response: GET http://localhost:8000/auth/get-verify-code Status: 400 Time: 0.0000s
+2026-03-03T01:51:05.910137+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-03T01:51:05.914218+0700 ERROR Response: GET http://localhost:8000/auth/get-verify-code Status: 400 Time: 0.0000s
+2026-03-03T01:51:06.049002+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-03T01:51:06.052065+0700 ERROR Response: GET http://localhost:8000/auth/get-verify-code Status: 400 Time: 0.0000s
+2026-03-03T01:51:06.210471+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-03T01:51:06.213584+0700 ERROR Response: GET http://localhost:8000/auth/get-verify-code Status: 400 Time: 0.0000s
+2026-03-03T01:51:06.350953+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-03T01:51:06.354957+0700 ERROR Response: GET http://localhost:8000/auth/get-verify-code Status: 400 Time: 0.0000s
+2026-03-03T01:51:06.493210+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-03T01:51:06.497350+0700 ERROR Response: GET http://localhost:8000/auth/get-verify-code Status: 400 Time: 0.0160s
+2026-03-03T01:51:06.638010+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-03T01:51:06.642095+0700 ERROR Response: GET http://localhost:8000/auth/get-verify-code Status: 400 Time: 0.0000s
+2026-03-03T01:51:18.729898+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-03T01:51:18.740075+0700 INFO Response: GET http://localhost:8000/auth/get-verify-code Status: 200 Time: 0.0150s
+2026-03-03T01:51:19.206960+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-03T01:51:19.212056+0700 INFO Response: GET http://localhost:8000/auth/get-verify-code Status: 200 Time: 0.0000s
+2026-03-03T01:51:19.371880+0700 INFO Request: GET http://localhost:8000/auth/get-verify-code from 127.0.0.1
+2026-03-03T01:51:19.374881+0700 INFO Response: GET http://localhost:8000/auth/get-verify-code Status: 200 Time: 0.0000s
+2026-03-03T02:46:15.785063+0700 INFO Request: GET http://localhost:8000/docs from 127.0.0.1
+2026-03-03T02:46:15.788108+0700 INFO Response: GET http://localhost:8000/docs Status: 200 Time: 0.0000s
+2026-03-03T02:46:16.184811+0700 INFO Request: GET http://localhost:8000/openapi.json from 127.0.0.1
+2026-03-03T02:46:16.219814+0700 INFO Response: GET http://localhost:8000/openapi.json Status: 200 Time: 0.0310s
+2026-03-03T02:46:23.793612+0700 INFO Request: GET http://localhost:8000/docs from 127.0.0.1
+2026-03-03T02:46:23.795619+0700 INFO Response: GET http://localhost:8000/docs Status: 200 Time: 0.0000s
+2026-03-03T02:46:24.120466+0700 INFO Request: GET http://localhost:8000/openapi.json from 127.0.0.1
+2026-03-03T02:46:24.122463+0700 INFO Response: GET http://localhost:8000/openapi.json Status: 200 Time: 0.0160s
+2026-03-03T02:52:51.786659+0700 INFO Request: GET http://127.0.0.1:8000/docs from 127.0.0.1
+2026-03-03T02:52:51.788811+0700 INFO Response: GET http://127.0.0.1:8000/docs Status: 200 Time: 0.0000s
+2026-03-03T02:52:52.572295+0700 INFO Request: GET http://127.0.0.1:8000/openapi.json from 127.0.0.1
+2026-03-03T02:52:52.600397+0700 INFO Response: GET http://127.0.0.1:8000/openapi.json Status: 200 Time: 0.0310s
+2026-03-03T02:53:21.372228+0700 INFO Request: GET http://127.0.0.1:8000/docs from 127.0.0.1
+2026-03-03T02:53:21.374219+0700 INFO Response: GET http://127.0.0.1:8000/docs Status: 200 Time: 0.0000s
+2026-03-03T02:53:21.570694+0700 INFO Request: GET http://127.0.0.1:8000/openapi.json from 127.0.0.1
+2026-03-03T02:53:21.572454+0700 INFO Response: GET http://127.0.0.1:8000/openapi.json Status: 200 Time: 0.0000s
+2026-03-03T02:53:22.318917+0700 INFO Request: GET http://127.0.0.1:8000/docs from 127.0.0.1
+2026-03-03T02:53:22.319919+0700 INFO Response: GET http://127.0.0.1:8000/docs Status: 200 Time: 0.0000s
+2026-03-03T02:53:22.445436+0700 INFO Request: GET http://127.0.0.1:8000/openapi.json from 127.0.0.1
+2026-03-03T02:53:22.447432+0700 INFO Response: GET http://127.0.0.1:8000/openapi.json Status: 200 Time: 0.0000s
+2026-03-03T02:53:26.344071+0700 INFO Request: GET http://127.0.0.1:8000/docs from 127.0.0.1
+2026-03-03T02:53:26.347073+0700 INFO Response: GET http://127.0.0.1:8000/docs Status: 200 Time: 0.0000s
+2026-03-03T02:53:26.627139+0700 INFO Request: GET http://127.0.0.1:8000/openapi.json from 127.0.0.1
+2026-03-03T02:53:26.628479+0700 INFO Response: GET http://127.0.0.1:8000/openapi.json Status: 200 Time: 0.0000s
+2026-03-03T03:24:44.527968+0700 INFO Request: GET http://127.0.0.1:8000/auth?code=t7XUwcAg from 127.0.0.1
+2026-03-03T03:24:44.532966+0700 ERROR Response: GET http://127.0.0.1:8000/auth?code=t7XUwcAg Status: 404 Time: 0.0000s
+2026-03-03T03:24:44.744929+0700 INFO Request: GET http://127.0.0.1:8000/favicon.ico from 127.0.0.1
+2026-03-03T03:24:44.745925+0700 ERROR Response: GET http://127.0.0.1:8000/favicon.ico Status: 404 Time: 0.0160s
+2026-03-03T03:25:41.151338+0700 INFO Request: GET http://127.0.0.1:8000/auth/telegram?code=dfi8ZD6D from 127.0.0.1
+2026-03-03T03:25:41.158343+0700 INFO Response: GET http://127.0.0.1:8000/auth/telegram?code=dfi8ZD6D Status: 200 Time: 0.0150s
+2026-03-03T03:28:14.908108+0700 INFO Request: GET http://127.0.0.1:8000/auth/telegram?code=dfi8ZD6D from 127.0.0.1
+2026-03-03T03:28:14.911147+0700 INFO Response: GET http://127.0.0.1:8000/auth/telegram?code=dfi8ZD6D Status: 200 Time: 0.0000s
+2026-03-03T03:28:15.466508+0700 INFO Request: GET http://127.0.0.1:8000/auth/telegram?code=dfi8ZD6D from 127.0.0.1
+2026-03-03T03:28:15.468763+0700 INFO Response: GET http://127.0.0.1:8000/auth/telegram?code=dfi8ZD6D Status: 200 Time: 0.0000s
+2026-03-03T03:28:15.760989+0700 INFO Request: GET http://127.0.0.1:8000/auth/telegram?code=dfi8ZD6D from 127.0.0.1
+2026-03-03T03:28:15.762985+0700 INFO Response: GET http://127.0.0.1:8000/auth/telegram?code=dfi8ZD6D Status: 200 Time: 0.0160s
+2026-03-03T03:28:15.946778+0700 INFO Request: GET http://127.0.0.1:8000/auth/telegram?code=dfi8ZD6D from 127.0.0.1
+2026-03-03T03:28:15.948821+0700 INFO Response: GET http://127.0.0.1:8000/auth/telegram?code=dfi8ZD6D Status: 200 Time: 0.0150s
+2026-03-03T03:28:16.117623+0700 INFO Request: GET http://127.0.0.1:8000/auth/telegram?code=dfi8ZD6D from 127.0.0.1
+2026-03-03T03:28:16.119624+0700 INFO Response: GET http://127.0.0.1:8000/auth/telegram?code=dfi8ZD6D Status: 200 Time: 0.0000s
+2026-03-03T03:28:16.296243+0700 INFO Request: GET http://127.0.0.1:8000/auth/telegram?code=dfi8ZD6D from 127.0.0.1
+2026-03-03T03:28:16.298416+0700 INFO Response: GET http://127.0.0.1:8000/auth/telegram?code=dfi8ZD6D Status: 200 Time: 0.0000s
+2026-03-03T03:28:16.463889+0700 INFO Request: GET http://127.0.0.1:8000/auth/telegram?code=dfi8ZD6D from 127.0.0.1
+2026-03-03T03:28:16.466847+0700 INFO Response: GET http://127.0.0.1:8000/auth/telegram?code=dfi8ZD6D Status: 200 Time: 0.0160s
+2026-03-03T03:28:16.607756+0700 INFO Request: GET http://127.0.0.1:8000/auth/telegram?code=dfi8ZD6D from 127.0.0.1
+2026-03-03T03:28:16.609904+0700 INFO Response: GET http://127.0.0.1:8000/auth/telegram?code=dfi8ZD6D Status: 200 Time: 0.0000s
+2026-03-03T03:28:16.757368+0700 INFO Request: GET http://127.0.0.1:8000/auth/telegram?code=dfi8ZD6D from 127.0.0.1
+2026-03-03T03:28:16.760366+0700 INFO Response: GET http://127.0.0.1:8000/auth/telegram?code=dfi8ZD6D Status: 200 Time: 0.0000s
+2026-03-03T03:28:16.921636+0700 INFO Request: GET http://127.0.0.1:8000/auth/telegram?code=dfi8ZD6D from 127.0.0.1
+2026-03-03T03:28:16.923634+0700 INFO Response: GET http://127.0.0.1:8000/auth/telegram?code=dfi8ZD6D Status: 200 Time: 0.0000s
+2026-03-03T03:28:22.409916+0700 INFO Request: GET http://127.0.0.1:8000/auth?code=t7XUwcAg from 127.0.0.1
+2026-03-03T03:28:22.411008+0700 ERROR Response: GET http://127.0.0.1:8000/auth?code=t7XUwcAg Status: 404 Time: 0.0000s
+2026-03-03T03:28:23.025294+0700 INFO Request: GET http://127.0.0.1:8000/auth?code=t7XUwcAg from 127.0.0.1
+2026-03-03T03:28:23.027239+0700 ERROR Response: GET http://127.0.0.1:8000/auth?code=t7XUwcAg Status: 404 Time: 0.0150s
+2026-03-03T03:28:23.208031+0700 INFO Request: GET http://127.0.0.1:8000/auth?code=t7XUwcAg from 127.0.0.1
+2026-03-03T03:28:23.210035+0700 ERROR Response: GET http://127.0.0.1:8000/auth?code=t7XUwcAg Status: 404 Time: 0.0000s
+2026-03-03T03:28:23.384223+0700 INFO Request: GET http://127.0.0.1:8000/auth?code=t7XUwcAg from 127.0.0.1
+2026-03-03T03:28:23.386217+0700 ERROR Response: GET http://127.0.0.1:8000/auth?code=t7XUwcAg Status: 404 Time: 0.0000s
+2026-03-03T03:28:23.543182+0700 INFO Request: GET http://127.0.0.1:8000/auth?code=t7XUwcAg from 127.0.0.1
+2026-03-03T03:28:23.545182+0700 ERROR Response: GET http://127.0.0.1:8000/auth?code=t7XUwcAg Status: 404 Time: 0.0000s
+2026-03-03T03:28:23.705824+0700 INFO Request: GET http://127.0.0.1:8000/auth?code=t7XUwcAg from 127.0.0.1
+2026-03-03T03:28:23.706929+0700 ERROR Response: GET http://127.0.0.1:8000/auth?code=t7XUwcAg Status: 404 Time: 0.0000s
+2026-03-03T03:28:23.886311+0700 INFO Request: GET http://127.0.0.1:8000/auth?code=t7XUwcAg from 127.0.0.1
+2026-03-03T03:28:23.887356+0700 ERROR Response: GET http://127.0.0.1:8000/auth?code=t7XUwcAg Status: 404 Time: 0.0160s
+2026-03-03T03:28:24.337336+0700 INFO Request: GET http://127.0.0.1:8000/auth?code=t7XUwcAg from 127.0.0.1
+2026-03-03T03:28:24.338335+0700 ERROR Response: GET http://127.0.0.1:8000/auth?code=t7XUwcAg Status: 404 Time: 0.0000s
+2026-03-03T03:28:24.481889+0700 INFO Request: GET http://127.0.0.1:8000/auth?code=t7XUwcAg from 127.0.0.1
+2026-03-03T03:28:24.482936+0700 ERROR Response: GET http://127.0.0.1:8000/auth?code=t7XUwcAg Status: 404 Time: 0.0000s
+2026-03-03T03:28:27.504149+0700 INFO Request: GET http://127.0.0.1:8000/docs from 127.0.0.1
+2026-03-03T03:28:27.505245+0700 INFO Response: GET http://127.0.0.1:8000/docs Status: 200 Time: 0.0000s
+2026-03-03T03:28:27.725495+0700 INFO Request: GET http://127.0.0.1:8000/openapi.json from 127.0.0.1
+2026-03-03T03:28:27.727493+0700 INFO Response: GET http://127.0.0.1:8000/openapi.json Status: 200 Time: 0.0000s
+2026-03-03T03:28:32.538848+0700 INFO Request: GET http://127.0.0.1:8000/auth/telegram?code=asdasd from 127.0.0.1
+2026-03-03T03:28:32.542022+0700 INFO Response: GET http://127.0.0.1:8000/auth/telegram?code=asdasd Status: 200 Time: 0.0000s
+2026-03-03T03:28:35.901105+0700 INFO Request: GET http://127.0.0.1:8000/auth/telegram?code=asdasdasd from 127.0.0.1
+2026-03-03T03:28:35.903113+0700 INFO Response: GET http://127.0.0.1:8000/auth/telegram?code=asdasdasd Status: 200 Time: 0.0150s
+2026-03-03T03:28:54.383345+0700 INFO Request: GET http://127.0.0.1:8000/docs from 127.0.0.1
+2026-03-03T03:28:54.384385+0700 INFO Response: GET http://127.0.0.1:8000/docs Status: 200 Time: 0.0000s
+2026-03-03T03:28:54.598167+0700 INFO Request: GET http://127.0.0.1:8000/openapi.json from 127.0.0.1
+2026-03-03T03:28:54.600162+0700 INFO Response: GET http://127.0.0.1:8000/openapi.json Status: 200 Time: 0.0000s
+2026-03-03T03:28:54.956118+0700 INFO Request: GET http://127.0.0.1:8000/docs from 127.0.0.1
+2026-03-03T03:28:54.958164+0700 INFO Response: GET http://127.0.0.1:8000/docs Status: 200 Time: 0.0000s
+2026-03-03T03:28:55.128515+0700 INFO Request: GET http://127.0.0.1:8000/docs from 127.0.0.1
+2026-03-03T03:28:55.129514+0700 INFO Response: GET http://127.0.0.1:8000/docs Status: 200 Time: 0.0000s
+2026-03-03T03:28:55.132700+0700 INFO Request: GET http://127.0.0.1:8000/openapi.json from 127.0.0.1
+2026-03-03T03:28:55.133702+0700 INFO Response: GET http://127.0.0.1:8000/openapi.json Status: 200 Time: 0.0000s
+2026-03-03T03:28:55.308187+0700 INFO Request: GET http://127.0.0.1:8000/openapi.json from 127.0.0.1
+2026-03-03T03:28:55.309727+0700 INFO Response: GET http://127.0.0.1:8000/openapi.json Status: 200 Time: 0.0160s
+2026-03-03T03:28:55.443484+0700 INFO Request: GET http://127.0.0.1:8000/docs from 127.0.0.1
+2026-03-03T03:28:55.444461+0700 INFO Response: GET http://127.0.0.1:8000/docs Status: 200 Time: 0.0000s
+2026-03-03T03:28:55.821472+0700 INFO Request: GET http://127.0.0.1:8000/openapi.json from 127.0.0.1
+2026-03-03T03:28:55.823574+0700 INFO Response: GET http://127.0.0.1:8000/openapi.json Status: 200 Time: 0.0000s
+2026-03-03T03:28:55.996586+0700 INFO Request: GET http://127.0.0.1:8000/docs from 127.0.0.1
+2026-03-03T03:28:55.997939+0700 INFO Response: GET http://127.0.0.1:8000/docs Status: 200 Time: 0.0000s
+2026-03-03T03:30:30.444846+0700 INFO Request: GET http://127.0.0.1:8001/docs from 127.0.0.1
+2026-03-03T03:30:30.448341+0700 INFO Response: GET http://127.0.0.1:8001/docs Status: 200 Time: 0.0000s
+2026-03-03T03:30:30.748294+0700 INFO Request: GET http://127.0.0.1:8001/openapi.json from 127.0.0.1
+2026-03-03T03:30:30.770898+0700 INFO Response: GET http://127.0.0.1:8001/openapi.json Status: 200 Time: 0.0160s
+2026-03-03T03:31:07.736390+0700 INFO Request: GET http://127.0.0.1:8001/docs from 127.0.0.1
+2026-03-03T03:31:07.738424+0700 INFO Response: GET http://127.0.0.1:8001/docs Status: 200 Time: 0.0000s
+2026-03-03T03:31:07.893944+0700 INFO Request: GET http://127.0.0.1:8001/openapi.json from 127.0.0.1
+2026-03-03T03:31:07.914457+0700 INFO Response: GET http://127.0.0.1:8001/openapi.json Status: 200 Time: 0.0150s
+2026-03-03T03:31:12.778787+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=sadasd from 127.0.0.1
+2026-03-03T03:31:47.563057+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=sadasd from 127.0.0.1
+2026-03-03T03:31:59.974524+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=sadasd from 127.0.0.1
+2026-03-03T03:32:25.628140+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=sadasd from 127.0.0.1
+2026-03-03T03:32:25.681182+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram?code=sadasd Status: 200 Time: 0.0470s
+2026-03-03T03:32:26.639175+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=sadasd from 127.0.0.1
+2026-03-03T03:32:26.643860+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram?code=sadasd Status: 200 Time: 0.0000s
+2026-03-03T03:32:26.860845+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=sadasd from 127.0.0.1
+2026-03-03T03:32:26.867092+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram?code=sadasd Status: 200 Time: 0.0000s
+2026-03-03T03:32:27.057296+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=sadasd from 127.0.0.1
+2026-03-03T03:32:27.062604+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram?code=sadasd Status: 200 Time: 0.0160s
+2026-03-03T03:32:30.170497+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=asdasd from 127.0.0.1
+2026-03-03T03:32:30.174818+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram?code=asdasd Status: 200 Time: 0.0000s
+2026-03-03T03:32:30.642908+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=asdasd from 127.0.0.1
+2026-03-03T03:32:30.648112+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram?code=asdasd Status: 200 Time: 0.0000s
+2026-03-03T03:32:30.811250+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=asdasd from 127.0.0.1
+2026-03-03T03:32:30.815255+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram?code=asdasd Status: 200 Time: 0.0000s
+2026-03-03T03:32:30.956821+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=asdasd from 127.0.0.1
+2026-03-03T03:32:30.962386+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram?code=asdasd Status: 200 Time: 0.0000s
+2026-03-03T03:32:42.603857+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=be7O9tWt from 127.0.0.1
+2026-03-03T03:32:42.902192+0700 INFO Request: GET http://127.0.0.1:8001/favicon.ico from 127.0.0.1
+2026-03-03T03:32:42.904625+0700 ERROR Response: GET http://127.0.0.1:8001/favicon.ico Status: 404 Time: 0.0000s
+2026-03-03T03:34:10.754666+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=kzNhJYUs from 127.0.0.1
+2026-03-03T03:37:08.299151+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=kzNhJYUs from 127.0.0.1
+2026-03-03T03:38:42.339107+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=kzNhJYUs from 127.0.0.1
+2026-03-03T03:38:47.583262+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=kzNhJYUs from 127.0.0.1
+2026-03-03T03:41:02.036577+0700 INFO Request: GET http://127.0.0.1:8001/auth/ from 127.0.0.1
+2026-03-03T03:41:02.038784+0700 ERROR Response: GET http://127.0.0.1:8001/auth/ Status: 404 Time: 0.0000s
+2026-03-03T03:41:06.064446+0700 INFO Request: GET http://127.0.0.1:8001/docs from 127.0.0.1
+2026-03-03T03:41:06.065459+0700 INFO Response: GET http://127.0.0.1:8001/docs Status: 200 Time: 0.0000s
+2026-03-03T03:41:06.385848+0700 INFO Request: GET http://127.0.0.1:8001/openapi.json from 127.0.0.1
+2026-03-03T03:41:06.412409+0700 INFO Response: GET http://127.0.0.1:8001/openapi.json Status: 200 Time: 0.0310s
+2026-03-03T03:41:12.476698+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=sdfsdfsdfsf from 127.0.0.1
+2026-03-03T03:41:12.519838+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram?code=sdfsdfsdfsf Status: 200 Time: 0.0470s
+2026-03-03T03:41:19.561159+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=Qy3g70aA from 127.0.0.1
+2026-03-03T03:45:43.954271+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=QpZjT6AV from 127.0.0.1
+2026-03-03T03:45:44.650173+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram?code=QpZjT6AV Status: 200 Time: 0.6880s
+2026-03-03T03:50:47.533276+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=QpZjT6AV from 127.0.0.1
+2026-03-03T03:52:42.723960+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=QpZjT6AV from 127.0.0.1
+2026-03-03T03:52:47.431919+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=QpZjT6AV from 127.0.0.1
+2026-03-03T03:52:48.129598+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=QpZjT6AV from 127.0.0.1
+2026-03-03T03:52:48.618960+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=QpZjT6AV from 127.0.0.1
+2026-03-03T03:52:48.831957+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=QpZjT6AV from 127.0.0.1
+2026-03-03T03:52:49.025645+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=QpZjT6AV from 127.0.0.1
+2026-03-03T15:17:28.760942+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-03-03T15:17:28.769756+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0160s
+2026-03-03T15:17:29.089570+0700 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2026-03-03T15:17:29.145113+0700 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.0470s
+2026-03-03T15:17:34.530660+0700 INFO Request: GET http://localhost:8001/auth/telegram?code=asdasd from 127.0.0.1
+2026-03-03T15:28:09.061274+0700 INFO Request: GET http://localhost:8001/auth/telegram?code=asdasd from 127.0.0.1
+2026-03-03T15:28:09.092589+0700 INFO Response: GET http://localhost:8001/auth/telegram?code=asdasd Status: 200 Time: 0.0310s
+2026-03-03T15:28:10.388610+0700 INFO Request: GET http://localhost:8001/auth/telegram?code=asdasd from 127.0.0.1
+2026-03-03T15:28:10.390265+0700 INFO Response: GET http://localhost:8001/auth/telegram?code=asdasd Status: 200 Time: 0.0000s
+2026-03-03T15:28:12.877757+0700 INFO Request: GET http://localhost:8001/auth/telegram?code=aSas from 127.0.0.1
+2026-03-03T15:28:12.881779+0700 INFO Response: GET http://localhost:8001/auth/telegram?code=aSas Status: 200 Time: 0.0000s
+2026-03-03T15:28:18.466899+0700 INFO Request: GET http://localhost:8001/auth/get-tg-verify-code from 127.0.0.1
+2026-03-03T15:28:18.466899+0700 ERROR Response: GET http://localhost:8001/auth/get-tg-verify-code Status: 401 Time: 0.0000s
+2026-03-03T15:28:58.592296+0700 INFO Request: POST http://localhost:8001/auth/login from 127.0.0.1
+2026-03-03T15:28:59.172298+0700 INFO Response: POST http://localhost:8001/auth/login Status: 200 Time: 0.5780s
+2026-03-03T15:29:14.216652+0700 INFO Request: GET http://localhost:8001/auth/get-tg-verify-code from 127.0.0.1
+2026-03-03T15:29:14.228064+0700 ERROR Response: GET http://localhost:8001/auth/get-tg-verify-code Status: 400 Time: 0.0000s
+2026-03-03T15:30:13.840427+0700 INFO Request: GET http://localhost:8001/auth/get-tg-verify-code from 127.0.0.1
+2026-03-03T15:30:13.855204+0700 ERROR Response: GET http://localhost:8001/auth/get-tg-verify-code Status: 400 Time: 0.0000s
+2026-03-03T15:30:33.083805+0700 INFO Request: GET http://localhost:8001/auth/get-tg-verify-code from 127.0.0.1
+2026-03-03T15:30:33.106297+0700 ERROR Response: GET http://localhost:8001/auth/get-tg-verify-code Status: 400 Time: 0.0310s
+2026-03-03T15:30:38.790303+0700 INFO Request: GET http://localhost:8001/auth/get-tg-verify-code from 127.0.0.1
+2026-03-03T15:30:38.806743+0700 INFO Response: GET http://localhost:8001/auth/get-tg-verify-code Status: 200 Time: 0.0160s
+2026-03-03T15:32:12.589750+0700 INFO Request: GET http://localhost:8001/auth/get-tg-verify-code from 127.0.0.1
+2026-03-03T15:32:12.604777+0700 ERROR Response: GET http://localhost:8001/auth/get-tg-verify-code Status: 400 Time: 0.0000s
+2026-03-03T15:46:30.830479+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-03-03T15:46:30.830479+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-03-03T15:46:31.128873+0700 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2026-03-03T15:46:31.155054+0700 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.0310s
+2026-03-03T15:46:48.633269+0700 INFO Request: POST http://localhost:8001/auth/login from 127.0.0.1
+2026-03-03T15:46:49.173523+0700 INFO Response: POST http://localhost:8001/auth/login Status: 200 Time: 0.5470s
+2026-03-03T15:47:18.097196+0700 INFO Request: GET http://localhost:8001/auth/get-tg-verify-code from 127.0.0.1
+2026-03-03T15:47:18.132659+0700 ERROR Response: GET http://localhost:8001/auth/get-tg-verify-code Status: 400 Time: 0.0310s
+2026-03-03T15:48:11.887174+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=axDBCpb8 from 127.0.0.1
+2026-03-03T15:50:01.085707+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=axDBCpb8 from 127.0.0.1
+2026-03-03T15:50:01.684369+0700 INFO Request: GET http://127.0.0.1:8001/favicon.ico from 127.0.0.1
+2026-03-03T15:50:01.685407+0700 ERROR Response: GET http://127.0.0.1:8001/favicon.ico Status: 404 Time: 0.0000s
+2026-03-03T15:50:03.385573+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=axDBCpb8 from 127.0.0.1
+2026-03-03T15:50:42.082458+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=axDBCpb8 from 127.0.0.1
+2026-03-03T15:51:41.553886+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=axDBCpb8 from 127.0.0.1
+2026-03-03T15:51:41.587716+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram?code=axDBCpb8 Status: 200 Time: 0.0310s
+2026-03-03T15:51:59.664877+0700 INFO Request: GET http://127.0.0.1:8001/docs from 127.0.0.1
+2026-03-03T15:51:59.664877+0700 INFO Response: GET http://127.0.0.1:8001/docs Status: 200 Time: 0.0000s
+2026-03-03T15:51:59.939780+0700 INFO Request: GET http://127.0.0.1:8001/openapi.json from 127.0.0.1
+2026-03-03T15:51:59.956514+0700 INFO Response: GET http://127.0.0.1:8001/openapi.json Status: 200 Time: 0.0150s
+2026-03-03T15:52:11.727386+0700 INFO Request: POST http://127.0.0.1:8001/auth/register?code=axDBCpb8 from 127.0.0.1
+2026-03-03T15:52:40.439930+0700 INFO Request: POST http://127.0.0.1:8001/auth/register?code=axDBCpb8 from 127.0.0.1
+2026-03-03T15:52:50.068788+0700 INFO Request: POST http://127.0.0.1:8001/auth/register?code=axDBCpb8 from 127.0.0.1
+2026-03-03T15:52:50.828369+0700 INFO Response: POST http://127.0.0.1:8001/auth/register?code=axDBCpb8 Status: 200 Time: 0.7650s
+2026-03-03T15:53:06.991511+0700 INFO Request: POST http://127.0.0.1:8001/auth/register?code=axDBCpb8 from 127.0.0.1
+2026-03-03T15:53:13.956050+0700 INFO Request: POST http://127.0.0.1:8001/auth/register?code=axDBCpb8 from 127.0.0.1
+2026-03-03T15:53:14.614387+0700 INFO Response: POST http://127.0.0.1:8001/auth/register?code=axDBCpb8 Status: 200 Time: 0.6560s
+2026-03-03T15:54:24.846726+0700 INFO Request: POST http://127.0.0.1:8001/auth/register?code=axDBCpb8 from 127.0.0.1
+2026-03-03T15:54:25.579046+0700 INFO Response: POST http://127.0.0.1:8001/auth/register?code=axDBCpb8 Status: 200 Time: 0.7340s
+2026-03-03T16:01:54.506409+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-03-03T16:01:54.514629+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0160s
+2026-03-03T16:01:54.803931+0700 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2026-03-03T16:01:54.831168+0700 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.0310s
+2026-03-03T16:16:06.068103+0700 INFO Request: POST http://localhost:8001/auth/register?code=3drR9sbMTlpm_PZEhzdsmmIm_MMykrBXT4UhkUP8S64 from 127.0.0.1
+2026-03-03T16:16:51.366595+0700 INFO Request: POST http://localhost:8001/auth/register?code=3drR9sbMTlpm_PZEhzdsmmIm_MMykrBXT4UhkUP8S64 from 127.0.0.1
+2026-03-03T16:16:54.633590+0700 INFO Request: POST http://localhost:8001/auth/register?code=3drR9sbMTlpm_PZEhzdsmmIm_MMykrBXT4UhkUP8S64 from 127.0.0.1
+2026-03-03T16:17:45.915703+0700 INFO Request: POST http://localhost:8001/auth/register?code=3drR9sbMTlpm_PZEhzdsmmIm_MMykrBXT4UhkUP8S64 from 127.0.0.1
+2026-03-03T16:17:50.109169+0700 INFO Request: POST http://localhost:8001/auth/register?code=3drR9sbMTlpm_PZEhzdsmmIm_MMykrBXT4UhkUP8S64 from 127.0.0.1
+2026-03-03T16:17:50.154521+0700 ERROR Response: POST http://localhost:8001/auth/register?code=3drR9sbMTlpm_PZEhzdsmmIm_MMykrBXT4UhkUP8S64 Status: 422 Time: 0.0470s
+2026-03-03T16:17:56.773901+0700 INFO Request: POST http://localhost:8001/auth/register?code=3drR9sbMTlpm_PZEhzdsmmIm_MMykrBXT4UhkUP8S64 from 127.0.0.1
+2026-03-03T16:17:57.544295+0700 INFO Response: POST http://localhost:8001/auth/register?code=3drR9sbMTlpm_PZEhzdsmmIm_MMykrBXT4UhkUP8S64 Status: 200 Time: 0.7810s
+2026-03-03T16:18:09.525499+0700 INFO Request: POST http://localhost:8001/auth/register?code=3drR9sbMTlpm_PZEhzdsmmIm_MMykrBXT4UhkUP8S64 from 127.0.0.1
+2026-03-03T16:18:10.140494+0700 INFO Response: POST http://localhost:8001/auth/register?code=3drR9sbMTlpm_PZEhzdsmmIm_MMykrBXT4UhkUP8S64 Status: 200 Time: 0.6250s
+2026-03-03T16:24:13.233267+0700 INFO Request: POST http://localhost:8001/auth/register?code=3drR9sbMTlpm_PZEhzdsmmIm_MMykrBXT4UhkUP8S64 from 127.0.0.1
+2026-03-03T17:05:47.762077+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=liQzx_QIMX0BjFeHPVyB2OgFJMg-rM5lqo3fEPF-ipk from 127.0.0.1
+2026-03-03T17:05:47.803825+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram?code=liQzx_QIMX0BjFeHPVyB2OgFJMg-rM5lqo3fEPF-ipk Status: 200 Time: 0.0310s
+2026-03-03T17:06:48.471065+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=MwZb45wrJ7jMJqWMm4FJIwZmuFxj2PCuj4aQd4I4HXY from 127.0.0.1
+2026-03-03T17:06:48.550066+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram?code=MwZb45wrJ7jMJqWMm4FJIwZmuFxj2PCuj4aQd4I4HXY Status: 200 Time: 0.0780s
+2026-03-03T17:21:01.629242+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=eVYbPpTZJu6wNcI3MRWKxMyqm7m2174LZfGIXZ1fcEY from 127.0.0.1
+2026-03-03T17:21:01.711241+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram?code=eVYbPpTZJu6wNcI3MRWKxMyqm7m2174LZfGIXZ1fcEY Status: 200 Time: 0.0780s
+2026-03-03T17:21:34.512236+0700 INFO Request: POST http://localhost:8001/auth/register?code=eVYbPpTZJu6wNcI3MRWKxMyqm7m2174LZfGIXZ1fcEY from 127.0.0.1
+2026-03-03T17:21:37.355278+0700 INFO Request: POST http://localhost:8001/auth/register?code=eVYbPpTZJu6wNcI3MRWKxMyqm7m2174LZfGIXZ1fcEY from 127.0.0.1
+2026-03-03T17:21:38.040408+0700 INFO Response: POST http://localhost:8001/auth/register?code=eVYbPpTZJu6wNcI3MRWKxMyqm7m2174LZfGIXZ1fcEY Status: 200 Time: 0.6720s
+2026-03-03T17:22:16.596884+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=eVYbPpTZJu6wNcI3MRWKxMyqm7m2174LZfGIXZ1fcEY from 127.0.0.1
+2026-03-03T17:22:16.615885+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram?code=eVYbPpTZJu6wNcI3MRWKxMyqm7m2174LZfGIXZ1fcEY Status: 200 Time: 0.0150s
+2026-03-03T17:22:21.935120+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=eVYbPpTZJu6wNcI3MRWKxMyqm7m2174LZfGIXZ1fcEY from 127.0.0.1
+2026-03-03T17:22:21.951127+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram?code=eVYbPpTZJu6wNcI3MRWKxMyqm7m2174LZfGIXZ1fcEY Status: 200 Time: 0.0150s
+2026-03-03T18:03:26.679073+0700 INFO Request: GET http://127.0.0.1:8001/docs from 127.0.0.1
+2026-03-03T18:03:26.682027+0700 INFO Response: GET http://127.0.0.1:8001/docs Status: 200 Time: 0.0000s
+2026-03-03T18:03:26.994481+0700 INFO Request: GET http://127.0.0.1:8001/openapi.json from 127.0.0.1
+2026-03-03T18:03:27.025062+0700 INFO Response: GET http://127.0.0.1:8001/openapi.json Status: 200 Time: 0.0320s
+2026-03-03T18:26:59.625690+0700 INFO Request: GET http://127.0.0.1:8001/docs from 127.0.0.1
+2026-03-03T18:26:59.627656+0700 INFO Response: GET http://127.0.0.1:8001/docs Status: 200 Time: 0.0000s
+2026-03-03T18:26:59.830657+0700 INFO Request: GET http://127.0.0.1:8001/openapi.json from 127.0.0.1
+2026-03-03T18:26:59.852652+0700 INFO Response: GET http://127.0.0.1:8001/openapi.json Status: 200 Time: 0.0160s
+2026-03-03T19:35:41.833479+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=6yI7x_suRsxw10fi1DrPb6GXXIPwPZsCELylMRv14Lw from 127.0.0.1
+2026-03-03T19:35:41.862474+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram?code=6yI7x_suRsxw10fi1DrPb6GXXIPwPZsCELylMRv14Lw Status: 200 Time: 0.0310s
+2026-03-03T20:43:18.702387+0700 INFO Request: GET http://127.0.0.1:8001/docs from 127.0.0.1
+2026-03-03T20:43:18.705342+0700 INFO Response: GET http://127.0.0.1:8001/docs Status: 200 Time: 0.0000s
+2026-03-03T20:43:18.796379+0700 INFO Request: GET http://127.0.0.1:8001/openapi.json from 127.0.0.1
+2026-03-03T20:43:18.802342+0700 INFO Response: GET http://127.0.0.1:8001/openapi.json Status: 200 Time: 0.0000s
+2026-03-03T20:43:19.706899+0700 INFO Request: GET http://127.0.0.1:8001/docs from 127.0.0.1
+2026-03-03T20:43:19.707848+0700 INFO Response: GET http://127.0.0.1:8001/docs Status: 200 Time: 0.0000s
+2026-03-03T20:43:19.773849+0700 INFO Request: GET http://127.0.0.1:8001/openapi.json from 127.0.0.1
+2026-03-03T20:43:19.774853+0700 INFO Response: GET http://127.0.0.1:8001/openapi.json Status: 200 Time: 0.0000s
+2026-03-03T20:43:25.905271+0700 INFO Request: POST http://127.0.0.1:8001/auth/forget-password from 127.0.0.1
+2026-03-03T20:43:45.603577+0700 INFO Request: POST http://127.0.0.1:8001/auth/forget-password from 127.0.0.1
+2026-03-03T20:43:45.617620+0700 INFO Response: POST http://127.0.0.1:8001/auth/forget-password Status: 200 Time: 0.0150s
+2026-03-03T20:44:03.558893+0700 INFO Request: GET http://127.0.0.1:8001/auth/reset-password?code=Q96ogvxUKpom3NpqUEeU8lA7neHZczb2D9F-HZSqiu8 from 127.0.0.1
+2026-03-03T20:44:03.558893+0700 ERROR Response: GET http://127.0.0.1:8001/auth/reset-password?code=Q96ogvxUKpom3NpqUEeU8lA7neHZczb2D9F-HZSqiu8 Status: 405 Time: 0.0000s
+2026-03-03T20:49:17.251130+0700 INFO Request: POST http://127.0.0.1:8001/auth/forget-password from 127.0.0.1
+2026-03-03T20:49:17.294643+0700 INFO Response: POST http://127.0.0.1:8001/auth/forget-password Status: 200 Time: 0.0470s
+2026-03-03T20:49:19.135960+0700 INFO Request: POST http://127.0.0.1:8001/auth/forget-password from 127.0.0.1
+2026-03-03T20:49:19.146961+0700 INFO Response: POST http://127.0.0.1:8001/auth/forget-password Status: 200 Time: 0.0160s
+2026-03-03T20:49:19.386448+0700 INFO Request: POST http://127.0.0.1:8001/auth/forget-password from 127.0.0.1
+2026-03-03T20:49:19.396418+0700 INFO Response: POST http://127.0.0.1:8001/auth/forget-password Status: 200 Time: 0.0000s
+2026-03-03T21:11:02.780002+0700 INFO Request: POST http://127.0.0.1:8001/auth/forget-password from 127.0.0.1
+2026-03-03T21:11:02.849293+0700 INFO Response: POST http://127.0.0.1:8001/auth/forget-password Status: 200 Time: 0.0630s
+2026-03-03T21:12:37.149367+0700 INFO Request: POST http://127.0.0.1:8001/auth/forget-password from 127.0.0.1
+2026-03-03T21:12:37.158427+0700 INFO Response: POST http://127.0.0.1:8001/auth/forget-password Status: 200 Time: 0.0150s
+2026-03-03T21:12:41.940405+0700 INFO Request: POST http://127.0.0.1:8001/auth/forget-password from 127.0.0.1
+2026-03-03T21:12:41.956404+0700 INFO Response: POST http://127.0.0.1:8001/auth/forget-password Status: 200 Time: 0.0150s
+2026-03-03T21:14:02.727517+0700 INFO Request: POST http://127.0.0.1:8001/auth/forget-password from 127.0.0.1
+2026-03-03T21:14:02.738675+0700 INFO Response: POST http://127.0.0.1:8001/auth/forget-password Status: 200 Time: 0.0150s
+2026-03-03T21:29:08.558841+0700 INFO Request: GET http://127.0.0.1:8001/auth/reset-password?code=A1_laB3QWu4R5xV-uyckh76QQ9sTxa9sacBVbNceYec from 127.0.0.1
+2026-03-03T21:29:08.559842+0700 ERROR Response: GET http://127.0.0.1:8001/auth/reset-password?code=A1_laB3QWu4R5xV-uyckh76QQ9sTxa9sacBVbNceYec Status: 405 Time: 0.0000s
+2026-03-04T17:30:40.244135+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-03-04T17:30:40.244135+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-03-04T17:30:40.550712+0700 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2026-03-04T17:30:40.579264+0700 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.0310s
+2026-03-04T17:30:46.686169+0700 INFO Request: GET http://localhost:8001/auth/get-tg-verify-code from 127.0.0.1
+2026-03-04T17:30:46.689555+0700 ERROR Response: GET http://localhost:8001/auth/get-tg-verify-code Status: 403 Time: 0.0000s
+2026-03-04T17:31:06.198790+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=N58UVPmo9vT2D7zJUW02VM9xUo0qFy-o0JSFMONINFw from 127.0.0.1
+2026-03-04T17:31:06.296702+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram?code=N58UVPmo9vT2D7zJUW02VM9xUo0qFy-o0JSFMONINFw Status: 200 Time: 0.1090s
+2026-03-04T17:31:06.534542+0700 INFO Request: GET http://127.0.0.1:8001/favicon.ico from 127.0.0.1
+2026-03-04T17:31:06.536340+0700 ERROR Response: GET http://127.0.0.1:8001/favicon.ico Status: 404 Time: 0.0000s
+2026-03-04T19:04:51.706200+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-03-04T19:04:51.706200+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-03-04T19:04:51.960751+0700 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2026-03-04T19:04:51.988001+0700 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.0310s
+2026-03-04T19:04:53.720002+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-03-04T19:04:53.720002+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-03-04T19:04:53.852227+0700 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2026-03-04T19:04:53.853365+0700 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.0000s
+2026-03-04T19:04:54.257220+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-03-04T19:04:54.257220+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-03-04T19:04:54.386134+0700 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2026-03-04T19:04:54.388319+0700 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.0160s
+2026-03-04T19:04:54.429896+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-03-04T19:04:54.430372+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-03-04T19:04:54.544152+0700 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2026-03-04T19:04:54.546867+0700 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.0000s
+2026-03-04T19:04:54.594292+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-03-04T19:04:54.594292+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-03-04T19:08:01.520425+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-03-04T19:08:01.520425+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-03-04T19:08:01.862913+0700 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2026-03-04T19:08:01.888204+0700 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.0320s
+2026-03-04T19:08:59.944738+0700 INFO Request: GET http://localhost:8001/auth/telegram/login?code=sdasda from 127.0.0.1
+2026-03-04T19:10:17.857958+0700 INFO Request: GET http://localhost:8001/auth/telegram/login?code=sdasda from 127.0.0.1
+2026-03-04T19:10:19.756723+0700 INFO Request: GET http://localhost:8001/auth/telegram/login?code=sdasda from 127.0.0.1
+2026-03-04T19:10:20.239537+0700 INFO Request: GET http://localhost:8001/auth/telegram/login?code=sdasda from 127.0.0.1
+2026-03-04T19:10:20.430504+0700 INFO Request: GET http://localhost:8001/auth/telegram/login?code=sdasda from 127.0.0.1
+2026-03-04T19:10:20.611137+0700 INFO Request: GET http://localhost:8001/auth/telegram/login?code=sdasda from 127.0.0.1
+2026-03-04T19:10:24.632790+0700 INFO Request: GET http://localhost:8001/auth/telegram/login?code=sdasdaasdasd from 127.0.0.1
+2026-03-04T19:10:25.768057+0700 INFO Request: GET http://localhost:8001/auth/telegram/login?code=sdasdaasdasd from 127.0.0.1
+2026-03-04T19:10:25.927596+0700 INFO Request: GET http://localhost:8001/auth/telegram/login?code=sdasdaasdasd from 127.0.0.1
+2026-03-04T19:11:26.663644+0700 INFO Request: GET http://localhost:8001/auth/telegram/login?code=sdasdaasdasdsadasd from 127.0.0.1
+2026-03-04T19:11:40.270599+0700 INFO Request: POST http://localhost:8001/auth/telegram/register?code=sadasdasdasdad from 127.0.0.1
+2026-03-04T19:11:46.007022+0700 INFO Request: POST http://localhost:8001/auth/telegram/register?code=sadasdasdasdad from 127.0.0.1
+2026-03-04T19:12:56.369503+0700 INFO Request: POST http://localhost:8001/auth/telegram/register?code=sadasdasdasdad from 127.0.0.1
+2026-03-04T19:13:00.089956+0700 INFO Request: POST http://localhost:8001/auth/telegram/register?code=sadasdasdasdad from 127.0.0.1
+2026-03-04T19:13:00.788717+0700 INFO Response: POST http://localhost:8001/auth/telegram/register?code=sadasdasdasdad Status: 200 Time: 0.6870s
+2026-03-04T19:20:52.713825+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-03-04T19:20:52.713825+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-03-04T19:20:52.921235+0700 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2026-03-04T19:20:52.946372+0700 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.0160s
+2026-03-04T19:21:02.230397+0700 INFO Request: POST http://localhost:8001/auth/telegram/register?code=sdfsdfsdf from 127.0.0.1
+2026-03-04T19:21:02.998184+0700 INFO Response: POST http://localhost:8001/auth/telegram/register?code=sdfsdfsdf Status: 200 Time: 0.7660s
+2026-03-04T19:30:30.917899+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=1376o4HoWrtw_8VfDmgurnWmL5yBPsZ7-zGDwMbnzeA from 127.0.0.1
+2026-03-04T19:30:30.921895+0700 ERROR Response: GET http://127.0.0.1:8001/auth/telegram?code=1376o4HoWrtw_8VfDmgurnWmL5yBPsZ7-zGDwMbnzeA Status: 404 Time: 0.0000s
+2026-03-04T19:31:29.115354+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=1376o4HoWrtw_8VfDmgurnWmL5yBPsZ7-zGDwMbnzeA from 127.0.0.1
+2026-03-04T19:31:29.115354+0700 ERROR Response: GET http://127.0.0.1:8001/auth/telegram?code=1376o4HoWrtw_8VfDmgurnWmL5yBPsZ7-zGDwMbnzeA Status: 404 Time: 0.0000s
+2026-03-04T19:31:30.815153+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=1376o4HoWrtw_8VfDmgurnWmL5yBPsZ7-zGDwMbnzeA from 127.0.0.1
+2026-03-04T19:31:30.815153+0700 ERROR Response: GET http://127.0.0.1:8001/auth/telegram?code=1376o4HoWrtw_8VfDmgurnWmL5yBPsZ7-zGDwMbnzeA Status: 404 Time: 0.0000s
+2026-03-04T19:31:31.679467+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=1376o4HoWrtw_8VfDmgurnWmL5yBPsZ7-zGDwMbnzeA from 127.0.0.1
+2026-03-04T19:31:31.679467+0700 ERROR Response: GET http://127.0.0.1:8001/auth/telegram?code=1376o4HoWrtw_8VfDmgurnWmL5yBPsZ7-zGDwMbnzeA Status: 404 Time: 0.0000s
+2026-03-04T19:31:47.069487+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram/login?code=1376o4HoWrtw_8VfDmgurnWmL5yBPsZ7-zGDwMbnzeA from 127.0.0.1
+2026-03-04T19:31:47.108723+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram/login?code=1376o4HoWrtw_8VfDmgurnWmL5yBPsZ7-zGDwMbnzeA Status: 200 Time: 0.0460s
+2026-03-04T19:31:51.883639+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram/login?code=1376o4HoWrtw_8VfDmgurnWmL5yBPsZ7-zGDwMbnzeA from 127.0.0.1
+2026-03-04T19:31:52.887917+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram/login?code=1376o4HoWrtw_8VfDmgurnWmL5yBPsZ7-zGDwMbnzeA from 127.0.0.1
+2026-03-04T19:31:53.429110+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram/login?code=1376o4HoWrtw_8VfDmgurnWmL5yBPsZ7-zGDwMbnzeA from 127.0.0.1
+2026-03-04T19:31:53.580467+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram/login?code=1376o4HoWrtw_8VfDmgurnWmL5yBPsZ7-zGDwMbnzeA from 127.0.0.1
+2026-03-04T19:32:08.510519+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram?code=1376o4HoWrtw_8VfDmgurnWmL5yBPsZ7-zGDwMbnzeA from 127.0.0.1
+2026-03-04T19:32:08.514515+0700 ERROR Response: GET http://127.0.0.1:8001/auth/telegram?code=1376o4HoWrtw_8VfDmgurnWmL5yBPsZ7-zGDwMbnzeA Status: 404 Time: 0.0160s
+2026-03-04T19:32:27.873828+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram/login?code=hrXOKADP1Ax3Z7obx0er1-eduhy4Gjfxx7j4Tt0xsps from 127.0.0.1
+2026-03-04T19:32:27.890546+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram/login?code=hrXOKADP1Ax3Z7obx0er1-eduhy4Gjfxx7j4Tt0xsps Status: 200 Time: 0.0160s
+2026-03-04T19:33:56.411345+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram/login?code=EZCHRPJu9wKlLBjPWsxxU9TdbprVC4ksDl26BvKlP-8 from 127.0.0.1
+2026-03-04T19:33:56.423938+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram/login?code=EZCHRPJu9wKlLBjPWsxxU9TdbprVC4ksDl26BvKlP-8 Status: 200 Time: 0.0160s
+2026-03-04T19:33:59.548646+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram/login?code=EZCHRPJu9wKlLBjPWsxxU9TdbprVC4ksDl26BvKlP-8 from 127.0.0.1
+2026-03-04T19:33:59.558405+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram/login?code=EZCHRPJu9wKlLBjPWsxxU9TdbprVC4ksDl26BvKlP-8 Status: 200 Time: 0.0160s
+2026-03-04T19:34:00.174420+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram/login?code=EZCHRPJu9wKlLBjPWsxxU9TdbprVC4ksDl26BvKlP-8 from 127.0.0.1
+2026-03-04T19:34:00.200200+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram/login?code=EZCHRPJu9wKlLBjPWsxxU9TdbprVC4ksDl26BvKlP-8 Status: 200 Time: 0.0310s
+2026-03-04T19:34:00.357728+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram/login?code=EZCHRPJu9wKlLBjPWsxxU9TdbprVC4ksDl26BvKlP-8 from 127.0.0.1
+2026-03-04T19:34:00.364603+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram/login?code=EZCHRPJu9wKlLBjPWsxxU9TdbprVC4ksDl26BvKlP-8 Status: 200 Time: 0.0000s
+2026-03-04T19:34:00.490103+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram/login?code=EZCHRPJu9wKlLBjPWsxxU9TdbprVC4ksDl26BvKlP-8 from 127.0.0.1
+2026-03-04T19:34:00.503555+0700 INFO Response: GET http://127.0.0.1:8001/auth/telegram/login?code=EZCHRPJu9wKlLBjPWsxxU9TdbprVC4ksDl26BvKlP-8 Status: 200 Time: 0.0160s
+2026-03-04T19:34:06.368601+0700 INFO Request: GET http://localhost:8001/docs from 127.0.0.1
+2026-03-04T19:34:06.368601+0700 INFO Response: GET http://localhost:8001/docs Status: 200 Time: 0.0000s
+2026-03-04T19:34:06.715507+0700 INFO Request: GET http://localhost:8001/openapi.json from 127.0.0.1
+2026-03-04T19:34:06.741640+0700 INFO Response: GET http://localhost:8001/openapi.json Status: 200 Time: 0.0150s
+2026-03-04T19:34:14.079974+0700 INFO Request: POST http://localhost:8001/auth/telegram/register?code=EZCHRPJu9wKlLBjPWsxxU9TdbprVC4ksDl26BvKlP-8 from 127.0.0.1
+2026-03-04T19:34:14.801621+0700 INFO Response: POST http://localhost:8001/auth/telegram/register?code=EZCHRPJu9wKlLBjPWsxxU9TdbprVC4ksDl26BvKlP-8 Status: 200 Time: 0.7190s
+2026-03-04T19:34:20.651655+0700 INFO Request: GET http://127.0.0.1:8001/auth/telegram/login?code=EZCHRPJu9wKlLBjPWsxxU9TdbprVC4ksDl26BvKlP-8 from 127.0.0.1

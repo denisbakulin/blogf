@@ -4,6 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 
 from typing import Any
+from deps.tg_verified import TgVerified
 
 class ProfileRepository(BaseRepository[Profile]):
     def __init__(self, session: AsyncSession):
@@ -21,6 +22,16 @@ class UserRepository(BaseRepository[User]):
         super().__init__(User, session)
 
 
+    async def get_user_by_tg_id(self, tg_id: int) -> User | None:
+        stmt = (
+            select(User)
+            .join(TgVerified, TgVerified.user_id == User.id)
+            .where(TgVerified.tg_id == tg_id)
+        )
+        result = await self.session.execute(stmt)
+        return result.scalar_one_or_none()
+
+
     async def search(
             self, field: str,
             value: Any,
@@ -30,9 +41,7 @@ class UserRepository(BaseRepository[User]):
     ) -> list[User]:
 
         stmt = (
-            select(
-                User
-            )
+            select(User)
             .join(Settings, Settings.user_id == User.id)
             .where(Settings.is_profile_public == False)
         )
@@ -42,7 +51,7 @@ class UserRepository(BaseRepository[User]):
 
         result = await self.session.execute(stmt)
 
-        return list(user for user in result.scalars())
+        return [user for user in result.scalars()]
 
 
 

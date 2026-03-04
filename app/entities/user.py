@@ -2,7 +2,6 @@ from base.model import BaseORM, IdMixin, TimeMixin
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column
 
-
 class Profile(BaseORM, IdMixin):
     __tablename__ = "profiles"
 
