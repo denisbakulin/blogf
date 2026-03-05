@@ -12,12 +12,13 @@ from schemas.container import ContainerShow, FullContainerShow
 # from schemas.post import PostCreate, PostShow
 # from schemas.reaction import TopicReactionShow
 from schemas.topic import CreateTopic
-from utils.container import ContainerSearchParams
-
-
+# from utils.container import ContainerSearchParams
+# from deps.container import containerDep, ContainerType
 
 topic_router = APIRouter(prefix="/topics", tags=["📚 Темы"])
 
+#
+# topicDep = containerDep(ContainerType)
 
 @topic_router.get(
     "",
@@ -47,26 +48,26 @@ async def create_topic(
         topic=topic, author_id=user.id
     )
 
-
-
-@topic_router.get(
-    "/search",
-    summary="Поиск темы по ключевым параметрам",
-    response_model=list[ContainerShow],
-)
-async def search_topics(
-        service: topicServiceDep,
-        pagination: Pagination = Pagination(),
-        search: ContainerSearchParams = Depends(),
-):
-    return await service.search_topic(search=search, pagination=pagination)
+#
+#
+# @topic_router.get(
+#     "/search",
+#     summary="Поиск темы по ключевым параметрам",
+#     response_model=list[ContainerShow],
+# )
+# async def search_topics(
+#         service: topicServiceDep,
+#         pagination: Pagination = Pagination(),
+#         search: ContainerSearchParams = Depends(),
+# ):
+#     return await service.search_topic(search=search, pagination=pagination)
 
 
 
 @topic_router.get(
     "/{slug}",
     summary="Получить тему",
-    response_model=FullContainerShow
+    # response_model=FullContainerShow
 )
 async def get_topic(
         topic: topicDep,

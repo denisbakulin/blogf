@@ -8,6 +8,7 @@ def to_dto(model: Any, dataclass_type: Type[D]) -> D:
     """
     Конвертирует любую модель в dataclass
     """
+
     # Получаем поля dataclass
     dataclass_fields = {f.name for f in fields(dataclass_type)}
 

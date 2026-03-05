@@ -1,14 +1,15 @@
 from abac.access_level import AccessLevel
-from abac.context import AccessContext
-from DTO.container import ContainerDTO
-from DTO.user import UserDTO
+from abac.data import AccessContext
 
+
+from entities.user import User
+from entities.container import Container
 
 class AccessResolver:
     async def resolve(
-            self, user: UserDTO,
+            self, user: User,
             context: AccessContext,
-            container: ContainerDTO,
+            container: Container,
     ) -> AccessLevel:
 
         if not user.is_active:

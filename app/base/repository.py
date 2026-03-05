@@ -41,10 +41,12 @@ class BaseRepository[T]:
             value: Any
     ) -> Select:
 
+        column = getattr(self.model, field)
+
         if strict:
-            stmt = stmt.where(getattr(self.model, field) == value)
+            stmt = stmt.where(column == value)
         else:
-            stmt = stmt.where(getattr(self.model, field).ilike(f"%{value}%"))
+            stmt = stmt.where(column.ilike(f"%{value}%"))
         return stmt
 
 
@@ -85,7 +87,6 @@ class BaseRepository[T]:
 
         stmt = self.process_paginate_stmt(stmt, offset, limit)
 
-
         result = await self.session.execute(stmt)
 
         if lines:
@@ -94,26 +95,16 @@ class BaseRepository[T]:
         return list(i for i in result.scalars().all())
 
 
-    async def get_orm(
-            self, **filters
-    ) -> Optional[T]:
-
-        stmt = select(self.model).filter_by(**filters)
-
-        result = await self.session.execute(stmt)
-
-        return result.scalar_one_or_none()
-
-
     async def get_one_by(
             self, **filters
     ) -> Optional[T]:
         """Возвращает уникальную запись или None по указанным параметрам,
         если > 1 - Ошибка"""
-        result = await self.get_orm(**filters)
+        stmt = self._process_or(stmt=select(self.model), **filters)
 
-        if result is not None:
-            return result
+        result = await self.session.execute(stmt)
+
+        return result.scalar_one_or_none()
 
 
     def create(
@@ -144,7 +135,7 @@ class BaseRepository[T]:
         """Удаляет запись по id"""
 
         await self.session.execute(
-            delete(self.model).where(id=item_id)
+            delete(self.model).where(self.model.id == item_id)
         )
 
 
@@ -157,7 +148,7 @@ class BaseRepository[T]:
         return count.scalar_one()
 
     async def update(self, item_id: int, **updates) -> T:
-        item = await self.get_orm(id=item_id)
+        item = await self.get_one_by(id=item_id)
 
         for key, value in updates.items():
             setattr(item, key, value)

@@ -5,7 +5,7 @@ from entities.comment import Comment
 from repositories.comment import CommentRepository
 from schemas.comment import CommentCreate, CommentUpdate
 from sqlalchemy.ext.asyncio import AsyncSession
-
+from entities.container import ContainerType
 
 
 class CommentService(BaseService[Comment, CommentRepository]):
@@ -58,9 +58,11 @@ class CommentService(BaseService[Comment, CommentRepository]):
 
     async def get_top_themes_of_user(
             self, user_id: int
-    ) -> list:
+    ):
 
-        return await self.repository.get_user_comment_count_in_container(user_id)
+        return await self.repository.get_user_comment_count_in_container(
+            user_id, container_type=ContainerType.topic
+        )
 
 
 

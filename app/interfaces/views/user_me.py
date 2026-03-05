@@ -9,7 +9,7 @@ from helpers.search import Pagination
 # from schemas.comment import CommentShow
 from schemas.post import PostCreate, PostShow
 from schemas.reaction import PostReactionShow, TopicReactionShow
-from schemas.user import PasswordChange, UserSettings, UserUpdate, UserShow, UserProfile, UserProfileShow
+from schemas.user import  UserSettings, UserUpdate, UserShow, UserProfile, UserProfileShow
 from deps.user import userServiceDep, userLogicDep
 from usecases.user import UserLogic
 
@@ -39,8 +39,6 @@ async def patch_my_info(
         logic: userLogicDep,
 ):
     return await logic.update(user=user, update=update)
-
-
 
 
 
@@ -84,7 +82,6 @@ async def edit_settings(
 #
 # ):
 #     return await service.get_user_comments(user_id=user.id, pagination=pagination)
-
 
 
 

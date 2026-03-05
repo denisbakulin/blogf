@@ -17,7 +17,7 @@ async def get_topic(
         slug: str,
         topic_service: topicServiceDep,
 ) -> Container:
-    return await topic_service.container_service.get_full_container(slug=slug)
+    return await topic_service.get_full_container(slug=slug)
 
 
 topicDep = Annotated[Container, Depends(get_topic)]

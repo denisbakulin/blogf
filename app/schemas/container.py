@@ -8,7 +8,6 @@ class ContainerShow(BaseSchema, IdMixinSchema, TimeMixinSchema):
     description: str
     type: ContainerType
 
-    author: UserUsername
 
 class ContainerSlug(BaseSchema):
     slug: str

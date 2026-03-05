@@ -2,7 +2,7 @@ from faststream.redis import RedisBroker
 from aiogram import Bot
 from base.settings import bot_settings
 from interfaces.bot.text import RESET_PASSWORD_TEXT
-from interfaces.bot.keyboards.common import reset_password_kb
+from interfaces.bot.keyboards.common import create_reset_password_kb
 
 
 broker = RedisBroker()
@@ -19,8 +19,10 @@ async def process(
         tg_id,
         RESET_PASSWORD_TEXT + f" http://127.0.0.1:8001/auth/reset-password?code={code}",
         parse_mode="HTML",
-        reply_markup=reset_password_kb
+        reply_markup=create_reset_password_kb(code)
     )
+
+
 
 
 

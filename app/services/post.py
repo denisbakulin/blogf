@@ -34,11 +34,10 @@ class PostService(BaseService[Post, PostRepository]):
     #     posts = await self.repository.get_top_of_topic_posts(q)
     #     return [TopPostShow(post=post, count=count) for post, count in posts]
 
-
     async def get_container_posts(
             self, container_id: int,
             pagination: Pagination,
-        ) -> list[Post]:
+        ) -> list[tuple[Post]]:
         return await self.repository.get_container_posts(
             container_id=container_id,
             **pagination.dict()

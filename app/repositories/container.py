@@ -75,9 +75,9 @@ class ContainerRepository(BaseRepository[Container]):
             type_: ContainerType,
             offset: int | None = None,
             limin: int | None = None
-    ) -> list[tuple[Container, User]]:
+    ) -> list[Container]:
 
-        stmt = full_container_stmt.where(Container.type == type_)
+        stmt = select(Container).where(Container.type == type_)
         stmt = self.process_search_stmt(stmt, strict, field, value)
         stmt = self.process_paginate_stmt(stmt, offset, limin)
 

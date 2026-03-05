@@ -1,14 +1,11 @@
-from entities.user import User
+from entities.user import User, Settings
 from schemas.user import UserUpdate
 
 from schemas.user import UserProfileShow, UserProfile, UserShow, UserSettings
 
 from services.user import UserService
+from services.container import ContainerService
 
-from dataclasses import asdict
-from utils.user import UserSearchParams
-
-from helpers.search import Pagination
 
 class UserLogic:
 
@@ -17,6 +14,7 @@ class UserLogic:
             user_service: UserService
     ):
         self.user_service = user_service
+
 
     async def get_profile(self, user: User) -> UserProfileShow:
 
@@ -33,19 +31,12 @@ class UserLogic:
         return await self.get_profile(user)
 
 
-    async def get_settings(self, user: User) -> UserSettings:
-        settings = await self.user_service.settings_service.get_by_or_raise(user_id=user.id)
+    async def get_settings(self, user: User) -> Settings:
+        return await self.user_service.settings_service.get_by_or_raise(user_id=user.id)
 
-        return UserSettings(**asdict(settings))
+    async def update_settings(self, user: User, update: UserSettings) -> Settings:
+        return await self.user_service.update_user_settings(user=user, update=update)
 
-    async def update_settings(self, user: User, update: UserSettings) -> UserSettings:
-        settings = await self.user_service.update_user_settings(user=user, update=update)
 
-        return UserSettings.from_orm(settings)
 
-    async def search(self, search: UserSearchParams, pagination: Pagination) -> list[UserShow]:
-        res = await self.user_service.search_users(
-            search=search, pagination=pagination,
-        )
-        print(res, search, pagination)
-        return list(UserShow.from_orm(user) for user in res)
+

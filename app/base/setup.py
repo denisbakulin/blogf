@@ -38,31 +38,29 @@ def set_middlewares(app: FastAPI):
 
 def include_routers(app: FastAPI):
     # from allows.view import allow_router
-    # from base.views import root
-    # from integrations.crypto.views import crypto_router
-    # from integrations.weather.views import weather_router
+    from base.views import root
     from interfaces.views.auth import auth_router
-    # from views.channel import channel_router
+    from interfaces.views.channel import channel_router
     # from views.comment import comm_router
     # from views.post import post_router
-    # from views.subscribe import subs_router
-    # from views.topic import topic_router
-    # from views.topic_offer import offer_router
-    # from views.user_me import me_router
-    # from views.user_other import user_router
+    from interfaces.views.subscribe import subs_router
+    from interfaces.views.topic import topic_router
+    from interfaces.views.topic_offer import offer_router
+    from interfaces.views.user_me import me_router
+    from interfaces.views.user_other import user_router
 
     routers: list[APIRouter] = [
-         auth_router,
-        #user_router,
-        #  me_router, offer_router,
+         auth_router, me_router,
+        user_router, channel_router,
+        root, topic_router,
+         offer_router,
+        subs_router,
         # comm_router,
-        # topic_router,
-        # post_router, channel_router,
-        # crypto_router, weather_router,
-        #  subs_router,
-       # root, allow_router
+        #
+        # post_router,
+        #
+       #  allow_router
     ]
-
 
     for router in routers:
         app.include_router(router)

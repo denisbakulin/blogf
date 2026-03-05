@@ -1,5 +1,5 @@
 from deps.auth import currentUserDep
-from deps.channel import channelDep, channelServiceDep
+from deps.channel import *
 from fastapi import APIRouter, Depends
 from helpers.search import Pagination
 from schemas.channel import ChannelCreate
@@ -7,8 +7,12 @@ from schemas.container import ContainerShow
 from schemas.join_request import JRShow
 from schemas.subscribe import SubscriberOfContainerShow
 
-channel_router = APIRouter(prefix="/channels", tags=["📚 Каналы"])
+from deps.reaction import reactionServiceDep
+from entities.reaction import ReactionType
+from schemas.reaction import TopicReactionShow
 
+
+channel_router = APIRouter(prefix="/channels", tags=["📚 Каналы"])
 
 
 @channel_router.post(
@@ -17,17 +21,18 @@ channel_router = APIRouter(prefix="/channels", tags=["📚 Каналы"])
     response_model=ContainerShow
 )
 async def create_channel(
-        container: ChannelCreate,
+        channel: ChannelCreate,
         user: currentUserDep,
         service: channelServiceDep
 ):
-    return await service.create_channel(user=user, channel=container)
+    return await service.create_channel(user_id=user.id, channel=channel)
+
+
 
 
 @channel_router.get(
     "/{slug}",
     summary="Посмотреть канал",
-    response_model=ContainerShow
 )
 async def get_channel(
         channel: channelDep
@@ -40,44 +45,43 @@ async def get_channel(
     summary="Отправить заявку в приватный канал"
 )
 async def send_join_request(
-        container: channelDep,
-        service: channelServiceDep,
+        container: privateChannelDep,
+        service: privateChannelServiceDep,
         user: currentUserDep,
 ):
-    return await service.private.send_jr(
-        container=container, user=user
+    return await service.send_jr(
+        channel_id=container.id, user_id=user.id
     )
 
 
 @channel_router.get(
     "/{slug}/join",
     summary="Получить заявки в канал",
-    response_model=list[JRShow]
 )
 async def get_jrs(
-        service: channelServiceDep,
+        service: privateChannelServiceDep,
         user: currentUserDep,
-        container: channelDep,
+        channel: privateChannelDep,
         pagination: Pagination = Depends()
 ):
-    return await service.private.get_jrs(user=user, container=container, pagination=pagination)
+    return await service.get_jrs(user_id=user.id, container=channel, pagination=pagination)
 
 @channel_router.post(
     "/join-process/{jr_id}",
     summary="Обработать заявку"
 )
 async def process_jr(
-        service: channelServiceDep,
+        service: privateChannelServiceDep,
         user: currentUserDep,
         jr_id: int,
         approve: bool
 ):
-    await service.private.process_jr(user=user, jr_id=jr_id, approve=approve)
+    await service.process_jr(user_id=user.id, jr_id=jr_id, approve=approve)
+
 
 @channel_router.get(
-    "/{slug}/sub",
+    "/{slug}/subscribe",
     summary="Получить подписчиков канала",
-    response_model=list[SubscriberOfContainerShow]
 )
 async def process_subscribe(
         service: channelServiceDep,
@@ -85,38 +89,32 @@ async def process_subscribe(
         channel: channelDep,
         pagination: Pagination = Depends()
 ):
-    return await service.get_subscribers(user=user, container=channel, pagination=pagination)
+    return await service.get_subscribers(container=channel, pagination=pagination)
 
 
 @channel_router.post(
-    "/{slug}/sub",
+    "/{slug}/subscribe",
     summary="Подписаться на публичный канал",
 )
 async def create_subscribe(
-        service: channelServiceDep,
+        service: publicChannelServiceDep,
         user: currentUserDep,
-        channel: channelDep,
+        channel: publicChannelDep,
 ):
-    return await service.public.subscribe(user=user, container=channel)
+    return await service.subscribe(user_id=user.id, channel_id=channel.id)
 
 
-from t.reaction import ReactionsSetParams
 
-from deps.reaction import reactionServiceDep
-from schemas.reaction import TopicReactionShow
 
 
 @channel_router.post(
     "/{slug}/reactions",
     summary="Оставить реакцию под каналом",
-    response_model=TopicReactionShow,
 )
 async def set_channel_reactions(
         channel: channelDep,
         user: currentUserDep,
-        reaction: ReactionsSetParams,
+        reaction: ReactionType,
         service: reactionServiceDep
 ):
-    return await service.process_topic_reaction(
-        user=user, container=channel, reaction=reaction
-    )
+    return await service.process_container_reaction(user_id=user.id, container_id=channel.id, reaction=reaction)

@@ -48,5 +48,6 @@ build-backend = "poetry.core.masonry.api"
 [dependency-groups]
 dev = [
     "isort (>=5.13.0,<6.0.0)",
-    "black (>=24.0.0,<25.0.0)"
+    "black (>=24.0.0,<25.0.0)",
+    "faker (>=40.8.0,<41.0.0)"
 ]

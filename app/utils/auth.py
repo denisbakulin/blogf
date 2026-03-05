@@ -17,6 +17,32 @@ def generate_auth_code() -> str:
     return secrets.token_urlsafe(32)
 
 
+def check_password(password):
+    """
+    Простая проверка пароля:
+    - Минимум 8 символов
+    - Хотя бы одна цифра
+    - Хотя бы одна заглавная буква
+    - Хотя бы одна строчная буква
+    """
+
+    if len(password) < 8:
+        return False, "Пароль должен содержать минимум 8 символов"
+
+    has_upper = any(c.isupper() for c in password)
+    has_lower = any(c.islower() for c in password)
+    has_digit = any(c.isdigit() for c in password)
+
+    if not has_upper:
+        return False, "Пароль должен содержать хотя бы одну заглавную букву"
+    if not has_lower:
+        return False, "Пароль должен содержать хотя бы одну строчную букву"
+    if not has_digit:
+        return False, "Пароль должен содержать хотя бы одну цифру"
+
+    return True, "Пароль надежный"
+
+
 
 class TokenTypes(StrEnum):
     access = "access"

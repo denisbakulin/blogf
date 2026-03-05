@@ -1,7 +1,7 @@
 from t.reaction import ReactionsGetParams, ReactionsSetParams
 from typing import Literal
 
-from deps.auth import anonDep, currentUserDep
+from deps.auth import currentUserDep
 from deps.comment import commentServiceDep
 from deps.post import postDep, postLogicDep, postServiceDep
 from deps.reaction import reactionServiceDep
@@ -58,8 +58,6 @@ async def search_posts(
     return await post_service.search_items(search=search, pagination=pagination)
 
 
-from deps.auth import getCurrentOrAnonUser
-
 
 @post_router.get(
     "/{slug}",
@@ -71,7 +69,7 @@ from deps.auth import getCurrentOrAnonUser
 async def get_post(
         logic: postLogicDep,
         post: postDep,
-        user: getCurrentOrAnonUser,
+        user: currentUserDep,
 ):
 
     return await logic.get_post(post=post, user=user)

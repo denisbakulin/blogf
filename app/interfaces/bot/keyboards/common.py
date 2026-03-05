@@ -1,5 +1,11 @@
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.filters.callback_data import CallbackData
+
+
+class CodeCallback(CallbackData, prefix="reset-pwd-code"):
+    code: str
+
 
 def create_inline_kb(width: int = 1, **kwargs) -> InlineKeyboardMarkup:
     """
@@ -30,9 +36,11 @@ start_kb = create_inline_kb(**{
     "Меню": "start"
 })
 
-reset_password_kb = create_inline_kb(**{
-    "Восстановить пароль": "reset_password"
+def create_reset_password_kb(code: str) -> InlineKeyboardMarkup:
+    return create_inline_kb(**{
+    "🔄 Восстановить пароль": CodeCallback(code=code).pack()
 })
+
 
 cancel_kb = create_inline_kb(**{
     "Отмена": {
@@ -46,9 +54,10 @@ def create_start_kb(code: str, verified: bool):
 
     if verified:
         kb_data["👤 Мой Профиль"] = "profile"
+        kb_data["🔔 Уведомления"] = "notifications"
 
     kb_data["🔑 Войти в Blogf"] = f"http://127.0.0.1:8001/auth/telegram/login?code={code}"
 
-    return create_inline_kb(width=1, **kb_data)
+    return create_inline_kb(width=2, **kb_data)
 
 

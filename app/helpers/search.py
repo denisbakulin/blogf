@@ -14,9 +14,9 @@ def search_param_fabric(allowed_fields: type):
         def __init__(
             self,
             # Делаем параметры необязательными или с дефолтами
-            value: Annotated[str, Query(min_length=1, description="Значение")] = None,
-            field: Annotated[allowed_fields, Query(description="Критерий")] = None,
-            strict: Annotated[bool, Query(description="Строгое совпадение")] = False,
+            value: Annotated[str, Query(min_length=1, description="Значение")],
+            field: Annotated[allowed_fields, Query(description="Критерий")],
+            strict: Annotated[bool, Query(description="Строгое совпадение")],
         ):
             self.value = value
             self.strict = strict

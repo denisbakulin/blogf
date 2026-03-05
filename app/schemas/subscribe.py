@@ -23,11 +23,7 @@ class SubscribeBase(BaseSchema, IdMixinSchema, TimeMixinSchema):
 class SubscriberOfContainerShow(SubscribeBase):
     container: ContainerShow
 
-class SubscribeOfUserShow(SubscribeBase):
-    creator: UserUsername
 
-
-subscribe_type = Literal["user", "topic", "channel"]
 
 
 

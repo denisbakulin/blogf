@@ -33,7 +33,8 @@ class UserRepository(BaseRepository[User]):
 
 
     async def search(
-            self, field: str,
+            self,
+            field: str,
             value: Any,
             strict: bool = False,
             offset: int | None = None,
@@ -43,11 +44,11 @@ class UserRepository(BaseRepository[User]):
         stmt = (
             select(User)
             .join(Settings, Settings.user_id == User.id)
-            .where(Settings.is_profile_public == False)
+            .where(Settings.is_profile_public == True)
         )
 
         stmt = self.process_search_stmt(stmt, strict, field, value)
-        stmt = self.process_paginate_stmt(stmt, limit, offset)
+        stmt = self.process_paginate_stmt(stmt, offset, limit)
 
         result = await self.session.execute(stmt)
 

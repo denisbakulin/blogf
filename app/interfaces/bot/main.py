@@ -1,18 +1,17 @@
 import asyncio
 
-import uvicorn
+
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 
-from aiogram.types import BotCommand
-
+from aiogram.types import BotCommand, CallbackQuery
+from aiogram.filters import BaseFilter
 from base.settings import bot_settings
 from base.cache import init_fastapi_cache as init_cache
 
 from interfaces.bot.fsm import storage
-from interfaces.bot.handlers.common import router as cmd_router
-from interfaces.bot.handlers.profile import router as profile_router
 
+from interfaces.bot.external.main import broker
 
 import logging
 logging.basicConfig(level=logging.DEBUG)
@@ -28,6 +27,17 @@ bot = Bot(
 )
 
 
+class AnswerCallback(BaseFilter):
+    """Ответ на callback"""
+
+    async def __call__(self, callback: CallbackQuery, *args, **kwargs):
+        await callback.answer()
+        return True
+
+
+# Отвечает на все калбеки
+dp.callback_query.filter(AnswerCallback())
+
 cmd_menu = [
     ("/start", "Start work / login "),
 ]
@@ -40,14 +50,16 @@ def get_cmd_menu(
         BotCommand(command=command, description=description)
         for command, description in cmd_list
     ]
-from interfaces.bot.external.main import broker
+
+from interfaces.bot.handlers import *
 
 async def main() -> None:
 
     init_cache()
 
     dp.include_routers(
-        cmd_router,
+        auth_router,
+        notifications_router,
         profile_router,
     )
     await bot.set_my_commands(get_cmd_menu(cmd_menu))

@@ -12,7 +12,6 @@ offer_router = APIRouter(prefix="/topic-offers", tags=["📚 Предложен�
 @offer_router.post(
     "",
     summary="Предложить тему для обсуждений",
-    response_model=TopicOfferShow,
     status_code=status.HTTP_201_CREATED,
 )
 async def create_topic_offer(
@@ -29,7 +28,6 @@ async def create_topic_offer(
 @offer_router.get(
     "",
     summary="Посмотреть предложенные темы",
-    response_model=list[TopicOfferShow],
 )
 async def offer_theme(
         service: topicOfferServiceDep,
@@ -41,13 +39,15 @@ async def offer_theme(
 @offer_router.get(
     "/{offer_id}",
     summary="Получить тему для обсуждений",
-    response_model=TopicOfferShow,
 )
 async def get_topic_offer(
         offer_id: int,
         service: topicOfferServiceDep,
 ):
     return await service.get_topic_offer_by_id(offer_id)
+
+
+#todo доступ админам + добавить таблицу админов
 
 
 # @offer_router.post(

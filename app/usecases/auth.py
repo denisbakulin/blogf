@@ -5,15 +5,22 @@ from schemas.auth import AuthCreds, LoginTokens, PasswordChange, TgAuthCode, TgL
 from services.user import UserService
 from sqlalchemy.ext.asyncio import AsyncSession
 from schemas.user import UserCreate
-from utils.auth import TokenCreator, generate_auth_code
+from utils.auth import TokenCreator, generate_auth_code, check_password
 from utils.user import verify_password, generate_hashed_password
 from entities.user import User
 from base.broker import broker
 from typing import TypeAlias
 from base.cache import cache, Redis
+from services.container import ContainerService, ContainerType
+
+from deps.tg_verified import TgVerifiedService
 
 codeType: TypeAlias = Literal["login", "verify", "forget_password"]
-from deps.tg_verified import TgVerifiedService
+
+def ensure_correct_password(pwd: str):
+    is_pwd_correct, msg = check_password(pwd)
+    if not is_pwd_correct:
+        raise InvalidPasswordError(msg)
 
 class AuthCode:
     def __init__(self, redis: Redis, prefix: str = "tg", ttl: int = 600):
@@ -75,11 +82,11 @@ class TelegramAuth:
             success_verify=flag_verify
         )
 
-    async def login_with_telegram(self, code: str) -> LoginTokens | TgAuthCode:
+    async def login(self, code: str) -> LoginTokens | TgAuthCode:
         tg_id = await self.auth_code.get_id("login", code)
 
         if not tg_id:
-            raise AuthError()
+            raise AuthError("истекший или несуществующий код")
 
         user = await self.user_service.get_user_by_tg_id(tg_id)
 
@@ -89,7 +96,7 @@ class TelegramAuth:
 
         return TgAuthCode(code=code)
 
-    async def verify_with_telegram(
+    async def verify(
             self, code: str,
             tg_id: int,
     ):
@@ -116,10 +123,21 @@ class TelegramAuth:
 
         return {"status": True, "msg": "Аккаунт успешно верифицирован!"}
 
+    async def reset_password(self,  password: str, code: str):
+        user_id = await self.auth_code.get_id("forget_password", code)
 
+        if user_id is None:
+            raise AuthError("Истекший код!")
 
+        await self.user_service.get_by_or_raise(id=user_id)
 
+        ensure_correct_password(password)
+        password = generate_hashed_password(password)
 
+        await self.user_service.update_item(user_id, password=password)
+        await self.auth_code.delete("forget_password", code)
+
+        return {"status": True, "msg": "Пароль успешно обновлен"}
 
 
 class AuthLogic:
@@ -131,8 +149,8 @@ class AuthLogic:
 
 
 
-
     async def login(self, creds: AuthCreds) -> LoginTokens:
+
 
         user = await self.user_service.get_by_or_raise(username=creds.username)
 
@@ -144,12 +162,18 @@ class AuthLogic:
 
 
     async def register(self, user_create: UserCreate) -> LoginTokens:
+        ensure_correct_password(user_create.password)
+
         user = await self.user_service.create_user(user_create=user_create)
+        c = ContainerService(self.session)
 
-
+        await c.create_item(
+            author_id=user.id, type=ContainerType.wall, title=f"user[{user.id}]-wall"
+        )
         return _create_auth_tokens(user.id)
 
     async def change_password(self, user: User, pwd: PasswordChange):
+        ensure_correct_password(pwd.new_password)
 
         if not verify_password(pwd.old_password, user.password):
             raise InvalidPasswordError()
@@ -158,20 +182,20 @@ class AuthLogic:
 
         await self.user_service.update_item(user.id, password=password)
 
-
     async def forget_password(self, username: str):
         user = await self.user_service.get_user_by_username(username)
         code = await self.auth_code.create( "forget_password", user.id)
         tg_ver = TgVerifiedService(self.session)
         tg_id = await tg_ver.get_by_or_raise(user_id=user.id)
 
-        await broker.publish({"code": code, "tg_id": tg_id.tg_id}, "forget-password")
+        await broker.publish({
+            "code": code, "tg_id": tg_id.tg_id},
+        "forget-password"
+        )
 
-    async def set_user_password_after_forgot(self, user_id: int, password: str):
-        password = generate_hashed_password(password)
-        await self.user_service.update_item(user_id, password=password)
 
-        return {"status": True, "msg": "Пароль успешно обновлен"}
+
+
 
 
 

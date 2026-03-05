@@ -72,7 +72,7 @@ class UserService(BaseService[User, UserRepository]):
 
         if profile_data is not None:
 
-            profile = await self.profile_service.repository.get_orm(user_id=user.id)
+            profile = await self.profile_service.repository.get_one_by(user_id=user.id)
 
             await self.profile_service.update_item(
                 profile.id, **profile_data
@@ -88,7 +88,7 @@ class UserService(BaseService[User, UserRepository]):
         )
 
     async def update_user_settings(self, user: User, update: UserSettings) -> Settings:
-        settings = await self.settings_service.repository.get_orm(user_id=user.id)
+        settings = await self.settings_service.repository.get_one_by(user_id=user.id)
 
         settings = await self.settings_service.update_item(
             settings.id, **update.model_dump(exclude_none=True)

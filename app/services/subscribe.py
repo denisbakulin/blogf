@@ -2,7 +2,7 @@ from base.service import BaseService
 from entities.subscribe import Subscribe
 from repositories.subscribe import SubscribeRepository
 from sqlalchemy.ext.asyncio import AsyncSession
-
+from helpers.search import Pagination
 
 
 class SubscribeService(BaseService[Subscribe, SubscribeRepository]):
@@ -13,7 +13,7 @@ class SubscribeService(BaseService[Subscribe, SubscribeRepository]):
 
     async def create_subscribe(
             self, user_id: int,
-            container_id: int | None = None,
+            container_id: int,
     ):
         subscribe = await self.repository.get_one_by(
             user_id=user_id, container_id=container_id
@@ -28,26 +28,18 @@ class SubscribeService(BaseService[Subscribe, SubscribeRepository]):
             )
 
 
-    # async def get_subs(self, user: User) -> ListOfSubscribes:
-    #     subs = await self.repository.get_any_by(user_id=user.id)
-    #     walls = [UserUsername.from_orm(i.creator) for i in subs if i.creator_id == ContainerType.wall]
-    #     topics = [ContainerShow.from_orm(i.container) for i in subs if i.container.type == ContainerType.topic]
-    #     private = [ContainerShow.from_orm(i.container) for i in subs if i.container.type == ContainerType.private_channel]
-    #     public = [ContainerShow.from_orm(i.container) for i in subs if i.container.type == ContainerType.public_channel]
-    #
-    #     return ListOfSubscribes(
-    #         creator_subs=walls,
-    #         container_subs=ContainerSubs(
-    #             topics=topics,
-    #             private_channels=private,
-    #             public_channels=public
-    #         )
-    #     )
+    async def get_subs(self, user_id: int, pagination: Pagination):
+       return await self.repository.get_user_subs(user_id, **pagination.dict())
+
+
 
     async def is_subscriber(self, user_id: int, container_id: int):
         exists = await self.repository.exists(user_id=user_id, container_id=container_id)
         return exists
 
+    async def get_content(self, user_id: int, pagination: Pagination):
+
+        return await self.repository.get_user_content(user_id=user_id, **pagination.dict())
 
 
 

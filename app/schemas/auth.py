@@ -31,7 +31,8 @@ class PasswordChange(BaseModel):
     old_password: str = Field(min_length=5)
     new_password: str = Field(min_length=5, max_length=72)
 
-
+class ResetPassword(BaseModel):
+    password: str = Field(min_length=5, max_length=72)
 
 class ForgetPassword(BaseModel):
     username: str

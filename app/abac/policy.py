@@ -7,7 +7,8 @@ class BasePolicy:
     def __init__(self, ctx: Context):
         self.ctx = ctx
 
-    def _ensure(self, condition: bool):
+    @staticmethod
+    def _ensure(condition: bool):
         if condition:
             return None
         raise Forbidden()

@@ -1,4 +1,4 @@
-from usecases.auth import AuthLogic, AsyncSession
+from usecases.auth import  AsyncSession, TelegramAuth
 
 
 async def verify_user(
@@ -6,9 +6,9 @@ async def verify_user(
         code: str, tg_id: int
 ) -> tuple[bool, str]:
 
-    auth = AuthLogic(session)
+    auth = TelegramAuth(session)
 
-    result = await auth.verify_with_telegram(code=code, tg_id=tg_id)
+    result = await auth.verify(code=code, tg_id=tg_id)
 
     success = result.get("status", False)
     msg = result.get("msg", "default")

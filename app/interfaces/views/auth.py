@@ -5,7 +5,7 @@ from deps.user import userServiceDep
 from exceptions.auth import InvalidTokenError
 from fastapi import APIRouter, Cookie, HTTPException, Request, Response
 from schemas.auth import (AccessTokenResponse, AuthCreds, TgLoginAnswer,
-                          TgAuthCode, LoginTokens, ForgetPassword, PasswordChange)
+                          TgAuthCode, LoginTokens, ForgetPassword, PasswordChange, ResetPassword)
 from schemas.user import UserCreate
 from utils.auth import (TokenCreator, TokenTypes, decode_token,
                         set_refresh_token_cookie)
@@ -72,59 +72,6 @@ async def refresh_user_token(refresh_token: str = Cookie(None)):
     return AccessTokenResponse(access_token=access_token)
 
 
-@auth_router.get(
-    "/get-tg-verify-code",
-    summary="Получить код верификации для Telegram",
-    response_model=TgAuthCode
-)
-async def get_telegram_verify_code(
-        user: currentUserDep,
-        auth_service: authServiceDep
-):
-    if user.is_verified:
-        raise HTTPException(status_code=400, detail="уже верефицирован")
-
-    code = await auth_service.auth_code.create("verify", user.id)
-    return TgAuthCode(code=code)
-
-
-@auth_router.get(
-    "/telegram/login",
-    summary="Вход / Регистрация через Telegram",
-    response_model=TgAuthCode | AccessTokenResponse
-)
-async def login_with_telegram(
-        code: str,
-        auth_service: tgAuthServiceDep,
-        response: Response
-):
-
-    result = await auth_service.login_with_telegram(code)
-
-    if isinstance(result, TgAuthCode):
-        return result
-
-    set_refresh_token_cookie(response, result.refresh)
-    return AccessTokenResponse(access_token=result.access)
-
-
-@auth_router.post(
-    "/telegram/register",
-    summary="Зарегистрироваться через телеграм",
-    response_model=TgLoginAnswer
-)
-async def register_user_with_telegram(
-        response: Response,
-        user_create: UserCreate,
-        service: tgAuthServiceDep,
-        code: str
-):
-    tokens = await service.register(user_create, code)
-    set_refresh_token_cookie(response, tokens.refresh)
-    return tokens
-
-
-
 @auth_router.put(
     "/password",
     summary="Изменить пароль"
@@ -153,6 +100,63 @@ async def forget_password(
 )
 async def reset_password(
         code: str,
+        pwd: ResetPassword,
+        auth_service: tgAuthServiceDep
+):
+    return await auth_service.reset_password(code=code, password=pwd.password)
+
+
+
+@auth_router.get(
+    "/get-tg-verify-code",
+    summary="Получить код верификации для Telegram",
+    response_model=TgAuthCode
+)
+async def get_telegram_verify_code(
+        user: currentUserDep,
         auth_service: authServiceDep
 ):
-    return await auth_service.login_with_telegram(code)
+    if user.is_verified:
+        raise HTTPException(status_code=400, detail="уже верефицирован")
+
+    code = await auth_service.auth_code.create("verify", user.id)
+    return TgAuthCode(code=code)
+
+
+@auth_router.get(
+    "/telegram/login",
+    summary="Вход / Регистрация через Telegram",
+    response_model=TgAuthCode | AccessTokenResponse
+)
+async def login_with_telegram(
+        code: str,
+        auth_service: tgAuthServiceDep,
+        response: Response
+):
+
+    result = await auth_service.login(code)
+
+    if isinstance(result, TgAuthCode):
+        return result
+
+    set_refresh_token_cookie(response, result.refresh)
+    return AccessTokenResponse(access_token=result.access)
+
+
+@auth_router.post(
+    "/telegram/register",
+    summary="Зарегистрироваться через телеграм",
+    response_model=TgLoginAnswer
+)
+async def register_user_with_telegram(
+        response: Response,
+        user_create: UserCreate,
+        service: tgAuthServiceDep,
+        code: str
+):
+    tokens = await service.register(user_create, code)
+    set_refresh_token_cookie(response, tokens.refresh)
+    return tokens
+
+
+

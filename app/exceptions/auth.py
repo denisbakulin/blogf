@@ -13,6 +13,4 @@ class InvalidPasswordError(AuthError):
     """Ошибка некорректного пароля"""
 
     def __init__(self, message: str | None = None):
-        if message is None:
-            message = "Некорректный пароль"
-        super().__init__(message)
+        super().__init__(message or "Некорректный пароль")

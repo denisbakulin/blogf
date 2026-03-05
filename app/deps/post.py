@@ -7,7 +7,7 @@ from entities.post import Post
 from services.post import PostService
 
 from deps.container import containerServiceDep
-from usecases.post import PostLogic
+from usecases.post import GetPostUseCase
 
 def get_post_service(
         session: getSessionDep
@@ -31,13 +31,10 @@ async def get_post_logic(
         post_service: postServiceDep,
         sub_service: SubscribeService,
         container_service: containerServiceDep
-) -> PostLogic:
+) -> GetPostUseCase:
 
-    return PostLogic(
+    return GetPostUseCase(
         post_service=post_service,
         sub_service=sub_service,
         container_service=container_service
     )
-
-
-postLogicDep = Annotated[PostLogic, Depends(get_post_logic)]
