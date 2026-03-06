@@ -1,14 +1,13 @@
-from deps.auth import authServiceDep, currentUserDep, tgAuthServiceDep
-from deps.user import userServiceDep
-# from deps.tg_verified import tgvServiceDep
-# from deps.user import userServiceDep
+from deps.auth import baseAuthServiceDep, currentUserDep, tgAuthServiceDep, googleAuthServiceDep
+
 from exceptions.auth import InvalidTokenError
-from fastapi import APIRouter, Cookie, HTTPException, Request, Response
+from fastapi import APIRouter, Cookie, HTTPException, Response
 from schemas.auth import (AccessTokenResponse, AuthCreds, TgLoginAnswer,
-                          TgAuthCode, LoginTokens, ForgetPassword, PasswordChange, ResetPassword)
-from schemas.user import UserCreate
-from utils.auth import (TokenCreator, TokenTypes, decode_token,
+                          TgAuthCode, ForgetPassword, PasswordChange, ResetPassword)
+
+from utils.auth import (TokenCreator, TokenTypes, get_decoded_token,
                         set_refresh_token_cookie)
+
 
 auth_router = APIRouter(prefix="/auth", tags=["🔐 Авторизация"])
 
@@ -21,7 +20,7 @@ auth_router = APIRouter(prefix="/auth", tags=["🔐 Авторизация"])
 async def login_user(
         response: Response,
         creds: AuthCreds,
-        service: authServiceDep
+        service: baseAuthServiceDep
 ):
 
     tokens = await service.login(creds)
@@ -29,18 +28,18 @@ async def login_user(
     return AccessTokenResponse(access_token=tokens.access)
 
 
-@auth_router.post(
-    "/register",
-    summary="Зарегистрироваться",
-)
-async def register_user(
-        response: Response,
-        user_create: UserCreate,
-        service: authServiceDep,
-):
-    tokens = await service.register(user_create)
-    set_refresh_token_cookie(response, tokens.refresh)
-    return AccessTokenResponse(access_token=tokens.access)
+# @auth_router.post(
+#     "/register",
+#     summary="Зарегистрироваться",
+# )
+# async def register_user(
+#         response: Response,
+#         user_create: UserCreate,
+#         service: authServiceDep,
+# ):
+#     tokens = await service.register(user_create)
+#     set_refresh_token_cookie(response, tokens.refresh)
+#     return AccessTokenResponse(access_token=tokens.access)
 
 
 
@@ -62,7 +61,7 @@ async def refresh_user_token(refresh_token: str = Cookie(None)):
     if not refresh_token:
         raise HTTPException(401, "No refresh token")
 
-    decoded_token = decode_token(token=refresh_token)
+    decoded_token = get_decoded_token(token=refresh_token)
 
     if decoded_token.type != TokenTypes.refresh:
         raise InvalidTokenError("Тип токена не access")
@@ -79,9 +78,11 @@ async def refresh_user_token(refresh_token: str = Cookie(None)):
 async def change_password(
         pwd: PasswordChange,
         user: currentUserDep,
-        service: userServiceDep,
+        service: baseAuthServiceDep,
 ):
     await service.change_password(user=user, pwd=pwd)
+
+
 
 @auth_router.post(
     "/forget-password",
@@ -89,7 +90,7 @@ async def change_password(
 )
 async def forget_password(
         forget: ForgetPassword,
-        auth_service: authServiceDep
+        auth_service: baseAuthServiceDep
 ):
     return await auth_service.forget_password(forget.username)
 
@@ -108,55 +109,49 @@ async def reset_password(
 
 
 @auth_router.get(
-    "/get-tg-verify-code",
-    summary="Получить код верификации для Telegram",
-    response_model=TgAuthCode
+    "/telegram/ref",
+    summary="Верифицировать аккаунт через Telegram",
 )
-async def get_telegram_verify_code(
+async def telegram_verify(
         user: currentUserDep,
-        auth_service: authServiceDep
+        telegram: tgAuthServiceDep
 ):
-    if user.is_verified:
-        raise HTTPException(status_code=400, detail="уже верефицирован")
+    code = await telegram.auth_code.create("verify", user.id)
+    return {"url": telegram.get_verify_ref(code)}
 
-    code = await auth_service.auth_code.create("verify", user.id)
-    return TgAuthCode(code=code)
 
 
 @auth_router.get(
     "/telegram/login",
-    summary="Вход / Регистрация через Telegram",
-    response_model=TgAuthCode | AccessTokenResponse
+    summary="Вход через Telegram",
+    response_model=AccessTokenResponse
 )
 async def login_with_telegram(
         code: str,
-        auth_service: tgAuthServiceDep,
+        name: str,
+        service: tgAuthServiceDep,
         response: Response
 ):
 
-    result = await auth_service.login(code)
-
-    if isinstance(result, TgAuthCode):
-        return result
+    result = await service.login(code=code, name=name)
 
     set_refresh_token_cookie(response, result.refresh)
     return AccessTokenResponse(access_token=result.access)
 
 
-@auth_router.post(
-    "/telegram/register",
-    summary="Зарегистрироваться через телеграм",
-    response_model=TgLoginAnswer
-)
-async def register_user_with_telegram(
-        response: Response,
-        user_create: UserCreate,
-        service: tgAuthServiceDep,
+@auth_router.get("/google/ref")
+async def google_ref(
+        google: googleAuthServiceDep
+):
+    return {"url": google.oauth_uri}
+
+
+@auth_router.get("/google/login")
+async def login_google(
+        google: googleAuthServiceDep,
         code: str
 ):
-    tokens = await service.register(user_create, code)
-    set_refresh_token_cookie(response, tokens.refresh)
-    return tokens
+    return await google.login(code)
 
 
 

@@ -21,7 +21,8 @@ class UserUsername(BaseSchema, IdMixinSchema):
 
 class UserCreate(BaseSchema):
     username: str = Field(min_length=1, max_length=20)
-    password: str = Field(min_length=5, max_length=72)
+    name: str = Field(min_length=1, max_length=30)
+
 
 
 
@@ -39,7 +40,7 @@ class UserShow(BaseSchema, IdMixinSchema, TimeMixinSchema):
     username: str
     name: str | None
     is_active: bool
-    is_verified: bool
+
 
 
 class UserProfileShow(BaseSchema):

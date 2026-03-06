@@ -35,14 +35,10 @@ def get_profile_text(user: User, profile: Profile) -> str:
     bio = html.italic(html.quote(profile.bio or "Информация отсутствует"))
     city = html.quote(profile.city or "Не указан")
 
-    verify_icon = "🏷 <b>Верифицирован</b>" if user.is_verified else "⚪️ <b>Обычный аккаунт</b>"
     active_icon = "🟢 <b>Активен</b>" if user.is_active else "🔴 <b>Заблокирован</b>"
 
     text = [
-        f"👤 <b>ЛИЧНЫЙ КАБИНЕТ</b>",
-        f"⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯",
-        f"<b>user_id:</b> <code>{user.id}</code>",
-        f"<b>Username:</b> {username}",
+        f"<b>Username:</b> <code>{username}</code> [{user.id}]",
         f"<b>Имя:</b> {name}",
         f"<b>Город:</b> {city}",
         f"<b>Возраст:</b> {profile.age or '—'}",
@@ -50,7 +46,6 @@ def get_profile_text(user: User, profile: Profile) -> str:
         f"📝 <b>О себе:</b>",
         f"{bio}",
         f"⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯",
-        f"🛡 <b>Статус:</b> {verify_icon}",
         f"⚙️ <b>Доступ:</b> {active_icon}",
         f"⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯",
         f"📅 <i>В системе с {user.created_at.strftime('%d.%m.%Y')}</i>"

@@ -9,7 +9,7 @@ from entities.user import User
 from interfaces.bot.keyboards.common import create_start_kb,  cancel_kb, CodeCallback
 from sqlalchemy.ext.asyncio import AsyncSession
 from interfaces.bot.utils.verify import verify_user
-from usecases.auth import AuthLogic, TelegramAuth
+from auth.telegram import TelegramAuth
 from interfaces.bot.fsm import Waiting
 from exceptions.auth import AuthError
 
@@ -22,7 +22,7 @@ router.callback_query.middleware(UserMiddleware(session_maker))
 
 
 async def get_code(tg_id: int, session: AsyncSession) -> str:
-    auth = AuthLogic(session)
+    auth = TelegramAuth(session)
     return await auth.auth_code.create("login", tg_id)
 
 
@@ -32,7 +32,9 @@ async def start_query(callback: CallbackQuery, user: User, session: AsyncSession
 
     await callback.message.edit_text(
         START_TEXT.format(name=user.username),
-        reply_markup=create_start_kb(code, verified=True)
+        reply_markup=create_start_kb(
+            name=callback.from_user.first_name, code=code, verified=True
+        )
     )
 
 
@@ -56,12 +58,16 @@ async def start_cmd_process(
     if not user:
         await message.answer(
             START_TEXT.format(name=message.from_user.first_name) + UNVERIFIED_TEXT,
-            reply_markup=create_start_kb(code, False)
+            reply_markup=create_start_kb(
+                name=message.from_user.first_name, code=code, verified=False
+            )
         )
     else:
         await message.answer(
             START_TEXT.format(name=user.username),
-            reply_markup=create_start_kb(code, True)
+            reply_markup=create_start_kb(
+                name=message.from_user.first_name, code=code, verified=True
+            )
         )
 
 

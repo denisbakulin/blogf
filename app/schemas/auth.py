@@ -28,8 +28,9 @@ class TgAuthCode(BaseModel):
     code: str
 
 class PasswordChange(BaseModel):
-    old_password: str = Field(min_length=5)
+    old_password: str | None = Field(min_length=5, default=None)
     new_password: str = Field(min_length=5, max_length=72)
+
 
 class ResetPassword(BaseModel):
     password: str = Field(min_length=5, max_length=72)

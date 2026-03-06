@@ -1,13 +1,14 @@
 import secrets
-import string
 from datetime import datetime, timedelta
 from enum import StrEnum
 
 from base.settings import jwt_auth_settings
-from exceptions.auth import InvalidTokenError
+from exceptions.auth import InvalidTokenError, InvalidPasswordError
 from fastapi import Response
 from jose import JWTError, jwt
-from schemas.auth import TokenInfo
+from schemas.auth import TokenInfo, LoginTokens
+
+
 
 def generate_auth_code() -> str:
     """
@@ -49,6 +50,7 @@ class TokenTypes(StrEnum):
     refresh = "refresh"
 
 
+
 class TokenCreator:
     """Класс-генератор JWT токенов по user_id"""
     def __init__(self, user_id: int):
@@ -73,24 +75,40 @@ class TokenCreator:
         age = timedelta(days=jwt_auth_settings.refresh_token_expire_days)
         return self._create_token(TokenTypes.refresh, age)
 
+    @property
+    def auth_tokens(self) -> LoginTokens:
+        tokens = type(self)(self.user_id)
 
-
-def decode_token(token: str) -> TokenInfo:
-    """Декодирует JWT токен из SHA256"""
-
-    try:
-        payload = jwt.decode(
-            token,
-            jwt_auth_settings.secret_key,
-            algorithms=[jwt_auth_settings.algorithm]
+        return LoginTokens(
+            access=tokens.access,
+            refresh=tokens.refresh
         )
 
-        user_id = int(payload["sub"])
-        token_type = payload["type"]
 
-        return TokenInfo(user_id=user_id, type=token_type)
+def decode_token(token: str, algorithm: str | None = None):
+    try:
+        return jwt.decode(
+            token,
+            jwt_auth_settings.secret_key,
+            algorithms=[algorithm or jwt_auth_settings.algorithm]
+        )
+
     except JWTError:
         raise InvalidTokenError("Невалидный или истекший токен")
+
+def ensure_correct_password(pwd: str):
+    is_pwd_correct, msg = check_password(pwd)
+    if not is_pwd_correct:
+        raise InvalidPasswordError(msg)
+
+def get_decoded_token(token: str) -> TokenInfo:
+    """Декодирует JWT токен из SHA256"""
+
+    payload = decode_token(token)
+    user_id = int(payload["sub"])
+    token_type = payload["type"]
+
+    return TokenInfo(user_id=user_id, type=token_type)
 
 
 def set_refresh_token_cookie(response: Response, token):

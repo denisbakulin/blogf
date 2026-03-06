@@ -22,20 +22,24 @@ class JWTAuthSettings(BaseConfig):
     access_token_expire_minutes: int
     refresh_token_expire_days: int
 
+class GoogleOAuthSettings(BaseConfig):
+    model_config = SettingsConfigDict(
+        env_prefix="GOOGLE_OAUTH_"
+    )
 
-
-
+    client_secret: str
+    client_id: str
 
 
 class TgBotSettings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=env_dir / ".env.bot",
-        extra = "ignore"
+        extra="ignore"
     )
-
 
     token: str
 
 
 bot_settings = TgBotSettings()
 jwt_auth_settings = JWTAuthSettings()
+google_oauth_settings = GoogleOAuthSettings()

@@ -5,10 +5,12 @@ from exceptions.auth import InvalidTokenError
 from fastapi import Depends
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from schemas.auth import TokenInfo
-from usecases.auth import AuthLogic, TelegramAuth
+from auth.base import BaseAuth
+from auth.telegram import TelegramAuth
+from auth.google import GoogleAuth
 from sqlalchemy.ext.asyncio import AsyncSession
 from deps.user import userServiceDep
-from utils.auth import decode_token
+from utils.auth import get_decoded_token
 from entities.user import User
 
 security = HTTPBearer()
@@ -22,7 +24,7 @@ def decode_token_from_creds(creds: HTTPAuthorizationCredentials) -> TokenInfo:
         )
     token = creds.credentials
 
-    return decode_token(token)
+    return get_decoded_token(token)
 
 async def get_user_token(
         creds: HTTPAuthorizationCredentials = Depends(security),
@@ -38,16 +40,25 @@ async def get_current_user(
 
 
 
-async def get_auth_logic(
+async def get_base_auth(
         session: AsyncSession = Depends(get_session)
-) -> AuthLogic:
-    return AuthLogic(session=session)
+) -> BaseAuth:
+    return BaseAuth(session=session)
 
 async def get_tg_auth(
         session: AsyncSession = Depends(get_session)
 ) -> TelegramAuth:
     return TelegramAuth(session)
 
+async def get_google_auth(
+        session: AsyncSession = Depends(get_session)
+) -> GoogleAuth:
+    return GoogleAuth(session)
+
+
+
 currentUserDep = Annotated[User, Depends(get_current_user)]
-authServiceDep = Annotated[AuthLogic, Depends(get_auth_logic)]
+
+baseAuthServiceDep = Annotated[BaseAuth, Depends(get_base_auth)]
 tgAuthServiceDep = Annotated[TelegramAuth, Depends(get_tg_auth)]
+googleAuthServiceDep = Annotated[GoogleAuth, Depends(get_google_auth)]

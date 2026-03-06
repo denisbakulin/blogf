@@ -41,8 +41,8 @@ def include_routers(app: FastAPI):
     from base.views import root
     from interfaces.views.auth import auth_router
     from interfaces.views.channel import channel_router
-    # from views.comment import comm_router
-    # from views.post import post_router
+    from interfaces.views.comment import comm_router
+    # from interfaces.views.post import post_router
     from interfaces.views.subscribe import subs_router
     from interfaces.views.topic import topic_router
     from interfaces.views.topic_offer import offer_router
@@ -55,10 +55,8 @@ def include_routers(app: FastAPI):
         root, topic_router,
          offer_router,
         subs_router,
-        # comm_router,
-        #
+        comm_router,
         # post_router,
-        #
        #  allow_router
     ]
 
@@ -68,7 +66,6 @@ def include_routers(app: FastAPI):
 
 async def init_db(app: FastAPI):
     from base.db import init_models
-    from deps.tg_verified import TgVerified
     await init_models()
 
 

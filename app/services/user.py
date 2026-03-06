@@ -32,17 +32,13 @@ class UserService(BaseService[User, UserRepository]):
 
 
 
-    async def create_user(self, user_create: UserCreate) -> User:
-        await self.check_already_exists(username=user_create.username)
-
-        hashed_password = generate_hashed_password(password=user_create.password)
-
-        user_create.username = user_create.username.lower()
-        user_create.password = hashed_password
+    async def create_user(self, name: str, username: str) -> User:
+        await self.check_already_exists(username=username)
 
         user = await self.create_item(
-            **user_create.model_dump(),
+            name=name, username=username
         )
+
         await self.profile_service.create_item(user_id=user.id)
         await self.settings_service.create_item(user_id=user.id)
 
@@ -97,7 +93,7 @@ class UserService(BaseService[User, UserRepository]):
         return settings
 
 
-    async def get_user_by_tg_id(self, tg_id: int, ) -> User | None:
+    async def get_user_by_tg_id(self, tg_id: int) -> User | None:
         return await self.repository.get_user_by_tg_id(tg_id)
 
 

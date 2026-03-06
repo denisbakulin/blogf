@@ -4,7 +4,10 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 
 from typing import Any
-from deps.tg_verified import TgVerified
+from auth.oauth import OAuthUser, ProviderType
+
+
+
 
 class ProfileRepository(BaseRepository[Profile]):
     def __init__(self, session: AsyncSession):
@@ -25,8 +28,9 @@ class UserRepository(BaseRepository[User]):
     async def get_user_by_tg_id(self, tg_id: int) -> User | None:
         stmt = (
             select(User)
-            .join(TgVerified, TgVerified.user_id == User.id)
-            .where(TgVerified.tg_id == tg_id)
+            .join(OAuthUser, OAuthUser.user_id == User.id)
+            .where(OAuthUser.provider_id == tg_id)
+            .where(OAuthUser.provider == ProviderType.TELEGRAM)
         )
         result = await self.session.execute(stmt)
         return result.scalar_one_or_none()

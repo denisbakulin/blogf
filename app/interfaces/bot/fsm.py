@@ -10,3 +10,5 @@ storage = RedisStorage(redis=redis_client)
 
 class Waiting(StatesGroup):
     password = State()
+
+

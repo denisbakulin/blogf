@@ -17,7 +17,6 @@ class Settings(BaseORM, IdMixin):
     __tablename__ = "user_settings"
 
     show_in_search: Mapped[bool] = mapped_column(default=True)
-
     is_profile_public: Mapped[bool] = mapped_column(default=True)
 
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), unique=True)
@@ -28,12 +27,12 @@ class Settings(BaseORM, IdMixin):
 class User(BaseORM, IdMixin, TimeMixin):
     __tablename__ = "users"
 
-    username: Mapped[str] = mapped_column(nullable=False, unique=True)
-    name: Mapped[str | None]
+    name: Mapped[str]
+    username: Mapped[str] = mapped_column(unique=True)
 
-    password: Mapped[str]
+    password: Mapped[str | None]
 
     is_active: Mapped[bool] = mapped_column(default=True)
-    is_verified: Mapped[bool] = mapped_column(default=False)
+
 
 

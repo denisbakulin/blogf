@@ -4,7 +4,6 @@ from schemas.user import UserUpdate
 from schemas.user import UserProfileShow, UserProfile, UserShow, UserSettings
 
 from services.user import UserService
-from services.container import ContainerService
 
 
 class UserLogic:

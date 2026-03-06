@@ -49,14 +49,20 @@ cancel_kb = create_inline_kb(**{
     }
 })
 
-def create_start_kb(code: str, verified: bool):
+def create_login_ref(name: str, code: str) -> str:
+    """Ссылка на логин через telegram"""
+    name = name or "Anonymous"
+
+    return f"http://127.0.0.1:8000/auth/telegram/login?code={code}&name={name}"
+
+def create_start_kb(name: str, code: str, verified: bool):
     kb_data = {}
 
     if verified:
         kb_data["👤 Мой Профиль"] = "profile"
         kb_data["🔔 Уведомления"] = "notifications"
 
-    kb_data["🔑 Войти в Blogf"] = f"http://127.0.0.1:8001/auth/telegram/login?code={code}"
+    kb_data["🔑 Войти в Blogf"] = create_login_ref(name, code)
 
     return create_inline_kb(width=2, **kb_data)
 

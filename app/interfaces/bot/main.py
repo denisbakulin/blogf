@@ -39,7 +39,7 @@ class AnswerCallback(BaseFilter):
 dp.callback_query.filter(AnswerCallback())
 
 cmd_menu = [
-    ("/start", "Start work / login "),
+    ("/start", "Войти в Blogf 🔑"),
 ]
 
 
@@ -51,17 +51,20 @@ def get_cmd_menu(
         for command, description in cmd_list
     ]
 
+
 from interfaces.bot.handlers import *
+
+dp.include_routers(
+    auth_router,
+    notifications_router,
+    profile_router,
+)
 
 async def main() -> None:
 
     init_cache()
 
-    dp.include_routers(
-        auth_router,
-        notifications_router,
-        profile_router,
-    )
+
     await bot.set_my_commands(get_cmd_menu(cmd_menu))
 
     await bot.delete_webhook(drop_pending_updates=True)
