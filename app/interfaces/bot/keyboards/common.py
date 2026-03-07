@@ -7,6 +7,13 @@ class CodeCallback(CallbackData, prefix="reset-pwd-code"):
     code: str
 
 
+class ChangeCallback(CallbackData, prefix="change"):
+    username: bool = False
+    name: bool = False
+    bio: bool = False
+
+
+
 def create_inline_kb(width: int = 1, **kwargs) -> InlineKeyboardMarkup:
     """
     Универсальная функция для создания инлайн-клавиатур.
@@ -32,8 +39,21 @@ def create_inline_kb(width: int = 1, **kwargs) -> InlineKeyboardMarkup:
     return builder.as_markup()
 
 
-start_kb = create_inline_kb(**{
-    "Меню": "start"
+menu_kb = create_inline_kb(**{
+    "☰ Меню": "menu"
+})
+
+
+profile_kb = create_inline_kb(**{
+    "⚙️ Настройки": "settings",
+    "☰ Меню": "menu",
+})
+
+settings_kb = create_inline_kb(**{
+    "👤 Изменить name": ChangeCallback(name=True).pack(),
+    "@ Изменить username": ChangeCallback(username=True).pack(),
+    "📝 Изменить bio": ChangeCallback(bio=True).pack(),
+    "☰ Меню": "menu"
 })
 
 def create_reset_password_kb(code: str) -> InlineKeyboardMarkup:
@@ -55,7 +75,7 @@ def create_login_ref(name: str, code: str) -> str:
 
     return f"http://127.0.0.1:8000/auth/telegram/login?code={code}&name={name}"
 
-def create_start_kb(name: str, code: str, verified: bool):
+def create_start_kb( code: str, verified: bool, name: str | None = None):
     kb_data = {}
 
     if verified:

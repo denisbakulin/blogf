@@ -28,10 +28,21 @@ RESET_PASSWORD_TEXT = (
     "Просто проигнорируй. Пароль остался прежним."
 )
 
+def create_settings_text(user: User, profile: Profile) -> str:
+    bio = html.italic(html.quote(profile.bio or "Информация отсутствует"))
+
+    text = [
+        f"username: <code>{user.username}</code>",
+        f"name: <code>{user.name}</code>",
+        f"name: <code>{bio}</code>",
+    ]
+
+    return "\n".join(text)
+
 
 def get_profile_text(user: User, profile: Profile) -> str:
     username = html.quote(user.username)
-    name = html.bold(html.quote(user.name or "Не указано"))
+    name = html.bold(html.quote(user.name))
     bio = html.italic(html.quote(profile.bio or "Информация отсутствует"))
     city = html.quote(profile.city or "Не указан")
 

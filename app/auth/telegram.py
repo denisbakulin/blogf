@@ -9,10 +9,12 @@ from utils.user import generate_hashed_password
 from base.cache import cache
 from auth.oauth import OAuthUserService, ProviderType
 from auth.code import AuthCodeManager
+from base.settings import bot_settings
 
 from auth.user_create import UserCreator
 
 class TelegramAuth:
+
     def __init__(self, session: AsyncSession):
         self.session = session
         self.oauth_service = OAuthUserService(self.session)
@@ -21,8 +23,7 @@ class TelegramAuth:
 
 
     def get_verify_ref(self, code: str):
-        return f"https://t.me/blogf_auth_bot?start={code}"
-
+        return f"https://t.me/{bot_settings.bot_name}?start={code}"
 
 
     async def login(self, code: str, name: str) -> LoginTokens:
@@ -54,12 +55,18 @@ class TelegramAuth:
         )
 
         if tg_verified:
-            return {"status": False, "msg": "Вы уже верифицировали аккаунт через Telegram"}
+            return {
+                "status": False,
+                "msg": "Вы уже верифицировали аккаунт через Telegram"
+            }
 
         user_id = await self.auth_code.get_id("verify", code)
 
         if not user_id:
-            return {"status": False, "msg": "Код устарел или недействителен, попробуйте еще раз!"}
+            return {
+                "status": False,
+                "msg": "Код устарел или недействителен, попробуйте еще раз!"
+            }
 
 
         user = await self.user_service.get_user_by_id(int(user_id))
@@ -70,7 +77,10 @@ class TelegramAuth:
 
         await self.auth_code.delete("verify", code)
 
-        return {"status": True, "msg": "Аккаунт успешно верифицирован!"}
+        return {
+            "status": True,
+            "msg": "Аккаунт успешно верифицирован!"
+        }
 
     async def reset_password(self,  password: str, code: str):
         user_id = await self.auth_code.get_id("forget_password", code)

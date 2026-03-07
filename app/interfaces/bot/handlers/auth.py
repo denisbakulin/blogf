@@ -10,9 +10,8 @@ from interfaces.bot.keyboards.common import create_start_kb,  cancel_kb, CodeCal
 from sqlalchemy.ext.asyncio import AsyncSession
 from interfaces.bot.utils.verify import verify_user
 from auth.telegram import TelegramAuth
-from interfaces.bot.fsm import Waiting
+from interfaces.bot.fsm import WaitingFSM
 from exceptions.auth import AuthError
-
 
 
 router = Router()
@@ -26,14 +25,14 @@ async def get_code(tg_id: int, session: AsyncSession) -> str:
     return await auth.auth_code.create("login", tg_id)
 
 
-@router.callback_query(F.data == "start")
-async def start_query(callback: CallbackQuery, user: User, session: AsyncSession):
+@router.callback_query(F.data == "menu")
+async def menu_query(callback: CallbackQuery, user: User, session: AsyncSession):
     code = await get_code(callback.from_user.id, session)
 
     await callback.message.edit_text(
         START_TEXT.format(name=user.username),
         reply_markup=create_start_kb(
-            name=callback.from_user.first_name, code=code, verified=True
+             code=code, verified=True
         )
     )
 
@@ -44,10 +43,10 @@ async def start_cmd_process(
         session: AsyncSession,
         user: User,
 ):
-    params = message.text.split()
+    start_cmd = message.text.split()
 
-    if len(params) == 2:
-        verify_code = params[1]
+    if len(start_cmd) == 2:
+        _, verify_code = start_cmd
         success, msg = await verify_user(
             session, code=verify_code, tg_id=message.from_user.id
         )
@@ -55,7 +54,9 @@ async def start_cmd_process(
 
     code = await get_code(message.from_user.id, session)
 
+
     if not user:
+
         await message.answer(
             START_TEXT.format(name=message.from_user.first_name) + UNVERIFIED_TEXT,
             reply_markup=create_start_kb(
@@ -66,7 +67,7 @@ async def start_cmd_process(
         await message.answer(
             START_TEXT.format(name=user.username),
             reply_markup=create_start_kb(
-                name=message.from_user.first_name, code=code, verified=True
+                code=code, verified=True
             )
         )
 
@@ -93,10 +94,10 @@ async def callback_reset_password(
     )
 
     await state.set_data({"code": callback_data.code})
-    await state.set_state(Waiting.password)
+    await state.set_state(WaitingFSM.password)
 
 
-@router.message(StateFilter(Waiting.password))
+@router.message(StateFilter(WaitingFSM.password))
 async def process_reset_password(
         message: Message,
         state: FSMContext,

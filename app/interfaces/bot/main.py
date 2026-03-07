@@ -42,7 +42,6 @@ cmd_menu = [
     ("/start", "Войти в Blogf 🔑"),
 ]
 
-
 def get_cmd_menu(
     cmd_list: list[tuple[str, str]]
 ) -> list[BotCommand]:
@@ -58,6 +57,7 @@ dp.include_routers(
     auth_router,
     notifications_router,
     profile_router,
+    settings_router
 )
 
 async def main() -> None:

@@ -11,7 +11,8 @@ async def verify_user(
     result = await auth.verify(code=code, tg_id=tg_id)
 
     success = result.get("status", False)
-    msg = result.get("msg", "default")
+    msg = result.get("msg", "Что-то пошло не так!")
 
     return (success, msg)
+
 

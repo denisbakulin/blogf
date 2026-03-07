@@ -55,12 +55,14 @@ class UserService(BaseService[User, UserRepository]):
 
 
     async def update_user(self, user: User, update: UserUpdate) -> User:
-
+        username = user.username.lower() if user.username else None
         upd_user = await self.repository.get_one_by(username=update.username)
 
-        if upd_user and upd_user.username != user.username:
+
+        if upd_user and upd_user.username != username:
             raise EntityAlreadyExists(entity="user", username=update.username)
 
+        update.username = username
         user_data = update.model_dump(exclude_none=True)
         profile_data: dict | None = user_data.pop("profile", None)
 

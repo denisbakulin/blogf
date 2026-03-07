@@ -3,8 +3,8 @@ from aiogram import Router, F
 from interfaces.bot.text import get_profile_text
 from services.user import UserService, User
 from interfaces.bot.middlewares.user_middleware import UserMiddleware
-from base.db import session_maker, AsyncSession
-from interfaces.bot.keyboards.common import start_kb
+from base.db import session_maker
+from interfaces.bot.keyboards.common import profile_kb
 
 router = Router()
 router.callback_query.middleware(UserMiddleware(session_maker))
@@ -20,6 +20,9 @@ async def profile_callback(
 
     await callback.message.edit_text(
         get_profile_text(user, profile),
-        reply_markup=start_kb
+        reply_markup=profile_kb
     )
+
+
+
 
