@@ -1,10 +1,12 @@
+from enum import StrEnum
+
+from sqlalchemy import ForeignKey
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import Mapped, mapped_column
+
 from base.model import BaseORM, IdMixin, TimeMixin
 from base.repository import BaseRepository
 from base.service import BaseService
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import ForeignKey
-from enum import StrEnum
 
 
 class ProviderType(StrEnum):

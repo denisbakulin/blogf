@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Path
 from fastapi_cache.decorator import cache
+
 from integrations.weather.external import WeatherResponse, openweather_client
 
 weather_router = APIRouter(prefix="/ext/weather", tags=["🌤 Погода"])

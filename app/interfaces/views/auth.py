@@ -1,13 +1,13 @@
-from deps.auth import baseAuthServiceDep, currentUserDep, tgAuthServiceDep, googleAuthServiceDep
+from fastapi import APIRouter, Cookie, HTTPException, Response, Request
 
+from deps.auth import (baseAuthServiceDep, currentUserDep,
+                       googleAuthServiceDep, tgAuthServiceDep)
 from exceptions.auth import InvalidTokenError
-from fastapi import APIRouter, Cookie, HTTPException, Response
-from schemas.auth import (AccessTokenResponse, AuthCreds, TgLoginAnswer,
-                          TgAuthCode, ForgetPassword, PasswordChange, ResetPassword)
-
+from schemas.auth import (AccessTokenResponse, AuthCreds, ForgetPassword,
+                          PasswordChange, ResetPassword, TgAuthCode,
+                          TgLoginAnswer)
 from utils.auth import (TokenCreator, TokenTypes, get_decoded_token,
                         set_refresh_token_cookie)
-
 
 auth_router = APIRouter(prefix="/auth", tags=["🔐 Авторизация"])
 
@@ -20,10 +20,12 @@ auth_router = APIRouter(prefix="/auth", tags=["🔐 Авторизация"])
 async def login_user(
         response: Response,
         creds: AuthCreds,
-        service: baseAuthServiceDep
+        service: baseAuthServiceDep,
+        request: Request
 ):
+    host = request.client.host
 
-    tokens = await service.login(creds)
+    tokens = await service.login(creds, host)
     set_refresh_token_cookie(response, tokens.refresh)
     return AccessTokenResponse(access_token=tokens.access)
 
@@ -127,13 +129,13 @@ async def telegram_verify(
     response_model=AccessTokenResponse
 )
 async def login_with_telegram(
-        code: str,
+        token: str,
         name: str,
         service: tgAuthServiceDep,
         response: Response
 ):
 
-    result = await service.login(code=code, name=name)
+    result = await service.login(token=token, name=name)
 
     set_refresh_token_cookie(response, result.refresh)
     return AccessTokenResponse(access_token=result.access)

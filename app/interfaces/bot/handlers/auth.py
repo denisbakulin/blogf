@@ -1,18 +1,21 @@
+from aiogram import F, Router
 from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
-from aiogram.types import Message, CallbackQuery
-from aiogram import Router, F
-from interfaces.bot.text import START_TEXT, UNVERIFIED_TEXT, PASSWORD_RULES_TEXT
-from interfaces.bot.middlewares.user_middleware import UserMiddleware
+from aiogram.types import CallbackQuery, Message
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from auth.telegram import TelegramAuth
 from base.db import session_maker
 from entities.user import User
-from interfaces.bot.keyboards.common import create_start_kb,  cancel_kb, CodeCallback
-from sqlalchemy.ext.asyncio import AsyncSession
-from interfaces.bot.utils.verify import verify_user
-from auth.telegram import TelegramAuth
-from interfaces.bot.fsm import WaitingFSM
 from exceptions.auth import AuthError
-
+from interfaces.bot.fsm import WaitingFSM
+from interfaces.bot.keyboards.common import (CodeCallback, cancel_kb,
+                                             create_start_kb)
+from interfaces.bot.middlewares.user_middleware import UserMiddleware
+from interfaces.bot.text import (PASSWORD_RULES_TEXT, START_TEXT,
+                                 UNVERIFIED_TEXT)
+from interfaces.bot.utils.verify import verify_user
+from utils.auth import TokenCreator
 
 router = Router()
 
@@ -20,20 +23,16 @@ router.message.middleware(UserMiddleware(session_maker))
 router.callback_query.middleware(UserMiddleware(session_maker))
 
 
-async def get_code(tg_id: int, session: AsyncSession) -> str:
-    auth = TelegramAuth(session)
-    return await auth.auth_code.create("login", tg_id)
-
+def get_login_token(tg_id: int) -> str:
+    return TokenCreator(tg_id).tg_login
 
 @router.callback_query(F.data == "menu")
-async def menu_query(callback: CallbackQuery, user: User, session: AsyncSession):
-    code = await get_code(callback.from_user.id, session)
+async def menu_query(callback: CallbackQuery, user: User):
+    token = get_login_token(callback.from_user.id)
 
     await callback.message.edit_text(
         START_TEXT.format(name=user.username),
-        reply_markup=create_start_kb(
-             code=code, verified=True
-        )
+        reply_markup=create_start_kb(token=token, verified=True)
     )
 
 
@@ -52,23 +51,17 @@ async def start_cmd_process(
         )
         return await message.answer(msg)
 
-    code = await get_code(message.from_user.id, session)
-
+    token = get_login_token(message.from_user.id)
 
     if not user:
-
         await message.answer(
             START_TEXT.format(name=message.from_user.first_name) + UNVERIFIED_TEXT,
-            reply_markup=create_start_kb(
-                name=message.from_user.first_name, code=code, verified=False
-            )
+            reply_markup=create_start_kb(token=token, verified=False, name=message.from_user.first_name)
         )
     else:
         await message.answer(
             START_TEXT.format(name=user.username),
-            reply_markup=create_start_kb(
-                code=code, verified=True
-            )
+            reply_markup=create_start_kb(token=token, verified=True)
         )
 
 
@@ -124,6 +117,7 @@ async def process_reset_password(
 @router.callback_query(F.data == "cancel")
 async def remove_context(callback: CallbackQuery, state: FSMContext):
     await callback.message.delete()
+    await callback.message.answer("❗️ Действие отменено")
     await state.clear()
 
 

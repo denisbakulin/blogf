@@ -1,7 +1,6 @@
 from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
 
 
-
 class CommentBase(BaseSchema):
     content: str
 

@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from abac.access_level import AccessLevel
 
+from abac.access_level import AccessLevel
 
 
 @dataclass

@@ -1,4 +1,4 @@
-from auth.telegram import  AsyncSession, TelegramAuth
+from auth.telegram import AsyncSession, TelegramAuth
 
 
 async def verify_user(

@@ -19,8 +19,11 @@ class JWTAuthSettings(BaseConfig):
 
     secret_key: str
     algorithm: str
+
     access_token_expire_minutes: int
+    tg_login_token_expire_minutes: int
     refresh_token_expire_days: int
+
 
 class GoogleOAuthSettings(BaseConfig):
     model_config = SettingsConfigDict(

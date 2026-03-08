@@ -1,9 +1,11 @@
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from base.service import BaseService
 from entities.topic_offer import TopicOffer
+from helpers.search import Pagination
 from repositories.topic_offer import TopicOfferRepository
 from schemas.topic_offer import CreateTopicOffer
-from sqlalchemy.ext.asyncio import AsyncSession
-from helpers.search import Pagination
+
 
 class TopicOfferService(BaseService[TopicOffer, TopicOfferRepository]):
 

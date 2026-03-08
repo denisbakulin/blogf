@@ -1,8 +1,9 @@
-from aiogram.types import  CallbackQuery
-from aiogram import Router, F
-from interfaces.bot.middlewares.user_middleware import UserMiddleware
+from aiogram import F, Router
+from aiogram.types import CallbackQuery
+
 from base.db import session_maker
-from interfaces.bot.keyboards.common import menu_kb
+from interfaces.bot.keyboards.common import notify_kb
+from interfaces.bot.middlewares.user_middleware import UserMiddleware
 
 router = Router()
 router.callback_query.middleware(UserMiddleware(session_maker))
@@ -14,7 +15,7 @@ async def notifications_callback(
 ):
 
     await callback.message.edit_text(
-        "тут нотификации",
-        reply_markup=menu_kb
+        "Меню уведомлений",
+        reply_markup=notify_kb
     )
 

@@ -1,29 +1,27 @@
 from typing import Literal
 
+from exceptions.auth import AuthError
 from helpers.search import search_param_fabric
-from passlib.context import CryptContext
+
+BANNED_USERNAME_SYMBOLS = r"""!#$%&'"()*+,-./:;<=>?@[\]^`{|}~"""
+MIN_USERNAME_LENGTH = 3
+MAX_USERNAME_LENGTH = 15
 
 
-pwd_context = CryptContext(
-    schemes=["bcrypt"],
-    deprecated="auto",
+def ensure_correct_username(username: str) -> str:
+    username = username.lower()
 
-)
+    if banned := (set(username) & set(BANNED_USERNAME_SYMBOLS)):
+        raise AuthError(fr"В username есть запрещенные символы {banned}")
 
+    if not (MIN_USERNAME_LENGTH <= len(username) <= MAX_USERNAME_LENGTH):
+        raise AuthError(
+            fr"длина username должна быть в диапазоне от "
+            fr"{MIN_USERNAME_LENGTH} до {MAX_USERNAME_LENGTH}"
+        )
 
-def verify_password(password, hashed_password) -> bool:
-    return pwd_context.verify(password, hashed_password)
+    return username
 
-
-
-def generate_hashed_password(password) -> str:
-    password_bytes = password.encode('utf-8')
-
-    # Если пароль длиннее 72 байтов - обрезаем его
-    if len(password_bytes) > 72:
-        password = password_bytes[:72].decode('utf-8', 'ignore')
-
-    return pwd_context.hash(password)
 
 
 UserSearchParams = search_param_fabric(Literal["username", "name"])

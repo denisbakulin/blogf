@@ -2,20 +2,17 @@
 import asyncio
 import random
 from datetime import datetime, timedelta
+
 from faker import Faker
-from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
-from sqlalchemy import select
 from passlib.context import CryptContext
+from sqlalchemy import select
+from sqlalchemy.ext.asyncio import (AsyncSession, async_sessionmaker,
+                                    create_async_engine)
 
-from entities import (  # импортируйте ваши модели
-    User, Profile, Settings, Container, ContainerType, Post,
-    Comment, Reaction, ReactionType, Subscribe, JoinRequest,
-    TopicOffer, TopicOfferStatus
-)
-
-
-
-
+from entities import (Comment, Container,  # импортируйте ваши модели
+                      ContainerType, JoinRequest, Post, Profile, Reaction,
+                      ReactionType, Settings, Subscribe, TopicOffer,
+                      TopicOfferStatus, User)
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 fake = Faker('ru_RU')
@@ -311,7 +308,7 @@ class DatabasePopulator:
 async def main():
     """Основная функция"""
     # Создаем движок и сессию
-    from base.db import session_maker, engine
+    from base.db import engine, session_maker
 
 
     async with session_maker() as session:

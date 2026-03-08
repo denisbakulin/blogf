@@ -1,13 +1,13 @@
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from base.exceptions import EntityAlreadyExists
 from base.service import BaseService
-from exceptions.auth import InvalidPasswordError
-from helpers.search import Pagination
 from entities.user import Profile, Settings, User
-from repositories.user import UserRepository, ProfileRepository, SettingsRepository
-from schemas.user import  UserCreate, UserSettings, UserUpdate
-from sqlalchemy.ext.asyncio import AsyncSession
-from utils.user import (UserSearchParams, generate_hashed_password,
-                        verify_password)
+from helpers.search import Pagination
+from repositories.user import (ProfileRepository, SettingsRepository,
+                               UserRepository)
+from schemas.user import UserCreate, UserSettings, UserUpdate
+from utils.user import UserSearchParams, ensure_correct_username
 
 
 class ProfileService(BaseService[Profile, ProfileRepository]):
@@ -21,6 +21,8 @@ class SettingsService(BaseService[Settings, SettingsRepository]):
 
 
 class UserService(BaseService[User, UserRepository]):
+    # сделать нормальную обработку username
+
     def __init__(self, session: AsyncSession):
         super().__init__(User, session, UserRepository)
         self.profile_service = ProfileService(session)
@@ -33,7 +35,9 @@ class UserService(BaseService[User, UserRepository]):
 
 
     async def create_user(self, name: str, username: str) -> User:
+        ensure_correct_username(username)
         await self.check_already_exists(username=username)
+
 
         user = await self.create_item(
             name=name, username=username
@@ -55,14 +59,14 @@ class UserService(BaseService[User, UserRepository]):
 
 
     async def update_user(self, user: User, update: UserUpdate) -> User:
-        username = user.username.lower() if user.username else None
-        upd_user = await self.repository.get_one_by(username=update.username)
+        username = ensure_correct_username(update.username) if update.username else None
+        upd_user = await self.repository.get_one_by(username=username)
 
-
-        if upd_user and upd_user.username != username:
-            raise EntityAlreadyExists(entity="user", username=update.username)
+        if upd_user and upd_user.id != user.id:
+            raise EntityAlreadyExists(entity="user", username=username)
 
         update.username = username
+
         user_data = update.model_dump(exclude_none=True)
         profile_data: dict | None = user_data.pop("profile", None)
 

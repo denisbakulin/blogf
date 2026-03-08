@@ -1,12 +1,14 @@
-from sqlalchemy.ext.asyncio import AsyncSession
-from base.settings import google_oauth_settings
 from urllib import parse
-from utils.auth import LoginTokens, TokenCreator, generate_auth_code
-from services.user import UserService
+
 from httpx import AsyncClient
-from auth.user_create import UserCreator
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from auth.oauth import OAuthUserService, ProviderType
+from auth.user_create import UserCreator
+from base.settings import google_oauth_settings
 from exceptions.auth import AuthError
+from services.user import UserService
+from utils.auth import LoginTokens, TokenCreator, generate_auth_code
 
 
 class GoogleAuth:

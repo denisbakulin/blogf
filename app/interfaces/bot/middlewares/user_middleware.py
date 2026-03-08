@@ -1,6 +1,7 @@
-from typing import Awaitable, Any, Callable
-from aiogram.types import TelegramObject
+from typing import Any, Awaitable, Callable
+
 from aiogram import BaseMiddleware
+from aiogram.types import TelegramObject
 
 from services.user import UserService
 

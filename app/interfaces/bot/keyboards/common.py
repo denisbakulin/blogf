@@ -1,6 +1,6 @@
-from aiogram.utils.keyboard import InlineKeyboardBuilder
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.filters.callback_data import CallbackData
+from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 
 class CodeCallback(CallbackData, prefix="reset-pwd-code"):
@@ -43,9 +43,15 @@ menu_kb = create_inline_kb(**{
     "☰ Меню": "menu"
 })
 
+notify_kb = create_inline_kb(**{
+    "Вход в аккаунт Blogf": "new-login",
+    "☰ Меню": "menu"
+})
+
 
 profile_kb = create_inline_kb(**{
     "⚙️ Настройки": "settings",
+    "✏️ Создать пост": "create_post",
     "☰ Меню": "menu",
 })
 
@@ -61,28 +67,27 @@ def create_reset_password_kb(code: str) -> InlineKeyboardMarkup:
     "🔄 Восстановить пароль": CodeCallback(code=code).pack()
 })
 
-
-cancel_kb = create_inline_kb(**{
+cancel_kb =  create_inline_kb(**{
     "Отмена": {
         "callback_data": "cancel",
         "style": "danger"
     }
 })
 
-def create_login_ref(name: str, code: str) -> str:
+def create_login_ref(name: str, token : str) -> str:
     """Ссылка на логин через telegram"""
     name = name or "Anonymous"
 
-    return f"http://127.0.0.1:8000/auth/telegram/login?code={code}&name={name}"
+    return f"http://127.0.0.1:8000/auth/telegram/login?token={token}&name={name}"
 
-def create_start_kb( code: str, verified: bool, name: str | None = None):
+def create_start_kb( token: str, verified: bool, name: str | None = None):
     kb_data = {}
 
     if verified:
         kb_data["👤 Мой Профиль"] = "profile"
         kb_data["🔔 Уведомления"] = "notifications"
 
-    kb_data["🔑 Войти в Blogf"] = create_login_ref(name, code)
+    kb_data["🔑 Войти в Blogf"] = create_login_ref(name, token)
 
     return create_inline_kb(width=2, **kb_data)
 

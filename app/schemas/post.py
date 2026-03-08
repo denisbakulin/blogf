@@ -1,13 +1,15 @@
-from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
 from pydantic import Field
+
+from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
 from schemas.container import ContainerShow
 from schemas.reaction import ReactionsCount
 from schemas.user import UserUsername
 
 
 class PostBase(BaseSchema):
-    title: str = Field(min_length=1, max_length=100)
-    content: str = Field(max_length=5000)
+    title: str = Field(min_length=3, max_length=100)
+    content: str = Field(min_length=10, max_length=5000)
+
 
 class PostSlug(BaseSchema):
     slug: str

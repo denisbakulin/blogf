@@ -4,7 +4,6 @@ from schemas.topic import TopicBase
 from schemas.user import UserUsername
 
 
-
 class CreateTopicOffer(TopicBase):
     ...
 

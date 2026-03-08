@@ -1,13 +1,14 @@
 from typing import Annotated
 
-from base.db import getSessionDep
-from deps.subscribe import SubscribeService
 from fastapi import Depends
+
+from base.db import getSessionDep
+from deps.container import containerServiceDep
+from deps.subscribe import SubscribeService
 from entities.post import Post
 from services.post import PostService
-
-from deps.container import containerServiceDep
 from usecases.post import GetPostUseCase
+
 
 def get_post_service(
         session: getSessionDep

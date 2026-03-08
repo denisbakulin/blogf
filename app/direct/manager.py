@@ -1,8 +1,9 @@
 from functools import wraps
 from typing import Callable, Optional
 
-from direct.schemas import ClientDirectEvent
 from fastapi import WebSocket
+
+from direct.schemas import ClientDirectEvent
 
 
 class WebSocketManager:

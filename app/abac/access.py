@@ -1,9 +1,8 @@
 from abac.access_level import AccessLevel
 from abac.data import AccessContext
-
-
-from entities.user import User
 from entities.container import Container
+from entities.user import User
+
 
 class AccessResolver:
     async def resolve(

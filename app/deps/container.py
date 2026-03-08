@@ -1,9 +1,9 @@
 from typing import Annotated
 
-from base.db import getSessionDep
 from fastapi import Depends
 
-from services.container import ContainerService, Container, ContainerType
+from base.db import getSessionDep
+from services.container import Container, ContainerService, ContainerType
 
 
 async def get_container_service(

@@ -1,10 +1,11 @@
 from typing import Annotated
 
-from base.db import getSessionDep
 from fastapi import Depends, Path
 
-from services.comment import CommentService
+from base.db import getSessionDep
 from entities.comment import Comment
+from services.comment import CommentService
+
 
 async def get_comment_service(
         session: getSessionDep

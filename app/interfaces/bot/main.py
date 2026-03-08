@@ -1,19 +1,16 @@
 import asyncio
-
+import logging
 
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
-
-from aiogram.types import BotCommand, CallbackQuery
 from aiogram.filters import BaseFilter
-from base.settings import bot_settings
-from base.cache import init_fastapi_cache as init_cache
+from aiogram.types import BotCommand, CallbackQuery
 
+from base.cache import init_fastapi_cache as init_cache
+from base.settings import bot_settings
+from interfaces.bot.external.main import broker
 from interfaces.bot.fsm import storage
 
-from interfaces.bot.external.main import broker
-
-import logging
 logging.basicConfig(level=logging.DEBUG)
 
 
@@ -57,7 +54,8 @@ dp.include_routers(
     auth_router,
     notifications_router,
     profile_router,
-    settings_router
+    settings_router,
+    post_router
 )
 
 async def main() -> None:

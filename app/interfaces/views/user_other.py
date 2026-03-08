@@ -1,20 +1,22 @@
 from typing import Annotated
 
-from deps.comment import commentServiceDep
 # from deps.post import postServiceDep
 from fastapi import APIRouter, Depends
+
+from deps.auth import currentUserDep
+from deps.comment import commentServiceDep
+from deps.container import containerServiceDep
+from deps.subscribe import subscribeServiceDep
+from deps.user import userDep, userLogicDep, userServiceDep
+from entities.container import Container, ContainerType
 from helpers.search import Pagination
+from schemas.container import ContainerShow
 # from schemas.post import PostShow
 # from schemas.topic import UserCommentsCountOfTopicShow
-from schemas.user import UserShow, UserProfileShow
-from deps.user import userDep, userServiceDep, userLogicDep
-from utils.user import UserSearchParams
-from schemas.container import ContainerShow
-from deps.container import containerServiceDep
-from entities.container import Container, ContainerType
+from schemas.user import UserProfileShow, UserShow
 from usecases.post import GetWallPostsUseCase
-from deps.auth import currentUserDep
-from deps.subscribe import subscribeServiceDep
+from utils.user import UserSearchParams
+
 user_router = APIRouter(prefix="/users", tags=["👨 Пользователи"])
 
 @user_router.get(
@@ -65,6 +67,8 @@ async def get_user_wall(
     return await service.get_by_or_raise(author_id=user.id, type=ContainerType.wall)
 
 from base.db import getSessionDep
+
+
 @user_router.get(
     "/@{username}/wall/posts",
     summary="Получить посты пользователя",

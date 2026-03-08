@@ -1,8 +1,8 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from entities import ContainerType, User
-from services.user import UserService
 from services.container import ContainerService
+from services.user import UserService
 
 
 class UserCreator:

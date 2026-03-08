@@ -1,10 +1,11 @@
 from pathlib import Path
 from typing import Annotated
 
-from base.model import BaseORM
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import (AsyncSession, async_sessionmaker,
                                     create_async_engine)
+
+from base.model import BaseORM
 
 data_dir = Path(__file__).parent.parent.parent / "data"
 data_dir.mkdir(exist_ok=True)

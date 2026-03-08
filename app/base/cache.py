@@ -1,6 +1,5 @@
 from redis.asyncio import Redis
 
-
 cache = Redis(
     decode_responses=True
 )

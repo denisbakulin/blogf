@@ -1,7 +1,7 @@
-from base.model import BaseORM, TimeMixin
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column
 
+from base.model import BaseORM, TimeMixin
 
 
 class Comment(BaseORM, TimeMixin):

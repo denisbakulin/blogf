@@ -2,12 +2,32 @@ import secrets
 from datetime import datetime, timedelta
 from enum import StrEnum
 
-from base.settings import jwt_auth_settings
-from exceptions.auth import InvalidTokenError, InvalidPasswordError
 from fastapi import Response
 from jose import JWTError, jwt
-from schemas.auth import TokenInfo, LoginTokens
+from passlib.context import CryptContext
 
+from base.settings import jwt_auth_settings
+from exceptions.auth import InvalidPasswordError, InvalidTokenError
+from schemas.auth import LoginTokens, TokenInfo
+
+pwd_context = CryptContext(
+    schemes=["bcrypt"],
+    deprecated="auto",
+)
+
+def verify_password(password, hashed_password) -> bool:
+    return pwd_context.verify(password, hashed_password)
+
+
+
+def generate_hashed_password(password) -> str:
+    password_bytes = password.encode('utf-8')
+
+    # Если пароль длиннее 72 байтов - обрезаем его
+    if len(password_bytes) > 72:
+        password = password_bytes[:72].decode('utf-8', 'ignore')
+
+    return pwd_context.hash(password)
 
 
 def generate_auth_code() -> str:
@@ -48,6 +68,7 @@ def check_password(password):
 class TokenTypes(StrEnum):
     access = "access"
     refresh = "refresh"
+    tg_login = "tg_login"
 
 
 
@@ -74,6 +95,13 @@ class TokenCreator:
     def refresh(self) -> str:
         age = timedelta(days=jwt_auth_settings.refresh_token_expire_days)
         return self._create_token(TokenTypes.refresh, age)
+
+    @property
+    def tg_login(self) -> str:
+        age = timedelta(minutes=jwt_auth_settings.tg_login_token_expire_minutes)
+        return self._create_token(TokenTypes.tg_login, age)
+
+
 
     @property
     def auth_tokens(self) -> LoginTokens:

@@ -1,9 +1,9 @@
 from typing import Any, Optional, TypeVar
-from base.model import BaseORM
-from sqlalchemy import desc, func, select,  delete, Select
+
+from sqlalchemy import Select, delete, desc, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-
+from base.model import BaseORM
 
 T = TypeVar("T", bound=BaseORM)
 

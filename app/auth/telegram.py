@@ -1,17 +1,17 @@
-from exceptions.auth import  AuthError
-from schemas.auth import  LoginTokens
-from services.user import UserService
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from utils.auth import TokenCreator,  ensure_correct_password, generate_auth_code
-from utils.user import generate_hashed_password
-
-from base.cache import cache
-from auth.oauth import OAuthUserService, ProviderType
 from auth.code import AuthCodeManager
-from base.settings import bot_settings
-
+from auth.oauth import OAuthUserService, ProviderType
 from auth.user_create import UserCreator
+from base.cache import cache
+from base.settings import bot_settings
+from exceptions.auth import AuthError
+from schemas.auth import LoginTokens
+from services.user import UserService
+from utils.auth import (TokenCreator, TokenTypes, ensure_correct_password,
+                        generate_auth_code, generate_hashed_password,
+                        get_decoded_token)
+
 
 class TelegramAuth:
 
@@ -26,11 +26,20 @@ class TelegramAuth:
         return f"https://t.me/{bot_settings.bot_name}?start={code}"
 
 
-    async def login(self, code: str, name: str) -> LoginTokens:
-        tg_id = await self.auth_code.get_id("login", code)
+    async def login(self, token: str, name: str) -> LoginTokens:
 
-        if not tg_id:
-            raise AuthError("истекший или несуществующий код")
+        token_info = get_decoded_token(token)
+        tg_id = await self.auth_code.get_id("used_login", token)
+
+        if tg_id:
+            raise AuthError("Код уже был использован")
+
+
+
+        if token_info.type != TokenTypes.tg_login:
+            raise AuthError("Неверный тип токена!")
+
+        tg_id = str(token_info.user_id)
 
         user = await self.user_service.get_user_by_tg_id(int(tg_id))
         user_creator = UserCreator(self.session)
@@ -40,8 +49,7 @@ class TelegramAuth:
             await self.oauth_service.create_item(
                 user_id=user.id, provider_id=tg_id, provider=ProviderType.TELEGRAM
             )
-
-        await self.auth_code.delete("login", code)
+        await self.auth_code.create(type_="used_login", id_=tg_id, code=token)
 
         return TokenCreator(user.id).auth_tokens
 

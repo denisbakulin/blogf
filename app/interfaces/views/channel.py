@@ -1,16 +1,15 @@
+from fastapi import APIRouter, Depends
+
 from deps.auth import currentUserDep
 from deps.channel import *
-from fastapi import APIRouter, Depends
+from deps.reaction import reactionServiceDep
+from entities.reaction import ReactionType
 from helpers.search import Pagination
 from schemas.channel import ChannelCreate
 from schemas.container import ContainerShow
 from schemas.join_request import JRShow
-from schemas.subscribe import SubscriberOfContainerShow
-
-from deps.reaction import reactionServiceDep
-from entities.reaction import ReactionType
 from schemas.reaction import TopicReactionShow
-
+from schemas.subscribe import SubscriberOfContainerShow
 
 channel_router = APIRouter(prefix="/channels", tags=["📚 Каналы"])
 

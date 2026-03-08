@@ -10,6 +10,7 @@ class BaseSchema(BaseModel):
     def from_dto(cls, dto):
         return cls.model_validate(dto)
 
+
 class IdMixinSchema:
     id: int
 

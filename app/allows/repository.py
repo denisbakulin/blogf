@@ -1,6 +1,7 @@
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from allows.model import Allow
 from base.repository import BaseRepository
-from sqlalchemy.ext.asyncio import AsyncSession
 
 
 class AllowRepository(BaseRepository[Allow]):

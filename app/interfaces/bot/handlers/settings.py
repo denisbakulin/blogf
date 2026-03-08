@@ -1,14 +1,16 @@
-from aiogram.types import  CallbackQuery, Message
-from aiogram import Router, F
+from aiogram import F, Router
 from aiogram.filters import StateFilter
-from services.user import UserService, User
-from interfaces.bot.middlewares.user_middleware import UserMiddleware
-from base.db import session_maker
-from interfaces.bot.keyboards.common import settings_kb, ChangeCallback, cancel_kb
-from interfaces.bot.text import create_settings_text
-from interfaces.bot.fsm import ChangeFSM
 from aiogram.fsm.context import FSMContext
+from aiogram.types import CallbackQuery, Message
+
+from base.db import session_maker
+from interfaces.bot.fsm import ChangeFSM
+from interfaces.bot.keyboards.common import (ChangeCallback, cancel_kb,
+                                             settings_kb)
+from interfaces.bot.middlewares.user_middleware import UserMiddleware
+from interfaces.bot.text import create_settings_text
 from interfaces.bot.utils.settings import process_change as process_user_change
+from services.user import User, UserService
 
 router = Router()
 router.callback_query.middleware(UserMiddleware(session_maker))
@@ -59,7 +61,7 @@ async def process_change(
     if status:
         await state.clear()
 
-    await message.reply( msg)
+    await message.reply(msg)
 
 
 

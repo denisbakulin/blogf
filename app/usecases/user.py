@@ -1,8 +1,6 @@
-from entities.user import User, Settings
-from schemas.user import UserUpdate
-
-from schemas.user import UserProfileShow, UserProfile, UserShow, UserSettings
-
+from entities.user import Settings, User
+from schemas.user import (UserProfile, UserProfileShow, UserSettings, UserShow,
+                          UserUpdate)
 from services.user import UserService
 
 

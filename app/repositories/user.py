@@ -1,12 +1,11 @@
-from base.repository import BaseRepository
-from entities.user import User, Profile, Settings
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select
-
 from typing import Any
+
+from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from auth.oauth import OAuthUser, ProviderType
-
-
+from base.repository import BaseRepository
+from entities.user import Profile, Settings, User
 
 
 class ProfileRepository(BaseRepository[Profile]):

@@ -1,9 +1,10 @@
-from typing import TypeAlias, Literal
+from typing import Literal, TypeAlias
+
 from redis.asyncio import Redis
+
 from utils.auth import generate_auth_code
 
-
-codeType: TypeAlias = Literal["login", "verify", "forget_password"]
+codeType: TypeAlias = Literal["used_login", "verify", "forget_password"]
 
 
 
@@ -14,8 +15,8 @@ class AuthCodeManager:
         self.ttl = ttl
 
 
-    async def create(self, type_: codeType, id_: str) -> str:
-        code = generate_auth_code()
+    async def create(self, type_: codeType, id_: str, code: str =None) -> str:
+        code = code or generate_auth_code()
         await self.cache.set(
             f"{self.prefix}:code:{type_}:{code}", id_, ex=self.ttl
         )

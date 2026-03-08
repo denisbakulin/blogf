@@ -1,7 +1,8 @@
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from allows.model import Allow, AllowAction, AllowEntity
 from allows.repository import AllowRepository
 from base.service import BaseService
-from sqlalchemy.ext.asyncio import AsyncSession
 
 
 class AllowService(BaseService[Allow, AllowRepository]):

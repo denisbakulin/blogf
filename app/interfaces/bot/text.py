@@ -1,5 +1,10 @@
-from entities.user import User, Profile
 from aiogram import html
+
+from entities.user import Profile, User
+from interfaces.bot.utils.post import (MAX_POST_CONTENT_LENGTH,
+                                       MAX_POST_TITLE_LENGTH,
+                                       MIN_POST_CONTENT_LENGTH,
+                                       MIN_POST_TITLE_LENGTH)
 
 START_TEXT = (
     "👋 <b>Здравствуйте, {name}!</b>\n\n"
@@ -28,13 +33,26 @@ RESET_PASSWORD_TEXT = (
     "Просто проигнорируй. Пароль остался прежним."
 )
 
+
+ENTER_POST_TITLE_TEXT = (
+    "<b>🔹 Заголовок поста </b>\n"
+    f"  • Минимум: {MIN_POST_TITLE_LENGTH} символов 🔤\n"
+    f"  • Максимум: {MAX_POST_TITLE_LENGTH} символов 🔤\n"
+)
+
+ENTER_POST_CONTENT_TEXT = (
+    "<b>🔹 Содержание поста </b>\n"
+    f"  • Минимум: {MIN_POST_CONTENT_LENGTH} символов 🔤\n"
+    f"  • Максимум: {MAX_POST_CONTENT_LENGTH} символов 🔤\n"
+)
+
 def create_settings_text(user: User, profile: Profile) -> str:
     bio = html.italic(html.quote(profile.bio or "Информация отсутствует"))
 
     text = [
         f"username: <code>{user.username}</code>",
         f"name: <code>{user.name}</code>",
-        f"name: <code>{bio}</code>",
+        f"bio: <code>{bio}</code>",
     ]
 
     return "\n".join(text)

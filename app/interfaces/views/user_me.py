@@ -1,20 +1,22 @@
-from t.reaction import ReactionsGetParams
-
-from deps.auth import currentUserDep
 # from deps.comment import commentServiceDep
 # from deps.post import postServiceDep
 # from deps.reaction import reactionServiceDep
 from fastapi import APIRouter, Depends, status
+
+from deps.auth import currentUserDep
+from deps.user import userLogicDep, userServiceDep
 from helpers.search import Pagination
 # from schemas.comment import CommentShow
 from schemas.post import PostCreate, PostShow
 from schemas.reaction import PostReactionShow, TopicReactionShow
-from schemas.user import  UserSettings, UserUpdate, UserShow, UserProfile, UserProfileShow
-from deps.user import userServiceDep, userLogicDep
+from schemas.user import (UserProfile, UserProfileShow, UserSettings, UserShow,
+                          UserUpdate)
+from t.reaction import ReactionsGetParams
 from usecases.user import UserLogic
 
 me_router = APIRouter(prefix="/me", tags=["👤 Личный кабинет"])
 from dataclasses import asdict
+
 
 @me_router.get(
     "",

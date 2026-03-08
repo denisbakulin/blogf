@@ -1,7 +1,8 @@
+from fastapi import APIRouter, Depends, status
+
 from deps.auth import currentUserDep
 # from deps.topic import topicServiceDep
 from deps.topic_offer import offerTopicDep, topicOfferServiceDep
-from fastapi import APIRouter, Depends, status
 from helpers.search import Pagination
 # from schemas.topic import AddTopicByOffer
 from schemas.topic_offer import CreateTopicOffer, TopicOfferShow

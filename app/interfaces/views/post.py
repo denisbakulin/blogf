@@ -1,16 +1,17 @@
-from t.reaction import ReactionsGetParams, ReactionsSetParams
 from typing import Literal
+
+from fastapi import APIRouter, Depends, status
+from fastapi_cache.decorator import cache
 
 from deps.auth import currentUserDep
 from deps.comment import commentServiceDep
 from deps.post import postDep, postLogicDep, postServiceDep
 from deps.reaction import reactionServiceDep
-from fastapi import APIRouter, Depends, status
-from fastapi_cache.decorator import cache
 from helpers.search import Pagination
 from schemas.comment import CommentCreate, CommentShow
 from schemas.post import PostCreate, PostShow, PostUpdate, TopPostShow
 from schemas.reaction import PostReactionShow
+from t.reaction import ReactionsGetParams, ReactionsSetParams
 from utils.post import PostSearchParams
 
 post_router = APIRouter(prefix="/posts", tags=["📝 Посты"])

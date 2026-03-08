@@ -1,11 +1,12 @@
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from base.exceptions import EntityBadRequestError
 from base.service import BaseService
-from helpers.search import Pagination
 from entities.comment import Comment
+from entities.container import ContainerType
+from helpers.search import Pagination
 from repositories.comment import CommentRepository
 from schemas.comment import CommentCreate, CommentUpdate
-from sqlalchemy.ext.asyncio import AsyncSession
-from entities.container import ContainerType
 
 
 class CommentService(BaseService[Comment, CommentRepository]):

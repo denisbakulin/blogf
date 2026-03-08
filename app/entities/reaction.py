@@ -1,7 +1,10 @@
-from base.model import BaseORM, IdMixin, TimeMixin
+from enum import StrEnum
+
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column
-from enum import StrEnum
+
+from base.model import BaseORM, IdMixin, TimeMixin
+
 
 class ReactionType(StrEnum):
     LIKE = "LIKE"

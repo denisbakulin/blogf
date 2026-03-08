@@ -1,11 +1,11 @@
+from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import aliased
+from sqlalchemy.sql import Select
+
 from base.repository import BaseRepository
 from entities.topic_offer import TopicOffer
-from sqlalchemy.ext.asyncio import AsyncSession
 from entities.user import User
-from sqlalchemy import select
-from sqlalchemy.sql import Select
-from sqlalchemy.orm import aliased
-
 
 Author = aliased(User, name="author")
 Processor = aliased(User, name="processor")

@@ -1,14 +1,11 @@
 from abac.post.policy import PostPolicy
-
-from schemas.post import PostCreate, PostUpdate
-from services.container import ContainerService, AsyncSession
+from entities.container import ContainerType
+from entities.user import User
+from helpers.search import Pagination
+from schemas.post import PostBase, PostCreate, PostUpdate
+from services.container import AsyncSession, ContainerService
 from services.post import PostService
 from services.subscribe import SubscribeService
-
-from entities.user import User
-from entities.container import ContainerType
-from helpers.search import Pagination
-
 
 
 class BasePostUseCase:
@@ -31,6 +28,13 @@ class GetWallPostsUseCase(BasePostUseCase):
         return await self.post_service.get_items_by(
             container_id=container.id, pagination=pagination
         )
+
+class CreateWallPostUseCase(BasePostUseCase):
+    async def execute(self, wall_owner_id: int, post: PostBase):
+        wall = await self.container_service.get_by_or_raise(author_id=wall_owner_id)
+        create = PostCreate(**post.dict(), container_id=wall.id)
+
+        return await self.post_service.create_post(author_id=wall_owner_id,post=create)
 
 
 

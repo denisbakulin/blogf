@@ -1,7 +1,8 @@
 from typing import Annotated
 
-from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
 from pydantic import Field
+
+from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
 
 
 class UserProfile(BaseSchema):

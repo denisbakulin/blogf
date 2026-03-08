@@ -1,8 +1,9 @@
 from typing import Annotated
 
+from fastapi import Depends
+
 from base.db import getSessionDep
 from direct.service import DirectChatService
-from fastapi import Depends
 
 
 def get_direct_chat_service(

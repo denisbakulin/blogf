@@ -1,7 +1,8 @@
 from httpx import AsyncClient
+from pydantic import BaseModel, ValidationError
+
 from integrations.exceptions import ExternalApiRequestError
 from integrations.external_api import ExternalAPI, safe_request
-from pydantic import BaseModel, ValidationError
 
 
 class WeatherResponse(BaseModel):

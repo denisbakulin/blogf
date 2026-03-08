@@ -1,7 +1,8 @@
 from typing import Annotated
 
-from base.db import getSessionDep
 from fastapi import Depends
+
+from base.db import getSessionDep
 from entities.user import User
 from services.user import UserService
 from usecases.user import UserLogic
