@@ -4,8 +4,7 @@ from deps.auth import (baseAuthServiceDep, currentUserDep,
                        googleAuthServiceDep, tgAuthServiceDep)
 from exceptions.auth import InvalidTokenError
 from schemas.auth import (AccessTokenResponse, AuthCreds, ForgetPassword,
-                          PasswordChange, ResetPassword, TgAuthCode,
-                          TgLoginAnswer)
+                          PasswordChange, ResetPassword, LoginGoogle, LoginTelegram)
 from utils.auth import (TokenCreator, TokenTypes, get_decoded_token,
                         set_refresh_token_cookie)
 
@@ -28,21 +27,6 @@ async def login_user(
     tokens = await service.login(creds, host)
     set_refresh_token_cookie(response, tokens.refresh)
     return AccessTokenResponse(access_token=tokens.access)
-
-
-# @auth_router.post(
-#     "/register",
-#     summary="Зарегистрироваться",
-# )
-# async def register_user(
-#         response: Response,
-#         user_create: UserCreate,
-#         service: authServiceDep,
-# ):
-#     tokens = await service.register(user_create)
-#     set_refresh_token_cookie(response, tokens.refresh)
-#     return AccessTokenResponse(access_token=tokens.access)
-
 
 
 @auth_router.post(
@@ -106,12 +90,14 @@ async def reset_password(
         pwd: ResetPassword,
         auth_service: tgAuthServiceDep
 ):
-    return await auth_service.reset_password(code=code, password=pwd.password)
+    return await auth_service.reset_password(
+        code=code, password=pwd.password
+    )
 
 
 
 @auth_router.get(
-    "/telegram/ref",
+    "/telegram/verify-account",
     summary="Верифицировать аккаунт через Telegram",
 )
 async def telegram_verify(
@@ -123,37 +109,44 @@ async def telegram_verify(
 
 
 
-@auth_router.get(
+@auth_router.post(
     "/telegram/login",
     summary="Вход через Telegram",
     response_model=AccessTokenResponse
 )
 async def login_with_telegram(
-        token: str,
-        name: str,
+        login: LoginTelegram,
         service: tgAuthServiceDep,
         response: Response
 ):
 
-    result = await service.login(token=token, name=name)
-
+    result = await service.login(token=login.token, name=login.name)
     set_refresh_token_cookie(response, result.refresh)
     return AccessTokenResponse(access_token=result.access)
 
 
-@auth_router.get("/google/ref")
+@auth_router.get(
+    "/google/ref",
+    summary="Ссылка на google страницу"
+)
 async def google_ref(
         google: googleAuthServiceDep
 ):
     return {"url": google.oauth_uri}
 
 
-@auth_router.get("/google/login")
+@auth_router.post(
+    "/google/login",
+    summary="Логин через google"
+)
 async def login_google(
         google: googleAuthServiceDep,
-        code: str
+        login: LoginGoogle,
+        response: Response
 ):
-    return await google.login(code)
+    tokens = await google.login(login.code)
+    set_refresh_token_cookie(response, tokens.refresh)
+    return AccessTokenResponse(access_token=tokens.access)
 
 
 

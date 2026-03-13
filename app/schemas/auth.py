@@ -9,10 +9,6 @@ class LoginTokens(BaseModel):
     access: str
     refresh: str
 
-class TgLoginAnswer(LoginTokens):
-    success_verify: bool
-
-
 
 class TokenInfo(BaseModel):
     type: str
@@ -23,8 +19,6 @@ class AuthCreds(BaseModel):
     username: str = "admin"
     password: str = "admin"
 
-class TgAuthCode(BaseModel):
-    code: str
 
 class PasswordChange(BaseModel):
     old_password: str | None = Field(min_length=5, default=None)
@@ -37,3 +31,9 @@ class ResetPassword(BaseModel):
 class ForgetPassword(BaseModel):
     username: str
 
+class LoginTelegram(BaseModel):
+    token: str
+    name: str
+
+class LoginGoogle(BaseModel):
+    code: str

@@ -8,7 +8,8 @@ from datetime import datetime
 from faststream import Depends
 from base.db import get_session, AsyncSession
 from auth.telegram import TelegramAuth, ProviderType
-from httpx import AsyncClient
+from interfaces.bot.utils.whois import ipWhoIsManager
+from services.notification import NotificationService, NotificationType
 
 broker = RedisBroker()
 
@@ -33,6 +34,10 @@ async def forget_password(
         reply_markup=create_reset_password_kb(code)
     )
 
+
+
+
+
 @broker.subscriber("new-login")
 async def notify_login(
         user_id: int,
@@ -40,7 +45,9 @@ async def notify_login(
         time: datetime,
         session: AsyncSession = Depends(get_session)
 ):
-    # сделать норм обертку
+    notify = NotificationService(session)
+    await notify.get_by_or_raise(type=NotificationType.BASE_LOGIN, user_id=user_id)
+
     auth = TelegramAuth(session)
 
     tg_oauth = await auth.oauth_service.get_by_or_raise(
@@ -48,27 +55,13 @@ async def notify_login(
     )
 
     tg_id = int(tg_oauth.provider_id)
-    text = ""
 
-    async with AsyncClient() as ac:
-        response = await ac.get(f"http://ipwho.is/{host}?lang=ru")
-        host_info = response.json()
-
-        success = host_info.get("success", False)
-
-        if not success:
-            text += host_info.get("message")
-        else:
-            text += host_info.get("country")
-            text += host_info.get("flag", {}).get("emoji") + "\n"
-            text += host_info.get("region") + "\n"
-            text += host_info.get("city") + "\n"
-
+    text = await ipWhoIsManager().get_host_info(host)
 
 
     await bot.send_message(
         tg_id,
-        (f"🔔 <p>Новое подключение к аккаунту по паролю</p>\n"
+        (f"<b>🔔 Новое подключение к аккаунту по паролю</b>\n"
          f"🌐 IP адрес: {host}\n"
          f"🕐 Время: {time.strftime('%d.%m.%Y %H:%M:%S')}\n{text}"
          ),

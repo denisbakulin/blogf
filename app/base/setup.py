@@ -65,6 +65,7 @@ def include_routers(app: FastAPI):
 
 
 async def init_db(app: FastAPI):
+    from entities.notification import Notification
     from base.db import init_models
     await init_models()
 

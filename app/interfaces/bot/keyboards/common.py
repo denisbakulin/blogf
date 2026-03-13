@@ -43,10 +43,30 @@ menu_kb = create_inline_kb(**{
     "☰ Меню": "menu"
 })
 
-notify_kb = create_inline_kb(**{
-    "Вход в аккаунт Blogf": "new-login",
-    "☰ Меню": "menu"
-})
+from entities.notification import NotificationType, Notification
+def mapper_notify(n: NotificationType) -> str:
+    return {
+        NotificationType.NEW_POST: "Новый пост",
+        NotificationType.BASE_LOGIN: "Логин по паролю"
+    }[n]
+
+
+def create_notify_kb(notifications: list[Notification]):
+    buttons = {}
+    user_notify = [i.type for i in notifications]
+
+    for n in NotificationType:
+        text = mapper_notify(NotificationType(n))
+        if n in user_notify:
+            buttons[f"✅ {text}"] = n
+        else:
+            buttons[f"❌ {text}"] = n
+
+    return create_inline_kb(**{
+        **buttons,
+        "☰ Меню": "menu"
+    })
+
 
 
 profile_kb = create_inline_kb(**{
@@ -78,7 +98,7 @@ def create_login_ref(name: str, token : str) -> str:
     """Ссылка на логин через telegram"""
     name = name or "Anonymous"
 
-    return f"http://127.0.0.1:8000/auth/telegram/login?token={token}&name={name}"
+    return f"http://127.0.0.1:5173/auth/telegram/login?token={token}&name={name}"
 
 def create_start_kb( token: str, verified: bool, name: str | None = None):
     kb_data = {}

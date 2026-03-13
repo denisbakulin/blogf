@@ -21,9 +21,9 @@ class BaseService[T, R]:
 
     def __init__(
             self,
-            model: T,
+            model: type[T],
             session: AsyncSession,
-            repository: type[R]
+            repository: R
     ):
         """При наследовании обязательно переопределить и указать модель,
         чтобы пользоваться методами класса"""
@@ -72,7 +72,7 @@ class BaseService[T, R]:
             pagination: Pagination,
             **params
     ) -> list[T]:
-        return await self.repository.get_any_by(**params, **pagination.dict())
+        return await self.repository.get_any_by(**params, **pagination.dict() )
 
 
 
@@ -98,6 +98,7 @@ class BaseService[T, R]:
         """Удаляет запись по переданному id"""
 
         await self.repository.delete_by_id(item_id)
+        await self.session.commit()
 
 
 

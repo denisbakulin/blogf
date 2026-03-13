@@ -29,15 +29,14 @@ class TelegramAuth:
     async def login(self, token: str, name: str) -> LoginTokens:
 
         token_info = get_decoded_token(token)
+
+        if token_info.type != TokenTypes.tg_login:
+            raise AuthError("Неверный тип токена!")
+
         tg_id = await self.auth_code.get_id("used_login", token)
 
         if tg_id:
             raise AuthError("Код уже был использован")
-
-
-
-        if token_info.type != TokenTypes.tg_login:
-            raise AuthError("Неверный тип токена!")
 
         tg_id = str(token_info.user_id)
 

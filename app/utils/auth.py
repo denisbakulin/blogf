@@ -1,5 +1,5 @@
 import secrets
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from enum import StrEnum
 
 from fastapi import Response
@@ -82,9 +82,22 @@ class TokenCreator:
             token_type: TokenTypes,
             age: timedelta
     ) -> str:
-        expire = datetime.now() + age
-        payload = {"sub": str(self.user_id), "exp": expire, "type": token_type}
-        return jwt.encode(payload, jwt_auth_settings.secret_key, jwt_auth_settings.algorithm)
+        # 1. Берем текущее время в UTC
+        now = datetime.now(timezone.utc)
+        # 2. Вычисляем время истечения и превращаем в число (timestamp)
+        expire = int((now + age).timestamp())
+
+        payload = {
+            "sub": str(self.user_id),
+            "exp": expire,
+            "type": token_type
+        }
+
+        return jwt.encode(
+            payload,
+            jwt_auth_settings.secret_key,
+            algorithm=jwt_auth_settings.algorithm
+        )
 
     @property
     def access(self) -> str:
@@ -118,16 +131,15 @@ def decode_token(token: str, algorithm: str | None = None):
         return jwt.decode(
             token,
             jwt_auth_settings.secret_key,
-            algorithms=[algorithm or jwt_auth_settings.algorithm]
+            algorithms=[algorithm or jwt_auth_settings.algorithm],
+            options={
+                "verify_signature": True,
+                "verify_exp": True,
+            }
         )
 
     except JWTError:
         raise InvalidTokenError("Невалидный или истекший токен")
-
-def ensure_correct_password(pwd: str):
-    is_pwd_correct, msg = check_password(pwd)
-    if not is_pwd_correct:
-        raise InvalidPasswordError(msg)
 
 def get_decoded_token(token: str) -> TokenInfo:
     """Декодирует JWT токен из SHA256"""
@@ -137,6 +149,14 @@ def get_decoded_token(token: str) -> TokenInfo:
     token_type = payload["type"]
 
     return TokenInfo(user_id=user_id, type=token_type)
+
+def ensure_correct_password(pwd: str):
+    is_pwd_correct, msg = check_password(pwd)
+    if not is_pwd_correct:
+        raise InvalidPasswordError(msg)
+
+
+
 
 
 def set_refresh_token_cookie(response: Response, token):

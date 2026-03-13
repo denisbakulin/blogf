@@ -11,22 +11,22 @@ from services.user import UserService
 from utils.auth import LoginTokens, TokenCreator, generate_auth_code
 
 
+GOOGLE_BASE_URL = "https://accounts.google.com/o/oauth2/v2/auth"
+GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token"
 class GoogleAuth:
     def __init__(self, session: AsyncSession):
         self.session = session
         self.user_s = UserService(session)
         self.user_creator = UserCreator(session)
         self.oauth = OAuthUserService(session)
-        self.base_url = "https://accounts.google.com/o/oauth2/v2/auth"
-        self.token_url = "https://oauth2.googleapis.com/token"
-        self.certs_url = "https://www.googleapis.com/oauth2/v3/certs"
+
 
 
     @property
     def oauth_uri(self):
         params = {
             "client_id": google_oauth_settings.client_id,
-            "redirect_uri": "http://localhost:8000/auth/google/login",
+            "redirect_uri": "http://localhost:5173/auth/google/login",
             "response_type": "code",
             "scope": " ".join([
                 "openid",
@@ -35,20 +35,19 @@ class GoogleAuth:
         }
         string = parse.urlencode(params, quote_via=parse.quote)
 
-        return f"{self.base_url}?{string}"
+        return f"{GOOGLE_BASE_URL}?{string}"
 
     async def login(self, code: str):
         from jose import jwt
 
-
         async with AsyncClient() as client:
             response = await client.post(
-                url=self.token_url,
+                url=GOOGLE_TOKEN_URL,
                 data={
                     "client_id": google_oauth_settings.client_id,
                     "client_secret": google_oauth_settings.client_secret,
                     "grant_type": "authorization_code",
-                    "redirect_uri": "http://localhost:8000/auth/google/login",
+                    "redirect_uri": "http://localhost:5173/auth/google/login",
                     "code": code
                 }
             )
@@ -56,6 +55,7 @@ class GoogleAuth:
             result = response.json()
             token = result.get("id_token")
             access_token = result.get("access_token")
+
             if not token or not access_token:
                 raise AuthError("истекший токерн")
             
