@@ -18,12 +18,12 @@ COPY pyproject.toml poetry.lock* /app/
 
 # Устанавливаем зависимости
 RUN poetry config virtualenvs.create false \
-    && poetry install --no-interaction --no-ansi --only main
+    && poetry install --no-interaction --no-root --no-ansi --only main
 
 # ---- Stage 2: Runtime ----
 FROM python:3.12-slim AS runtime
 
-WORKDIR /app
+WORKDIR /app/app
 
 # Копируем зависимости из билд-стейджа
 COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
@@ -41,4 +41,4 @@ ENV POETRY_VIRTUALENVS_CREATE=false
 RUN cd app
 
 # Команда запуска
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
