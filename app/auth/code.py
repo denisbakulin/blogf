@@ -1,7 +1,6 @@
 from typing import Literal, TypeAlias
 
 from redis.asyncio import Redis
-
 from utils.auth import generate_auth_code
 
 codeType: TypeAlias = Literal["used_login", "verify", "forget_password"]
@@ -24,7 +23,6 @@ class AuthCodeManager:
 
     async def get_id(self, type_: codeType, code: str) -> str | None:
         return await self.cache.get(f"{self.prefix}:code:{type_}:{code}")
-
 
 
     async def delete(self, type_: codeType, code: str) -> None:

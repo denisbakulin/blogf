@@ -1,18 +1,26 @@
 # scripts/populate_db.py
 import asyncio
 import random
-from datetime import datetime, timedelta
 
+from entities import (  # импортируйте ваши модели
+    Comment,
+    Container,
+    ContainerType,
+    JoinRequest,
+    Post,
+    Profile,
+    Reaction,
+    ReactionType,
+    Settings,
+    Subscribe,
+    TopicOffer,
+    TopicOfferStatus,
+    User,
+)
 from faker import Faker
 from passlib.context import CryptContext
 from sqlalchemy import select
-from sqlalchemy.ext.asyncio import (AsyncSession, async_sessionmaker,
-                                    create_async_engine)
-
-from entities import (Comment, Container,  # импортируйте ваши модели
-                      ContainerType, JoinRequest, Post, Profile, Reaction,
-                      ReactionType, Settings, Subscribe, TopicOffer,
-                      TopicOfferStatus, User)
+from sqlalchemy.ext.asyncio import AsyncSession
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 fake = Faker('ru_RU')

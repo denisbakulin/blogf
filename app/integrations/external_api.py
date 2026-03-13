@@ -3,7 +3,6 @@ from functools import wraps
 
 from fastapi import HTTPException
 from httpx import HTTPStatusError, RequestError
-
 from integrations.exceptions import ExternalApiRequestError
 
 

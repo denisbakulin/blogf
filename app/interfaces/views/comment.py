@@ -1,7 +1,6 @@
-from fastapi import APIRouter
-
 from deps.comment import commentDep, commentServiceDep
-from schemas.comment import CommentShow, CommentUpdate
+from fastapi import APIRouter
+from schemas.comment import CommentUpdate
 
 comm_router = APIRouter(prefix="/comments", tags=["💬 Комментарии"])
 

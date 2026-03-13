@@ -1,10 +1,9 @@
 from aiogram import F, Router
 from aiogram.types import CallbackQuery
-
-from base.db import session_maker, AsyncSession
+from base.db import AsyncSession, session_maker
+from entities.user import User
 from interfaces.bot.keyboards.common import create_notify_kb
 from interfaces.bot.middlewares.user_middleware import UserMiddleware
-from entities.user import User
 from services.notification import NotificationService, NotificationType
 
 router = Router()
@@ -16,6 +15,8 @@ async def notifications_callback(
         session: AsyncSession,
         user: User
 ):
+    """Показывает меню нотификаций"""
+
     serv = NotificationService(session)
     notifications = await serv.repository.get_any_by(user_id=user.id)
 
@@ -31,6 +32,8 @@ async def process_notification_button(
         session: AsyncSession,
         user: User
 ):
+    """Включает/выключает уведомления"""
+
     serv = NotificationService(session)
     await serv.process(
         user_id=user.id,

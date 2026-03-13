@@ -1,9 +1,8 @@
-from typing import Any, Optional, TypeVar
-
-from sqlalchemy import Select, delete, desc, func, select
-from sqlalchemy.ext.asyncio import AsyncSession
+from typing import Any, TypeVar
 
 from base.model import BaseORM
+from sqlalchemy import Select, delete, desc, func, select
+from sqlalchemy.ext.asyncio import AsyncSession
 
 T = TypeVar("T", bound=BaseORM)
 
@@ -72,13 +71,10 @@ class BaseRepository[T]:
         по заданным параметрам и фильтрам
        """
 
-        if lines:
-            stmt = select(*[getattr(self.model, i) for i in lines])
-        else:
-            stmt = select(self.model)
 
-        if filters:
-           stmt = self._process_or(stmt=stmt, **filters)
+        stmt = select(self.model)
+
+        stmt = self._process_or(stmt=stmt, **filters)
 
         order_func = getattr(self.model, order_by, None)
 
@@ -95,9 +91,20 @@ class BaseRepository[T]:
         return list(i for i in result.scalars().all())
 
 
+    async def search(
+            self,
+            offset: int | None = None,
+            limit: int | None = None,
+            lines: list | None = None,
+            order_by: str = "id",
+    ):
+        ...
+        """НАдо прописать"""
+
+
     async def get_one_by(
             self, **filters
-    ) -> Optional[T]:
+    ) -> T | None:
         """Возвращает уникальную запись или None по указанным параметрам,
         если > 1 - Ошибка"""
         stmt = self._process_or(stmt=select(self.model), **filters)

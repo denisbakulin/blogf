@@ -1,14 +1,14 @@
 import secrets
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from enum import StrEnum
-
-from fastapi import Response
-from jose import JWTError, jwt
-from passlib.context import CryptContext
 
 from base.settings import jwt_auth_settings
 from exceptions.auth import InvalidPasswordError, InvalidTokenError
+from fastapi import Response
+from jose import JWTError, jwt
+from passlib.context import CryptContext
 from schemas.auth import LoginTokens, TokenInfo
+
 
 pwd_context = CryptContext(
     schemes=["bcrypt"],
@@ -38,7 +38,8 @@ def generate_auth_code() -> str:
     return secrets.token_urlsafe(32)
 
 
-def check_password(password):
+def check_password(password) -> tuple[bool, str]:
+
     """
     Простая проверка пароля:
     - Минимум 8 символов
@@ -83,7 +84,7 @@ class TokenCreator:
             age: timedelta
     ) -> str:
         # 1. Берем текущее время в UTC
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         # 2. Вычисляем время истечения и превращаем в число (timestamp)
         expire = int((now + age).timestamp())
 

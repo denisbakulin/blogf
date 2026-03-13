@@ -1,5 +1,3 @@
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from auth.code import AuthCodeManager
 from auth.oauth import OAuthUserService, ProviderType
 from auth.user_create import UserCreator
@@ -8,9 +6,14 @@ from base.settings import bot_settings
 from exceptions.auth import AuthError
 from schemas.auth import LoginTokens
 from services.user import UserService
-from utils.auth import (TokenCreator, TokenTypes, ensure_correct_password,
-                        generate_auth_code, generate_hashed_password,
-                        get_decoded_token)
+from sqlalchemy.ext.asyncio import AsyncSession
+from utils.auth import (
+    TokenCreator,
+    TokenTypes,
+    ensure_correct_password,
+    generate_hashed_password,
+    get_decoded_token,
+)
 
 
 class TelegramAuth:
@@ -44,7 +47,7 @@ class TelegramAuth:
         user_creator = UserCreator(self.session)
 
         if user is None:
-            user = await user_creator.execute(name=name, username=generate_auth_code())
+            user = await user_creator.execute(name=name)
             await self.oauth_service.create_item(
                 user_id=user.id, provider_id=tg_id, provider=ProviderType.TELEGRAM
             )

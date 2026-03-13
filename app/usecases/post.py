@@ -31,7 +31,9 @@ class GetWallPostsUseCase(BasePostUseCase):
 
 class CreateWallPostUseCase(BasePostUseCase):
     async def execute(self, wall_owner_id: int, post: PostBase):
-        wall = await self.container_service.get_by_or_raise(author_id=wall_owner_id)
+        wall = await self.container_service.get_by_or_raise(
+            author_id=wall_owner_id, type=ContainerType.wall
+        )
         create = PostCreate(**post.dict(), container_id=wall.id)
 
         return await self.post_service.create_post(author_id=wall_owner_id,post=create)

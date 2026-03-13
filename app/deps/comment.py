@@ -1,9 +1,8 @@
 from typing import Annotated
 
-from fastapi import Depends, Path
-
 from base.db import getSessionDep
 from entities.comment import Comment
+from fastapi import Depends, Path
 from services.comment import CommentService
 
 

@@ -1,11 +1,10 @@
 from typing import Annotated
 
-from fastapi import Depends
-
 from base.db import getSessionDep
 from deps.container import containerServiceDep
 from deps.subscribe import SubscribeService
 from entities.post import Post
+from fastapi import Depends
 from services.post import PostService
 from usecases.post import GetPostUseCase
 

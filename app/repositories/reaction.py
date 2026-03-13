@@ -1,9 +1,8 @@
-from sqlalchemy import func, select
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from base.repository import BaseRepository
 from entities.post import Post
 from entities.reaction import Reaction, ReactionType
+from sqlalchemy import func, select
+from sqlalchemy.ext.asyncio import AsyncSession
 
 
 class ReactionRepository(BaseRepository[Reaction]):

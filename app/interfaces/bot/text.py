@@ -1,10 +1,11 @@
 from aiogram import html
-
 from entities.user import Profile, User
-from interfaces.bot.utils.post import (MAX_POST_CONTENT_LENGTH,
-                                       MAX_POST_TITLE_LENGTH,
-                                       MIN_POST_CONTENT_LENGTH,
-                                       MIN_POST_TITLE_LENGTH)
+from interfaces.bot.utils.post import (
+    MAX_POST_CONTENT_LENGTH,
+    MAX_POST_TITLE_LENGTH,
+    MIN_POST_CONTENT_LENGTH,
+    MIN_POST_TITLE_LENGTH,
+)
 
 START_TEXT = (
     "👋 <b>Здравствуйте, {name}!</b>\n\n"
@@ -71,12 +72,12 @@ def get_profile_text(user: User, profile: Profile) -> str:
         f"<b>Имя:</b> {name}",
         f"<b>Город:</b> {city}",
         f"<b>Возраст:</b> {profile.age or '—'}",
-        f"⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯",
-        f"📝 <b>О себе:</b>",
+        "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯",
+        "📝 <b>О себе:</b>",
         f"{bio}",
-        f"⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯",
+        "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯",
         f"⚙️ <b>Доступ:</b> {active_icon}",
-        f"⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯",
+        "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯",
         f"📅 <i>В системе с {user.created_at.strftime('%d.%m.%Y')}</i>"
     ]
 

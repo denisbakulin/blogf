@@ -1,7 +1,6 @@
-from sqlalchemy import ForeignKey
-from sqlalchemy.orm import Mapped, mapped_column, relationship
-
 from base.model import BaseORM, IdMixin, TimeMixin
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import Mapped, mapped_column
 
 
 class Post(BaseORM, IdMixin, TimeMixin):

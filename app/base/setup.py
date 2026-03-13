@@ -11,7 +11,11 @@ origins = [
 
 
 def create_app():
-    app = FastAPI(lifespan=lifespan, debug=True)
+    app = FastAPI(
+        lifespan=lifespan,
+        debug=True,
+        description="Application between blog, telegram and forum "
+    )
     set_middlewares(app)
     return app
 
@@ -38,39 +42,15 @@ def set_middlewares(app: FastAPI):
 
 def include_routers(app: FastAPI):
     # from allows.view import allow_router
-    from base.views import root
-    from interfaces.views.auth import auth_router
-    from interfaces.views.channel import channel_router
-    from interfaces.views.comment import comm_router
-    # from interfaces.views.post import post_router
-    from interfaces.views.subscribe import subs_router
-    from interfaces.views.topic import topic_router
-    from interfaces.views.topic_offer import offer_router
-    from interfaces.views.user_me import me_router
-    from interfaces.views.user_other import user_router
-
-    routers: list[APIRouter] = [
-         auth_router, me_router,
-        user_router, channel_router,
-        root, topic_router,
-         offer_router,
-        subs_router,
-        comm_router,
-        # post_router,
-       #  allow_router
-    ]
+    from interfaces.views import routers
 
     for router in routers:
         app.include_router(router)
 
 
 async def init_db(app: FastAPI):
-    from entities.notification import Notification
     from base.db import init_models
     await init_models()
-
-
-
 
 
 
@@ -78,6 +58,7 @@ async def init_db(app: FastAPI):
 async def lifespan(
         app: FastAPI,
 ):
+
     include_routers(app)
     from base.broker import broker
 

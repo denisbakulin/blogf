@@ -2,17 +2,15 @@ from aiogram import F, Router
 from aiogram.filters import StateFilter
 from aiogram.fsm.context import FSMContext
 from aiogram.types import CallbackQuery, Message
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from base.db import session_maker
 from base.exceptions import AppError
 from entities.user import User
 from interfaces.bot.fsm import CreatePostFSM
-from interfaces.bot.keyboards.common import cancel_kb
+from interfaces.bot.keyboards.common import cancel_kb, create_inline_kb
 from interfaces.bot.middlewares.user_middleware import UserMiddleware
 from interfaces.bot.text import ENTER_POST_CONTENT_TEXT, ENTER_POST_TITLE_TEXT
-from interfaces.bot.utils.post import (ensure_correct_content,
-                                       ensure_correct_title)
+from interfaces.bot.utils.post import ensure_correct_content, ensure_correct_title
+from sqlalchemy.ext.asyncio import AsyncSession
 from usecases.post import CreateWallPostUseCase, PostBase
 
 router = Router()
@@ -64,8 +62,10 @@ async def enter_post_content(
         post = await wpc.execute(user.id, PostBase(title=data["title"], content=content))
 
         await message.answer(
-            f"✅ <b>Пост успешно создан!</b>\n"
-            f"Ссылка: http://localhost:8000/posts/{post.slug}"
+            f"✅ <b>Пост успешно создан!</b>\n",
+            reply_markup=create_inline_kb(**{
+                "Открыть пост": f"http://127.0.0.1:8000/posts/{post.slug}"
+            })
         )
         await state.clear()
     except AppError:

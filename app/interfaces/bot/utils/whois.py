@@ -1,6 +1,6 @@
-from httpx import AsyncClient
 from aiolimiter import AsyncLimiter
-
+from httpx import AsyncClient
+from tenacity import retry, stop_after_attempt, wait_fixed
 
 
 class ipWhoIsManager:
@@ -14,6 +14,7 @@ class ipWhoIsManager:
     client = AsyncClient(base_url="http://ipwho.is", )
 
 
+    @retry(stop=stop_after_attempt(3), wait=wait_fixed(4))
     async def get_host_info(self, host: str) -> str:
         async with self.limiter:
             text = ""
@@ -26,7 +27,7 @@ class ipWhoIsManager:
                 text += host_info.get("message")
             else:
                 text += host_info.get("country")
-                text += host_info.get("flag", {}).get("emoji") + "\n"
+                text += host_info.get("flag", {"emoji": "none"}).get("emoji") + "\n"
                 text += host_info.get("region") + "\n"
                 text += host_info.get("city") + "\n"
 

@@ -5,8 +5,6 @@ from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.filters import BaseFilter
 from aiogram.types import BotCommand, CallbackQuery
-
-from base.cache import init_fastapi_cache as init_cache
 from base.settings import bot_settings
 from interfaces.bot.external.main import broker
 from interfaces.bot.fsm import storage
@@ -59,9 +57,6 @@ dp.include_routers(
 )
 
 async def main() -> None:
-
-    init_cache()
-
 
     await bot.set_my_commands(get_cmd_menu(cmd_menu))
 

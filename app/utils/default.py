@@ -1,10 +1,10 @@
-from dataclasses import dataclass, fields
-from typing import Any, Type, TypeVar
+from dataclasses import fields
+from typing import Any, TypeVar
 
 D = TypeVar('D')
 
 
-def to_dto(model: Any, dataclass_type: Type[D]) -> D:
+def to_dto(model: Any, dataclass_type: type[D]) -> D:
     """
     Конвертирует любую модель в dataclass
     """

@@ -1,6 +1,5 @@
 from fastapi import APIRouter
 from fastapi_cache.decorator import cache
-
 from integrations.crypto.external import CryptoResponse, binance_client
 
 crypto_router = APIRouter(prefix="/ext/crypto", tags=["💰 Криптовалюты"])

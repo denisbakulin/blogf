@@ -1,12 +1,10 @@
-from typing import Literal
-
-from fastapi import APIRouter, Depends, status
-from fastapi_cache.decorator import cache
 
 from deps.auth import currentUserDep
 from deps.comment import commentServiceDep
 from deps.post import postDep, postLogicDep, postServiceDep
 from deps.reaction import reactionServiceDep
+from fastapi import APIRouter, Depends, status
+from fastapi_cache.decorator import cache
 from helpers.search import Pagination
 from schemas.comment import CommentCreate, CommentShow
 from schemas.post import PostCreate, PostShow, PostUpdate, TopPostShow
@@ -14,11 +12,11 @@ from schemas.reaction import PostReactionShow
 from t.reaction import ReactionsGetParams, ReactionsSetParams
 from utils.post import PostSearchParams
 
-post_router = APIRouter(prefix="/posts", tags=["📝 Посты"])
+router = APIRouter(prefix="/posts", tags=["📝 Посты"])
 
 
 
-@post_router.post(
+@router.post(
     "",
     summary="Создать пост",
     response_model=PostShow
@@ -31,7 +29,7 @@ async def create_post(
     return await logic.create_post(user=user, post=post)
 
 
-@post_router.get(
+@router.get(
     "/top",
     summary="Получить топ постов",
     response_model=list[TopPostShow],
@@ -45,7 +43,7 @@ async def get_top_of_posts(
 
 
 
-@post_router.get(
+@router.get(
     "/search",
     summary="Поиск поста по ключевым параметрам",
     response_model=list[PostShow]
@@ -60,7 +58,7 @@ async def search_posts(
 
 
 
-@post_router.get(
+@router.get(
     "/{slug}",
     summary="Получить пост",
     response_model=PostShow,
@@ -76,7 +74,7 @@ async def get_post(
     return await logic.get_post(post=post, user=user)
 
 
-@post_router.patch(
+@router.patch(
     "/{slug}",
     summary="Изменить информацию о посте",
     response_model=PostShow
@@ -94,7 +92,7 @@ async def update_post(
 
 
 
-@post_router.post(
+@router.post(
     "/{slug}/comments",
     summary="Создать комментарий под постом",
     response_model=CommentShow,
@@ -110,7 +108,7 @@ async def create_comment(
         comment_create=comment_create, user=user, post=post
     )
 
-@post_router.post(
+@router.post(
     "/{slug}/as-anon/comments",
     summary="Создать комментарий анонимно",
     response_model=CommentShow,
@@ -130,7 +128,7 @@ async def create_comment_as_anon(
 
 
 
-@post_router.get(
+@router.get(
     "/{slug}/comments",
     summary="Получить комментарии под постом",
     response_model=list[CommentShow],
@@ -148,7 +146,7 @@ async def get_post_comments(
 
 
 
-@post_router.post(
+@router.post(
     "/{slug}/reactions",
     summary="Оставить реакцию под постом",
     response_model=PostReactionShow,
@@ -165,7 +163,7 @@ async def add_post_reaction(
     )
 
 
-@post_router.get(
+@router.get(
     "/{slug}/reactions",
     summary="Получить реакции поста",
     response_model=list[PostReactionShow],

@@ -1,8 +1,7 @@
-from fastapi import APIRouter, Query
-from fastapi.websockets import WebSocket, WebSocketDisconnect
-
 from direct.manager import WebSocketManager
 from direct.schemas import ClientDirectEvent
+from fastapi import APIRouter, Query
+from fastapi.websockets import WebSocket, WebSocketDisconnect
 from utils.auth import get_decoded_token
 
 direct_manager = WebSocketManager()

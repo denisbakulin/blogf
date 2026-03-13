@@ -1,4 +1,3 @@
-from typing import Literal
 
 from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
 from schemas.container import ContainerShow

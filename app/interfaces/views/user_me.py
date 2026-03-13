@@ -1,24 +1,17 @@
 # from deps.comment import commentServiceDep
 # from deps.post import postServiceDep
 # from deps.reaction import reactionServiceDep
-from fastapi import APIRouter, Depends, status
-
 from deps.auth import currentUserDep
-from deps.user import userLogicDep, userServiceDep
-from helpers.search import Pagination
+from deps.user import userLogicDep
+from fastapi import APIRouter
+
 # from schemas.comment import CommentShow
-from schemas.post import PostCreate, PostShow
-from schemas.reaction import PostReactionShow, TopicReactionShow
-from schemas.user import (UserProfile, UserProfileShow, UserSettings, UserShow,
-                          UserUpdate)
-from t.reaction import ReactionsGetParams
-from usecases.user import UserLogic
+from schemas.user import UserProfileShow, UserSettings, UserUpdate
 
-me_router = APIRouter(prefix="/me", tags=["👤 Личный кабинет"])
-from dataclasses import asdict
+router = APIRouter(prefix="/me", tags=["👤 Личный кабинет"])
 
 
-@me_router.get(
+@router.get(
     "",
     summary="Получить текущего пользователя",
     response_model=UserProfileShow,
@@ -30,7 +23,7 @@ async def get_me(
     return await logic.get_profile(user)
 
 
-@me_router.patch(
+@router.patch(
     "",
     summary="Изменить информацию текущего пользователя",
     response_model=UserProfileShow
@@ -45,7 +38,7 @@ async def patch_my_info(
 
 
 
-@me_router.get(
+@router.get(
     "/settings",
     summary="Получить настройки аккаунта",
     response_model=UserSettings
@@ -57,7 +50,7 @@ async def get_settings(
     return await logic.get_settings(user)
 
 
-@me_router.patch(
+@router.patch(
     "/settings",
     summary="Изменить настройки аккаунта",
     response_model=UserSettings

@@ -1,14 +1,12 @@
-from fastapi import APIRouter, Depends
-
 from deps.auth import currentUserDep
 from deps.subscribe import subscribeServiceDep
+from fastapi import APIRouter, Depends
 from helpers.search import Pagination
-from schemas.post import PostShow
 
-subs_router = APIRouter(prefix="/subs", tags=["🔔 Подписки"])
+router = APIRouter(prefix="/subs", tags=["🔔 Подписки"])
 
 
-@subs_router.get(
+@router.get(
     "",
     summary="Получить подписки пользователя",
 )
@@ -21,7 +19,7 @@ async def get_subs(
 
 
 
-@subs_router.get(
+@router.get(
     "/content",
     summary="Получить контент подписок",
 )

@@ -1,8 +1,7 @@
 from typing import Annotated
 
-from fastapi import Depends
-
 from base.db import getSessionDep
+from fastapi import Depends
 from services.reaction import ReactionService
 
 

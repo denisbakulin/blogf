@@ -1,11 +1,10 @@
 from typing import Any
 
-from sqlalchemy import select
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from auth.oauth import OAuthUser, ProviderType
 from base.repository import BaseRepository
 from entities.user import Profile, Settings, User
+from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
 
 
 class ProfileRepository(BaseRepository[Profile]):

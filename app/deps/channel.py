@@ -1,12 +1,10 @@
 from typing import Annotated
 
-from fastapi import Depends
-
 from base.db import getSessionDep
 from deps.container import get_container
 from entities.container import Container, ContainerType
-from services.channel import (ChannelService, PrivateChannelService,
-                              PublicChannelService, channels)
+from fastapi import Depends
+from services.channel import ChannelService, PrivateChannelService, PublicChannelService
 
 __all__ = (
     "channelServiceDep",

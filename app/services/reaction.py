@@ -1,13 +1,8 @@
-from functools import partial
-
-from sqlalchemy.ext.asyncio import AsyncSession
 
 from base.service import BaseService
-from entities.post import Post
 from entities.reaction import Reaction, ReactionType
-from helpers.search import Pagination
 from repositories.reaction import ReactionRepository
-from schemas.reaction import ReactionsCount
+from sqlalchemy.ext.asyncio import AsyncSession
 
 
 class ReactionService(BaseService[Reaction, ReactionRepository]):

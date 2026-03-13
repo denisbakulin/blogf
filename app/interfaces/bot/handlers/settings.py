@@ -2,15 +2,14 @@ from aiogram import F, Router
 from aiogram.filters import StateFilter
 from aiogram.fsm.context import FSMContext
 from aiogram.types import CallbackQuery, Message
-
 from base.db import session_maker
 from interfaces.bot.fsm import ChangeFSM
-from interfaces.bot.keyboards.common import (ChangeCallback, cancel_kb,
-                                             settings_kb)
+from interfaces.bot.keyboards.common import ChangeCallback, cancel_kb, settings_kb
 from interfaces.bot.middlewares.user_middleware import UserMiddleware
 from interfaces.bot.text import create_settings_text
 from interfaces.bot.utils.settings import process_change as process_user_change
 from services.user import User, UserService
+from html import escape
 
 router = Router()
 router.callback_query.middleware(UserMiddleware(session_maker))
@@ -22,6 +21,8 @@ async def settings_menu(
         user: User,
         user_service: UserService,
 ):
+    """Главное меню настроек"""
+
     profile = await user_service.profile_service.get_by_or_raise(user_id=user.id)
 
     await callback.message.edit_text(
@@ -31,6 +32,7 @@ async def settings_menu(
 
 
 def get_state(callback_data: ChangeCallback) -> tuple[ChangeFSM, str]:
+
     return {
         callback_data.name: (ChangeFSM.name, "name"),
         callback_data.username: (ChangeFSM.username, "username"),
@@ -61,7 +63,7 @@ async def process_change(
     if status:
         await state.clear()
 
-    await message.reply(msg)
+    await message.reply(escape(msg))
 
 
 

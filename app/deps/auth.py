@@ -1,9 +1,5 @@
 from typing import Annotated
 
-from fastapi import Depends
-from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from auth.base import BaseAuth
 from auth.google import GoogleAuth
 from auth.telegram import TelegramAuth
@@ -11,7 +7,10 @@ from base.db import get_session
 from deps.user import userServiceDep
 from entities.user import User
 from exceptions.auth import InvalidTokenError
+from fastapi import Depends
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from schemas.auth import TokenInfo
+from sqlalchemy.ext.asyncio import AsyncSession
 from utils.auth import get_decoded_token
 
 security = HTTPBearer()

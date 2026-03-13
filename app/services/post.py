@@ -1,10 +1,9 @@
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from base.service import BaseService
 from entities.post import Post
 from helpers.search import Pagination
 from repositories.post import PostRepository
-from schemas.post import PostCreate, PostUpdate
+from schemas.post import PostCreate
+from sqlalchemy.ext.asyncio import AsyncSession
 from utils.post import generate_slug
 
 

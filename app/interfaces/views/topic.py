@@ -1,15 +1,16 @@
 # from t.reaction import ReactionsGetParams, ReactionsSetParams
 # from typing import Literal
 
-from fastapi import APIRouter, Depends, status
-
 from deps.auth import currentUserDep
+
 # from deps.post import postServiceDep
 # from deps.reaction import reactionServiceDep
 # from deps.subscribe import subscribeServiceDep
 from deps.topic import topicDep, topicServiceDep
-from helpers.search import Pagination, search_param_fabric
-from schemas.container import ContainerShow, FullContainerShow
+from fastapi import APIRouter, Depends, status
+from helpers.search import Pagination
+from schemas.container import ContainerShow
+
 # from schemas.post import PostCreate, PostShow
 # from schemas.reaction import TopicReactionShow
 from schemas.topic import CreateTopic
@@ -17,12 +18,12 @@ from schemas.topic import CreateTopic
 # from utils.container import ContainerSearchParams
 # from deps.container import containerDep, ContainerType
 
-topic_router = APIRouter(prefix="/topics", tags=["📚 Темы"])
+router = APIRouter(prefix="/topics", tags=["📚 Темы"])
 
 #
 # topicDep = containerDep(ContainerType)
 
-@topic_router.get(
+@router.get(
     "",
     summary="Получить темы",
     response_model=list[ContainerShow]
@@ -35,7 +36,7 @@ async def get_topics(
 
 
 
-@topic_router.post(
+@router.post(
     "",
     summary="Создать тему",
     response_model=ContainerShow,
@@ -66,7 +67,7 @@ async def create_topic(
 
 
 
-@topic_router.get(
+@router.get(
     "/{slug}",
     summary="Получить тему",
     # response_model=FullContainerShow

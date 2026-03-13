@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import Optional, Type
 
 from pydantic import BaseModel, Field
 from sqlalchemy import inspect
@@ -12,7 +11,7 @@ class ColumnProps(BaseModel):
     nullable: bool = Field(default=False)
     primary_key: bool = Field(default=False)
     unique: bool = Field(default=False)
-    foreign_key: Optional[str] = Field(default=None)
+    foreign_key: str | None = Field(default=None)
 
 
 
@@ -44,7 +43,7 @@ class BaseORM(DeclarativeBase):
         ]
     
     @staticmethod
-    def _get_foreign_key_info(column) -> Optional[str]:
+    def _get_foreign_key_info(column) -> str | None:
 
         foreign_key_info = None
         if column.foreign_keys:

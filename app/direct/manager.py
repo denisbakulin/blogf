@@ -1,9 +1,8 @@
+from collections.abc import Callable
 from functools import wraps
-from typing import Callable, Optional
-
-from fastapi import WebSocket
 
 from direct.schemas import ClientDirectEvent
+from fastapi import WebSocket
 
 
 class WebSocketManager:
@@ -46,7 +45,7 @@ class WebSocketManager:
 
         self.connections[user_id] = ws
 
-    def get_connection(self, user_id: int) -> Optional[WebSocket]:
+    def get_connection(self, user_id: int) -> WebSocket | None:
         return self.connections.get(user_id)
 
 

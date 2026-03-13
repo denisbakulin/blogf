@@ -1,7 +1,6 @@
+from base.model import BaseORM, IdMixin, TimeMixin
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column
-
-from base.model import BaseORM, IdMixin, TimeMixin
 
 
 class JoinRequest(BaseORM, IdMixin, TimeMixin):

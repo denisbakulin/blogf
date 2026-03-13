@@ -43,6 +43,7 @@ class TgBotSettings(BaseSettings):
     token: str
     bot_name: str
 
+
 bot_settings = TgBotSettings()
 jwt_auth_settings = JWTAuthSettings()
 google_oauth_settings = GoogleOAuthSettings()

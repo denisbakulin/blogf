@@ -1,11 +1,9 @@
-from typing import Optional
-
-from sqlalchemy import and_, case, or_, select
-from sqlalchemy.ext.asyncio import AsyncSession
-from user import User
 
 from base.repository import BaseRepository
 from direct.model import DirectChat, DirectUserSettings
+from sqlalchemy import and_, case, or_, select
+from sqlalchemy.ext.asyncio import AsyncSession
+from user import User
 
 
 class DirectChatRepository(BaseRepository):
@@ -15,7 +13,7 @@ class DirectChatRepository(BaseRepository):
 
 
 
-    async def chat_exists(self, id1: int, id2: int) -> Optional[DirectChat]:
+    async def chat_exists(self, id1: int, id2: int) -> DirectChat | None:
         stmt = (
             select(DirectChat)
             .where(

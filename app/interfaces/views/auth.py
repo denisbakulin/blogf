@@ -1,17 +1,31 @@
-from fastapi import APIRouter, Cookie, HTTPException, Response, Request
-
-from deps.auth import (baseAuthServiceDep, currentUserDep,
-                       googleAuthServiceDep, tgAuthServiceDep)
+from deps.auth import (
+    baseAuthServiceDep,
+    currentUserDep,
+    googleAuthServiceDep,
+    tgAuthServiceDep,
+)
 from exceptions.auth import InvalidTokenError
-from schemas.auth import (AccessTokenResponse, AuthCreds, ForgetPassword,
-                          PasswordChange, ResetPassword, LoginGoogle, LoginTelegram)
-from utils.auth import (TokenCreator, TokenTypes, get_decoded_token,
-                        set_refresh_token_cookie)
+from fastapi import APIRouter, Cookie, HTTPException, Request, Response
+from schemas.auth import (
+    AccessTokenResponse,
+    AuthCreds,
+    ForgetPassword,
+    LoginGoogle,
+    LoginTelegram,
+    PasswordChange,
+    ResetPassword,
+)
+from utils.auth import (
+    TokenCreator,
+    TokenTypes,
+    get_decoded_token,
+    set_refresh_token_cookie,
+)
 
-auth_router = APIRouter(prefix="/auth", tags=["🔐 Авторизация"])
+router = APIRouter(prefix="/auth", tags=["🔐 Авторизация"])
 
 
-@auth_router.post(
+@router.post(
     "/login",
     summary="Войти в аккаунт по паролю",
     response_model=AccessTokenResponse,
@@ -29,7 +43,7 @@ async def login_user(
     return AccessTokenResponse(access_token=tokens.access)
 
 
-@auth_router.post(
+@router.post(
     "/logout",
     summary="Выйти из аккаунта"
 )
@@ -38,7 +52,7 @@ async def logout(response: Response):
 
 
 
-@auth_router.post(
+@router.post(
     "/refresh",
     summary="Обновить токен доступа"
 )
@@ -57,7 +71,7 @@ async def refresh_user_token(refresh_token: str = Cookie(None)):
     return AccessTokenResponse(access_token=access_token)
 
 
-@auth_router.put(
+@router.put(
     "/password",
     summary="Изменить пароль"
 )
@@ -70,7 +84,7 @@ async def change_password(
 
 
 
-@auth_router.post(
+@router.post(
     "/forget-password",
     summary="Забыл пароль",
 )
@@ -81,7 +95,7 @@ async def forget_password(
     return await auth_service.forget_password(forget.username)
 
 
-@auth_router.post(
+@router.post(
     "/reset-password",
     summary="Пересоздать пароль",
 )
@@ -96,7 +110,7 @@ async def reset_password(
 
 
 
-@auth_router.get(
+@router.get(
     "/telegram/verify-account",
     summary="Верифицировать аккаунт через Telegram",
 )
@@ -109,7 +123,7 @@ async def telegram_verify(
 
 
 
-@auth_router.post(
+@router.post(
     "/telegram/login",
     summary="Вход через Telegram",
     response_model=AccessTokenResponse
@@ -125,7 +139,7 @@ async def login_with_telegram(
     return AccessTokenResponse(access_token=result.access)
 
 
-@auth_router.get(
+@router.get(
     "/google/ref",
     summary="Ссылка на google страницу"
 )
@@ -135,7 +149,7 @@ async def google_ref(
     return {"url": google.oauth_uri}
 
 
-@auth_router.post(
+@router.post(
     "/google/login",
     summary="Логин через google"
 )

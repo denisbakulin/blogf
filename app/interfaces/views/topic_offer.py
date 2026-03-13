@@ -1,16 +1,17 @@
-from fastapi import APIRouter, Depends, status
-
 from deps.auth import currentUserDep
+
 # from deps.topic import topicServiceDep
-from deps.topic_offer import offerTopicDep, topicOfferServiceDep
+from deps.topic_offer import topicOfferServiceDep
+from fastapi import APIRouter, Depends, status
 from helpers.search import Pagination
+
 # from schemas.topic import AddTopicByOffer
-from schemas.topic_offer import CreateTopicOffer, TopicOfferShow
+from schemas.topic_offer import CreateTopicOffer
 
-offer_router = APIRouter(prefix="/topic-offers", tags=["📚 Предложенные Темы"])
+router = APIRouter(prefix="/topic-offers", tags=["📚 Предложенные Темы"])
 
 
-@offer_router.post(
+@router.post(
     "",
     summary="Предложить тему для обсуждений",
     status_code=status.HTTP_201_CREATED,
@@ -26,7 +27,7 @@ async def create_topic_offer(
 
 
 
-@offer_router.get(
+@router.get(
     "",
     summary="Посмотреть предложенные темы",
 )
@@ -37,7 +38,7 @@ async def offer_theme(
     return await service.get_topic_offers(pagination)
 
 
-@offer_router.get(
+@router.get(
     "/{offer_id}",
     summary="Получить тему для обсуждений",
 )

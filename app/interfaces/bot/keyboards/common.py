@@ -43,7 +43,9 @@ menu_kb = create_inline_kb(**{
     "☰ Меню": "menu"
 })
 
-from entities.notification import NotificationType, Notification
+from entities.notification import Notification, NotificationType
+
+
 def mapper_notify(n: NotificationType) -> str:
     return {
         NotificationType.NEW_POST: "Новый пост",

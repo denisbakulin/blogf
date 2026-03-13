@@ -1,6 +1,5 @@
 from aiogram import F, Router
 from aiogram.types import CallbackQuery
-
 from base.db import session_maker
 from interfaces.bot.keyboards.common import profile_kb
 from interfaces.bot.middlewares.user_middleware import UserMiddleware

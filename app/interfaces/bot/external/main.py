@@ -1,13 +1,13 @@
-from aiogram import Bot
-from faststream.redis import RedisBroker
+from datetime import datetime
 
+from aiogram import Bot
+from auth.telegram import ProviderType, TelegramAuth
+from base.db import AsyncSession, get_session
 from base.settings import bot_settings
+from faststream import Depends
+from faststream.redis import RedisBroker
 from interfaces.bot.keyboards.common import create_reset_password_kb
 from interfaces.bot.text import RESET_PASSWORD_TEXT
-from datetime import datetime
-from faststream import Depends
-from base.db import get_session, AsyncSession
-from auth.telegram import TelegramAuth, ProviderType
 from interfaces.bot.utils.whois import ipWhoIsManager
 from services.notification import NotificationService, NotificationType
 
@@ -35,9 +35,6 @@ async def forget_password(
     )
 
 
-
-
-
 @broker.subscriber("new-login")
 async def notify_login(
         user_id: int,
@@ -57,7 +54,6 @@ async def notify_login(
     tg_id = int(tg_oauth.provider_id)
 
     text = await ipWhoIsManager().get_host_info(host)
-
 
     await bot.send_message(
         tg_id,

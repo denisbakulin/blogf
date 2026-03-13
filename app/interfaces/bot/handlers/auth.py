@@ -2,19 +2,16 @@ from aiogram import F, Router
 from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
 from aiogram.types import CallbackQuery, Message
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from auth.telegram import TelegramAuth
 from base.db import session_maker
 from entities.user import User
 from exceptions.auth import AuthError
 from interfaces.bot.fsm import WaitingFSM
-from interfaces.bot.keyboards.common import (CodeCallback, cancel_kb,
-                                             create_start_kb)
+from interfaces.bot.keyboards.common import CodeCallback, cancel_kb, create_start_kb
 from interfaces.bot.middlewares.user_middleware import UserMiddleware
-from interfaces.bot.text import (PASSWORD_RULES_TEXT, START_TEXT,
-                                 UNVERIFIED_TEXT)
+from interfaces.bot.text import PASSWORD_RULES_TEXT, START_TEXT, UNVERIFIED_TEXT
 from interfaces.bot.utils.verify import verify_user
+from sqlalchemy.ext.asyncio import AsyncSession
 from utils.auth import TokenCreator
 
 router = Router()
@@ -28,6 +25,8 @@ def get_login_token(tg_id: int) -> str:
 
 @router.callback_query(F.data == "menu")
 async def menu_query(callback: CallbackQuery, user: User):
+    """Главная (/start) по callback"""
+
     token = get_login_token(callback.from_user.id)
 
     await callback.message.edit_text(
@@ -42,6 +41,13 @@ async def start_cmd_process(
         session: AsyncSession,
         user: User,
 ):
+    """
+    Обработчик /start?<code : str | None>
+    если код верификации корректен, то верифицируем,
+    если не передан, то показываем главное меню
+    в зависимости от статуса пользователя
+    """
+
     start_cmd = message.text.split()
 
     if len(start_cmd) == 2:
@@ -51,12 +57,14 @@ async def start_cmd_process(
         )
         return await message.answer(msg)
 
+    #генерируем JWT каждый раз на 5 минут
     token = get_login_token(message.from_user.id)
 
     if not user:
         await message.answer(
             START_TEXT.format(name=message.from_user.first_name) + UNVERIFIED_TEXT,
-            reply_markup=create_start_kb(token=token, verified=False, name=message.from_user.first_name)
+            reply_markup=create_start_kb(token=token, verified=False,
+                                         name=message.from_user.first_name)
         )
     else:
         await message.answer(
@@ -72,6 +80,10 @@ async def callback_reset_password(
         callback_data: CodeCallback,
         session: AsyncSession
 ):
+    """
+    Обработчик callback при нажатии 'обновить пароль'
+    """
+
     auth = TelegramAuth(session)
 
     code = await auth.auth_code.get_id("forget_password", callback_data.code)
@@ -91,11 +103,13 @@ async def callback_reset_password(
 
 
 @router.message(StateFilter(WaitingFSM.password))
-async def process_reset_password(
+async def process_correct_reset_password(
         message: Message,
         state: FSMContext,
         session: AsyncSession,
 ):
+    """Проверка валидности пароля"""
+
     data = await state.get_data()
     code = data["code"]
 
