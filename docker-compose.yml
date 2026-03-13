@@ -16,8 +16,6 @@ services:
     depends_on:
       - redis
 
-
-
   bot:
     image: python
     build: .
