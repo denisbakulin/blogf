@@ -1,7 +1,7 @@
 from typing import Annotated
 
 from base.db import getSessionDep
-from entities.topic_offer import TopicOffer
+from entities import TopicOffer
 from fastapi import Depends
 from services.topic_offer import TopicOfferService
 

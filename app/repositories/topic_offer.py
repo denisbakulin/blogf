@@ -1,6 +1,5 @@
 from base.repository import BaseRepository
-from entities.topic_offer import TopicOffer
-from entities.user import User
+from entities import TopicOffer, User
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import aliased

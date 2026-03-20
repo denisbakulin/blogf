@@ -1,11 +1,11 @@
 from typing import Annotated
 
-from auth.base import BaseAuth, AuthError
+from auth.base import AuthError, BaseAuth
 from auth.google import GoogleAuth
 from auth.telegram import TelegramAuth
 from base.db import get_session
 from deps.user import userServiceDep
-from entities.user import User
+from entities import User
 from exceptions.auth import InvalidTokenError
 from fastapi import Depends
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer

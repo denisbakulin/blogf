@@ -1,10 +1,7 @@
 from base.exceptions import EntityBadRequestError
 from base.service import BaseService
-from entities.comment import Comment
-from entities.container import ContainerType, Container
+from entities import Container, ContainerType, Comment, Post, User
 from helpers.search import Pagination
-from entities.post import Post
-from entities.user import User
 from repositories.comment import CommentRepository
 from schemas.comment import CommentCreate, CommentUpdate
 from sqlalchemy.ext.asyncio import AsyncSession

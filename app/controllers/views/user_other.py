@@ -1,18 +1,17 @@
+from base.db import getSessionDep
+from deps.auth import currentUserDep
 from deps.comment import commentServiceDep
 from deps.container import containerServiceDep
 from deps.subscribe import subscribeServiceDep
 from deps.user import userDep, userServiceDep
-from deps.auth import currentUserDep
-from entities.container import ContainerType
+from entities import ContainerType
 from fastapi import APIRouter, Depends, status
 from helpers.search import Pagination
-
-from schemas.container import ContainerShow, WallShow
-from schemas.user import UserProfileShow, UserShow, UserProfile
+from schemas.container import WallShow
+from schemas.post import PostShow
+from schemas.user import UserProfile, UserProfileShow, UserShow
 from usecases.post import GetWallPostsUseCase
 from utils.user import UserSearchParams
-from base.db import getSessionDep
-from schemas.post import PostFullShow, PostShow
 
 router = APIRouter(prefix="/users", tags=["👨 Пользователи"])
 
@@ -52,6 +51,7 @@ async def get_user(
 
 
 from schemas.topic import UserCommentsCountOfTopicShow
+
 
 @router.get(
     "/@{username}/top-topics",

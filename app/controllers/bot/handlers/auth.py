@@ -4,13 +4,13 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import CallbackQuery, Message
 from auth.telegram import TelegramAuth
 from base.db import session_maker
-from entities.user import User
-from exceptions.auth import AuthError
 from controllers.bot.fsm import WaitingFSM
 from controllers.bot.keyboards.common import CodeCallback, cancel_kb, create_start_kb
 from controllers.bot.middlewares.user_middleware import UserMiddleware
 from controllers.bot.text import PASSWORD_RULES_TEXT, START_TEXT, UNVERIFIED_TEXT
 from controllers.bot.utils.verify import verify_user
+from entities import User
+from exceptions.auth import AuthError
 from sqlalchemy.ext.asyncio import AsyncSession
 from utils.auth import TokenCreator
 

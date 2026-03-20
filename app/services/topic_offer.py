@@ -1,5 +1,5 @@
 from base.service import BaseService
-from entities.topic_offer import TopicOffer
+from entities import TopicOffer
 from helpers.search import Pagination
 from repositories.topic_offer import TopicOfferRepository
 from schemas.topic_offer import CreateTopicOffer

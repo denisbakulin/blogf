@@ -1,11 +1,9 @@
 from base.service import BaseService
-from entities.reaction import Reaction, ReactionType
-from repositories.reaction import ReactionRepository
-from sqlalchemy.ext.asyncio import AsyncSession
+from entities import Reaction, ReactionType, User, Post
 
 from helpers.search import Pagination
-from entities.post import Post
-from entities.user import User
+from repositories.reaction import ReactionRepository
+from sqlalchemy.ext.asyncio import AsyncSession
 
 
 class ReactionService(BaseService[Reaction, ReactionRepository]):

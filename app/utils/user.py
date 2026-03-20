@@ -15,7 +15,6 @@ def create_username(length: int = 8):
 
 
 
-
 def ensure_correct_username(username: str) -> str:
     username = username.lower()
 

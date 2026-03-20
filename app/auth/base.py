@@ -3,7 +3,7 @@ from datetime import datetime
 from auth.code import AuthCodeManager
 from base.broker import broker
 from base.cache import cache
-from entities.user import User
+from entities import User
 from exceptions.auth import AuthError, InvalidPasswordError
 from schemas.auth import AuthCreds, LoginTokens, PasswordChange
 from services.user import UserService

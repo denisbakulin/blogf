@@ -1,11 +1,6 @@
-from typing import Any
-
 from base.repository import BaseRepository
-from entities.comment import Comment
-from entities.container import Container, ContainerType
-from entities.post import Post
-from entities.user import User
-from sqlalchemy import distinct, func, select
+from entities import Container, ContainerType, User
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 full_container_stmt = (

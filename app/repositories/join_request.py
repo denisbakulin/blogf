@@ -1,6 +1,6 @@
 from base.repository import BaseRepository
-from entities.join_request import JoinRequest
-from entities.user import User
+from entities import JoinRequest, User
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 

@@ -1,6 +1,6 @@
 from contextlib import asynccontextmanager
 
-from fastapi import APIRouter, FastAPI
+from fastapi import FastAPI
 
 origins = [
     "http://localhost:5173",

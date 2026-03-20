@@ -1,5 +1,5 @@
 from base.schemas import IdMixinSchema
-from entities.topic_offer import TopicOfferStatus
+from entities import TopicOfferStatus
 from schemas.topic import TopicBase
 from schemas.user import UserUsername
 

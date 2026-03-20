@@ -1,8 +1,6 @@
 from base.repository import BaseRepository
-from entities.container import Container
-from entities.post import Post
-from entities.user import User
-from entities.subscribe import Subscribe
+from entities import Container, Post, Subscribe, User
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 

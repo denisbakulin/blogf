@@ -1,8 +1,8 @@
 from typing import Annotated
 
 from base.db import getSessionDep
-from entities.container import Container, ContainerType
 from deps.container import get_container
+from entities import Container, ContainerType
 from fastapi import Depends
 from services.topic import TopicService
 

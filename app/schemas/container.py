@@ -1,5 +1,5 @@
 from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
-from entities.container import ContainerType
+from entities  import ContainerType
 
 
 class ContainerShow(BaseSchema, IdMixinSchema, TimeMixinSchema):

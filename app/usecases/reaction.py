@@ -1,11 +1,11 @@
 from abac.reaction.policy import ReactionPolicy
-from entities.user import User
+from entities import ReactionType, User
 from helpers.search import Pagination
 from services.container import AsyncSession, ContainerService
 from services.post import PostService
 from services.reaction import ReactionService
 from services.subscribe import SubscribeService
-from entities.reaction import ReactionType
+
 
 class BaseReactionUseCase:
     def __init__(

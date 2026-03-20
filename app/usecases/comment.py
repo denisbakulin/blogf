@@ -1,12 +1,11 @@
 from abac.comment.policy import CommentPolicy
-
-from entities.user import User
+from entities import User
 from helpers.search import Pagination
 from schemas.comment import CommentCreate, CommentUpdate
-from services.container import AsyncSession, ContainerService
 from services.comment import CommentService
-from services.subscribe import SubscribeService
+from services.container import AsyncSession, ContainerService
 from services.post import PostService
+from services.subscribe import SubscribeService
 
 
 class BaseCommentUseCase:

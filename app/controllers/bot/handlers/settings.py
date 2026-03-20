@@ -1,3 +1,5 @@
+from html import escape
+
 from aiogram import F, Router
 from aiogram.filters import StateFilter
 from aiogram.fsm.context import FSMContext
@@ -9,7 +11,6 @@ from controllers.bot.middlewares.user_middleware import UserMiddleware
 from controllers.bot.text import create_settings_text
 from controllers.bot.utils.settings import process_change as process_user_change
 from services.user import User, UserService
-from html import escape
 
 router = Router()
 router.callback_query.middleware(UserMiddleware(session_maker))
@@ -49,6 +50,7 @@ async def settings_menu(
 
     await state.set_state(state_)
     await callback.message.answer("Введите " + type_, reply_markup=cancel_kb)
+
 
 @router.message(StateFilter(ChangeFSM))
 async def process_change(

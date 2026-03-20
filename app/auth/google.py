@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from urllib import parse
+from urllib.parse import unquote
 
 from auth.oauth import OAuthUserService, ProviderType
 from auth.user_create import UserCreator
@@ -11,8 +12,6 @@ from services.user import UserService
 from sqlalchemy.ext.asyncio import AsyncSession
 from tenacity import retry, stop_after_attempt, wait_fixed
 from utils.auth import TokenCreator
-
-from urllib.parse import unquote
 
 GOOGLE_BASE_URL = "https://accounts.google.com/o/oauth2/v2/auth"
 GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token"

@@ -2,7 +2,7 @@ from typing import Any
 
 from auth.oauth import OAuthUser, ProviderType
 from base.repository import BaseRepository
-from entities.user import Profile, Settings, User
+from entities import Profile, Settings, User
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 

@@ -16,7 +16,7 @@ async def profile_callback(
         user: User,
         user_service: UserService,
 ):
-    profile = await user_service.get_user_profile(user)
+    profile = await user_service.get_user_profile(user.id)
 
     await callback.message.edit_text(
         get_profile_text(user, profile),

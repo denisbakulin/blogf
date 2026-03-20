@@ -1,5 +1,5 @@
 from base.service import BaseService
-from entities.join_request import JoinRequest
+from entities import JoinRequest
 from repositories.join_request import JoinRequestRepository
 from sqlalchemy.ext.asyncio import AsyncSession
 

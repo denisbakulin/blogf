@@ -1,17 +1,14 @@
+from base.db import getSessionDep
 from deps.auth import currentUserDep
-
 from deps.post import postServiceDep
 from deps.subscribe import subscribeServiceDep
 from deps.topic import topicDep, topicServiceDep
 from fastapi import APIRouter, Depends, status
 from helpers.search import Pagination
-from schemas.post import PostCreate, PostFullShow, PostAuthorShow, PostShow
-from schemas.topic import CreateTopic, TopicShow, ContainerMetricsShow, UserUsername
-from utils.container import ContainerSearchParams
+from schemas.post import PostAuthorShow, PostCreate, PostShow
+from schemas.topic import ContainerMetricsShow, CreateTopic, TopicShow, UserUsername
 from usecases.post import CreatePostUseCase
-from base.db import getSessionDep
-from entities.container import ContainerType
-
+from utils.container import ContainerSearchParams
 
 router = APIRouter(prefix="/topics", tags=["📚 Темы"])
 

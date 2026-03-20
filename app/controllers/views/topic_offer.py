@@ -1,12 +1,10 @@
 from deps.auth import currentUserDep
-
 from deps.topic import topicServiceDep
-from deps.topic_offer import topicOfferServiceDep, offerTopicDep
+from deps.topic_offer import offerTopicDep, topicOfferServiceDep
 from fastapi import APIRouter, Depends, status
 from helpers.search import Pagination
-
 from schemas.topic import AddTopicByOffer
-from schemas.topic_offer import CreateTopicOffer, TopicOfferShow, UserUsername, TopicOfferFullShow
+from schemas.topic_offer import CreateTopicOffer, TopicOfferFullShow, TopicOfferShow, UserUsername
 
 router = APIRouter(prefix="/topic-offers", tags=["📚 Предложенные Темы"])
 

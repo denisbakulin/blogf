@@ -1,9 +1,10 @@
 from typing import Annotated
 
 from base.db import getSessionDep
-from entities.user import User
+from entities import User
 from fastapi import Depends
 from services.user import UserService
+
 
 def get_user_service(
         session: getSessionDep

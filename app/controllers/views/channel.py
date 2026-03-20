@@ -1,13 +1,13 @@
+from base.db import getSessionDep
 from deps.auth import currentUserDep
 from deps.channel import *
 from fastapi import APIRouter, Depends
 from helpers.search import Pagination
 from schemas.channel import ChannelCreate
 from schemas.container import ContainerShow, ContainerUpdate
-from base.db import getSessionDep
-from usecases.post import GetPostsUseCase, CreatePostUseCase
-from usecases.container import UpdateContainerUseCase
 from schemas.post import PostCreate
+from usecases.container import UpdateContainerUseCase
+from usecases.post import CreatePostUseCase, GetPostsUseCase
 
 router = APIRouter(prefix="/channels", tags=["📚 Каналы"])
 

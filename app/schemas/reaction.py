@@ -1,8 +1,9 @@
-from base.schemas import BaseSchema, TimeMixinSchema, IdMixinSchema
+from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
+from entities import ReactionType
 from pydantic import BaseModel
-from schemas.user import UserUsername
-from entities.reaction import ReactionType
 from schemas.post import PostSlug
+from schemas.user import UserUsername
+
 
 class ReactionsCount(BaseModel):
     like: int = 0

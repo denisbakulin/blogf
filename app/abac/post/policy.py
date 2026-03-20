@@ -7,7 +7,6 @@ from entities.user import User
 from services.subscribe import SubscribeService
 
 
-
 class PostPolicy:
 
     def __init__(self, sub_service: SubscribeService):

@@ -1,6 +1,6 @@
 from base.exceptions import EntityAlreadyExists
 from base.service import BaseService
-from entities.user import Profile, Settings, User
+from entities import Profile, Settings, User
 from helpers.search import Pagination
 from repositories.user import ProfileRepository, SettingsRepository, UserRepository
 from schemas.user import UserSettings, UserUpdate

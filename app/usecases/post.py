@@ -1,12 +1,11 @@
 from abac.post.policy import PostPolicy
-from entities.container import ContainerType
-from entities.user import User
+from entities import ContainerType, Post, User
 from helpers.search import Pagination
-from schemas.post import PostBase, PostCreate, PostUpdate
+from schemas.post import PostCreate, PostUpdate
 from services.container import AsyncSession, ContainerService
 from services.post import PostService
 from services.subscribe import SubscribeService
-from entities.post import Post
+
 
 class BasePostUseCase:
     def __init__(

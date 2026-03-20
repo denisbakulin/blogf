@@ -1,11 +1,11 @@
 from aiogram import html
-from entities.user import Profile, User
 from controllers.bot.utils.post import (
     MAX_POST_CONTENT_LENGTH,
     MAX_POST_TITLE_LENGTH,
     MIN_POST_CONTENT_LENGTH,
     MIN_POST_TITLE_LENGTH,
 )
+from entities.user import Profile, User
 
 START_TEXT = (
     "👋 <b>Здравствуйте, {name}!</b>\n\n"

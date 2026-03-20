@@ -1,7 +1,8 @@
 from base.schemas import BaseSchema
-from entities.topic_offer import TopicOfferStatus
+from entities import TopicOfferStatus
 from schemas.container import ContainerMetricsShow
 from schemas.user import UserUsername
+
 
 class TopicBase(BaseSchema):
     title: str

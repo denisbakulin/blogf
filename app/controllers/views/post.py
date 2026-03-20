@@ -1,22 +1,16 @@
 
+from base.db import getSessionDep
 from deps.auth import currentUserDep
-from deps.comment import commentServiceDep
 from deps.post import postDep, postServiceDep
 from deps.reaction import reactionServiceDep
+from entities.container import ContainerType, ReactionType
 from fastapi import APIRouter, Depends, status
-
 from helpers.search import Pagination
-from schemas.comment import CommentCreate, CommentFullShow
-from schemas.post import PostCreate, PostShow, PostUpdate, TopPostShow
-from schemas.reaction import PostReactionShow
+from schemas.comment import CommentCreate
+from schemas.post import PostShow, PostUpdate
+from usecases.comment import CreateCommentUseCase, GetCommentsUseCase
+from usecases.post import GetPostUseCase, UpdatePostUseCase
 from utils.post import PostSearchParams
-from usecases.post import GetPostUseCase, CreatePostUseCase, UpdatePostUseCase
-from base.db import getSessionDep
-from usecases.comment import GetCommentsUseCase, CreateCommentUseCase
-from entities.reaction import ReactionType
-
-from entities.container import ContainerType
-
 
 router = APIRouter(prefix="/posts", tags=["📝 Посты"])
 

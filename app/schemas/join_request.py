@@ -1,5 +1,5 @@
 from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
-from schemas.user import UserUsername
+from schemas import UserUsername
 
 
 class JRShow(BaseSchema, TimeMixinSchema, IdMixinSchema):

@@ -6,3 +6,4 @@ from .reaction import Reaction, ReactionType
 from .subscribe import Subscribe
 from .topic_offer import TopicOffer, TopicOfferStatus
 from .user import Profile, Settings, User
+from .notification import Notification, NotificationType

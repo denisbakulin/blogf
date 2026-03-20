@@ -1,11 +1,11 @@
 from base.service import BaseService
-from entities.post import Post
+from entities import Post, User
 from helpers.search import Pagination
 from repositories.post import PostRepository
 from schemas.post import PostCreate, PostUpdate
 from sqlalchemy.ext.asyncio import AsyncSession
 from utils.post import generate_slug
-from entities.user import User
+
 
 class PostService(BaseService[Post, PostRepository]):
 
