@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from auth.base import BaseAuth
+from auth.base import BaseAuth, AuthError
 from auth.google import GoogleAuth
 from auth.telegram import TelegramAuth
 from base.db import get_session
@@ -36,6 +36,9 @@ async def get_current_user(
     user_service: userServiceDep,
     token: TokenInfo = Depends(get_user_token),
 ) -> User:
+    if token.type != "access":
+        raise AuthError("not access token!!")
+
     return await user_service.get_user_by_id(token.user_id)
 
 

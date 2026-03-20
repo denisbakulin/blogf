@@ -6,11 +6,11 @@ from auth.telegram import TelegramAuth
 from base.db import session_maker
 from entities.user import User
 from exceptions.auth import AuthError
-from interfaces.bot.fsm import WaitingFSM
-from interfaces.bot.keyboards.common import CodeCallback, cancel_kb, create_start_kb
-from interfaces.bot.middlewares.user_middleware import UserMiddleware
-from interfaces.bot.text import PASSWORD_RULES_TEXT, START_TEXT, UNVERIFIED_TEXT
-from interfaces.bot.utils.verify import verify_user
+from controllers.bot.fsm import WaitingFSM
+from controllers.bot.keyboards.common import CodeCallback, cancel_kb, create_start_kb
+from controllers.bot.middlewares.user_middleware import UserMiddleware
+from controllers.bot.text import PASSWORD_RULES_TEXT, START_TEXT, UNVERIFIED_TEXT
+from controllers.bot.utils.verify import verify_user
 from sqlalchemy.ext.asyncio import AsyncSession
 from utils.auth import TokenCreator
 

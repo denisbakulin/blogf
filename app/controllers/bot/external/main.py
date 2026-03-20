@@ -6,9 +6,9 @@ from base.db import AsyncSession, get_session
 from base.settings import bot_settings
 from faststream import Depends
 from faststream.redis import RedisBroker
-from interfaces.bot.keyboards.common import create_reset_password_kb
-from interfaces.bot.text import RESET_PASSWORD_TEXT
-from interfaces.bot.utils.whois import ipWhoIsManager
+from controllers.bot.keyboards.common import create_reset_password_kb
+from controllers.bot.text import RESET_PASSWORD_TEXT
+from controllers.bot.utils.whois import ipWhoIsManager
 from services.notification import NotificationService, NotificationType
 
 broker = RedisBroker()

@@ -77,10 +77,10 @@ class WallContextBuilder(ContainerContexBuilder):
 class ContextResolver:
     def __init__(self, sub_service: SubscribeService):
         self.builders: dict[ContainerType, type[ContainerContexBuilder]] = {
-            ContainerType.wall: WallContextBuilder,
-            ContainerType.topic: TopicContextBuilder,
-            ContainerType.public_channel: PublicChannelContextBuilder,
-            ContainerType.private_channel: PrivateChannelContextBuilder,
+            ContainerType.WALL: WallContextBuilder,
+            ContainerType.TOPIC: TopicContextBuilder,
+            ContainerType.PUBLIC_CHANNEL: PublicChannelContextBuilder,
+            ContainerType.PRIVATE_CHANEL: PrivateChannelContextBuilder,
         }
         self.sub_service = sub_service
 

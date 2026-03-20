@@ -1,5 +1,5 @@
 PORT=8000
-DC = docker compose
+DC=docker compose
 
 
 .PHONY

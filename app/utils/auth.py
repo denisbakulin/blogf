@@ -74,7 +74,7 @@ class TokenTypes(StrEnum):
 
 
 class TokenCreator:
-    """Класс-генератор JWT токенов по user_id"""
+    """Класс-генератор JWT токенов по author_id"""
     def __init__(self, user_id: int):
         self.user_id = user_id
 
@@ -139,8 +139,8 @@ def decode_token(token: str, algorithm: str | None = None):
             }
         )
 
-    except JWTError:
-        raise InvalidTokenError("Невалидный или истекший токен")
+    except JWTError as e:
+        raise InvalidTokenError("Невалидный или истекший токен") from e
 
 def get_decoded_token(token: str) -> TokenInfo:
     """Декодирует JWT токен из SHA256"""

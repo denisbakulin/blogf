@@ -8,14 +8,6 @@ class ContainerShow(BaseSchema, IdMixinSchema, TimeMixinSchema):
     description: str
     type: ContainerType
 
-
-class ContainerSlug(BaseSchema):
-    slug: str
-
-
-
-class FullContainerShow(BaseSchema):
-    container: ContainerShow
-    post_count: int
-    comment_count: int
-
+class ContainerUpdate(BaseSchema):
+    title: str | None = None
+    description: str | None = None

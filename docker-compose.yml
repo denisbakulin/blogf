@@ -17,12 +17,14 @@ services:
       - redis
 
   bot:
-    image: python
-    build: .
     container_name: bot
+    build: .
     env_file: ./envs/.env.bot
     command: python -m interfaces.bot.main
     depends_on:
       - backend
+      - redis
+    environment:
+      - PYTHONPATH=/app
 
 

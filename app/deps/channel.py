@@ -10,10 +10,11 @@ __all__ = (
     "channelServiceDep",
     "privateChannelServiceDep",
     'publicChannelServiceDep',
-    'channelDep' ,
-    'privateChannelDep' ,
-    'publicChannelDep' ,
+    'channelDep',
+    'privateChannelDep',
+    'publicChannelDep',
 )
+
 def get_channel_service(
         session: getSessionDep
 ) -> ChannelService:
@@ -30,7 +31,6 @@ def get_public_channel_service(
     return PublicChannelService(session=session)
 
 
-
 channelServiceDep = Annotated[ChannelService, Depends(get_channel_service)]
 privateChannelServiceDep = Annotated[PrivateChannelService, Depends(get_private_channel_service)]
 publicChannelServiceDep = Annotated[PublicChannelService, Depends(get_public_channel_service)]
@@ -39,17 +39,17 @@ publicChannelServiceDep = Annotated[PublicChannelService, Depends(get_public_cha
 channelDep = Annotated[
     Container,
     Depends(get_container([
-        ContainerType.private_channel,
-        ContainerType.public_channel]
+        ContainerType.PRIVATE_CHANEL,
+        ContainerType.PUBLIC_CHANNEL]
     ))
 ]
 
 privateChannelDep = Annotated[
-    Container, Depends(get_container(ContainerType.private_channel))
+    Container, Depends(get_container(ContainerType.PRIVATE_CHANEL))
 ]
 
 publicChannelDep = Annotated[
-    Container, Depends(get_container(ContainerType.public_channel))
+    Container, Depends(get_container(ContainerType.PUBLIC_CHANNEL))
 ]
 
 

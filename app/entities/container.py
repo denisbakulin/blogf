@@ -1,4 +1,4 @@
-from enum import StrEnum
+from enum import StrEnum, auto
 
 from base.model import BaseORM, IdMixin, TimeMixin
 from sqlalchemy import ForeignKey
@@ -6,10 +6,10 @@ from sqlalchemy.orm import Mapped, mapped_column
 
 
 class ContainerType(StrEnum):
-    wall = "wall"
-    topic = "topic"
-    public_channel = "public_channel"
-    private_channel = "private_channel"
+    WALL = auto()
+    TOPIC = auto()
+    PUBLIC_CHANNEL = auto()
+    PRIVATE_CHANEL = auto()
 
 
 class Container(BaseORM, IdMixin, TimeMixin):

@@ -22,33 +22,48 @@ class BasePostUseCase:
 class GetWallPostsUseCase(BasePostUseCase):
     async def execute(self, wall_owner_id: int, pagination: Pagination):
         container = await self.container_service.get_by_or_raise(
-            author_id=wall_owner_id, type=ContainerType.wall
+            author_id=wall_owner_id, type=ContainerType.WALL
         )
 
         return await self.post_service.get_items_by(
             container_id=container.id, pagination=pagination
         )
 
-class CreateWallPostUseCase(BasePostUseCase):
-    async def execute(self, wall_owner_id: int, post: PostBase):
-        wall = await self.container_service.get_by_or_raise(
-            author_id=wall_owner_id, type=ContainerType.wall
-        )
-        create = PostCreate(**post.dict(), container_id=wall.id)
+class GetPostsUseCase(BasePostUseCase):
+    async def execute(self, container_id: int, pagination: Pagination, user: User):
+        container = await self.container_service.get_item_by_id(container_id)
 
-        return await self.post_service.create_post(author_id=wall_owner_id,post=create)
+        await self.policy.ensure_read(user=user, container=container)
+
+        return await self.post_service.get_items_by(
+            container_id=container.id, pagination=pagination
+        )
+
+
+class CreateWallPostUseCase(BasePostUseCase):
+    async def execute(self, wall_owner_id: int, create: PostBase):
+        wall = await self.container_service.get_by_or_raise(
+            author_id=wall_owner_id, type=ContainerType.WALL
+        )
+        post = PostCreate(**create.dict(), container_id=wall.id)
+
+        return await self.post_service.create_post(
+            author_id=wall_owner_id, post=post, container_id=wall.id
+        )
 
 
 
 class CreatePostUseCase(BasePostUseCase):
 
-    async def execute(self, user: User, post: PostCreate) -> PostCreate:
-        container = await self.container_service.get_item_by_id(post.container_id)
+    async def execute(self, user: User, post: PostCreate, container_id: int):
+        container = await self.container_service.get_item_by_id(container_id)
 
         await self.policy.ensure_create(user=user, container=container)
 
 
-        return await self.post_service.create_post(author_id=user.id, post=post)
+        return await self.post_service.create_post(
+            author_id=user.id, post=post, container_id=container.id
+        )
 
 
 class GetPostUseCase(BasePostUseCase):
@@ -61,14 +76,15 @@ class GetPostUseCase(BasePostUseCase):
         return post
 
 
+
 class UpdatePostUseCase(BasePostUseCase):
-    async def execute(self, user: User, slug: str, post_update: PostUpdate):
+    async def execute(self, user: User, slug: str, update: PostUpdate):
         post = await self.post_service.get_by_or_raise(slug=slug)
         container = await self.container_service.get_item_by_id(post.container_id)
 
         await self.policy.ensure_update(user=user, post=post, container=container)
 
-        return await self.post_service.update_post(post=post, post_update=post_update)
+        return await self.post_service.update_post(post_id=post.id, update=update)
 
 
 class DeletePostUseCase(BasePostUseCase):

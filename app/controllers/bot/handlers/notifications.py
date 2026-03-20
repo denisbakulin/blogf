@@ -2,8 +2,8 @@ from aiogram import F, Router
 from aiogram.types import CallbackQuery
 from base.db import AsyncSession, session_maker
 from entities.user import User
-from interfaces.bot.keyboards.common import create_notify_kb
-from interfaces.bot.middlewares.user_middleware import UserMiddleware
+from controllers.bot.keyboards.common import create_notify_kb
+from controllers.bot.middlewares.user_middleware import UserMiddleware
 from services.notification import NotificationService, NotificationType
 
 router = Router()

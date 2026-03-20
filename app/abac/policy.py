@@ -8,10 +8,10 @@ class BasePolicy:
         self.ctx = ctx
 
     @staticmethod
-    def _ensure(condition: bool):
+    def _ensure(condition: bool, msg: str | None = None):
         if condition:
             return None
-        raise Forbidden()
+        raise Forbidden(msg)
 
     def ensure_is_owner(self):
         self._ensure(self.ctx.is_owner)

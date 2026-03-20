@@ -35,7 +35,7 @@ class BaseAuth:
             raise InvalidPasswordError()
 
         await broker.publish({
-            "user_id": user.id,
+            "author_id": user.id,
             "host": host,
             "time": datetime.now(),
         },"new-login")
@@ -67,6 +67,6 @@ class BaseAuth:
 
         await broker.publish({
             "code": code,
-            "user_id": user.id},
+            "author_id": user.id},
         "forget-password"
         )

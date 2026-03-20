@@ -74,12 +74,12 @@ class ContainerRepository(BaseRepository[Container]):
             strict: bool,
             type_: ContainerType,
             offset: int | None = None,
-            limin: int | None = None
+            limit: int | None = None
     ) -> list[Container]:
 
         stmt = select(Container).where(Container.type == type_)
         stmt = self.process_search_stmt(stmt, strict, field, value)
-        stmt = self.process_paginate_stmt(stmt, offset, limin)
+        stmt = self.process_paginate_stmt(stmt, offset, limit)
 
         result = await self.session.execute(stmt)
 

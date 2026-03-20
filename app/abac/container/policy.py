@@ -11,7 +11,7 @@ class ChannelPolicy:
 
 
     def ensure_is_admin(self, user: User, container: Container):
-        BasePolicy._ensure(user.id == container.author_id)
+        BasePolicy._ensure(user.id == container.author_id, "Не админ")
 
     def ensure_update(self, user: User, container: Container):
         self.ensure_is_admin(user, container)

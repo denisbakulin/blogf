@@ -1,6 +1,6 @@
 from aiogram.fsm.context import FSMContext
 from base.exceptions import AppError
-from interfaces.bot.fsm import ChangeFSM
+from controllers.bot.fsm import ChangeFSM
 from schemas.user import UserProfile, UserUpdate
 from services.user import User, UserService
 

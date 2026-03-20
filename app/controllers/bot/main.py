@@ -6,8 +6,8 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.filters import BaseFilter
 from aiogram.types import BotCommand, CallbackQuery
 from base.settings import bot_settings
-from interfaces.bot.external.main import broker
-from interfaces.bot.fsm import storage
+from controllers.bot.external.main import broker
+from controllers.bot.fsm import storage
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -46,7 +46,7 @@ def get_cmd_menu(
     ]
 
 
-from interfaces.bot.handlers import *
+from controllers.bot.handlers import *
 
 dp.include_routers(
     auth_router,

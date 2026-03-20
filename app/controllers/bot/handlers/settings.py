@@ -3,11 +3,11 @@ from aiogram.filters import StateFilter
 from aiogram.fsm.context import FSMContext
 from aiogram.types import CallbackQuery, Message
 from base.db import session_maker
-from interfaces.bot.fsm import ChangeFSM
-from interfaces.bot.keyboards.common import ChangeCallback, cancel_kb, settings_kb
-from interfaces.bot.middlewares.user_middleware import UserMiddleware
-from interfaces.bot.text import create_settings_text
-from interfaces.bot.utils.settings import process_change as process_user_change
+from controllers.bot.fsm import ChangeFSM
+from controllers.bot.keyboards.common import ChangeCallback, cancel_kb, settings_kb
+from controllers.bot.middlewares.user_middleware import UserMiddleware
+from controllers.bot.text import create_settings_text
+from controllers.bot.utils.settings import process_change as process_user_change
 from services.user import User, UserService
 from html import escape
 

@@ -10,7 +10,13 @@ from .channel import router as channel_router
 
 
 routers = [
-    auth_router, post_router, topic_router, comm_router,
-    me_router, user_router, subs_router, topic_offer_router,
+    auth_router,
+    me_router,
+    user_router,
+    post_router,
+    topic_router,
+    comm_router,
+    subs_router,
+    topic_offer_router,
     channel_router
 ]

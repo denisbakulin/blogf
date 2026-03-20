@@ -3,12 +3,13 @@ from abac.context import ContextResolver
 from abac.policy import BasePolicy
 from entities.container import Container
 from entities.post import Post
+from entities.reaction import Reaction
 from entities.user import User
 from services.subscribe import SubscribeService
 
 
 
-class PostPolicy:
+class ReactionPolicy:
 
     def __init__(self, sub_service: SubscribeService):
         self.sub_service = sub_service
@@ -18,12 +19,12 @@ class PostPolicy:
         ctx = await ContextResolver(self.sub_service).resolve(
             user=user, container=container
         )
-        BasePolicy(ctx).ensure_ge_role(AccessLevel.MEMBER)
+        BasePolicy(ctx).ensure_ge_role(AccessLevel.VIEWER)
 
 
-    async def ensure_update(self, user: User, post: Post, container: Container):
+    async def ensure_update(self, user: User, reaction: Reaction, container: Container):
         ctx = await ContextResolver(self.sub_service).resolve(
-            user=user, container=container, is_owner=post.author_id == user.id
+            user=user, container=container, is_owner=reaction.author_id == user.id
         )
         BasePolicy(ctx).ensure_ge_role(AccessLevel.OWNER)
 
@@ -34,11 +35,12 @@ class PostPolicy:
         BasePolicy(ctx).ensure_ge_role(AccessLevel.VIEWER)
 
 
-    async def ensure_delete(self, user: User, post: Post, container: Container):
+    async def ensure_delete(self, user: User, reaction: Reaction, container: Container):
         ctx = await ContextResolver(self.sub_service).resolve(
-            user=user, container=container, is_owner=post.author_id == user.id
+            user=user, container=container, is_owner=reaction.author_id == user.id
         )
         BasePolicy(ctx).ensure_ge_role(AccessLevel.OWNER)
+
 
 
 

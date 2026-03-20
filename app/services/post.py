@@ -2,7 +2,7 @@ from base.service import BaseService
 from entities.post import Post
 from helpers.search import Pagination
 from repositories.post import PostRepository
-from schemas.post import PostCreate
+from schemas.post import PostCreate, PostUpdate
 from sqlalchemy.ext.asyncio import AsyncSession
 from utils.post import generate_slug
 
@@ -14,11 +14,12 @@ class PostService(BaseService[Post, PostRepository]):
 
 
 
-    async def create_post(self, author_id: int, post: PostCreate) -> Post:
+    async def create_post(self, author_id: int, post: PostCreate, container_id: int) -> Post:
 
         post = await self.create_item(
             **post.model_dump(),
-            author_id=author_id
+            author_id=author_id,
+            container_id=container_id
         )
 
         slug = generate_slug(post.title, post.id)
@@ -34,11 +35,15 @@ class PostService(BaseService[Post, PostRepository]):
     #     posts = await self.repository.get_top_of_topic_posts(q)
     #     return [TopPostShow(post=post, count=count) for post, count in posts]
 
-    async def get_container_posts(
-            self, container_id: int,
-            pagination: Pagination,
-        ) -> list[tuple[Post]]:
-        return await self.repository.get_container_posts(
-            container_id=container_id,
-            **pagination.dict()
-        )
+    # async def get_container_posts(
+    #         self, container_id: int,
+    #         pagination: Pagination,
+    #     ) -> list[tuple[Post]]:
+    #     return await self.repository.get_container_posts(
+    #         container_id=container_id,
+    #         **pagination.dict()
+    #     )
+
+    async def update_post(self, post_id: int, update: PostUpdate):
+        await self.update_item(post_id, **update.dict())
+

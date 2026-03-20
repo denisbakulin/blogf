@@ -39,7 +39,16 @@ class SubscribeService(BaseService[Subscribe, SubscribeRepository]):
 
     async def get_content(self, user_id: int, pagination: Pagination):
 
-        return await self.repository.get_user_content(user_id=user_id, **pagination.dict())
+        return await self.repository.get_user_content(
+            user_id=user_id, **pagination.dict()
+        )
+
+    async def get_container_subscribers(self, container_id: int, pagination: Pagination):
+        return await self.repository.get_container_subscribers(
+            container_id=container_id, **pagination.dict()
+        )
+
+
 
 
 

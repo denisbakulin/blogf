@@ -246,7 +246,7 @@ class DatabasePopulator:
             container = random.choice(self.containers)
 
             # Только для закрытых типов контейнеров
-            if container.type not in [ContainerType.private_channel]:
+            if container.type not in [ContainerType.PRIVATE_CHANEL]:
                 continue
 
             join_request = JoinRequest(

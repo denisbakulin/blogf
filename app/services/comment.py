@@ -38,10 +38,10 @@ class CommentService(BaseService[Comment, CommentRepository]):
     async def update_comment(
             self,
             comment_id: int,
-            comment_update: CommentUpdate,
+            update: CommentUpdate,
     ) -> Comment:
 
-        return await self.update_item(comment_id, **comment_update.model_dump())
+        return await self.update_item(comment_id, **update.model_dump())
 
 
 
@@ -61,7 +61,7 @@ class CommentService(BaseService[Comment, CommentRepository]):
     ):
 
         return await self.repository.get_user_comment_count_in_container(
-            user_id, container_type=ContainerType.topic
+            user_id, container_type=ContainerType.TOPIC
         )
 
 

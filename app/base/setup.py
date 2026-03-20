@@ -42,7 +42,7 @@ def set_middlewares(app: FastAPI):
 
 def include_routers(app: FastAPI):
     # from allows.view import allow_router
-    from interfaces.views import routers
+    from controllers.views import routers
 
     for router in routers:
         app.include_router(router)

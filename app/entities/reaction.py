@@ -13,12 +13,9 @@ class ReactionType(StrEnum):
 class Reaction(BaseORM, TimeMixin, IdMixin):
     __tablename__ = "user_reactions"
 
-    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
+    author_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     post_id: Mapped[int | None] = mapped_column(
         ForeignKey("posts.id", ondelete="CASCADE")
-    )
-    container_id: Mapped[int | None] = mapped_column(
-        ForeignKey("containers.id", ondelete="CASCADE")
     )
 
     type: Mapped[ReactionType]

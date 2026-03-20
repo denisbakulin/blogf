@@ -1,7 +1,8 @@
 from typing import Annotated
 
 from base.db import getSessionDep
-from entities.container import Container
+from entities.container import Container, ContainerType
+from deps.container import get_container
 from fastapi import Depends
 from services.topic import TopicService
 
@@ -13,14 +14,8 @@ def get_topic_service(
 
 topicServiceDep = Annotated[TopicService, Depends(get_topic_service)]
 
-async def get_topic(
-        slug: str,
-        topic_service: topicServiceDep,
-) -> Container:
-    return await topic_service.get_full_container(slug=slug)
 
-
-topicDep = Annotated[Container, Depends(get_topic)]
+topicDep = Annotated[Container, Depends(get_container(type_=ContainerType.TOPIC))]
 
 
 

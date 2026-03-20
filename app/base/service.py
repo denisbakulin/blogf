@@ -61,20 +61,19 @@ class BaseService[T, R]:
                     **params
                 )
             return item
-        except SQLAlchemyError:
+        except SQLAlchemyError as e:
             raise EntityBadRequestError(
                 entity=self.model.__name__, message="Больше 1 объекта в базе"
-            )
+            ) from e
 
     async def get_item_by_id(self, item_id: int) -> T:
         return await self.get_by_or_raise(id=item_id)
 
     async def get_items_by(
-            self,
-            pagination: Pagination,
+            self, pagination: Pagination,
             **params
     ) -> list[T]:
-        return await self.repository.get_any_by(**params, **pagination.dict() )
+        return await self.repository.get_any_by(**params, **pagination.dict())
 
 
 

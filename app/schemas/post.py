@@ -35,7 +35,6 @@ class FullPostShow(BaseSchema):
 
 
 class PostCreate(PostBase):
-    container_id: int
     allow_comments: bool | None = None
     allow_reactions: bool | None = None
 

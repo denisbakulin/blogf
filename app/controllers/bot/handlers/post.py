@@ -5,11 +5,11 @@ from aiogram.types import CallbackQuery, Message
 from base.db import session_maker
 from base.exceptions import AppError
 from entities.user import User
-from interfaces.bot.fsm import CreatePostFSM
-from interfaces.bot.keyboards.common import cancel_kb, create_inline_kb
-from interfaces.bot.middlewares.user_middleware import UserMiddleware
-from interfaces.bot.text import ENTER_POST_CONTENT_TEXT, ENTER_POST_TITLE_TEXT
-from interfaces.bot.utils.post import ensure_correct_content, ensure_correct_title
+from controllers.bot.fsm import CreatePostFSM
+from controllers.bot.keyboards.common import cancel_kb, create_inline_kb
+from controllers.bot.middlewares.user_middleware import UserMiddleware
+from controllers.bot.text import ENTER_POST_CONTENT_TEXT, ENTER_POST_TITLE_TEXT
+from controllers.bot.utils.post import ensure_correct_content, ensure_correct_title
 from sqlalchemy.ext.asyncio import AsyncSession
 from usecases.post import CreateWallPostUseCase, PostBase
 

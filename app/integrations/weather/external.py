@@ -37,8 +37,8 @@ class OpenWeatherAPI(ExternalAPI):
                     humidity=data["main"]["humidity"],
                     wind_speed=data["wind"]["speed"],
                 ))
-            except (ValidationError, KeyError):
-                raise ExternalApiRequestError(data)
+            except (ValidationError, KeyError) as e:
+                raise ExternalApiRequestError(data) from e
 
         return res
 

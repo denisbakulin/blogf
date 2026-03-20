@@ -20,7 +20,7 @@ class UserCreator:
         user = await self.user_s.create_user(name=name, username=username)
 
         await self.container_s.create_item(
-            author_id=user.id, type=ContainerType.wall, title=f"user[{user.id}]-wall"
+            author_id=user.id, type=ContainerType.WALL, title=f"user[{user.id}]-wall"
         )
 
         return user

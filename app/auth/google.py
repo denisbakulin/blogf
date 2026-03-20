@@ -12,6 +12,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from tenacity import retry, stop_after_attempt, wait_fixed
 from utils.auth import TokenCreator
 
+from urllib.parse import unquote
+
 GOOGLE_BASE_URL = "https://accounts.google.com/o/oauth2/v2/auth"
 GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token"
 
@@ -50,6 +52,8 @@ def decode_google_token(token: str, access_token: str) -> GoogleUserCreds:
 
 @retry(stop=stop_after_attempt(3), wait=wait_fixed(4))
 async def get_google_token(code: str) -> GoogleTokenInfo:
+    code = unquote(code)
+
     async with AsyncClient() as client:
         response = await client.post(
             url=GOOGLE_TOKEN_URL,
@@ -67,7 +71,7 @@ async def get_google_token(code: str) -> GoogleTokenInfo:
         access_token = result.get("access_token")
 
         if not token or not access_token:
-            raise AuthError("истекший токерн")
+            raise AuthError(f"истекший токерн, {result=}")
 
         return GoogleTokenInfo(token=token, access=access_token)
 

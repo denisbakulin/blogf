@@ -1,15 +1,13 @@
-
-# from deps.post import postServiceDep
 from deps.comment import commentServiceDep
 from deps.container import containerServiceDep
 from deps.subscribe import subscribeServiceDep
 from deps.user import userDep, userLogicDep, userServiceDep
+from deps.auth import currentUserDep
 from entities.container import ContainerType
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, status
 from helpers.search import Pagination
 
-# from schemas.post import PostShow
-# from schemas.topic import UserCommentsCountOfTopicShow
+
 from schemas.user import UserProfileShow, UserShow
 from usecases.post import GetWallPostsUseCase
 from utils.user import UserSearchParams
@@ -61,7 +59,7 @@ async def get_user_wall(
         user: userDep,
         service: containerServiceDep,
 ):
-    return await service.get_by_or_raise(author_id=user.id, type=ContainerType.wall)
+    return await service.get_by_or_raise(author_id=user.id, type=ContainerType.WALL)
 
 from base.db import getSessionDep
 
@@ -69,27 +67,29 @@ from base.db import getSessionDep
 @router.get(
     "/@{username}/wall/posts",
     summary="Получить посты пользователя",
-)#todo
+)
 async def get_user_wall_posts(
         wall_owner: userDep,
         session: getSessionDep,
         pagination: Pagination = Depends(),
 ):
-    uc = GetWallPostsUseCase(session)
-    return await uc.execute(wall_owner_id=wall_owner.id, pagination=pagination)
+    logic = GetWallPostsUseCase(session)
+    return await logic.execute(wall_owner_id=wall_owner.id, pagination=pagination)
 
 
-@router.get(
+@router.post(
     "/@{username}/wall/subscribe",
     summary="Подписаться на пользователя",
+    status_code=status.HTTP_201_CREATED
 )
 async def subscribe_to_user_wall(
         user: userDep,
+        cuser: currentUserDep,
         service: subscribeServiceDep,
         c: containerServiceDep
 ):
-    container = await c.get_by_or_raise(author_id=user.id, type=ContainerType.wall)
-    return await service.create_subscribe(user_id=user.id, container_id=container.id)
+    container = await c.get_by_or_raise(author_id=user.id, type=ContainerType.WALL)
+    return await service.create_subscribe(user_id=cuser.id, container_id=container.id)
 
 
 

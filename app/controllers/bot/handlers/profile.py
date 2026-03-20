@@ -1,9 +1,9 @@
 from aiogram import F, Router
 from aiogram.types import CallbackQuery
 from base.db import session_maker
-from interfaces.bot.keyboards.common import profile_kb
-from interfaces.bot.middlewares.user_middleware import UserMiddleware
-from interfaces.bot.text import get_profile_text
+from controllers.bot.keyboards.common import profile_kb
+from controllers.bot.middlewares.user_middleware import UserMiddleware
+from controllers.bot.text import get_profile_text
 from services.user import User, UserService
 
 router = Router()

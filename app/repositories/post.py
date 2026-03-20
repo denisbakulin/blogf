@@ -16,7 +16,7 @@ class PostRepository(BaseRepository[Post]):
         super().__init__(Post, session)
 
 
-    async def get_top_of_topic_posts(
+    async def get_top_of_container_posts(
             self, container_type: ContainerType,
             reaction_type: ReactionType,
             offset: int | None = None,
