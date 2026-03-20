@@ -41,15 +41,19 @@ class GetPostsUseCase(BasePostUseCase):
 
 
 class CreateWallPostUseCase(BasePostUseCase):
-    async def execute(self, wall_owner_id: int, create: PostBase) -> Post:
+    async def execute(self, wall_owner_id: int, create: PostCreate) -> Post:
         wall = await self.container_service.get_by_or_raise(
             author_id=wall_owner_id, type=ContainerType.WALL
         )
-        post = PostCreate(**create.dict(), container_id=wall.id)
 
-        return await self.post_service.create_post(
-            author_id=wall_owner_id, post=post, container_id=wall.id
+        post = await self.post_service.create_post(
+            author_id=wall_owner_id, post=create, container_id=wall.id
         )
+        await self.container_service.update_item(
+            wall.id, post_count=wall.post_count + 1
+        )
+
+        return post
 
 
 
@@ -61,9 +65,15 @@ class CreatePostUseCase(BasePostUseCase):
         await self.policy.ensure_create(user=user, container=container)
 
 
-        return await self.post_service.create_post(
+        post = await self.post_service.create_post(
             author_id=user.id, post=post, container_id=container.id
         )
+
+        await self.container_service.update_item(
+            container.id, post_count=container.post_count + 1
+        )
+
+        return post
 
 
 class GetPostUseCase(BasePostUseCase):

@@ -5,7 +5,7 @@ from repositories.post import PostRepository
 from schemas.post import PostCreate, PostUpdate
 from sqlalchemy.ext.asyncio import AsyncSession
 from utils.post import generate_slug
-
+from entities.user import User
 
 class PostService(BaseService[Post, PostRepository]):
 
@@ -39,14 +39,14 @@ class PostService(BaseService[Post, PostRepository]):
     #     posts = await self.repository.get_top_of_topic_posts(q)
     #     return [TopPostShow(post=post, count=count) for post, count in posts]
 
-    # async def get_container_posts(
-    #         self, container_id: int,
-    #         pagination: Pagination,
-    #     ) -> list[tuple[Post]]:
-    #     return await self.repository.get_container_posts(
-    #         container_id=container_id,
-    #         **pagination.dict()
-    #     )
+    async def get_posts_with_authors(
+            self, container_id: int,
+            pagination: Pagination,
+        ) -> list[tuple[Post, User]]:
+        return await self.repository.get_container_posts(
+            container_id=container_id,
+            **pagination.dict()
+        )
 
     async def update_post(self, post_id: int, update: PostUpdate):
         await self.update_item(post_id, **update.dict())

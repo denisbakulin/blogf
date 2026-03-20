@@ -19,6 +19,9 @@ class PostShow(PostBase, IdMixinSchema, TimeMixinSchema):
     allow_comments: bool
     allow_reactions: bool
 
+class PostAuthorShow(PostShow):
+    author: UserUsername
+
 
 class PostFullShow(PostShow):
     author: UserUsername

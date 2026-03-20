@@ -29,9 +29,15 @@ class CreateCommentUseCase(BaseCommentUseCase):
 
         await self.policy.ensure_create(user=user, container=container)
 
-        return await self.comment_service.create_comment(
+        comment = await self.comment_service.create_comment(
             create=create, user_id=user.id, post_id=post.id
         )
+
+        await self.container_service.update_item(
+            container.id, comment_count=container.comment_count + 1
+        )
+
+        return comment
 
 
 class GetCommentsUseCase(BaseCommentUseCase):
@@ -74,6 +80,9 @@ class DeleteCommentUseCase(BaseCommentUseCase):
 
         await self.comment_service.delete_item_by_id(comment.id)
 
+        await self.container_service.update_item(
+            container.id, comment_count=container.comment_count - 1
+        )
 
 
 

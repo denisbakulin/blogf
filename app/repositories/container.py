@@ -15,20 +15,6 @@ full_container_stmt = (
     .join(User, Container.author_id == User.id)
 )
 
-metrics_stmt = (
-    select(Container, User, func.count(distinct(Post.id)), func.count(Comment.id))
-    .select_from(Container)
-    .join(
-        User, Container.author_id == User.id
-    )
-    .outerjoin(
-        Post, Container.id == Post.container_id
-    )
-    .outerjoin(
-        Comment, Comment.post_id == Post.id
-    )
-    .group_by(Container.id)
-)
 
 
 class ContainerRepository(BaseRepository[Container]):
@@ -37,25 +23,34 @@ class ContainerRepository(BaseRepository[Container]):
         super().__init__(Container, session)
 
 
-    async def get_metrics_container(self, container_id: int) -> (Container, User, int, int):
-        stmt = metrics_stmt.where(Container.id == container_id)
+    async def get_metrics_container(self,type_: ContainerType, container_id: int) -> tuple[Container, User]:
+        stmt = (
+            full_container_stmt
+            .where(Container.id == container_id)
+            .where(Container.type == type_)
+        )
         result = await self.session.execute(stmt)
 
         container, user, post_count, comment_count = result.first()
 
-        return (container, user, post_count, comment_count)
+        return (container, user)
 
     async def get_metrics_containers(self,
+            type_: ContainerType,
             offset: int | None = None,
-            limit: int | None = None
-    ) -> list[tuple[Container, User, int, int]]:
-        stmt = self.process_paginate_stmt(metrics_stmt, offset, limit)
+            limit: int | None = None,
+
+    ) -> list[tuple[Container, User]]:
+
+        stmt = self.process_paginate_stmt(
+            full_container_stmt.where(Container.type == type_), offset, limit
+        )
 
         result = await self.session.execute(stmt)
 
         return [
-            (container, user, post_count, comment_count)
-            for container, user, post_count, comment_count in result.all()
+            (container, user)
+            for container, user in result.all()
         ]
 
 
@@ -68,25 +63,25 @@ class ContainerRepository(BaseRepository[Container]):
 
         return (container, user)
 
-    async def search(
-            self, field: str,
-            value: Any,
-            strict: bool,
-            type_: ContainerType,
-            offset: int | None = None,
-            limit: int | None = None
-    ) -> list[Container]:
-
-        stmt = select(Container).where(Container.type == type_)
-        stmt = self.process_search_stmt(stmt, strict, field, value)
-        stmt = self.process_paginate_stmt(stmt, offset, limit)
-
-        result = await self.session.execute(stmt)
-
-        return [
-            (container, user)
-            for container, user in result.all()
-        ]
+    # async def search(
+    #         self, field: str,
+    #         value: Any,
+    #         strict: bool,
+    #         type_: ContainerType,
+    #         offset: int | None = None,
+    #         limit: int | None = None
+    # ) -> list[Container]:
+    #
+    #     stmt = select(Container).where(Container.type == type_)
+    #     stmt = self.process_search_stmt(stmt, strict, field, value)
+    #     stmt = self.process_paginate_stmt(stmt, offset, limit)
+    #
+    #     result = await self.session.execute(stmt)
+    #
+    #     return [
+    #         (container, user)
+    #         for container, user in result.all()
+    #     ]
 
 
 

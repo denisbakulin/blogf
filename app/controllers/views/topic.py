@@ -5,12 +5,13 @@ from deps.subscribe import subscribeServiceDep
 from deps.topic import topicDep, topicServiceDep
 from fastapi import APIRouter, Depends, status
 from helpers.search import Pagination
-from schemas.post import PostCreate
-from schemas.topic import CreateTopic
+from schemas.post import PostCreate, PostFullShow, PostAuthorShow, PostShow
+from schemas.topic import CreateTopic, TopicShow, ContainerMetricsShow, UserUsername
 from utils.container import ContainerSearchParams
 from usecases.post import CreatePostUseCase
 from base.db import getSessionDep
 from entities.container import ContainerType
+
 
 router = APIRouter(prefix="/topics", tags=["📚 Темы"])
 
@@ -18,12 +19,20 @@ router = APIRouter(prefix="/topics", tags=["📚 Темы"])
 @router.get(
     "",
     summary="Получить темы",
+    response_model=list[TopicShow]
 )
 async def get_topics(
         service: topicServiceDep,
         pagination: Pagination = Depends()
 ):
-    return await service.get_items_by(pagination=pagination, type=ContainerType.TOPIC)
+    topics = await service.get_topics(pagination=pagination)
+
+    return [
+        TopicShow(
+            **ContainerMetricsShow.from_orm(topic).model_dump(),
+            author=UserUsername.from_orm(author)
+        ) for topic, author in topics
+    ]
 
 
 
@@ -59,17 +68,26 @@ async def search_topics(
 @router.get(
     "/{slug}",
     summary="Получить тему",
+    response_model=TopicShow
 )
 async def get_topic(
         topic: topicDep,
         service: topicServiceDep
 ):
-    return topic
+    topic, author = await service.get_topic(topic.id)
+
+    return TopicShow(
+        **ContainerMetricsShow.from_orm(topic).model_dump(),
+        author=UserUsername.from_orm(author)
+    )
+
 
 
 @router.get(
     "/{slug}/sub",
     summary="Подписаться на тему",
+    status_code=status.HTTP_201_CREATED,
+    response_model=None
 )
 async def subscribe_to_topic(
         topic: topicDep,
@@ -84,6 +102,7 @@ async def subscribe_to_topic(
     "/{slug}/posts",
     summary="Создать пост",
     status_code=status.HTTP_201_CREATED,
+    response_model=PostShow
 )
 async def create_post(
         topic: topicDep,
@@ -93,23 +112,35 @@ async def create_post(
 ):
     logic = CreatePostUseCase(session)
 
-    return await logic.execute(
+    post = await logic.execute(
         user=user, post=create, container_id=topic.id
     )
+
+    return PostShow.from_orm(post)
 
 
 @router.get(
     "/{slug}/posts",
     summary="Получить посты по теме",
+    response_model=list[PostAuthorShow]
 )
 async def get_topic_posts(
         topic: topicDep,
         service: postServiceDep,
         pagination: Pagination = Depends()
 ):
-    return await service.get_items_by(
+
+
+    posts = await service.get_posts_with_authors(
         container_id=topic.id, pagination=pagination
     )
+
+    return [
+        PostAuthorShow(
+            **PostShow.from_orm(post).model_dump(),
+            author=UserUsername.from_orm(author)
+        ) for post, author in posts
+    ]
 
 
 

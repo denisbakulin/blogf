@@ -1,10 +1,11 @@
 from base.schemas import BaseSchema
 from entities.topic_offer import TopicOfferStatus
-
+from schemas.container import ContainerMetricsShow
+from schemas.user import UserUsername
 
 class TopicBase(BaseSchema):
     title: str
-    description: str | None = None
+    description: str
 
 
 class CreateTopic(TopicBase):
@@ -21,3 +22,6 @@ class AddTopicByOffer(BaseSchema):
 class UserCommentsCountOfTopicShow(BaseSchema):
     topic_slug: str
     count: int
+
+class TopicShow(ContainerMetricsShow):
+    author: UserUsername

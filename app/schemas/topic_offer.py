@@ -5,12 +5,14 @@ from schemas.user import UserUsername
 
 
 class CreateTopicOffer(TopicBase):
-    ...
-
+    pass
 
 class TopicOfferShow(CreateTopicOffer, IdMixinSchema):
     status: TopicOfferStatus
+
+
+class TopicOfferFullShow(TopicOfferShow):
     author: UserUsername
-    process_user: UserUsername| None
+    process_user: UserUsername | None
 
 

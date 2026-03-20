@@ -20,6 +20,9 @@ class Container(BaseORM, IdMixin, TimeMixin):
     description: Mapped[str | None]
     type: Mapped[ContainerType]
 
+    post_count: Mapped[int] = mapped_column(default=0)
+    comment_count: Mapped[int] = mapped_column(default=0)
+
     author_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
 
 

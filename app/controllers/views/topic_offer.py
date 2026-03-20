@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends, status
 from helpers.search import Pagination
 
 from schemas.topic import AddTopicByOffer
-from schemas.topic_offer import CreateTopicOffer
+from schemas.topic_offer import CreateTopicOffer, TopicOfferShow, UserUsername, TopicOfferFullShow
 
 router = APIRouter(prefix="/topic-offers", tags=["📚 Предложенные Темы"])
 
@@ -15,38 +15,58 @@ router = APIRouter(prefix="/topic-offers", tags=["📚 Предложенные 
     "",
     summary="Предложить тему для обсуждений",
     status_code=status.HTTP_201_CREATED,
+    response_model=TopicOfferShow
 )
 async def create_topic_offer(
         topic_create: CreateTopicOffer,
         user: currentUserDep,
         service: topicOfferServiceDep,
 ):
-    return await service.create_offer_topic(
+    offer = await service.create_offer_topic(
         author_id=user.id, topic_create=topic_create
     )
+
+    return TopicOfferShow.from_orm(offer)
+
 
 
 @router.get(
     "",
     summary="Посмотреть предложенные темы",
+    response_model=list[TopicOfferFullShow]
 )
-async def offer_theme(
+async def get_offer_topics(
         service: topicOfferServiceDep,
         pagination: Pagination = Depends()
 ):
-    return await service.get_topic_offers(pagination)
+    offers = await service.get_topic_offers(pagination)
+
+    return [
+        TopicOfferFullShow(
+            **TopicOfferShow.from_orm(offer).model_dump(),
+            author=UserUsername.from_orm(author),
+            process_user=UserUsername.from_orm(processor) if processor else None
+        ) for offer, author, processor in offers
+    ]
+
 
 
 @router.get(
     "/{offer_id}",
     summary="Получить тему для обсуждений",
+    response_model=TopicOfferFullShow
 )
 async def get_topic_offer(
         offer_id: int,
         service: topicOfferServiceDep,
 ):
-    return await service.get_topic_offer_by_id(offer_id)
+    offer, author, processor = await service.get_topic_offer_by_id(offer_id)
 
+    return TopicOfferFullShow(
+        **TopicOfferShow.from_orm(offer).model_dump(),
+        author=UserUsername.from_orm(author),
+        process_user=UserUsername.from_orm(processor) if processor else None
+    )
 
 #todo доступ админам + добавить таблицу админов
 
