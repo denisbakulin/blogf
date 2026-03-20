@@ -6,7 +6,7 @@ from deps.reaction import reactionServiceDep
 from fastapi import APIRouter, Depends, status
 
 from helpers.search import Pagination
-from schemas.comment import CommentCreate, CommentShow
+from schemas.comment import CommentCreate, CommentFullShow
 from schemas.post import PostCreate, PostShow, PostUpdate, TopPostShow
 from schemas.reaction import PostReactionShow
 from utils.post import PostSearchParams

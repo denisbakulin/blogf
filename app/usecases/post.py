@@ -6,7 +6,7 @@ from schemas.post import PostBase, PostCreate, PostUpdate
 from services.container import AsyncSession, ContainerService
 from services.post import PostService
 from services.subscribe import SubscribeService
-
+from entities.post import Post
 
 class BasePostUseCase:
     def __init__(
@@ -20,7 +20,7 @@ class BasePostUseCase:
 
 
 class GetWallPostsUseCase(BasePostUseCase):
-    async def execute(self, wall_owner_id: int, pagination: Pagination):
+    async def execute(self, wall_owner_id: int, pagination: Pagination) -> list[Post]:
         container = await self.container_service.get_by_or_raise(
             author_id=wall_owner_id, type=ContainerType.WALL
         )
@@ -30,7 +30,7 @@ class GetWallPostsUseCase(BasePostUseCase):
         )
 
 class GetPostsUseCase(BasePostUseCase):
-    async def execute(self, container_id: int, pagination: Pagination, user: User):
+    async def execute(self, container_id: int, pagination: Pagination, user: User) -> list[Post]:
         container = await self.container_service.get_item_by_id(container_id)
 
         await self.policy.ensure_read(user=user, container=container)
@@ -41,7 +41,7 @@ class GetPostsUseCase(BasePostUseCase):
 
 
 class CreateWallPostUseCase(BasePostUseCase):
-    async def execute(self, wall_owner_id: int, create: PostBase):
+    async def execute(self, wall_owner_id: int, create: PostBase) -> Post:
         wall = await self.container_service.get_by_or_raise(
             author_id=wall_owner_id, type=ContainerType.WALL
         )
@@ -55,7 +55,7 @@ class CreateWallPostUseCase(BasePostUseCase):
 
 class CreatePostUseCase(BasePostUseCase):
 
-    async def execute(self, user: User, post: PostCreate, container_id: int):
+    async def execute(self, user: User, post: PostCreate, container_id: int) -> Post:
         container = await self.container_service.get_item_by_id(container_id)
 
         await self.policy.ensure_create(user=user, container=container)
@@ -67,7 +67,7 @@ class CreatePostUseCase(BasePostUseCase):
 
 
 class GetPostUseCase(BasePostUseCase):
-    async def execute(self, user: User, slug: str):
+    async def execute(self, user: User, slug: str) -> Post:
         post = await self.post_service.get_by_or_raise(slug=slug)
         container = await self.container_service.get_item_by_id(post.container_id)
 
@@ -78,7 +78,7 @@ class GetPostUseCase(BasePostUseCase):
 
 
 class UpdatePostUseCase(BasePostUseCase):
-    async def execute(self, user: User, slug: str, update: PostUpdate):
+    async def execute(self, user: User, slug: str, update: PostUpdate) -> Post:
         post = await self.post_service.get_by_or_raise(slug=slug)
         container = await self.container_service.get_item_by_id(post.container_id)
 

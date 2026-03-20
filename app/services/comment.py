@@ -1,8 +1,10 @@
 from base.exceptions import EntityBadRequestError
 from base.service import BaseService
 from entities.comment import Comment
-from entities.container import ContainerType
+from entities.container import ContainerType, Container
 from helpers.search import Pagination
+from entities.post import Post
+from entities.user import User
 from repositories.comment import CommentRepository
 from schemas.comment import CommentCreate, CommentUpdate
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -49,16 +51,24 @@ class CommentService(BaseService[Comment, CommentRepository]):
         return await self.get_item_by_id(comment_id)
 
 
-    async def get_post_comments(self, post_id: int, pagination: Pagination) -> list:
+    async def get_post_comments(
+            self,post_id: int,
+            pagination: Pagination
+    ) -> list[tuple[Comment, User, Post]]:
+
         return await self.repository.get_post_comments(post_id=post_id, **pagination.dict())
 
 
-    async def get_user_comments(self, user_id: int, pagination: Pagination) -> list:
+    async def get_user_comments(
+            self, user_id: int,
+            pagination: Pagination
+    ) -> list[tuple[Comment, User, Post]]:
+
         return await self.repository.get_user_comments(user_id=user_id, **pagination.dict())
 
     async def get_top_themes_of_user(
             self, user_id: int
-    ):
+    ) -> list[tuple[Container, int]]:
 
         return await self.repository.get_user_comment_count_in_container(
             user_id, container_type=ContainerType.TOPIC

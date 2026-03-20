@@ -14,7 +14,11 @@ class PostService(BaseService[Post, PostRepository]):
 
 
 
-    async def create_post(self, author_id: int, post: PostCreate, container_id: int) -> Post:
+    async def create_post(
+            self, author_id: int,
+            post: PostCreate,
+            container_id: int
+    ) -> Post:
 
         post = await self.create_item(
             **post.model_dump(),

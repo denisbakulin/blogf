@@ -1,16 +1,18 @@
 from deps.comment import commentServiceDep
 from deps.container import containerServiceDep
 from deps.subscribe import subscribeServiceDep
-from deps.user import userDep, userLogicDep, userServiceDep
+from deps.user import userDep, userServiceDep
 from deps.auth import currentUserDep
 from entities.container import ContainerType
 from fastapi import APIRouter, Depends, status
 from helpers.search import Pagination
 
-
-from schemas.user import UserProfileShow, UserShow
+from schemas.container import ContainerShow, WallShow
+from schemas.user import UserProfileShow, UserShow, UserProfile
 from usecases.post import GetWallPostsUseCase
 from utils.user import UserSearchParams
+from base.db import getSessionDep
+from schemas.post import PostFullShow, PostShow
 
 router = APIRouter(prefix="/users", tags=["👨 Пользователи"])
 
@@ -24,8 +26,12 @@ async def search_users(
         search: UserSearchParams = Depends(),
         pagination: Pagination = Depends(),
 ):
-    return await service.search_users(search=search, pagination=pagination)
+    users = await service.search_users(search=search, pagination=pagination)
 
+    return [
+        UserShow.from_orm(user)
+        for user in users
+    ]
 
 
 @router.get(
@@ -35,38 +41,58 @@ async def search_users(
 )
 async def get_user(
         user: userDep,
-        logic: userLogicDep
+        service: userServiceDep
 ):
-    return await logic.get_profile(user)
+    profile = await service.get_user_profile(user.id)
 
+    return UserProfileShow(
+        **UserShow.from_orm(user).model_dump(),
+        profile=UserProfile.from_orm(profile)
+    )
+
+
+from schemas.topic import UserCommentsCountOfTopicShow
 
 @router.get(
     "/@{username}/top-topics",
-    summary="Получить топ обсуждений пользователя",
+    summary="Получить топ обсуждений пользователя по кол-ву комментариев",
+    response_model=list[UserCommentsCountOfTopicShow]
 )
 async def get_top_topics(
         user: userDep,
         service: commentServiceDep,
 ):
-    return await service.get_top_themes_of_user(user.id)
+    top = await service.get_top_themes_of_user(user.id)
+
+    return [
+        UserCommentsCountOfTopicShow(topic_slug=topic.slug, count=count)
+        for topic, count in top
+    ]
+
 
 
 @router.get(
     "/@{username}/wall",
     summary="Получить стену пользователя",
+    response_model=WallShow
 )
 async def get_user_wall(
         user: userDep,
         service: containerServiceDep,
 ):
-    return await service.get_by_or_raise(author_id=user.id, type=ContainerType.WALL)
+    wall = await service.get_by_or_raise(
+        author_id=user.id, type=ContainerType.WALL
+    )
 
-from base.db import getSessionDep
+    return WallShow.from_orm(wall)
+
+
 
 
 @router.get(
     "/@{username}/wall/posts",
     summary="Получить посты пользователя",
+    response_model=list[PostShow]
 )
 async def get_user_wall_posts(
         wall_owner: userDep,
@@ -74,13 +100,20 @@ async def get_user_wall_posts(
         pagination: Pagination = Depends(),
 ):
     logic = GetWallPostsUseCase(session)
-    return await logic.execute(wall_owner_id=wall_owner.id, pagination=pagination)
+
+    posts = await logic.execute(wall_owner_id=wall_owner.id, pagination=pagination)
+
+    return [
+        PostShow.from_orm(post)
+        for post in posts
+    ]
 
 
 @router.post(
     "/@{username}/wall/subscribe",
     summary="Подписаться на пользователя",
-    status_code=status.HTTP_201_CREATED
+    status_code=status.HTTP_201_CREATED,
+    response_model=None
 )
 async def subscribe_to_user_wall(
         user: userDep,

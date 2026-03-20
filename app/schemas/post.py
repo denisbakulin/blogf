@@ -1,7 +1,7 @@
 from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
 from pydantic import Field
 from schemas.container import ContainerShow
-from schemas.reaction import ReactionsCount
+
 from schemas.user import UserUsername
 
 
@@ -18,19 +18,16 @@ class PostShow(PostBase, IdMixinSchema, TimeMixinSchema):
     slug: str
     allow_comments: bool
     allow_reactions: bool
+
+
+class PostFullShow(PostShow):
     author: UserUsername
     container: ContainerShow
-
 
 
 class TopPostShow(BaseSchema):
     post: PostShow
     like_count: int
-
-
-class FullPostShow(BaseSchema):
-    post: PostShow
-    reactions: ReactionsCount
 
 
 

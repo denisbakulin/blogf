@@ -1,13 +1,17 @@
 from deps.comment import commentServiceDep
 from deps.reaction import reactionServiceDep
 from deps.auth import currentUserDep
-from deps.user import userLogicDep
+from deps.user import userServiceDep
 from fastapi import APIRouter, status, Depends
-from schemas.post import PostCreate
+from schemas.post import PostCreate, PostSlug, PostShow
 from usecases.post import CreateWallPostUseCase
 from base.db import getSessionDep
-from schemas.user import UserProfileShow, UserSettings, UserUpdate
+from schemas.user import UserProfileShow, UserSettings, UserUpdate, UserShow, UserProfile
 from entities.reaction import ReactionType
+from helpers.search import Pagination
+from schemas.comment import CommentFullShow, CommentCreate, CommentShow
+from schemas.reaction import BaseReactionShow, UserReactionShow, ReactionShow
+
 
 router = APIRouter(prefix="/me", tags=["👤 Личный кабинет"])
 
@@ -16,27 +20,38 @@ router = APIRouter(prefix="/me", tags=["👤 Личный кабинет"])
     "",
     summary="Получить текущего пользователя",
     response_model=UserProfileShow,
-) #work
-async def get_me(
+)
+async def get_my_info(
         user: currentUserDep,
-        logic: userLogicDep
+        service: userServiceDep
 ):
-    return await logic.get_profile(user)
+    profile = await service.get_user_profile(user.id)
+    user = UserShow.from_orm(user)
+
+    return UserProfileShow(
+        **user.model_dump(),
+        profile=UserProfile.from_orm(profile)
+    )
+
 
 
 @router.patch(
     "",
     summary="Изменить информацию текущего пользователя",
     response_model=UserProfileShow
-) #work
+)
 async def patch_my_info(
         user: currentUserDep,
         update: UserUpdate,
-        logic: userLogicDep,
+        service: userServiceDep
 ):
-    return await logic.update(user=user, update=update)
+    user = await service.update_user(user=user, update=update)
+    profile = await service.get_user_profile(user.id)
 
-
+    return UserProfileShow(
+        **user.model_dump(),
+        profile=UserProfile.from_orm(profile)
+    )
 
 
 @router.get(
@@ -46,9 +61,12 @@ async def patch_my_info(
 )
 async def get_settings(
         user: currentUserDep,
-        logic: userLogicDep,
+        service: userServiceDep,
 ):
-    return await logic.get_settings(user)
+    settings = await service.get_user_settings(user.id)
+
+    return UserSettings.from_orm(settings)
+
 
 
 @router.patch(
@@ -59,31 +77,45 @@ async def get_settings(
 async def edit_settings(
         user: currentUserDep,
         update: UserSettings,
-        logic: userLogicDep,
+        service: userServiceDep,
 
 ):
-    return await logic.update_settings(user=user, update=update)
+    settings = await service.update_user_settings(user.id, update=update)
+
+    return UserSettings.from_orm(settings)
 
 
-from helpers.search import Pagination
+
 
 @router.get(
     "/comments",
     summary="Получить комментарии текущего пользователя",
+    response_model=list[CommentFullShow]
 )
 async def get_my_comments(
         user: currentUserDep,
         service: commentServiceDep,
         pagination: Pagination = Depends()
 ):
-    return await service.get_user_comments(user_id=user.id, pagination=pagination)
+    comments = await service.get_user_comments(
+        user_id=user.id, pagination=pagination
+    )
+
+    return [
+        CommentFullShow(
+            **CommentShow.from_orm(comment).model_dump(),
+            author_username=user.username,
+            post_slug=post.slug,
+        )
+        for comment, user, post in comments
+    ]
 
 
 
 @router.get(
     "/reactions",
     summary="Получить реакции пользователя",
-
+    response_model=list[UserReactionShow]
 )
 async def get_my_reactions(
         user: currentUserDep,
@@ -91,9 +123,18 @@ async def get_my_reactions(
         r: ReactionType | None = None,
         pagination: Pagination = Depends()
 ):
-    return await service.get_user_reactions(
+
+    reactions = await service.get_user_reactions(
         user_id=user.id, reaction_type=r, pagination=pagination
     )
+
+    return [
+        UserReactionShow(
+            **ReactionShow.from_orm(reaction).model_dump(),
+            post=PostSlug.from_orm(post)
+        )
+        for reaction, post in reactions
+    ]
 
 
 
@@ -102,7 +143,9 @@ async def get_my_reactions(
     "/posts",
     summary="Создать пост",
     status_code=status.HTTP_201_CREATED,
+    response_model=PostShow
 )
+
 async def create_post(
         create: PostCreate,
         user: currentUserDep,
@@ -110,7 +153,9 @@ async def create_post(
 ):
 
     logic = CreateWallPostUseCase(session)
-    return await logic.execute(wall_owner_id=user.id, create=create)
+    post = await logic.execute(wall_owner_id=user.id, create=create)
+
+    return PostShow.from_orm(post)
 
 @router.patch(
     "/wall",

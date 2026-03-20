@@ -27,8 +27,8 @@ class UserService(BaseService[User, UserRepository]):
         self.settings_service = SettingsService(session)
 
 
-    async def get_user_profile(self, user: User) -> Profile:
-        return await self.profile_service.get_by_or_raise(user_id=user.id)
+    async def get_user_profile(self, user_id: int) -> Profile:
+        return await self.profile_service.get_by_or_raise(user_id=user_id)
 
 
 
@@ -87,8 +87,10 @@ class UserService(BaseService[User, UserRepository]):
             field=search.field, value=search.value, strict=search.strict,  **pagination.dict()
         )
 
-    async def update_user_settings(self, user: User, update: UserSettings) -> Settings:
-        settings = await self.settings_service.repository.get_one_by(user_id=user.id)
+    async def get_user_settings(self, user_id: int) -> Settings:
+        return await self.settings_service.get_by_or_raise(user_id=user_id)
+    async def update_user_settings(self, user_id: int, update: UserSettings) -> Settings:
+        settings = await self.settings_service.repository.get_one_by(user_id=user_id)
 
         settings = await self.settings_service.update_item(
             settings.id, **update.model_dump(exclude_none=True)

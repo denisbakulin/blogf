@@ -4,8 +4,6 @@ from base.db import getSessionDep
 from entities.user import User
 from fastapi import Depends
 from services.user import UserService
-from usecases.user import UserLogic
-
 
 def get_user_service(
         session: getSessionDep
@@ -23,12 +21,6 @@ async def get_user(
     return await user_service.get_user_by_username(username)
 
 
-async def get_user_logic(
-        user_service: userServiceDep
-) -> UserLogic:
-    return UserLogic(user_service)
 
-
-userLogicDep = Annotated[UserLogic, Depends(get_user_logic)]
 userDep = Annotated[User, Depends(get_user)]
 

@@ -11,3 +11,6 @@ class ContainerShow(BaseSchema, IdMixinSchema, TimeMixinSchema):
 class ContainerUpdate(BaseSchema):
     title: str | None = None
     description: str | None = None
+
+class WallShow(BaseSchema, TimeMixinSchema):
+    title: str | None

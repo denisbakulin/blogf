@@ -10,6 +10,9 @@ class CommentCreate(CommentBase):
 
 
 class CommentShow(CommentCreate, IdMixinSchema, TimeMixinSchema):
+    pass
+
+class CommentFullShow(CommentShow):
     author_username: str
     post_slug: str
 

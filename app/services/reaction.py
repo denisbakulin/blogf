@@ -2,8 +2,11 @@ from base.service import BaseService
 from entities.reaction import Reaction, ReactionType
 from repositories.reaction import ReactionRepository
 from sqlalchemy.ext.asyncio import AsyncSession
-from functools import partial
+
 from helpers.search import Pagination
+from entities.post import Post
+from entities.user import User
+
 
 class ReactionService(BaseService[Reaction, ReactionRepository]):
 
@@ -31,36 +34,22 @@ class ReactionService(BaseService[Reaction, ReactionRepository]):
             self, post_id: int,
             pagination: Pagination,
             reaction_type: ReactionType | None = None,
-    ) -> list[Reaction]:
+    ) -> list[tuple[Reaction, User]]:
 
-        default_get = partial(
-            self.repository.get_any_by,
-            post_id=post_id,
-            **pagination.dict()
+        return await self.repository.get_post_reactions(
+            post_id=post_id, type_=reaction_type, **pagination.dict()
         )
-
-        return await self._get_reactions(default_get, reaction_type)
 
 
     async def get_user_reactions(
             self, user_id: int,
             pagination: Pagination,
             reaction_type: ReactionType | None = None,
-        ) -> list[Reaction]:
+        ) -> list[tuple[Reaction, Post]]:
 
-        default_get = partial(
-            self.repository.get_any_by,
-            author_id=user_id,
-            **pagination.dict()
+        return await self.repository.get_user_reactions(
+            user_id=user_id, type_=reaction_type, **pagination.dict()
         )
-
-        return await self._get_reactions(default_get, reaction_type)
-
-    async def _get_reactions(self, default, reaction):
-        if reaction is None:
-            return await default()
-        return await default(type=reaction)
-
 
 
 

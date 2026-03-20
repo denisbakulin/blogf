@@ -3,7 +3,7 @@ from entities.post import Post
 from entities.reaction import Reaction, ReactionType
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-
+from entities.user import User
 
 class ReactionRepository(BaseRepository[Reaction]):
 
@@ -27,25 +27,46 @@ class ReactionRepository(BaseRepository[Reaction]):
             for r_type, count in result.all()
         }
 
-
-    async def get_container_reaction_count(self, topic_id: int):
+    async def get_post_reactions(
+            self, post_id: int,
+            type_: ReactionType | None = None,
+            offset: int | None = None,
+            limit: int | None = None
+    ) -> list[tuple[Reaction, User]]:
         stmt = (
-            select(
-                Reaction.type,
-                func.count()
-            )
-            .join(
-                Post, Reaction.container_id == topic_id
-            )
-            .where(Reaction.post_id == topic_id)
-            .group_by(Reaction.type)
+            select(Reaction, User)
+            .join(User, Reaction.author_id == User.id)
+            .join(Post, Reaction.post_id == Reaction.post_id)
+            .where(Post.id == post_id)
+            .where(Reaction.type == type_)
         )
-
+        stmt = self.process_paginate_stmt(stmt, offset, limit)
         result = await self.session.execute(stmt)
 
-        return {
-            reaction: count
-            for reaction, count in result.all()
-        }
+        return [
+            (reaction, user)
+            for reaction, user in result.all()
+        ]
 
+
+    async def get_user_reactions(
+            self, user_id: int,
+            type_: ReactionType | None = None,
+            offset: int | None = None,
+            limit: int | None = None
+    ) -> list[tuple[Reaction, Post]]:
+        stmt = (
+            select(Reaction, Post)
+            .join(User, Reaction.author_id == User.id)
+            .join(Post, Reaction.post_id == Reaction.post_id)
+            .where(User.id == user_id)
+            .where(Reaction.type == type_)
+        )
+        stmt = self.process_paginate_stmt(stmt, offset, limit)
+        result = await self.session.execute(stmt)
+
+        return [
+            (reaction, post)
+            for reaction, post in result.all()
+        ]
 
