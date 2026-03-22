@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from pydantic import BaseModel, Field
-from sqlalchemy import inspect
+from sqlalchemy import inspect, ForeignKey
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
@@ -52,10 +52,14 @@ class BaseORM(DeclarativeBase):
         return foreign_key_info
 
 
-class IdMixin(DeclarativeBase):
+class IdMixin:
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
 
 
-class TimeMixin(DeclarativeBase):
+class TimeMixin:
     created_at: Mapped[datetime] = mapped_column(default=datetime.utcnow)
+
+
+class OwnedByUserMixin:
+    author_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
 

@@ -1,9 +1,9 @@
-from base.model import BaseORM, IdMixin, TimeMixin
+from base.model import BaseORM, IdMixin, TimeMixin, OwnedByUserMixin
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column
 
 
-class Post(BaseORM, IdMixin, TimeMixin):
+class Post(BaseORM, IdMixin, TimeMixin, OwnedByUserMixin):
     __tablename__ = "posts"
 
     title: Mapped[str] = mapped_column(nullable=False)
@@ -14,7 +14,3 @@ class Post(BaseORM, IdMixin, TimeMixin):
     allow_reactions: Mapped[bool] = mapped_column(default=True)
 
     container_id: Mapped[int] = mapped_column(ForeignKey("containers.id"))
-    author_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
-
-    # author: Mapped["User"] = relationship("User", lazy="selectin")
-    # container: Mapped["Container"] = relationship("Container", lazy="selectin")

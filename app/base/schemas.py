@@ -13,3 +13,4 @@ class IdMixinSchema:
 
 class TimeMixinSchema:
     created_at: datetime
+

@@ -5,8 +5,10 @@ from entities.user import User
 
 
 class AccessResolver:
-    async def resolve(
-            self, user: User,
+
+    @staticmethod
+    def resolve(
+            user: User,
             context: AccessContext,
             container: Container,
     ) -> AccessLevel:

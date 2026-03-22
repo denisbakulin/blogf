@@ -1,7 +1,6 @@
 from enum import StrEnum, auto
 
-from base.model import BaseORM, IdMixin, TimeMixin
-from sqlalchemy import ForeignKey
+from base.model import BaseORM, IdMixin, TimeMixin, OwnedByUserMixin
 from sqlalchemy.orm import Mapped, mapped_column
 
 
@@ -12,7 +11,7 @@ class ContainerType(StrEnum):
     PRIVATE_CHANEL = auto()
 
 
-class Container(BaseORM, IdMixin, TimeMixin):
+class Container(BaseORM, IdMixin, TimeMixin, OwnedByUserMixin):
     __tablename__ = "containers"
 
     title: Mapped[str]
@@ -23,7 +22,7 @@ class Container(BaseORM, IdMixin, TimeMixin):
     post_count: Mapped[int] = mapped_column(default=0)
     comment_count: Mapped[int] = mapped_column(default=0)
 
-    author_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
+
 
 
 

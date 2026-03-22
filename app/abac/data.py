@@ -7,6 +7,7 @@ from abac.access_level import AccessLevel
 class AuthContext:
     user_id: int
 
+
 @dataclass
 class AccessContext:
     auth: AuthContext
@@ -16,3 +17,4 @@ class AccessContext:
 @dataclass
 class Context(AccessContext):
     level: AccessLevel
+

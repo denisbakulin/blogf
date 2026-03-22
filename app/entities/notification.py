@@ -16,8 +16,6 @@ class Notification(BaseORM, IdMixin, TimeMixin):
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     type: Mapped[NotificationType]
 
-    #лень делать говно поотом
-
 
 
 
