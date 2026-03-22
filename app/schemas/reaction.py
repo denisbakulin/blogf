@@ -14,22 +14,20 @@ class Slug(BaseSchema):
     slug: str
 
 
-class ReactionShow(BaseSchema, TimeMixinSchema, IdMixinSchema):
+class ReactionShow(BaseSchema, TimeMixinSchema):
     type: ReactionType
 
-class UserReactionShow(ReactionShow):
+
+
+class ReactionAuthorShow(ReactionShow):
+    author: UserUsername
+
+
+class ReactionPostShow(ReactionShow):
     post: PostSlug
 
 
-
-class BaseReactionShow(BaseSchema, TimeMixinSchema):
-    reaction: str
-    user: UserUsername
-
-class PostReactionShow(BaseReactionShow, TimeMixinSchema):
-    post: PostSlug
-
-class TopicReactionShow(BaseReactionShow, TimeMixinSchema):
+class TopicReactionShow(ReactionAuthorShow, TimeMixinSchema):
     container: Slug
 
 

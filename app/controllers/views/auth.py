@@ -14,6 +14,7 @@ from schemas.auth import (
     LoginTelegram,
     PasswordChange,
     ResetPassword,
+    UrlResponse
 )
 from utils.auth import (
     TokenCreator,
@@ -54,7 +55,8 @@ async def logout(response: Response):
 
 @router.post(
     "/refresh",
-    summary="Обновить токен доступа"
+    summary="Обновить токен доступа",
+    response_model=AccessTokenResponse
 )
 async def refresh_user_token(refresh_token: str = Cookie(None)):
 
@@ -92,7 +94,7 @@ async def forget_password(
         forget: ForgetPassword,
         auth_service: baseAuthServiceDep
 ):
-    return await auth_service.forget_password(forget.username)
+    await auth_service.forget_password(forget.username)
 
 
 @router.post(
@@ -113,13 +115,14 @@ async def reset_password(
 @router.get(
     "/telegram/verify-account",
     summary="Верифицировать аккаунт через Telegram",
+    response_model=UrlResponse
 )
 async def telegram_verify(
         user: currentUserDep,
         telegram: tgAuthServiceDep
 ):
     code = await telegram.auth_code.create("verify", user.id)
-    return {"url": telegram.get_verify_ref(code)}
+    return UrlResponse(url=telegram.get_verify_ref(code))
 
 
 
@@ -141,17 +144,19 @@ async def login_with_telegram(
 
 @router.get(
     "/google/ref",
-    summary="Ссылка на google страницу"
+    summary="Ссылка на google страницу",
+    response_model=UrlResponse
 )
 async def google_ref(
         google: googleAuthServiceDep
 ):
-    return {"url": google.oauth_uri}
+    return UrlResponse(url=google.oauth_uri)
 
 
 @router.post(
     "/google/login",
-    summary="Логин через google"
+    summary="Логин через google",
+    response_model=AccessTokenResponse
 )
 async def login_google(
         google: googleAuthServiceDep,

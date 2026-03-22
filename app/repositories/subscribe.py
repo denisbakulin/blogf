@@ -20,7 +20,7 @@ class SubscribeRepository(BaseRepository[Subscribe]):
 
         return result.scalars().all()
 
-    async def get_user_content(self, user_id: int, offset: int, limit: int):
+    async def get_user_content(self, user_id: int, offset: int, limit: int) -> list[tuple[Post, Container]]:
         stmt = (
             select(Post, Container)
             .join(Subscribe, Post.container_id == Subscribe.container_id)
@@ -32,7 +32,11 @@ class SubscribeRepository(BaseRepository[Subscribe]):
 
         result = await self.session.execute(stmt)
 
-        return result.scalars().all()
+        return [
+            (post, container)
+            for post, container in result.all()
+        ]
+
 
     async def get_container_subscribers(self, container_id: int,  offset: int, limit: int):
         stmt = (

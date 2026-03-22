@@ -38,8 +38,10 @@ class ReactionRepository(BaseRepository[Reaction]):
             .join(User, Reaction.author_id == User.id)
             .join(Post, Reaction.post_id == Reaction.post_id)
             .where(Post.id == post_id)
-            .where(Reaction.type == type_)
         )
+        if type_ is not None:
+            stmt = stmt.where(Reaction.type == type_)
+
         stmt = self.process_paginate_stmt(stmt, offset, limit)
         result = await self.session.execute(stmt)
 
@@ -60,8 +62,10 @@ class ReactionRepository(BaseRepository[Reaction]):
             .join(User, Reaction.author_id == User.id)
             .join(Post, Reaction.post_id == Reaction.post_id)
             .where(User.id == user_id)
-            .where(Reaction.type == type_)
         )
+        if type_ is not None:
+            stmt = stmt.where(Reaction.type == type_)
+
         stmt = self.process_paginate_stmt(stmt, offset, limit)
         result = await self.session.execute(stmt)
 

@@ -1,5 +1,5 @@
 from base.service import BaseService
-from entities import Subscribe
+from entities import Subscribe, Post, Container
 from helpers.search import Pagination
 from repositories.subscribe import SubscribeRepository
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -20,12 +20,12 @@ class SubscribeService(BaseService[Subscribe, SubscribeRepository]):
         )
 
         if subscribe:
-            await self.delete_item_by_id(subscribe.id)
-        else:
-            await self.create_item(
-                user_id=user_id,
-                container_id=container_id,
-            )
+            return await self.delete_item_by_id(subscribe.id)
+
+        await self.create_item(
+            user_id=user_id,
+            container_id=container_id,
+        )
 
 
     async def get_subs(self, user_id: int, pagination: Pagination):
@@ -37,7 +37,7 @@ class SubscribeService(BaseService[Subscribe, SubscribeRepository]):
         exists = await self.repository.exists(user_id=user_id, container_id=container_id)
         return exists
 
-    async def get_content(self, user_id: int, pagination: Pagination):
+    async def get_content(self, user_id: int, pagination: Pagination) -> list[tuple[Post, Container]]:
 
         return await self.repository.get_user_content(
             user_id=user_id, **pagination.dict()

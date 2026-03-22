@@ -116,7 +116,6 @@ class BaseService[T, R]:
             self,
             search,
             pagination: Pagination,
-            inner_props: dict[str, Any] | None = None,
             **filters,
     ) -> list[T]:
 
@@ -125,14 +124,11 @@ class BaseService[T, R]:
                 **{search.field: search.q},
                 **pagination.dict(),
                 **filters,
-                inner_props=inner_props,
-
             )
         return await self.repository.search(
             field=search.field,
             query=search.q,
             **pagination.dict(),
             **filters,
-            inner_props=inner_props,
         )
 

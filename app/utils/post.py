@@ -5,7 +5,7 @@ from helpers.search import search_param_fabric
 from unidecode import unidecode
 
 
-def generate_slug(title: str, index: int | None = None) -> str:
+def generate_slug(title: str) -> str:
     """Приводит строку к виду 'abc-de-f-g' путем
     транслитерации с русского(англ.) на английский
     и отброса специальных символов, убирая их или заменяя на '-'.
@@ -16,10 +16,13 @@ def generate_slug(title: str, index: int | None = None) -> str:
     result = sub(
         r"[^a-z0-9]+",
         "-",
-        unidecode(f"{title} {index if index else ''}").lower()
+        unidecode(title.lower())
     )
 
     return result.strip("-")
+
+def add_metadata_to_slug(slug: str, **metadata) -> str:
+    return slug + "".join(f"-{key}!{value}" for key, value in metadata.items())
 
 
 

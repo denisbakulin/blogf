@@ -63,7 +63,7 @@ class CommentRepository(BaseRepository[Comment]):
             offset: int | None = None,
             limit: int | None = None
     ) -> list[tuple[Comment, User, Post]]:
-        stmt = self.get_full_comment_stmt().where(Comment.post_id==post_id)
+        stmt = self.get_full_comment_stmt().where(Comment.post_id ==post_id)
         stmt = self.process_paginate_stmt(stmt, offset, limit)
 
         return await self._get_full_comments_from_stmt(stmt)

@@ -1,5 +1,5 @@
 from abac.comment.policy import CommentPolicy
-from entities import User
+from entities import User, Post, Container, Comment
 from helpers.search import Pagination
 from schemas.comment import CommentCreate, CommentUpdate
 from services.comment import CommentService
@@ -39,8 +39,8 @@ class CreateCommentUseCase(BaseCommentUseCase):
         return comment
 
 
-class GetCommentsUseCase(BaseCommentUseCase):
-    async def execute(self, user: User, post_slug: str, pagination: Pagination):
+class GetPostCommentsUseCase(BaseCommentUseCase):
+    async def execute(self, user: User, post_slug: str, pagination: Pagination) -> list[tuple[Comment, User, Post]]:
         post = await self.post_service.get_by_or_raise(slug=post_slug)
         container = await self.container_service.get_item_by_id(post.container_id)
 

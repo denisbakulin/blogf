@@ -36,7 +36,7 @@ async def get_topics(
 @router.post(
     "",
     summary="Создать тему",
-    status_code=status.HTTP_201_CREATED
+    status_code=status.HTTP_201_CREATED,
 )
 async def create_topic(
         topic: CreateTopic,

@@ -23,22 +23,20 @@ RUN poetry config virtualenvs.create false \
 # ---- Stage 2: Runtime ----
 FROM python:3.12-slim AS runtime
 
-WORKDIR /app/app
-
 # Копируем зависимости из билд-стейджа
 COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
 COPY --from=builder /usr/local/bin /usr/local/bin
-
+WORKDIR /app
 # Копируем код приложения
-COPY . /app
-
+COPY . .
+ENV PYTHONPATH=/app/app
+ENV PYTHONUNBUFFERED=1
 # Прокси за nginx или docker-compose будет слушать 8000
 EXPOSE 8000
 
 # Переменные окружения (можно перенести в .env)
 ENV PYTHONUNBUFFERED=1
 ENV POETRY_VIRTUALENVS_CREATE=false
-RUN cd app
 
 # Команда запуска
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

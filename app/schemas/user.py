@@ -15,7 +15,7 @@ class UserSettings(BaseSchema):
     is_profile_public: bool
 
 
-class UserUsername(BaseSchema, IdMixinSchema):
+class UserUsername(BaseSchema):
     username: str
 
 

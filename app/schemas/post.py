@@ -13,7 +13,7 @@ class PostSlug(BaseSchema):
     slug: str
 
 
-class PostShow(PostBase, IdMixinSchema, TimeMixinSchema):
+class PostShow(PostBase, TimeMixinSchema):
     slug: str
     allow_comments: bool
     allow_reactions: bool
@@ -21,10 +21,14 @@ class PostShow(PostBase, IdMixinSchema, TimeMixinSchema):
 class PostAuthorShow(PostShow):
     author: UserUsername
 
+class PostContainerShow(PostShow):
+    container: ContainerShow
+
 
 class PostFullShow(PostShow):
     author: UserUsername
     container: ContainerShow
+
 
 
 class TopPostShow(BaseSchema):

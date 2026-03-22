@@ -1,5 +1,5 @@
 from abac.post.policy import PostPolicy
-from entities import ContainerType, Post, User
+from entities import ContainerType, Post, User, Container
 from helpers.search import Pagination
 from schemas.post import PostCreate, PostUpdate
 from services.container import AsyncSession, ContainerService
@@ -29,14 +29,15 @@ class GetWallPostsUseCase(BasePostUseCase):
         )
 
 class GetPostsUseCase(BasePostUseCase):
-    async def execute(self, container_id: int, pagination: Pagination, user: User) -> list[Post]:
+    async def execute(self, container_id: int, pagination: Pagination, user: User) -> list[tuple[Post, User]]:
         container = await self.container_service.get_item_by_id(container_id)
 
         await self.policy.ensure_read(user=user, container=container)
 
-        return await self.post_service.get_items_by(
+        return await self.post_service.get_posts_with_authors(
             container_id=container.id, pagination=pagination
         )
+
 
 
 class CreateWallPostUseCase(BasePostUseCase):
@@ -76,13 +77,13 @@ class CreatePostUseCase(BasePostUseCase):
 
 
 class GetPostUseCase(BasePostUseCase):
-    async def execute(self, user: User, slug: str) -> Post:
+    async def execute(self, user: User, slug: str) -> tuple[Post, Container]:
         post = await self.post_service.get_by_or_raise(slug=slug)
         container = await self.container_service.get_item_by_id(post.container_id)
 
         await self.policy.ensure_read(user=user, container=container)
 
-        return post
+        return (post, container)
 
 
 

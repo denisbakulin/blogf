@@ -4,7 +4,7 @@ from helpers.search import Pagination
 from repositories.post import PostRepository
 from schemas.post import PostCreate, PostUpdate
 from sqlalchemy.ext.asyncio import AsyncSession
-from utils.post import generate_slug
+from utils.post import generate_slug, add_metadata_to_slug
 
 
 class PostService(BaseService[Post, PostRepository]):
@@ -26,7 +26,12 @@ class PostService(BaseService[Post, PostRepository]):
             container_id=container_id
         )
 
-        slug = generate_slug(post.title, post.id)
+        slug = generate_slug(post.title)
+
+        ex_post = await self.repository.get_one_by(slug=slug)
+
+        if ex_post is not None:
+            slug = add_metadata_to_slug(slug, id=post.id)
 
         await self.update_item(post.id, slug=slug)
 
@@ -48,6 +53,7 @@ class PostService(BaseService[Post, PostRepository]):
             **pagination.dict()
         )
 
-    async def update_post(self, post_id: int, update: PostUpdate):
-        await self.update_item(post_id, **update.dict())
+
+    async def update_post(self, post_id: int, update: PostUpdate) -> Post:
+        return await self.update_item(post_id, **update.dict())
 

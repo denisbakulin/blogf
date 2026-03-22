@@ -35,10 +35,10 @@ class BaseAuth:
             raise InvalidPasswordError()
 
         await broker.publish({
-            "author_id": user.id,
+            "user_id": user.id,
             "host": host,
             "time": datetime.now(),
-        },"new-login")
+        }, "new-login")
 
         return TokenCreator(user.id).auth_tokens
 

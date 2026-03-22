@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, HttpUrl
 
 
 class AccessTokenResponse(BaseModel):
@@ -19,6 +19,8 @@ class AuthCreds(BaseModel):
     username: str = "admin"
     password: str = "admin"
 
+class UrlResponse(BaseModel):
+    url: HttpUrl
 
 class PasswordChange(BaseModel):
     old_password: str | None = Field(min_length=5, default=None)

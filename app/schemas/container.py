@@ -1,11 +1,11 @@
-from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
+from base.schemas import BaseSchema,  TimeMixinSchema
 from entities  import ContainerType
 
 
-class ContainerShow(BaseSchema, IdMixinSchema, TimeMixinSchema):
-    title: str
-    slug: str
-    description: str
+class ContainerShow(BaseSchema, TimeMixinSchema):
+    title: str | None
+    slug: str | None
+    description: str | None
     type: ContainerType
 
 class ContainerMetricsShow(ContainerShow):

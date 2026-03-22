@@ -3,14 +3,18 @@ from deps.auth import currentUserDep
 from deps.comment import commentServiceDep
 from deps.reaction import reactionServiceDep
 from deps.user import userServiceDep
+from deps.container import containerServiceDep
 from entities import ReactionType
 from fastapi import APIRouter, Depends, status
 from helpers.search import Pagination
-from schemas.comment import CommentFullShow, CommentShow
+from schemas.comment import CommentShow, CommentAuthorShow, CommentFullShow
 from schemas.post import PostCreate, PostShow, PostSlug
-from schemas.reaction import ReactionShow, UserReactionShow
+from schemas.reaction import ReactionShow, ReactionAuthorShow, ReactionPostShow
 from schemas.user import UserProfile, UserProfileShow, UserSettings, UserShow, UserUpdate
 from usecases.post import CreateWallPostUseCase
+from schemas.container import ContainerUpdate, ContainerType
+from usecases.container import UpdateContainerUseCase, UpdateWallUseCase
+
 
 router = APIRouter(prefix="/me", tags=["👤 Личный кабинет"])
 
@@ -48,7 +52,7 @@ async def patch_my_info(
     profile = await service.get_user_profile(user.id)
 
     return UserProfileShow(
-        **user.model_dump(),
+        **UserShow.from_orm(user).model_dump(),
         profile=UserProfile.from_orm(profile)
     )
 
@@ -114,7 +118,7 @@ async def get_my_comments(
 @router.get(
     "/reactions",
     summary="Получить реакции пользователя",
-    response_model=list[UserReactionShow]
+    response_model=list[ReactionPostShow]
 )
 async def get_my_reactions(
         user: currentUserDep,
@@ -128,7 +132,7 @@ async def get_my_reactions(
     )
 
     return [
-        UserReactionShow(
+        ReactionPostShow(
             **ReactionShow.from_orm(reaction).model_dump(),
             post=PostSlug.from_orm(post)
         )
@@ -144,7 +148,6 @@ async def get_my_reactions(
     status_code=status.HTTP_201_CREATED,
     response_model=PostShow
 )
-
 async def create_post(
         create: PostCreate,
         user: currentUserDep,
@@ -161,9 +164,15 @@ async def create_post(
     summary="update my wall info"
 )
 async def update_wall(
+    update: ContainerUpdate,
+    session: getSessionDep,
+        user: currentUserDep,
 
 ):
-    ...
+    logic = UpdateWallUseCase(session)
+
+    await logic.execute(user=user, update=update)
+
 
 
 
