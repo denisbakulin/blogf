@@ -26,7 +26,7 @@ class ContainerRepository(BaseRepository[Container]):
         )
         result = await self.session.execute(stmt)
 
-        container, user, post_count, comment_count = result.first()
+        container, user = result.first()
 
         return (container, user)
 

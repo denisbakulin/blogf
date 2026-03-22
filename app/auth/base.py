@@ -67,6 +67,6 @@ class BaseAuth:
 
         await broker.publish({
             "code": code,
-            "author_id": user.id},
+            "user_id": user.id},
         "forget-password"
         )

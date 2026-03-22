@@ -80,8 +80,8 @@ async def get_topic(
 
 
 
-@router.get(
-    "/{slug}/sub",
+@router.post(
+    "/{slug}/subscribe",
     summary="Подписаться на тему",
     status_code=status.HTTP_201_CREATED,
     response_model=None

@@ -13,8 +13,9 @@ class CommentShow(CommentCreate, IdMixinSchema, TimeMixinSchema):
     pass
 
 class CommentFullShow(CommentShow):
-    author_username: str
+    author: UserUsername
     post_slug: str
+
 
 class CommentAuthorShow(CommentShow):
     author: UserUsername

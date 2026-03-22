@@ -17,9 +17,7 @@ class ContainerContexBuilder:
 
 
 def ctx_from_access(access: AccessContext, level: AccessLevel) -> Context:
-    return Context(
-        **access.__dict__, level=level
-    )
+    return Context(**access.__dict__, level=level)
 
 
 class PublicChannelContextBuilder(ContainerContexBuilder):
@@ -53,13 +51,17 @@ class PrivateChannelContextBuilder(ContainerContexBuilder):
         return ctx_from_access(access_ctx, level)
 
 class TopicContextBuilder(ContainerContexBuilder):
+    """"""
     async def build(self, user: User, container: Container, is_owner: bool) -> Context:
         access_ctx = AccessContext(auth=AuthContext(user_id=user.id), is_owner=is_owner)
         level = await AccessResolver().resolve(
             user=user, context=access_ctx, container=container
         )
         if level == AccessLevel.NONE:
-            level = AccessLevel.VIEWER
+            is_member = await self.sub_service.is_subscriber(
+                user_id=user.id, container_id=container.id
+            )
+            level = AccessLevel.MEMBER if is_member else AccessLevel.VIEWER
 
         return ctx_from_access(access_ctx, level)
 

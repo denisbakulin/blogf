@@ -51,6 +51,19 @@ class GetPostCommentsUseCase(BaseCommentUseCase):
         )
 
 
+class GetCommentUseCase(BaseCommentUseCase):
+    async def execute(self, user: User, comment_id: int) :
+        comment = await self.comment_service.get_comment_by_id(comment_id)
+        post = await self.post_service.get_item_by_id(comment.post_id)
+        container = await self.container_service.get_item_by_id(post.container_id)
+
+        await self.policy.ensure_read(
+            user=user, container=container
+        )
+
+        return await self.comment_service.get_full_comment(comment_id)
+
+
 class UpdateCommentUseCase(BaseCommentUseCase):
     async def execute(self, user: User, comment_id: int, update: CommentUpdate):
         comment = await self.comment_service.get_comment_by_id(comment_id)

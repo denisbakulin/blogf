@@ -1,14 +1,14 @@
 from typing import Annotated
 
-from allows.service import AllowPostService
+from allows.service import AllowService
 from base.db import getSessionDep
 from fastapi import Depends
 
 
 async def get_comment_service(
         session: getSessionDep
-) -> AllowPostService:
-    return AllowPostService(session=session)
+) -> AllowService:
+    return AllowService(session=session)
 
 
-allowServiceDep = Annotated[AllowPostService, Depends(get_comment_service)]
+allowServiceDep = Annotated[AllowService, Depends(get_comment_service)]

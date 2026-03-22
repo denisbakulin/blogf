@@ -47,6 +47,13 @@ class CommentRepository(BaseRepository[Comment]):
             .join(Post, Comment.post_id == Post.id)
         )
 
+    async def get_full_comment(self, comment_id: int) -> tuple[Comment, User, Post]:
+        stmt = self.get_full_comment_stmt().where(Comment.id == comment_id)
+
+        result = await self.session.execute(stmt)
+
+        return result.one_or_none()
+
     async def _get_full_comments_from_stmt(
             self, stmt: Select
     ) -> list[tuple[Comment, User, Post]]:

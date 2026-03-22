@@ -11,11 +11,11 @@ from .user_other import router as user_router
 routers = [
     auth_router,
     me_router,
+    subs_router,
     user_router,
     post_router,
-    topic_router,
     comm_router,
-    subs_router,
+    topic_router,
     topic_offer_router,
     channel_router
 ]

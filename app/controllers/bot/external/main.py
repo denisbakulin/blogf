@@ -3,7 +3,7 @@ from datetime import datetime
 from aiogram import Bot
 from auth.telegram import ProviderType, TelegramAuth
 from base.db import AsyncSession, get_session
-from base.settings import bot_settings
+from base.settings import settings
 from controllers.bot.keyboards.common import create_reset_password_kb
 from controllers.bot.text import RESET_PASSWORD_TEXT
 from controllers.bot.utils.whois import ipWhoIsManager
@@ -11,9 +11,13 @@ from faststream import Depends
 from faststream.redis import RedisBroker
 from services.notification import NotificationService, NotificationType
 
-broker = RedisBroker()
 
-bot = Bot(bot_settings.token)
+broker = RedisBroker(
+    host=settings.redis.host,
+    port=settings.redis.port
+)
+
+bot = Bot(settings.bot.token)
 
 
 @broker.subscriber("forget-password")

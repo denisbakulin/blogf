@@ -4,7 +4,7 @@ from urllib.parse import unquote
 
 from auth.oauth import OAuthUserService, ProviderType
 from auth.user_create import UserCreator
-from base.settings import google_oauth_settings
+from base.settings import settings
 from exceptions.auth import AuthError
 from httpx import AsyncClient
 from jose import jwt
@@ -57,8 +57,8 @@ async def get_google_token(code: str) -> GoogleTokenInfo:
         response = await client.post(
             url=GOOGLE_TOKEN_URL,
             data={
-                "client_id": google_oauth_settings.client_id,
-                "client_secret": google_oauth_settings.client_secret,
+                "client_id": settings.google.client_id,
+                "client_secret": settings.google.client_secret,
                 "grant_type": "authorization_code",
                 "redirect_uri": "http://localhost:5173/auth/google/login",
                 "code": code
@@ -87,7 +87,7 @@ class GoogleAuth:
     @property
     def oauth_uri(self):
         params = {
-            "client_id": google_oauth_settings.client_id,
+            "client_id": settings.google.client_id,
             "redirect_uri": "http://localhost:5173/auth/google/login",
             "response_type": "code",
             "scope": " ".join([

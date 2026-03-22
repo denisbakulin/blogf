@@ -9,7 +9,7 @@ from helpers.search import Pagination
 from schemas.comment import CommentCreate, CommentAuthorShow, CommentShow, UserUsername
 from schemas.post import PostShow, PostUpdate, PostContainerShow, ContainerShow
 from usecases.comment import CreateCommentUseCase, GetPostCommentsUseCase
-from usecases.post import GetPostUseCase, UpdatePostUseCase
+from usecases.post import GetPostUseCase, UpdatePostUseCase, DeletePostUseCase
 from utils.post import PostSearchParams
 from schemas.reaction import ReactionPostShow, ReactionAuthorShow, PostSlug, UserUsername, ReactionShow
 
@@ -78,6 +78,21 @@ async def update_post(
         slug=slug, update=update, user=user
     )
 
+
+@router.delete(
+    "/{slug}",
+    summary="Удалить пост",
+)
+async def delete_post(
+        session: getSessionDep,
+        slug: str,
+        user: currentUserDep,
+):
+    logic = DeletePostUseCase(session)
+
+    return await logic.execute(
+        slug=slug,  user=user
+    )
 
 
 @router.post(

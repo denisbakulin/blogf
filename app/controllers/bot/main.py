@@ -5,7 +5,7 @@ from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.filters import BaseFilter
 from aiogram.types import BotCommand, CallbackQuery
-from base.settings import bot_settings
+from base.settings import settings
 from controllers.bot.external.main import broker
 from controllers.bot.fsm import storage
 
@@ -15,7 +15,7 @@ logging.basicConfig(level=logging.DEBUG)
 dp = Dispatcher(storage=storage)
 
 bot = Bot(
-    token=bot_settings.token,
+    token=settings.bot.token,
     default=DefaultBotProperties(
         parse_mode='HTML'
     ),

@@ -37,6 +37,7 @@ class PostPolicy:
         ctx = await ContextResolver(self.sub_service).resolve(
             user=user, container=container, is_owner=post.author_id == user.id
         )
+
         BasePolicy(ctx).ensure_ge_role(AccessLevel.OWNER)
 
 

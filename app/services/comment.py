@@ -1,4 +1,4 @@
-from base.exceptions import EntityBadRequestError
+from base.exceptions import EntityBadRequestError, EntityNotFoundError
 from base.service import BaseService
 from entities import Container, ContainerType, Comment, Post, User
 from helpers.search import Pagination
@@ -47,9 +47,14 @@ class CommentService(BaseService[Comment, CommentRepository]):
     async def get_comment_by_id(self, comment_id: int) -> Comment:
         return await self.get_item_by_id(comment_id)
 
+    async def get_full_comment(self, comment_id: int):
+        return self.ensure_one_return(
+            await self.repository.get_full_comment(comment_id)
+        )
+
 
     async def get_post_comments(
-            self,post_id: int,
+            self, post_id: int,
             pagination: Pagination
     ) -> list[tuple[Comment, User, Post]]:
 

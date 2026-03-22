@@ -3,7 +3,7 @@ from typing import Annotated
 
 from base.model import BaseORM
 from fastapi import Depends
-from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine, AsyncEngine
 
 data_dir = Path(__file__).parent.parent.parent / "data"
 data_dir.mkdir(exist_ok=True)
@@ -16,6 +16,16 @@ engine = create_async_engine(
     url=f"sqlite+aiosqlite:///{DB_PATH}",
     echo=True
 )
+
+from sqlalchemy import event
+from sqlalchemy.engine import Engine  # Импортируем обычный Engine
+
+# Вешаемся на внутренний синхронный движок асинхронного драйвера
+@event.listens_for(engine.sync_engine, "connect")
+def set_sqlite_pragma(dbapi_connection, connection_record):
+    cursor = dbapi_connection.cursor()
+    cursor.execute("PRAGMA foreign_keys=ON")
+    cursor.close()
 
 session_maker = async_sessionmaker(bind=engine, expire_on_commit=False)
 

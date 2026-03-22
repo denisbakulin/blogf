@@ -2,7 +2,7 @@ from auth.code import AuthCodeManager
 from auth.oauth import OAuthUserService, ProviderType
 from auth.user_create import UserCreator
 from base.cache import cache
-from base.settings import bot_settings
+from base.settings import settings
 from exceptions.auth import AuthError
 from schemas.auth import LoginTokens
 from services.user import UserService
@@ -26,7 +26,7 @@ class TelegramAuth:
 
 
     def get_verify_ref(self, code: str):
-        return f"https://t.me/{bot_settings.bot_name}?start={code}"
+        return f"https://t.me/{settings.bot.bot_name}?start={code}"
 
 
     async def login(self, token: str, name: str) -> LoginTokens:

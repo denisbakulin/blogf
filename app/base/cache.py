@@ -1,7 +1,10 @@
 from redis.asyncio import Redis
+from base.settings import settings
 
 cache = Redis(
-    decode_responses=True
+    decode_responses=True,
+    host=settings.redis.host,
+    port=settings.redis.port
 )
 
 def init_fastapi_cache():

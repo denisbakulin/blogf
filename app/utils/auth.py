@@ -2,7 +2,7 @@ import secrets
 from datetime import UTC, datetime, timedelta
 from enum import StrEnum
 
-from base.settings import jwt_auth_settings
+from base.settings import settings
 from exceptions.auth import InvalidPasswordError, InvalidTokenError
 from fastapi import Response
 from jose import JWTError, jwt
@@ -95,23 +95,23 @@ class TokenCreator:
 
         return jwt.encode(
             payload,
-            jwt_auth_settings.secret_key,
-            algorithm=jwt_auth_settings.algorithm
+            settings.jwt.secret_key,
+            algorithm=settings.jwt.algorithm
         )
 
     @property
     def access(self) -> str:
-        age = timedelta(minutes=jwt_auth_settings.access_token_expire_minutes)
+        age = timedelta(minutes=settings.jwt.access_token_expire_minutes)
         return self._create_token(TokenTypes.access, age)
 
     @property
     def refresh(self) -> str:
-        age = timedelta(days=jwt_auth_settings.refresh_token_expire_days)
+        age = timedelta(days=settings.jwt.refresh_token_expire_days)
         return self._create_token(TokenTypes.refresh, age)
 
     @property
     def tg_login(self) -> str:
-        age = timedelta(minutes=jwt_auth_settings.tg_login_token_expire_minutes)
+        age = timedelta(minutes=settings.jwt.tg_login_token_expire_minutes)
         return self._create_token(TokenTypes.tg_login, age)
 
 
@@ -130,8 +130,8 @@ def decode_token(token: str, algorithm: str | None = None):
     try:
         return jwt.decode(
             token,
-            jwt_auth_settings.secret_key,
-            algorithms=[algorithm or jwt_auth_settings.algorithm],
+            settings.jwt.secret_key,
+            algorithms=[algorithm or settings.jwt.algorithm],
             options={
                 "verify_signature": True,
                 "verify_exp": True,

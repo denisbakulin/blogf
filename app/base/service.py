@@ -46,21 +46,26 @@ class BaseService[T, R]:
         return item
 
 
+    def ensure_one_return(self, entity: Any | None) -> Any:
+        if entity is None:
+            raise EntityNotFoundError(str(self.model.__name__))
+        return entity
+
+
     async def get_by_or_raise(self, **params) -> T:
         """
         Возвращает запись по совпадениям params
 
         :raise
             EntityNotFoundError: Если запись не найдена
+
+            EntityBadRequestError: В базе больше 1 объекта
+
         """
         try:
             item = await self.repository.get_one_by(**params)
-            if not item:
-                raise EntityNotFoundError(
-                    self.model.__name__,
-                    **params
-                )
-            return item
+            return self.ensure_one_return(item)
+
         except SQLAlchemyError as e:
             raise EntityBadRequestError(
                 entity=self.model.__name__, message="Больше 1 объекта в базе"
