@@ -31,10 +31,5 @@ def safe_request(func):
             raise HTTPException(status_code=500, detail=f"Неожиданная ошибка: {e}")
     return wrapper
 
-async def main() -> None:
-    ...
 
-
-if __name__ == "__main__":
-    asyncio.run(main())
 

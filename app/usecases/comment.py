@@ -10,14 +10,13 @@ from services.subscribe import SubscribeService
 
 class BaseCommentUseCase:
     def __init__(
-            self,
-            session: AsyncSession
+        self, session: AsyncSession
     ):
         self.comment_service = CommentService(session)
         self.container_service = ContainerService(session)
         self.post_service = PostService(session)
-        self.sub_service = SubscribeService(session)
-        self.policy = CommentPolicy(self.sub_service)
+        self.session = session
+        self.policy = CommentPolicy(self.session)
 
 
 class CreateCommentUseCase(BaseCommentUseCase):

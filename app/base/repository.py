@@ -126,8 +126,7 @@ class BaseRepository[T]:
 
 
     async def exists(
-            self,
-            **filters
+        self, **filters
     ) -> bool:
         """Проверяет существование записи"""
 

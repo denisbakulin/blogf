@@ -2,7 +2,7 @@ from enum import Enum, auto
 
 
 class AccessLevel(Enum):
-    NONE = auto()
+    UNDEFINED = auto()
     BANNED = auto()
     VIEWER = auto()
     MEMBER = auto()

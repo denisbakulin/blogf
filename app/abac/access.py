@@ -23,7 +23,7 @@ class AccessResolver:
             return AccessLevel.OWNER
 
 
-        return AccessLevel.NONE
+        return AccessLevel.UNDEFINED
 
 
 

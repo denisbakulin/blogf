@@ -6,8 +6,7 @@ from services.container import AsyncSession, ContainerService
 
 class BaseContainerUseCase:
     def __init__(
-            self,
-            session: AsyncSession
+        self, session: AsyncSession
     ):
         self.container_service = ContainerService(session)
         self.policy = BaseContainerPolicy()

@@ -9,13 +9,13 @@ from services.subscribe import SubscribeService
 
 class BasePostUseCase:
     def __init__(
-            self,
-            session: AsyncSession
+        self, session: AsyncSession
     ):
         self.post_service = PostService(session)
+        self.session = session
         self.container_service = ContainerService(session)
         self.sub_service = SubscribeService(session)
-        self.policy = PostPolicy(self.sub_service)
+        self.policy = PostPolicy(self.session)
 
 
 class GetWallPostsUseCase(BasePostUseCase):

@@ -3,6 +3,7 @@ from deps.auth import currentUserDep
 from deps.channel import *
 from fastapi import APIRouter, Depends, status
 from helpers.search import Pagination
+from schemas.admin import AdminCreate
 from schemas.channel import ChannelCreate
 from schemas.container import ContainerShow, ContainerUpdate
 from schemas.post import PostCreate, PostAuthorShow, UserUsername, PostShow
@@ -10,6 +11,8 @@ from usecases.container import UpdateContainerUseCase
 from usecases.post import CreatePostUseCase, GetPostsUseCase
 from schemas.join_request import JRShow, JRSUserShow
 from schemas.user import UserShow
+
+from usecases.channel import CreateChannelUseCase, GetChannelSubscribersUseCase, SetChannelAdminUseCase
 
 router = APIRouter(prefix="/channels", tags=["📚 Каналы"])
 
@@ -23,9 +26,11 @@ router = APIRouter(prefix="/channels", tags=["📚 Каналы"])
 async def create_channel(
         create: ChannelCreate,
         user: currentUserDep,
-        service: channelServiceDep
+        session: getSessionDep
 ):
-    channel = await service.create_channel(user_id=user.id, create=create)
+    logic = CreateChannelUseCase(session)
+
+    channel = await logic.execute(user_id=user.id, create=create)
 
     return ContainerShow.from_orm(channel)
 
@@ -158,14 +163,14 @@ async def process_jr(
     response_model=list[UserShow]
 )
 async def process_subscribe(
-        service: channelServiceDep,
+        session: getSessionDep,
         user: currentUserDep,
         channel: channelDep,
         pagination: Pagination = Depends()
 ):
-    users = await service.get_subscribers(
-        user_id=user.id, channel=channel, pagination=pagination
-    )
+    logic = GetChannelSubscribersUseCase(session)
+
+    users = await logic.execute(user_id=user.id, channel=channel, pagination=pagination)
 
     return [
         UserShow.from_orm(user) for user in users
@@ -185,3 +190,18 @@ async def create_subscribe(
 ):
     return await service.subscribe(user_id=user.id, channel_id=channel.id)
 
+
+
+@router.post(
+    "/{slug}/admin",
+    summary="set admin"
+)
+async def set_channel_admin(
+    session: getSessionDep,
+    user: currentUserDep,
+    channel: channelDep,
+    admin: AdminCreate
+):
+    logic = SetChannelAdminUseCase(session)
+
+    await logic.execute(user_id=user.id, channel=channel, admin=admin)

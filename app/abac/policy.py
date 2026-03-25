@@ -1,14 +1,15 @@
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from abac.access_level import AccessLevel
-from abac.context_resolver import  ContextResolver, Context
+from abac.context_resolver import ContextResolver, Context
 from abac.exceptions import Forbidden
-from services.subscribe import SubscribeService
 from abc import ABC, abstractmethod
 
 
 class BasePolicy(ABC):
-    def __init__(self, sub_service: SubscribeService):
-        self.sub_service = sub_service
-        self.resolver = ContextResolver(self.sub_service)
+    def __init__(self, session: AsyncSession):
+        self.session = session
+        self.resolver = ContextResolver(self.session)
 
 
     @abstractmethod

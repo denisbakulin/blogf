@@ -1,7 +1,10 @@
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from abac.access import AccessResolver
 from abac.access_level import AccessLevel
 from abac.data import AccessContext, AuthContext, Context
 from entities import Container, ContainerType, User
+from services.admin import AdminService
 from services.subscribe import SubscribeService
 from base.model import OwnedByUserMixin
 from abc import ABC, abstractmethod
@@ -10,24 +13,33 @@ from abc import ABC, abstractmethod
 class ContainerContexBuilder(ABC):
     def __init__(
         self,
-        sub_service: SubscribeService,
+        session: AsyncSession,
         container: Container,
         user: User,
         entity: OwnedByUserMixin | None = None
     ):
-        self.sub_service = sub_service
+
         self.user = user
         self.container = container
         self.entity = entity
+        self.session = session
+        self.subscribe = SubscribeService(session)
+        self.admin = AdminService(session)
+
 
     @abstractmethod
     async def build(self) -> Context:
         pass
 
-    @property
+
     async def is_subscriber(self) -> bool:
-        return await self.sub_service.is_subscriber(
+        return await self.subscribe.is_subscriber(
             user_id=self.user.id, container_id=self.container.id
+        )
+
+    async def is_admin(self):
+        return await self.admin.repository.exists(
+            container_id=self.container.id, user_id=self.user.id
         )
 
     @property
@@ -35,6 +47,9 @@ class ContainerContexBuilder(ABC):
         if self.entity is None:
             return False
         return self.user.id == self.entity.author_id
+
+
+
 
 
 
@@ -49,32 +64,39 @@ class ContainerContexBuilder(ABC):
         )
 
 
-
-
 def ctx_from_access(access: AccessContext, level: AccessLevel) -> Context:
     return Context(**access.__dict__, level=level)
 
 
 class PublicChannelContextBuilder(ContainerContexBuilder):
     async def build(self) -> Context:
-
         access_ctx, level = self.get_level()
 
-        if level is AccessLevel.NONE:
+        is_subscriber = await self.is_subscriber()
+        is_admin = await self.is_admin()
 
-            level = AccessLevel.MEMBER if self.is_subscriber else AccessLevel.VIEWER
+        if level is AccessLevel.UNDEFINED:
+            level = AccessLevel.MEMBER if is_subscriber else AccessLevel.VIEWER
 
+        if is_admin:
+            level = AccessLevel.ADMIN
 
         return ctx_from_access(access_ctx, level)
 
 
 class PrivateChannelContextBuilder(ContainerContexBuilder):
+
     async def build(self) -> Context:
         access_ctx, level = self.get_level()
 
-        if level is AccessLevel.NONE:
+        is_subscriber = await self.is_subscriber()
+        is_admin = await self.is_admin()
 
-            level = AccessLevel.VIEWER if self.is_subscriber else AccessLevel.NONE
+        if level is AccessLevel.UNDEFINED:
+            level = AccessLevel.VIEWER if is_subscriber else AccessLevel.UNDEFINED
+
+        if is_admin:
+            level = AccessLevel.ADMIN
 
         return ctx_from_access(access_ctx, level)
 
@@ -82,10 +104,11 @@ class PrivateChannelContextBuilder(ContainerContexBuilder):
 class TopicContextBuilder(ContainerContexBuilder):
     async def build(self) -> Context:
         access_ctx, level = self.get_level()
+        is_subscriber = await self.is_subscriber()
+        is_admin = await self.is_admin()
 
-        if level == AccessLevel.NONE:
-
-            level = AccessLevel.MEMBER if self.is_subscriber else AccessLevel.VIEWER
+        if level == AccessLevel.UNDEFINED:
+            level = AccessLevel.MEMBER if is_subscriber else AccessLevel.VIEWER
 
         return ctx_from_access(access_ctx, level)
 
@@ -100,8 +123,11 @@ class WallContextBuilder(ContainerContexBuilder):
 
 
 class ContextResolver:
-    def __init__(self, sub_service: SubscribeService):
-        self.sub_service = sub_service
+
+
+    def __init__(self, session: AsyncSession):
+        self.session = session
+        self.sub_service = SubscribeService(session)
 
         self.builders: dict[ContainerType, type[ContainerContexBuilder]] = {
             ContainerType.WALL: WallContextBuilder,
@@ -118,7 +144,7 @@ class ContextResolver:
     ) -> Context:
 
         builder = self.builders[container.type](
-            self.sub_service, user=user, container=container, entity=entity
+            session=self.session, user=user, container=container, entity=entity
         )
 
         return await builder.build()

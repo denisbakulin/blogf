@@ -16,7 +16,8 @@ class BaseReactionUseCase:
         self.container_service = ContainerService(session)
         self.reaction_service = ReactionService(session)
         self.sub_service = SubscribeService(session)
-        self.policy = ReactionPolicy(self.sub_service)
+        self.session = session
+        self.policy = ReactionPolicy(self.session)
 
 
 class GetPostReactionsUseCase(BaseReactionUseCase):

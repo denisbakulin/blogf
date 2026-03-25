@@ -13,7 +13,7 @@ from schemas.user import UserProfile, UserProfileShow, UserShow
 from usecases.post import GetWallPostsUseCase
 from utils.user import UserSearchParams
 
-router = APIRouter(prefix="/users", tags=["👨 Пользователи"])
+router = APIRouter(prefix="/@{username}", tags=["👨 Пользователи"])
 
 @router.get(
     "/search",
@@ -34,7 +34,7 @@ async def search_users(
 
 
 @router.get(
-    "/@{username}",
+    "",
     summary="Получить пользователя по username",
     response_model=UserProfileShow,
 )
@@ -54,7 +54,7 @@ from schemas.topic import UserCommentsCountOfTopicShow
 
 
 @router.get(
-    "/@{username}/top-topics",
+    "/top-topics",
     summary="Получить топ обсуждений пользователя по кол-ву комментариев",
     response_model=list[UserCommentsCountOfTopicShow]
 )
@@ -72,7 +72,7 @@ async def get_top_topics(
 
 
 @router.get(
-    "/@{username}/wall",
+    "/wall",
     summary="Получить стену пользователя",
     response_model=WallShow
 )
@@ -90,7 +90,7 @@ async def get_user_wall(
 
 
 @router.get(
-    "/@{username}/wall/posts",
+    "/wall/posts",
     summary="Получить посты пользователя",
     response_model=list[PostShow]
 )
@@ -110,7 +110,7 @@ async def get_user_wall_posts(
 
 
 @router.post(
-    "/@{username}/wall/subscribe",
+    "/wall/subscribe",
     summary="Подписаться на пользователя",
     status_code=status.HTTP_201_CREATED,
     response_model=None

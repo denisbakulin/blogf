@@ -15,7 +15,6 @@ class ReactionPolicy(BasePolicy):
         )
         ContextEnsure(ctx).ge_role(AccessLevel.VIEWER)
 
-
     async def ensure_update(self, user: User, reaction: Reaction, container: Container):
         ctx = await ContextResolver(self.sub_service).resolve(
             user=user, container=container, entity=reaction

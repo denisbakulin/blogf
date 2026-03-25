@@ -4,10 +4,9 @@ from base.db import getSessionDep
 from deps.container import get_container
 from entities import Container, ContainerType
 from fastapi import Depends
-from services.channel import ChannelService, PrivateChannelService, PublicChannelService
+from services.channel import PrivateChannelService, PublicChannelService
 
 __all__ = (
-    "channelServiceDep",
     "privateChannelServiceDep",
     'publicChannelServiceDep',
     'channelDep',
@@ -15,10 +14,7 @@ __all__ = (
     'publicChannelDep',
 )
 
-def get_channel_service(
-        session: getSessionDep
-) -> ChannelService:
-    return ChannelService(session=session)
+
 
 def get_private_channel_service(
         session: getSessionDep
@@ -31,7 +27,6 @@ def get_public_channel_service(
     return PublicChannelService(session=session)
 
 
-channelServiceDep = Annotated[ChannelService, Depends(get_channel_service)]
 privateChannelServiceDep = Annotated[PrivateChannelService, Depends(get_private_channel_service)]
 publicChannelServiceDep = Annotated[PublicChannelService, Depends(get_public_channel_service)]
 
