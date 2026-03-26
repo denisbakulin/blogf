@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
+from base.schemas import BaseSchema, IdMixinSchema, CreatedAtMixinSchema
 from pydantic import Field
 
 
@@ -26,7 +26,7 @@ class UserUpdate(BaseSchema):
 
 
 
-class UserShow(BaseSchema, IdMixinSchema, TimeMixinSchema):
+class UserShow(BaseSchema, IdMixinSchema, CreatedAtMixinSchema):
     username: str
     name: str | None
     is_active: bool

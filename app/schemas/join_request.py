@@ -1,7 +1,7 @@
-from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
+from base.schemas import BaseSchema, IdMixinSchema, CreatedAtMixinSchema
 from schemas.user import UserUsername
 
-class JRShow(BaseSchema, TimeMixinSchema, IdMixinSchema):
+class JRShow(BaseSchema, CreatedAtMixinSchema, IdMixinSchema):
     pass
 
 class JRSUserShow(JRShow):

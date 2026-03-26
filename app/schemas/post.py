@@ -1,4 +1,4 @@
-from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
+from base.schemas import BaseSchema, IdMixinSchema, CreatedAtMixinSchema, UpdatedAtMixinSchema
 from pydantic import Field
 from schemas.container import ContainerShow
 from schemas.user import UserUsername
@@ -13,7 +13,7 @@ class PostSlug(BaseSchema):
     slug: str
 
 
-class PostShow(PostBase, TimeMixinSchema):
+class PostShow(PostBase, CreatedAtMixinSchema, UpdatedAtMixinSchema):
     slug: str
     allow_comments: bool
     allow_reactions: bool

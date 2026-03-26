@@ -3,7 +3,7 @@ from datetime import datetime
 from pydantic import BaseModel, Field
 from sqlalchemy import inspect, ForeignKey
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-
+from enum import StrEnum, auto
 
 class ColumnProps(BaseModel):
     name: str
@@ -62,4 +62,17 @@ class TimeMixin:
 
 class OwnedByUserMixin:
     author_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
+
+class UpdatedAtMixin:
+    updated_at: Mapped[datetime | None]
+
+
+
+class DBEntity(StrEnum):
+    USER = auto()
+    CONTAINER = auto()
+    POST = auto()
+    COMMENT = auto()
+    REACTION = auto()
+    TOPIC_OFFER = auto()
 

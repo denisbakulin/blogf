@@ -1,4 +1,4 @@
-from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
+from base.schemas import BaseSchema, IdMixinSchema, CreatedAtMixinSchema
 from entities import ReactionType
 from pydantic import BaseModel
 from schemas.post import PostSlug
@@ -14,7 +14,7 @@ class Slug(BaseSchema):
     slug: str
 
 
-class ReactionShow(BaseSchema, TimeMixinSchema):
+class ReactionShow(BaseSchema, CreatedAtMixinSchema):
     type: ReactionType
 
 
@@ -27,7 +27,7 @@ class ReactionPostShow(ReactionShow):
     post: PostSlug
 
 
-class TopicReactionShow(ReactionAuthorShow, TimeMixinSchema):
+class TopicReactionShow(ReactionAuthorShow, CreatedAtMixinSchema):
     container: Slug
 
 

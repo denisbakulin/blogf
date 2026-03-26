@@ -1,4 +1,4 @@
-from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
+from base.schemas import BaseSchema, IdMixinSchema, CreatedAtMixinSchema
 from pydantic import BaseModel
 
 
@@ -6,7 +6,7 @@ class MessageCreate(BaseModel):
     content: str
 
 
-class DirectMessageShow(MessageCreate, TimeMixinSchema, IdMixinSchema):
+class DirectMessageShow(MessageCreate, CreatedAtMixinSchema, IdMixinSchema):
     recipient_id: int
     sender_id: int
 

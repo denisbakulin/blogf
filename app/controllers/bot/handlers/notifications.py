@@ -11,9 +11,9 @@ router.callback_query.middleware(UserMiddleware(session_maker))
 
 @router.callback_query(F.data == "notifications")
 async def notifications_callback(
-        callback: CallbackQuery,
-        session: AsyncSession,
-        user: User
+    callback: CallbackQuery,
+    session: AsyncSession,
+    user: User
 ):
     """Показывает меню нотификаций"""
 
@@ -28,9 +28,9 @@ async def notifications_callback(
 
 @router.callback_query(F.data.in_(NotificationType))
 async def process_notification_button(
-        callback: CallbackQuery,
-        session: AsyncSession,
-        user: User
+    callback: CallbackQuery,
+    session: AsyncSession,
+    user: User
 ):
     """Включает/выключает уведомления"""
 
@@ -44,3 +44,4 @@ async def process_notification_button(
         "Меню уведомлений",
         reply_markup=create_notify_kb(notifications)
     )
+

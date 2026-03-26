@@ -24,9 +24,9 @@ router = APIRouter(prefix="/channels", tags=["📚 Каналы"])
     response_model=ContainerShow
 )
 async def create_channel(
-        create: ChannelCreate,
-        user: currentUserDep,
-        session: getSessionDep
+    create: ChannelCreate,
+    user: currentUserDep,
+    session: getSessionDep
 ):
     logic = CreateChannelUseCase(session)
 
@@ -50,10 +50,10 @@ async def get_channel(
     summary="Изменить канал",
 )
 async def update_channel(
-        channel: channelDep,
-        update: ContainerUpdate,
-        session: getSessionDep,
-        user: currentUserDep
+    channel: channelDep,
+    update: ContainerUpdate,
+    session: getSessionDep,
+    user: currentUserDep
 ):
     logic = UpdateContainerUseCase(session)
 
@@ -68,10 +68,10 @@ async def update_channel(
     response_model=list[PostAuthorShow]
 )
 async def get_channel_posts(
-        channel: channelDep,
-        session: getSessionDep,
-        user: currentUserDep,
-        pagination: Pagination = Depends()
+    channel: channelDep,
+    session: getSessionDep,
+    user: currentUserDep,
+    pagination: Pagination = Depends()
 
 ):
     logic = GetPostsUseCase(session)
@@ -93,10 +93,10 @@ async def get_channel_posts(
     response_model=PostShow
 )
 async def create_channel_post(
-        channel: channelDep,
-        session: getSessionDep,
-        user: currentUserDep,
-        create: PostCreate
+    channel: channelDep,
+    session: getSessionDep,
+    user: currentUserDep,
+    create: PostCreate
 ):
     logic = CreatePostUseCase(session)
 
@@ -115,9 +115,9 @@ async def create_channel_post(
     status_code=status.HTTP_201_CREATED
 )
 async def send_join_request(
-        channel: privateChannelDep,
-        service: privateChannelServiceDep,
-        user: currentUserDep,
+    channel: privateChannelDep,
+    service: privateChannelServiceDep,
+    user: currentUserDep,
 ):
     await service.send_jr(
         channel_id=channel.id, user_id=user.id
@@ -130,9 +130,9 @@ async def send_join_request(
     response_model=list[JRSUserShow]
 )
 async def get_jrs(
-        channel: privateChannelDep,
-        service: privateChannelServiceDep,
-        user: currentUserDep,
+    channel: privateChannelDep,
+    service: privateChannelServiceDep,
+    user: currentUserDep,
 ):
     jrs = await service.get_jrs(user_id=user.id, channel=channel)
 
@@ -149,10 +149,10 @@ async def get_jrs(
     summary="Обработать заявку"
 )
 async def process_jr(
-        service: privateChannelServiceDep,
-        user: currentUserDep,
-        jr_id: int,
-        approve: bool
+    service: privateChannelServiceDep,
+    user: currentUserDep,
+    jr_id: int,
+    approve: bool
 ):
     await service.process_jr(user_id=user.id, jr_id=jr_id, approve=approve)
 
@@ -163,10 +163,10 @@ async def process_jr(
     response_model=list[UserShow]
 )
 async def process_subscribe(
-        session: getSessionDep,
-        user: currentUserDep,
-        channel: channelDep,
-        pagination: Pagination = Depends()
+    session: getSessionDep,
+    user: currentUserDep,
+    channel: channelDep,
+    pagination: Pagination = Depends()
 ):
     logic = GetChannelSubscribersUseCase(session)
 
@@ -182,11 +182,12 @@ async def process_subscribe(
 @router.post(
     "/{slug}/subscribe",
     summary="Подписаться на публичный канал",
+    status_code=status.HTTP_201_CREATED
 )
 async def create_subscribe(
-        service: publicChannelServiceDep,
-        user: currentUserDep,
-        channel: publicChannelDep,
+    service: publicChannelServiceDep,
+    user: currentUserDep,
+    channel: publicChannelDep,
 ):
     return await service.subscribe(user_id=user.id, channel_id=channel.id)
 
@@ -194,7 +195,8 @@ async def create_subscribe(
 
 @router.post(
     "/{slug}/admin",
-    summary="set admin"
+    summary="set admin",
+    status_code=status.HTTP_201_CREATED
 )
 async def set_channel_admin(
     session: getSessionDep,

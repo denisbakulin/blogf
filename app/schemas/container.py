@@ -1,8 +1,8 @@
-from base.schemas import BaseSchema,  TimeMixinSchema
+from base.schemas import BaseSchema,  CreatedAtMixinSchema
 from entities  import ContainerType
 
 
-class ContainerShow(BaseSchema, TimeMixinSchema):
+class ContainerShow(BaseSchema, CreatedAtMixinSchema):
     title: str | None
     slug: str | None
     description: str | None
@@ -16,7 +16,7 @@ class ContainerUpdate(BaseSchema):
     title: str | None = None
     description: str | None = None
 
-class WallShow(BaseSchema, TimeMixinSchema):
+class WallShow(BaseSchema, CreatedAtMixinSchema):
     title: str | None
 
 

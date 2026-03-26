@@ -1,13 +1,13 @@
-from allows.model import AllowAction, AllowEntity
+from allows.model import AllowAction, DBEntity
 from base.schemas import BaseSchema
 
 
 class AllowBase(BaseSchema):
     action: AllowAction
-    entity: AllowEntity
+    entity: DBEntity
     against: bool
 
-    context: AllowEntity | None
+    context: DBEntity | None
     context_id: int | None
 
 

@@ -1,4 +1,4 @@
-from allows.model import Allow, AllowAction, AllowEntity
+from allows.model import Allow, AllowAction, DBEntity
 from allows.repository import AllowRepository
 from base.service import BaseService
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -11,8 +11,8 @@ class AllowService(BaseService[Allow, AllowRepository]):
     async def create_allow(
             self, user_id: int,
             action: AllowAction,
-            entity: AllowEntity,
-            context: AllowEntity | None = None,
+            entity: DBEntity,
+            context: DBEntity | None = None,
             context_id: int | None = None,
     ) -> Allow:
         allow = await self.repository.get_one_by(

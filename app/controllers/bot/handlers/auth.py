@@ -37,9 +37,9 @@ async def menu_query(callback: CallbackQuery, user: User):
 
 @router.message(Command("start", prefix="/."))
 async def start_cmd_process(
-        message: Message,
-        session: AsyncSession,
-        user: User,
+    message: Message,
+    session: AsyncSession,
+    user: User,
 ):
     """
     Обработчик /start?<code : str | None>
@@ -75,10 +75,10 @@ async def start_cmd_process(
 
 @router.callback_query(CodeCallback.filter())
 async def callback_reset_password(
-        callback: CallbackQuery,
-        state: FSMContext,
-        callback_data: CodeCallback,
-        session: AsyncSession
+    callback: CallbackQuery,
+    state: FSMContext,
+    callback_data: CodeCallback,
+    session: AsyncSession
 ):
     """
     Обработчик callback при нажатии 'обновить пароль'
@@ -104,9 +104,9 @@ async def callback_reset_password(
 
 @router.message(StateFilter(WaitingFSM.password))
 async def process_correct_reset_password(
-        message: Message,
-        state: FSMContext,
-        session: AsyncSession,
+    message: Message,
+    state: FSMContext,
+    session: AsyncSession,
 ):
     """Проверка валидности пароля"""
 

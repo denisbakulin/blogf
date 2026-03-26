@@ -1,4 +1,10 @@
-from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
+from base.schemas import (
+    BaseSchema,
+    IdMixinSchema,
+    CreatedAtMixinSchema,
+    UpdatedAtMixinSchema
+)
+
 from schemas.user import UserUsername
 
 class CommentBase(BaseSchema):
@@ -9,7 +15,7 @@ class CommentCreate(CommentBase):
     parent_id: int | None = None
 
 
-class CommentShow(CommentCreate, IdMixinSchema, TimeMixinSchema):
+class CommentShow(CommentCreate, IdMixinSchema, CreatedAtMixinSchema, UpdatedAtMixinSchema):
     pass
 
 class CommentFullShow(CommentShow):

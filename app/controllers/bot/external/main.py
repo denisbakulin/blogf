@@ -22,9 +22,9 @@ bot = Bot(settings.bot.token)
 
 @broker.subscriber("forget-password")
 async def forget_password(
-        code: str,
-        user_id: int,
-        session: AsyncSession = Depends(get_session)
+    code: str,
+    user_id: int,
+    session: AsyncSession = Depends(get_session)
 ):
     auth = TelegramAuth(session)
     tg_oauth = await auth.oauth_service.get_by_or_raise(
@@ -41,10 +41,10 @@ async def forget_password(
 
 @broker.subscriber("new-login")
 async def notify_login(
-        user_id: int,
-        host: str,
-        time: datetime,
-        session: AsyncSession = Depends(get_session)
+    user_id: int,
+    host: str,
+    time: datetime,
+    session: AsyncSession = Depends(get_session)
 ):
     notify = NotificationService(session)
     await notify.get_by_or_raise(type=NotificationType.BASE_LOGIN, user_id=user_id)

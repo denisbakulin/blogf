@@ -1,9 +1,9 @@
-from base.model import BaseORM, IdMixin, TimeMixin, OwnedByUserMixin
+from base.model import BaseORM, IdMixin, TimeMixin, OwnedByUserMixin, UpdatedAtMixin
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column
 
 
-class Post(BaseORM, IdMixin, TimeMixin, OwnedByUserMixin):
+class Post(BaseORM, IdMixin, TimeMixin, OwnedByUserMixin, UpdatedAtMixin):
     __tablename__ = "posts"
 
     title: Mapped[str] = mapped_column(nullable=False)

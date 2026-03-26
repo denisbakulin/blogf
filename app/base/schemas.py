@@ -11,6 +11,8 @@ class IdMixinSchema:
     id: int
 
 
-class TimeMixinSchema:
+class CreatedAtMixinSchema:
     created_at: datetime
 
+class UpdatedAtMixinSchema:
+    updated_at: datetime | None

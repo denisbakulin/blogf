@@ -1,6 +1,9 @@
+import datetime
+from datetime import datetime as dt
+
 from typing import Any, TypeVar
 
-from base.model import BaseORM
+from base.model import BaseORM, UpdatedAtMixin
 from sqlalchemy import Select, delete, desc, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -135,8 +138,8 @@ class BaseRepository[T]:
 
 
     async def delete_by_id(
-            self,
-            item_id: int
+        self,
+        item_id: int
     ):
         """Удаляет запись по id"""
 
@@ -159,7 +162,12 @@ class BaseRepository[T]:
         for key, value in updates.items():
             setattr(item, key, value)
 
+        if isinstance(item, UpdatedAtMixin):
+            setattr(item, "updated_at", dt.now(datetime.UTC))
+
         return item
+
+
 
 
 

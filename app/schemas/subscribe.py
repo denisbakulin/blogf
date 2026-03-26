@@ -1,5 +1,5 @@
 
-from base.schemas import BaseSchema, IdMixinSchema, TimeMixinSchema
+from base.schemas import BaseSchema, IdMixinSchema, CreatedAtMixinSchema
 from schemas.container import ContainerShow
 from schemas.user import UserUsername
 
@@ -16,7 +16,7 @@ class ListOfSubscribes(BaseSchema):
 
 
 
-class SubscribeBase(BaseSchema, IdMixinSchema, TimeMixinSchema):
+class SubscribeBase(BaseSchema, IdMixinSchema, CreatedAtMixinSchema):
     user: UserUsername
 
 class SubscriberOfContainerShow(SubscribeBase):
