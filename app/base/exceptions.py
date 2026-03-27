@@ -29,8 +29,8 @@ class EntityBadRequestError(AppError):
             message: str = ""
     ):
         super().__init__(
-            f"[{entity}] Ошибка доступа к ресурсу"
-            f" | {message}"
+            f"[{entity}] Ошибка доступа к ресурсу "
+            f"{'| ' + message if message else ''}"
         )
 
         self.entity = entity

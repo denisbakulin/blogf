@@ -10,10 +10,11 @@ from helpers.search import Pagination
 from schemas.container import WallShow
 from schemas.post import PostShow
 from schemas.user import UserProfile, UserProfileShow, UserShow
-from usecases.post import GetWallPostsUseCase
+from logic import GetWallPostsUseCase
 from utils.user import UserSearchParams
 
-router = APIRouter(prefix="/@{username}", tags=["👨 Пользователи"])
+
+router = APIRouter(prefix="/users/{username}", tags=["👨 Пользователи"])
 
 @router.get(
     "/search",

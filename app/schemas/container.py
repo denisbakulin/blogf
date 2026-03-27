@@ -1,8 +1,8 @@
-from base.schemas import BaseSchema,  CreatedAtMixinSchema
+from base.schemas import BaseSchema,  CreatedAtMixinSchema, IdMixinSchema
 from entities  import ContainerType
 
 
-class ContainerShow(BaseSchema, CreatedAtMixinSchema):
+class ContainerShow(BaseSchema, CreatedAtMixinSchema, IdMixinSchema):
     title: str | None
     slug: str | None
     description: str | None

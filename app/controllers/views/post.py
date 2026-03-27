@@ -8,8 +8,8 @@ from fastapi import APIRouter, Depends, status
 from helpers.search import Pagination
 from schemas.comment import CommentCreate, CommentAuthorShow, CommentShow, UserUsername
 from schemas.post import PostShow, PostUpdate, PostContainerShow, ContainerShow
-from usecases.comment import CreateCommentUseCase, GetPostCommentsUseCase
-from usecases.post import GetPostUseCase, UpdatePostUseCase, DeletePostUseCase
+
+from logic import GetPostUseCase, UpdatePostUseCase, DeletePostUseCase, CreateCommentUseCase, GetPostCommentsUseCase
 from utils.post import PostSearchParams
 from schemas.reaction import ReactionPostShow, ReactionAuthorShow, PostSlug, UserUsername, ReactionShow
 
@@ -185,10 +185,10 @@ async def get_post_reactions(
         post: postDep,
         service: reactionServiceDep,
         pagination: Pagination = Depends(),
-        reaction: ReactionType | None = None,
+        type: ReactionType | None = None,
 ):
     reactions = await service.get_post_reactions(
-        post_id=post.id, reaction_type=reaction, pagination=pagination
+        post_id=post.id, reaction_type=type, pagination=pagination
     )
 
     return [

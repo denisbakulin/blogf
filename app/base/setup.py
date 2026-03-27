@@ -56,7 +56,7 @@ async def init_db(app: FastAPI):
 
 @asynccontextmanager
 async def lifespan(
-        app: FastAPI,
+    app: FastAPI,
 ):
 
     include_routers(app)

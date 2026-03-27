@@ -2,7 +2,7 @@ from base.service import BaseService
 from entities import Reaction, ReactionType, User, Post
 
 from helpers.search import Pagination
-from repositories.reaction import ReactionRepository
+from repositories import ReactionRepository
 from sqlalchemy.ext.asyncio import AsyncSession
 
 

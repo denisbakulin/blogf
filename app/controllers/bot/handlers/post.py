@@ -11,7 +11,8 @@ from controllers.bot.text import ENTER_POST_CONTENT_TEXT, ENTER_POST_TITLE_TEXT
 from controllers.bot.utils.post import ensure_correct_content, ensure_correct_title
 from entities.user import User
 from sqlalchemy.ext.asyncio import AsyncSession
-from usecases.post import CreateWallPostUseCase, PostCreate
+from logic import CreateWallPostUseCase
+from schemas.post import PostCreate
 
 router = Router()
 

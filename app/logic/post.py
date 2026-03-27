@@ -7,6 +7,16 @@ from services.post import PostService
 from services.subscribe import SubscribeService
 
 
+__all__ = (
+    "GetWallPostsUseCase",
+    "GetPostsUseCase",
+    "CreateWallPostUseCase",
+    "CreatePostUseCase",
+    "UpdatePostUseCase",
+    "DeletePostUseCase",
+    "GetPostUseCase"
+)
+
 class BasePostUseCase:
     def __init__(
         self, session: AsyncSession

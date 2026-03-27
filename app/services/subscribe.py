@@ -1,7 +1,7 @@
 from base.service import BaseService
 from entities import Subscribe, Post, Container
 from helpers.search import Pagination
-from repositories.subscribe import SubscribeRepository
+from repositories import SubscribeRepository
 from sqlalchemy.ext.asyncio import AsyncSession
 
 

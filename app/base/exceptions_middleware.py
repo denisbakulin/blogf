@@ -11,7 +11,7 @@ from fastapi import status
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
 from starlette.responses import JSONResponse
-
+from pydantic import ValidationError
 
 class ErrorResponse(JSONResponse):
 
@@ -32,9 +32,11 @@ class AppExceptionMiddleware(BaseHTTPMiddleware):
         except (EntityAlreadyExists, InsufficientPermissionsError, Forbidden) as exc:
             return ErrorResponse(status.HTTP_403_FORBIDDEN, exc)
 
-
         except EntityBadRequestError as exc:
             return ErrorResponse(status.HTTP_422_UNPROCESSABLE_ENTITY, exc)
+
+        except ValidationError as exc:
+            return ErrorResponse(status.HTTP_422_UNPROCESSABLE_ENTITY, exc.errors())
 
         except AuthError as exc:
             return ErrorResponse(status.HTTP_401_UNAUTHORIZED, exc)

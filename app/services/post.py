@@ -1,7 +1,7 @@
 from base.service import BaseService
 from entities import Post, User
 from helpers.search import Pagination
-from repositories.post import PostRepository
+from repositories import PostRepository
 from schemas.post import PostCreate, PostUpdate
 from sqlalchemy.ext.asyncio import AsyncSession
 from utils.post import generate_slug, add_metadata_to_slug

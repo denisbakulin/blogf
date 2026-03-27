@@ -71,12 +71,10 @@ def ctx_from_access(access: AccessContext, level: AccessLevel) -> Context:
 class PublicChannelContextBuilder(ContainerContexBuilder):
     async def build(self) -> Context:
         access_ctx, level = self.get_level()
-
-        is_subscriber = await self.is_subscriber()
         is_admin = await self.is_admin()
 
         if level is AccessLevel.UNDEFINED:
-            level = AccessLevel.MEMBER if is_subscriber else AccessLevel.VIEWER
+            level = AccessLevel.VIEWER
 
         if is_admin:
             level = AccessLevel.ADMIN

@@ -2,7 +2,7 @@ from base.exceptions import EntityAlreadyExists
 from base.service import BaseService
 from entities import Profile, Settings, User
 from helpers.search import Pagination
-from repositories.user import ProfileRepository, SettingsRepository, UserRepository
+from repositories import ProfileRepository, SettingsRepository, UserRepository
 from schemas.user import UserSettings, UserUpdate
 from sqlalchemy.ext.asyncio import AsyncSession
 from utils.user import UserSearchParams, ensure_correct_username

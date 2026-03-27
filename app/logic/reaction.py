@@ -4,7 +4,12 @@ from helpers.search import Pagination
 from services.container import AsyncSession, ContainerService
 from services.post import PostService
 from services.reaction import ReactionService
-from services.subscribe import SubscribeService
+
+
+__all__ = (
+    "GetPostReactionsUseCase",
+    "ProcessPostReactionUseCase"
+)
 
 
 class BaseReactionUseCase:
@@ -15,7 +20,6 @@ class BaseReactionUseCase:
         self.post_service = PostService(session)
         self.container_service = ContainerService(session)
         self.reaction_service = ReactionService(session)
-        self.sub_service = SubscribeService(session)
         self.session = session
         self.policy = ReactionPolicy(self.session)
 

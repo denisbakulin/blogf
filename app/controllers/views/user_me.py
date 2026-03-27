@@ -11,9 +11,8 @@ from schemas.comment import CommentShow, CommentAuthorShow, CommentFullShow
 from schemas.post import PostCreate, PostShow, PostSlug
 from schemas.reaction import ReactionShow, ReactionAuthorShow, ReactionPostShow
 from schemas.user import UserProfile, UserProfileShow, UserSettings, UserShow, UserUpdate
-from usecases.post import CreateWallPostUseCase
-from schemas.container import ContainerUpdate, ContainerType
-from usecases.container import UpdateContainerUseCase, UpdateWallUseCase
+from logic import CreateWallPostUseCase,  UpdateWallUseCase
+from schemas.container import ContainerUpdate
 
 
 router = APIRouter(prefix="/me", tags=["👤 Личный кабинет"])

@@ -10,5 +10,5 @@ from .notification import Notification, NotificationType
 from .admin import Admin
 from .pinned_post import PinnedPost
 from .report import Report
-
+from .container_link import InviteLink
 

@@ -18,10 +18,8 @@ class BasePolicy(ABC):
     @abstractmethod
     async def ensure_create(self, *args, **kwargs): ...
 
-    @abstractmethod
     async def ensure_delete(self, *args, **kwargs): ...
 
-    @abstractmethod
     async def ensure_update(self, *args, **kwargs): ...
 
 

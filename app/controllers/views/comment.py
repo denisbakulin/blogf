@@ -2,7 +2,7 @@ from base.db import getSessionDep
 from deps.auth import currentUserDep
 from fastapi import APIRouter
 from schemas.comment import CommentUpdate, CommentShow, UserUsername, CommentFullShow
-from usecases.comment import DeleteCommentUseCase, UpdateCommentUseCase, GetCommentUseCase
+from logic import DeleteCommentUseCase, UpdateCommentUseCase, GetCommentUseCase
 
 comm_router = APIRouter(prefix="/comments", tags=["💬 Комментарии"])
 

@@ -42,7 +42,6 @@ async def get_current_user(
     return await user_service.get_user_by_id(token.user_id)
 
 
-
 async def get_base_auth(
         session: AsyncSession = Depends(get_session)
 ) -> BaseAuth:

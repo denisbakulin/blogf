@@ -7,7 +7,7 @@ from fastapi import APIRouter, Depends, status
 from helpers.search import Pagination
 from schemas.post import PostAuthorShow, PostCreate, PostShow
 from schemas.topic import ContainerMetricsShow, CreateTopic, TopicShow, UserUsername
-from usecases.post import CreatePostUseCase
+from logic import CreatePostUseCase
 from utils.container import ContainerSearchParams
 
 router = APIRouter(prefix="/topics", tags=["📚 Темы"])
@@ -71,7 +71,7 @@ async def get_topic(
         topic: topicDep,
         service: topicServiceDep
 ):
-    topic, author = await service.get_topic(topic.id)
+    topic, author = await service.get_full_topic(topic.id)
 
     return TopicShow(
         **ContainerMetricsShow.from_orm(topic).model_dump(),

@@ -17,7 +17,7 @@ class JoinRequestRepository(BaseRepository[JoinRequest]):
         stmt = (
             select(JoinRequest, User)
             .join(User, User.id == JoinRequest.user_id)
-            .where(JoinRequest.container_id == channel_id)
+            .where(JoinRequest.channel_id == channel_id)
         )
 
         result = await self.session.execute(stmt)

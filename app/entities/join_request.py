@@ -7,7 +7,7 @@ class JoinRequest(BaseORM, IdMixin, TimeMixin):
     __tablename__ = "join_requests"
 
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
-    container_id: Mapped[int] = mapped_column(ForeignKey("containers.id"))
+    channel_id: Mapped[int] = mapped_column(ForeignKey("containers.id"))
 
 
 

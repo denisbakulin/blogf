@@ -5,8 +5,14 @@ from schemas.comment import CommentCreate, CommentUpdate
 from services.comment import CommentService
 from services.container import AsyncSession, ContainerService
 from services.post import PostService
-from services.subscribe import SubscribeService
 
+__all__ = (
+    "CreateCommentUseCase",
+    "GetPostCommentsUseCase",
+    "GetCommentUseCase",
+    "UpdateCommentUseCase",
+    "DeleteCommentUseCase"
+)
 
 class BaseCommentUseCase:
     def __init__(
