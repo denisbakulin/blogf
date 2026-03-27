@@ -1,8 +1,7 @@
-from entities import Container,  User
+from entities import Container,  User, ContainerType
 from helpers.search import Pagination
-from abac.container.policy import PrivateChannelPolicy
-from services.container import ContainerService
-from services.channel import PrivateChannelService
+from abac.container.policy import PrivateChannelPolicy, BaseContainerPolicy
+from services.channel import PrivateChannelService, ChannelService
 from services.subscribe import SubscribeService
 from sqlalchemy.ext.asyncio import AsyncSession
 from services.join_request import JoinRequestService
@@ -14,8 +13,8 @@ __all__ = (
     "GetChannelSubscribersUseCase",
     "GetJRSUseCase",
     "ProcessJRSPUseCase",
+    "GetChannelUseCase"
 )
-
 
 
 class BaseChannelUseCase:
@@ -23,7 +22,8 @@ class BaseChannelUseCase:
         self, session: AsyncSession
     ):
         self.session = session
-        self.container_service = ContainerService(session)
+        self.channel_service = ChannelService(session)
+        self.policy = BaseContainerPolicy
 
 class BasePrivateChannelUseCase:
     def __init__(
@@ -33,13 +33,10 @@ class BasePrivateChannelUseCase:
         self.policy = PrivateChannelPolicy
         self.service = PrivateChannelService(self.session)
 
+
 class GetPrivateChannelUseCase(BasePrivateChannelUseCase):
-    async def execute(self, user: User, channel_id: int) -> Container:
-
-        channel = await self.service.get_channel(channel_id)
-
-        policy = self.policy(session=self.session, user=user, channel=channel)
-
+    async def execute(self, user: User, channel: Container) -> Container:
+        policy = self.policy(session=self.session, user=user, container=channel)
         await policy.ensure_read()
 
         return channel
@@ -49,6 +46,7 @@ class BaseJRSUseCase(BasePrivateChannelUseCase):
         super().__init__(*args, **kwargs)
         self.jr = JoinRequestService(self.session)
 
+
 class GetJRSUseCase(BaseJRSUseCase):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -56,7 +54,7 @@ class GetJRSUseCase(BaseJRSUseCase):
 
     async def execute(self, user: User, channel_id: int):
         channel = await self.service.get_channel(channel_id)
-        policy = self.policy(self.session, user=user, channel=channel)
+        policy = self.policy(self.session, user=user, container=channel)
 
         await policy.ensure_is_admin()
 
@@ -75,7 +73,7 @@ class ProcessJRSPUseCase(BaseJRSUseCase):
         if jr.channel_id != channel.id:
             raise EntityBadRequestError("Заявка не принадлежит этому каналу")
 
-        policy = self.policy(self.session, user=user, channel=channel)
+        policy = self.policy(self.session, user=user, container=channel)
 
         await policy.ensure_is_admin()
 
@@ -89,9 +87,12 @@ class ProcessJRSPUseCase(BaseJRSUseCase):
 
 
 class GetChannelSubscribersUseCase(BaseChannelUseCase):
-    async def execute(self, user_id: int, channel: Container, pagination: Pagination):
-        if channel.author_id != user_id:
-            raise EntityBadRequestError("Недостаточно прав")
+    async def execute(self, user: User, channel_id: int, pagination: Pagination):
+        channel = await self.channel_service.get_channel(channel_id)
+
+        policy = self.policy(self.session, user=user, container=channel)
+
+        await policy.ensure_is_admin()
 
         subs_service = SubscribeService(self.session)
 
@@ -99,6 +100,16 @@ class GetChannelSubscribersUseCase(BaseChannelUseCase):
             container_id=channel.id, pagination=pagination
         )
 
+class GetChannelUseCase(BaseChannelUseCase):
+    async def execute(self, channel_id: int, user: User) -> Container:
+        channel = await self.channel_service.get_channel(channel_id)
+
+        if channel.type == ContainerType.PUBLIC_CHANNEL:
+            return channel
+
+        logic = GetPrivateChannelUseCase(self.session)
+
+        return await logic.execute(user=user, channel=channel)
 
 
 

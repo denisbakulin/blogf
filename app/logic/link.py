@@ -27,7 +27,7 @@ class CreateInviteLinkUseCase(BaseLinkUseCase):
     async def execute(self, user: User, channel_id: int):
 
         channel = await self.private.get_channel(channel_id)
-        policy = self.policy(self.session, user=user, channel=channel)
+        policy = self.policy(self.session, user=user, container=channel)
 
         await policy.ensure_is_admin()
 
@@ -37,7 +37,7 @@ class CreateInviteLinkUseCase(BaseLinkUseCase):
 class GetInviteLinksUseCase(BaseLinkUseCase):
     async def execute(self, user: User, channel_id: int):
         channel = await self.private.get_channel(channel_id)
-        policy = self.policy(self.session, user=user, channel=channel)
+        policy = self.policy(self.session, user=user, container=channel)
 
         await policy.ensure_is_admin()
 

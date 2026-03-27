@@ -1,5 +1,5 @@
 from abac.comment.policy import CommentPolicy
-from entities import User, Post, Container, Comment
+from entities import User, Post, Comment
 from helpers.search import Pagination
 from schemas.comment import CommentCreate, CommentUpdate
 from services.comment import CommentService

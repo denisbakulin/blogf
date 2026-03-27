@@ -16,7 +16,7 @@ from logic import (
 from schemas.join_request import JRSUserShow, JRShow
 from schemas.user import UserUsername
 
-router = APIRouter(prefix="/{channel_id}", tags=["Private"])
+router = APIRouter(prefix="/{channel_id}", tags=["Private channel"])
 
 
 @router.get(

@@ -1,4 +1,4 @@
-from .public import router as public_router
+from .same import router as public_router
 from .private import router as private_router
 
 from base.db import getSessionDep

@@ -12,35 +12,35 @@ from services.user import UserService
 __all__ = (
     "UpdateContainerUseCase",
     "UpdateWallUseCase",
-    "get_container_by_identifier",
+    # "get_container_by_identifier",
     "SetContainerAdminUseCase"
 )
 
 
 
 
-async def get_container_by_identifier(
-    ctype: ContainerType,
-    value: str,
-    session: AsyncSession
-) -> Container:
-    match ctype:
-        case ContainerType.PRIVATE_CHANEL if value.isdigit():
-            service = PrivateChannelService(session)
-            channel_value = int(value)
-
-        case ContainerType.PUBLIC_CHANNEL:
-            service = PublicChannelService(session)
-            channel_value = value
-
-        case ContainerType.TOPIC if value.isdigit():
-            return await TopicService(session).get_topic(
-                topic_id=int(value)
-            )
-        case _:
-            raise EntityBadRequestError(ctype)
-
-    return await service.get_channel(channel_value)
+# async def get_container_by_identifier(
+#     ctype: ContainerType,
+#     value: str,
+#     session: AsyncSession
+# ) -> Container:
+#     match ctype:
+#         case ContainerType.PRIVATE_CHANEL if value.isdigit():
+#             service = PrivateChannelService(session)
+#             channel_value = int(value)
+#
+#         case ContainerType.PUBLIC_CHANNEL:
+#             service = PublicChannelService(session)
+#             channel_value = value
+#
+#         case ContainerType.TOPIC if value.isdigit():
+#             return await TopicService(session).get_topic(
+#                 topic_id=int(value)
+#             )
+#         case _:
+#             raise EntityBadRequestError(ctype)
+#
+#     return await service.get_channel(channel_value)
 
 
 class BaseContainerUseCase:
@@ -81,17 +81,19 @@ class UpdateWallUseCase(BaseContainerUseCase):
 
 
 class SetContainerAdminUseCase(BaseContainerUseCase):
-    async def execute(self, user: User, admin: AdminCreate, container: Container):
-        admin_service = AdminService(self.session)
-        user_service = UserService(self.session)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.admin_service = AdminService(self.session)
+        self.user_service = UserService(self.session)
 
-        admin = await user_service.get_user_by_username(admin.username)
+    async def execute(self, user: User, admin: AdminCreate, container: Container):
+        admin = await self.user_service.get_user_by_username(admin.username)
 
         policy = self.policy(self.session, user=user, container=container)
 
         await policy.ensure_is_admin()
 
-        await admin_service.create_admin(
+        await self.admin_service.create_admin(
             user_id=admin.id, container_id=container.id
         )
 
