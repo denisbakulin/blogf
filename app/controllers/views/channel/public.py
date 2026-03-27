@@ -5,10 +5,11 @@ from services.subscribe import SubscribeService
 from services.channel import PublicChannelService
 
 
-router = APIRouter(prefix="/{channel_id}", tags=["Public channel"])
+router = APIRouter(prefix="/{channel_id}")
 
 @router.post(
     "/subscribe",
+    tags=["Subscribe"],
     summary="Подписаться на публичный канал",
     status_code=status.HTTP_201_CREATED
 )

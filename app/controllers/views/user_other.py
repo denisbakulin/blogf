@@ -1,8 +1,8 @@
 from base.db import getSessionDep
 from deps.auth import currentUserDep
-from deps.comment import commentServiceDep
+from services.comment import CommentService
 from deps.container import containerServiceDep
-from deps.subscribe import subscribeServiceDep
+from services.subscribe import SubscribeService
 from deps.user import userDep, userServiceDep
 from entities import ContainerType
 from fastapi import APIRouter, Depends, status
@@ -61,8 +61,10 @@ from schemas.topic import UserCommentsCountOfTopicShow
 )
 async def get_top_topics(
         user: userDep,
-        service: commentServiceDep,
+        session: getSessionDep,
 ):
+    service = CommentService(session)
+
     top = await service.get_top_themes_of_user(user.id)
 
     return [
@@ -119,9 +121,10 @@ async def get_user_wall_posts(
 async def subscribe_to_user_wall(
         user: userDep,
         cuser: currentUserDep,
-        service: subscribeServiceDep,
+        session: getSessionDep,
         c: containerServiceDep
 ):
+    service = SubscribeService(session)
     container = await c.get_by_or_raise(author_id=user.id, type=ContainerType.WALL)
     return await service.create_subscribe(user_id=cuser.id, container_id=container.id)
 

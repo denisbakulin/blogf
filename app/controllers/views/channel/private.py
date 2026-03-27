@@ -3,59 +3,23 @@ from deps.auth import currentUserDep
 
 from fastapi import APIRouter
 
-from schemas.container import ContainerShow, ContainerUpdate
 from logic import (
-    GetPrivateChannelUseCase,
     CreateInviteLinkUseCase,
-    UpdateContainerUseCase,
     GetJRSUseCase,
     ProcessJRSPUseCase,
-    GetInviteLinksUseCase
+    GetInviteLinksUseCase,
 )
 
 from schemas.join_request import JRSUserShow, JRShow
 from schemas.user import UserUsername
 
-router = APIRouter(prefix="/{channel_id}", tags=["Private channel"])
+router = APIRouter(prefix="/{channel_id}")
 
-
-@router.get(
-    "",
-    summary="Посмотреть канал",
-    response_model=ContainerShow
-)
-async def get_channel(
-    channel_id: int,
-    session: getSessionDep,
-    user: currentUserDep,
-):
-    logic = GetPrivateChannelUseCase(session)
-
-    channel = await logic.execute(
-        user=user, channel_id=channel_id
-    )
-
-    return ContainerShow.from_orm(channel)
-
-@router.patch(
-    "",
-    summary="Изменить канал",
-)
-async def update_channel(
-    channel_id: int,
-    update: ContainerUpdate,
-    session: getSessionDep,
-    user: currentUserDep
-):
-    logic = UpdateContainerUseCase(session)
-
-    return await logic.execute(
-        user=user, container_id=channel_id, update=update
-    )
 
 
 @router.post(
-    "/invite-links"
+    "/invite-links",
+    tags=["Invite link"]
 )
 async def create_invite_link(
     user: currentUserDep,
@@ -69,7 +33,8 @@ async def create_invite_link(
     return link
 
 @router.get(
-    "/invite-links"
+    "/invite-links",
+    tags=["Invite link"]
 )
 async def get_invite_links(
     user: currentUserDep,
@@ -87,6 +52,7 @@ async def get_invite_links(
 @router.get(
     "/joins",
     summary="Получить заявки в канал",
+    tags=["Join Request"],
     response_model=list[JRSUserShow]
 )
 async def get_jrs(
@@ -108,7 +74,8 @@ async def get_jrs(
 
 @router.post(
     "/join-process/{jr_id}",
-    summary="Обработать заявку"
+    summary="Обработать заявку",
+    tags=["Join Request"]
 )
 async def process_jr(
     channel_id: int,

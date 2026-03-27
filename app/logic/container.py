@@ -12,35 +12,35 @@ from services.user import UserService
 __all__ = (
     "UpdateContainerUseCase",
     "UpdateWallUseCase",
-    # "get_container_by_identifier",
+    "get_container_by_identifier",
     "SetContainerAdminUseCase"
 )
 
 
 
 
-# async def get_container_by_identifier(
-#     ctype: ContainerType,
-#     value: str,
-#     session: AsyncSession
-# ) -> Container:
-#     match ctype:
-#         case ContainerType.PRIVATE_CHANEL if value.isdigit():
-#             service = PrivateChannelService(session)
-#             channel_value = int(value)
-#
-#         case ContainerType.PUBLIC_CHANNEL:
-#             service = PublicChannelService(session)
-#             channel_value = value
-#
-#         case ContainerType.TOPIC if value.isdigit():
-#             return await TopicService(session).get_topic(
-#                 topic_id=int(value)
-#             )
-#         case _:
-#             raise EntityBadRequestError(ctype)
-#
-#     return await service.get_channel(channel_value)
+async def get_container_by_identifier(
+    ctype: ContainerType,
+    value: str,
+    session: AsyncSession
+) -> Container:
+    match ctype:
+        case ContainerType.PRIVATE_CHANEL if value.isdigit():
+            service = PrivateChannelService(session)
+            channel_value = int(value)
+
+        case ContainerType.PUBLIC_CHANNEL:
+            service = PublicChannelService(session)
+            channel_value = value
+
+        case ContainerType.TOPIC if value.isdigit():
+            return await TopicService(session).get_topic(
+                topic_id=int(value)
+            )
+        case _:
+            raise EntityBadRequestError(ctype)
+
+    return await service.get_channel(channel_value)
 
 
 class BaseContainerUseCase:

@@ -1,9 +1,8 @@
 from base.db import getSessionDep
 from deps.auth import currentUserDep
-from deps.comment import commentServiceDep
-from deps.reaction import reactionServiceDep
+from services.comment import CommentService
+from services.reaction import ReactionService
 from deps.user import userServiceDep
-from deps.container import containerServiceDep
 from entities import ReactionType
 from fastapi import APIRouter, Depends, status
 from helpers.search import Pagination
@@ -96,9 +95,12 @@ async def edit_settings(
 )
 async def get_my_comments(
         user: currentUserDep,
-        service: commentServiceDep,
+        session: getSessionDep,
         pagination: Pagination = Depends()
 ):
+
+    service = CommentService(session)
+
     comments = await service.get_user_comments(
         user_id=user.id, pagination=pagination
     )
@@ -121,10 +123,12 @@ async def get_my_comments(
 )
 async def get_my_reactions(
         user: currentUserDep,
-        service: reactionServiceDep,
+        session: getSessionDep,
         r: ReactionType | None = None,
         pagination: Pagination = Depends()
 ):
+
+    service = ReactionService(session)
 
     reactions = await service.get_user_reactions(
         user_id=user.id, reaction_type=r, pagination=pagination

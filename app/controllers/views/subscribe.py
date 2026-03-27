@@ -1,5 +1,6 @@
 from deps.auth import currentUserDep
-from deps.subscribe import subscribeServiceDep
+from base.db import getSessionDep
+from services.subscribe import SubscribeService
 from fastapi import APIRouter, Depends
 from helpers.search import Pagination
 from schemas.post import PostFullShow, PostContainerShow, PostShow
@@ -15,10 +16,16 @@ router = APIRouter(prefix="/subscribes", tags=["🔔 Подписки"])
 )
 async def get_subs(
         user: currentUserDep,
-        service: subscribeServiceDep,
+        session: getSessionDep,
         pagination: Pagination = Depends(),
 ):
-    return await service.get_subs(user_id=user.id, pagination=pagination)
+    service = SubscribeService(session)
+
+    subs = await service.get_subs(user_id=user.id, pagination=pagination)
+
+    return [
+        ContainerMetricsShow.from_orm(subs)
+    ]
 
 
 
@@ -29,9 +36,11 @@ async def get_subs(
 )
 async def get_subs_content(
         user: currentUserDep,
-        service: subscribeServiceDep,
+        session: getSessionDep,
         pagination: Pagination = Depends(),
 ):
+    service = SubscribeService(session)
+
     content = await service.get_content(
         user_id=user.id, pagination=pagination
     )

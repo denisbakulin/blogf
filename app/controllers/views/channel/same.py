@@ -1,9 +1,7 @@
 from base.db import getSessionDep
 from deps.auth import currentUserDep
-from deps.channel import *
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends
 from helpers.search import Pagination
-from schemas.admin import AdminCreate
 from schemas.container import ContainerShow, ContainerUpdate
 from schemas.post import PostCreate, PostAuthorShow, UserUsername, PostShow
 from logic import UpdateContainerUseCase, CreatePostUseCase, GetPostsUseCase, GetChannelUseCase
@@ -11,7 +9,7 @@ from schemas.user import UserShow
 
 from logic.channel import  GetChannelSubscribersUseCase
 
-router = APIRouter(prefix="/{channel_id}", tags=["Same channel"])
+router = APIRouter(prefix="/{channel_id}")
 
 
 @router.get(
@@ -38,7 +36,7 @@ async def get_channel(
     summary="Изменить канал",
 )
 async def update_channel(
-    channel: publicChannelDep,
+    channel_id: int,
     update: ContainerUpdate,
     session: getSessionDep,
     user: currentUserDep
@@ -46,12 +44,13 @@ async def update_channel(
     logic = UpdateContainerUseCase(session)
 
     return await logic.execute(
-        user=user, container_id=channel.id, update=update
+        user=user, container_id=channel_id, update=update
     )
 
 
 @router.get(
     "/posts",
+    tags=["Posts"],
     summary="Получить посты канала",
     response_model=list[PostAuthorShow]
 )
@@ -76,6 +75,7 @@ async def get_channel_posts(
 
 @router.post(
     "/posts",
+    tags=["Posts"],
     summary="Создать пост в канале",
     response_model=PostShow
 )
@@ -97,6 +97,7 @@ async def create_channel_post(
 
 @router.get(
     "/subscribers",
+    tags=["Subscribes"],
     summary="Получить подписчиков канала",
     response_model=list[UserShow]
 )

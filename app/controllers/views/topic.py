@@ -1,7 +1,7 @@
 from base.db import getSessionDep
 from deps.auth import currentUserDep
 from deps.post import postServiceDep
-from deps.subscribe import subscribeServiceDep
+from services.subscribe import SubscribeService
 from deps.topic import topicDep, topicServiceDep
 from fastapi import APIRouter, Depends, status
 from helpers.search import Pagination
@@ -88,9 +88,11 @@ async def get_topic(
 )
 async def subscribe_to_topic(
         topic: topicDep,
-        service: subscribeServiceDep,
+        session: getSessionDep,
         user: currentUserDep
 ):
+    service = SubscribeService(session)
+
     return await service.create_subscribe(user_id=user.id, container_id=topic.id)
 
 

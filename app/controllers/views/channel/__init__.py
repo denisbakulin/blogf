@@ -1,6 +1,6 @@
-from .same import router as public_router
+from .same import router as same_router
 from .private import router as private_router
-
+from .public import router as public_router
 from base.db import getSessionDep
 from deps.auth import currentUserDep
 
@@ -13,6 +13,7 @@ from services.channel import PublicChannelService, PrivateChannelService
 
 
 router = APIRouter(prefix="/channels", tags=[])
+router.include_router(same_router)
 router.include_router(private_router)
 router.include_router(public_router)
 

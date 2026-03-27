@@ -2,7 +2,7 @@
 from base.db import getSessionDep
 from deps.auth import currentUserDep
 from deps.post import postDep, postServiceDep
-from deps.reaction import reactionServiceDep
+
 from entities import ContainerType, ReactionType
 from fastapi import APIRouter, Depends, status
 from helpers.search import Pagination
@@ -160,43 +160,43 @@ async def get_post_comments(
     ]
 
 
-@router.post(
-    "/{slug}/reactions",
-    summary="Оставить реакцию под постом",
-    status_code=status.HTTP_201_CREATED
-)
-async def add_post_reaction(
-        post: postDep,
-        user: currentUserDep,
-        service: reactionServiceDep,
-        reaction: ReactionType | None = None,
-):
-    await service.process_post_reaction(
-        user_id=user.id, post_id=post.id, reaction=reaction
-    )
-
-
-@router.get(
-    "/{slug}/reactions",
-    summary="Получить реакции поста",
-    response_model=list[ReactionAuthorShow]
-)
-async def get_post_reactions(
-        post: postDep,
-        service: reactionServiceDep,
-        pagination: Pagination = Depends(),
-        type: ReactionType | None = None,
-):
-    reactions = await service.get_post_reactions(
-        post_id=post.id, reaction_type=type, pagination=pagination
-    )
-
-    return [
-        ReactionAuthorShow(
-            **ReactionShow.from_orm(reaction).model_dump(),
-            author=UserUsername.from_orm(author)
-        ) for reaction, author in reactions
-    ]
-
-
-
+# @router.post(
+#     "/{slug}/reactions",
+#     summary="Оставить реакцию под постом",
+#     status_code=status.HTTP_201_CREATED
+# )
+# async def add_post_reaction(
+#         post: postDep,
+#         user: currentUserDep,
+#         service: reactionServiceDep,
+#         reaction: ReactionType | None = None,
+# ):
+#     await service.process_post_reaction(
+#         user_id=user.id, post_id=post.id, reaction=reaction
+#     )
+#
+#
+# @router.get(
+#     "/{slug}/reactions",
+#     summary="Получить реакции поста",
+#     response_model=list[ReactionAuthorShow]
+# )
+# async def get_post_reactions(
+#         post: postDep,
+#         service: reactionServiceDep,
+#         pagination: Pagination = Depends(),
+#         type: ReactionType | None = None,
+# ):
+#     reactions = await service.get_post_reactions(
+#         post_id=post.id, reaction_type=type, pagination=pagination
+#     )
+#
+#     return [
+#         ReactionAuthorShow(
+#             **ReactionShow.from_orm(reaction).model_dump(),
+#             author=UserUsername.from_orm(author)
+#         ) for reaction, author in reactions
+#     ]
+#
+#
+#
