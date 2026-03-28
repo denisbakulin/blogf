@@ -70,3 +70,4 @@ class BaseAuth:
             "user_id": user.id},
         "forget-password"
         )
+

@@ -42,7 +42,7 @@ class ProcessPostReactionUseCase(BaseReactionUseCase):
         post = await self.post_service.get_by_or_raise(slug=post_slug)
         container = await self.container_service.get_item_by_id(post.container_id)
 
-        await self.policy.ensure_create(user=user, container=container)
+        await self.policy.ensure_create(user=user, container=container, post=post)
 
         await self.reaction_service.process_post_reaction(
             user_id=user.id, reaction=reaction, post_id=post.id

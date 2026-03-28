@@ -14,15 +14,18 @@ class ContainerContexBuilder(ABC):
     def __init__(
         self,
         session: AsyncSession,
-        container: Container,
         user: User,
+        container: Container,
         entity: OwnedByUserMixin | None = None
     ):
+        self.session = session
 
         self.user = user
         self.container = container
         self.entity = entity
-        self.session = session
+
+        self.level = AccessLevel.UNDEFINED
+
         self.subscribe = SubscribeService(session)
         self.admin = AdminService(session)
 
@@ -37,19 +40,27 @@ class ContainerContexBuilder(ABC):
             user_id=self.user.id, container_id=self.container.id
         )
 
-    async def is_admin(self):
+    async def is_admin(self, *, general: bool = False):
         return await self.admin.repository.exists(
-            container_id=self.container.id, user_id=self.user.id
+            container_id=None if general else self.container.id,
+            user_id=self.user.id
         )
+
+
+
+
+    async def set_admin_status(self):
+        if self.is_admin():
+            self.admin = AccessLevel.ADMIN
+        if self.is_admin(general=True):
+            self.admin = AccessLevel.GENERAL_ADMIN
+
 
     @property
     def is_owner(self) -> bool:
         if self.entity is None:
             return False
         return self.user.id == self.entity.author_id
-
-
-
 
 
 
@@ -64,51 +75,51 @@ class ContainerContexBuilder(ABC):
         )
 
 
+
 def ctx_from_access(access: AccessContext, level: AccessLevel) -> Context:
     return Context(**access.__dict__, level=level)
 
 
 class PublicChannelContextBuilder(ContainerContexBuilder):
     async def build(self) -> Context:
-        access_ctx, level = self.get_level()
-        is_admin = await self.is_admin()
+        access_ctx, self.level = self.get_level()
 
-        if level is AccessLevel.UNDEFINED:
-            level = AccessLevel.VIEWER
+        if self.level is AccessLevel.UNDEFINED:
+            self.level = AccessLevel.VIEWER
 
-        if is_admin:
-            level = AccessLevel.ADMIN
+        await self.set_admin_status()
 
-        return ctx_from_access(access_ctx, level)
+        return ctx_from_access(access_ctx, self.level)
 
 
 class PrivateChannelContextBuilder(ContainerContexBuilder):
 
     async def build(self) -> Context:
-        access_ctx, level = self.get_level()
-
+        access_ctx, self.level = self.get_level()
         is_subscriber = await self.is_subscriber()
-        is_admin = await self.is_admin()
 
-        if level is AccessLevel.UNDEFINED:
-            level = AccessLevel.VIEWER if is_subscriber else AccessLevel.UNDEFINED
 
-        if is_admin:
-            level = AccessLevel.ADMIN
+        if self.level is AccessLevel.UNDEFINED:
+            self.level = AccessLevel.VIEWER if is_subscriber else AccessLevel.UNDEFINED
 
-        return ctx_from_access(access_ctx, level)
+        await self.set_admin_status()
+
+        return ctx_from_access(access_ctx, self.level)
+
+
 
 
 class TopicContextBuilder(ContainerContexBuilder):
     async def build(self) -> Context:
-        access_ctx, level = self.get_level()
+        access_ctx, self.level = self.get_level()
         is_subscriber = await self.is_subscriber()
-        is_admin = await self.is_admin()
 
-        if level == AccessLevel.UNDEFINED:
-            level = AccessLevel.MEMBER if is_subscriber else AccessLevel.VIEWER
+        if self.level == AccessLevel.UNDEFINED:
+            self.level = AccessLevel.MEMBER if is_subscriber else AccessLevel.VIEWER
 
-        return ctx_from_access(access_ctx, level)
+        await self.set_admin_status()
+
+        return ctx_from_access(access_ctx, self.level)
 
 
 class WallContextBuilder(ContainerContexBuilder):

@@ -11,7 +11,9 @@ class AdminService(BaseService[Admin, AdminRepository]):
         super().__init__(Admin, session, AdminRepository)
 
 
-    async def create_admin(self, user_id: int, container_id: int):
+    async def create_admin(self, user_id: int, container_id: int | None = None):
+        """Create an admin / if container_id is NONE create global admin"""
+
         params = {'user_id': user_id, 'container_id': container_id}
 
         await self.create_if_not_exists(exists_spec=params, create=params)

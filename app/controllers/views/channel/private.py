@@ -19,7 +19,7 @@ router = APIRouter(prefix="/{channel_id}")
 
 @router.post(
     "/invite-links",
-    tags=["Invite link"]
+    tags=["invite link"]
 )
 async def create_invite_link(
     user: currentUserDep,
@@ -34,7 +34,7 @@ async def create_invite_link(
 
 @router.get(
     "/invite-links",
-    tags=["Invite link"]
+    tags=["invite link"]
 )
 async def get_invite_links(
     user: currentUserDep,

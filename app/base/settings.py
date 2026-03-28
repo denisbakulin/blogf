@@ -39,10 +39,16 @@ class TgBotSettings(BaseSettings):
     name: str
 
 
+class AdminSettings(BaseSettings):
+    login: str
+    password: str
+
+
 class Settings(BaseSettings):
     jwt: JWTAuthSettings
     google: GoogleOAuthSettings
     redis: RedisSettings
+    admin: AdminSettings
 
     bot: TgBotSettings
 

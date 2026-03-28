@@ -29,9 +29,9 @@ async def get_container_by_identifier(
             service = PrivateChannelService(session)
             channel_value = int(value)
 
-        case ContainerType.PUBLIC_CHANNEL:
+        case ContainerType.PUBLIC_CHANNEL if value.isdigit():
             service = PublicChannelService(session)
-            channel_value = value
+            channel_value = int(value)
 
         case ContainerType.TOPIC if value.isdigit():
             return await TopicService(session).get_topic(

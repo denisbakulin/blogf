@@ -36,7 +36,6 @@ class UserService(BaseService[User, UserRepository]):
         ensure_correct_username(username)
         await self.check_already_exists(username=username)
 
-
         user = await self.create_item(
             name=name, username=username
         )

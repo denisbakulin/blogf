@@ -31,7 +31,7 @@ class CreateCommentUseCase(BaseCommentUseCase):
         post = await self.post_service.get_by_or_raise(slug=post_slug)
         container = await self.container_service.get_item_by_id(post.container_id)
 
-        await self.policy.ensure_create(user=user, container=container)
+        await self.policy.ensure_create(user=user, container=container, post=post)
 
         comment = await self.comment_service.create_comment(
             create=create, user_id=user.id, post_id=post.id

@@ -31,16 +31,16 @@ class ContextEnsure:
         self.ctx = ctx
 
     @staticmethod
-    def _ensure(condition: bool, msg: str | None = None):
+    def ensure(condition: bool, msg: str | None = None):
         if condition:
             return None
         raise Forbidden(msg)
 
     def is_owner(self):
-        self._ensure(self.ctx.is_owner)
+        self.ensure(self.ctx.is_owner)
 
     def ge_role(self, role: AccessLevel):
-        self._ensure(self.ctx.level.value >= role.value)
+        self.ensure(self.ctx.level.value >= role.value)
 
 
 

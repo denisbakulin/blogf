@@ -18,7 +18,6 @@ engine = create_async_engine(
 )
 
 from sqlalchemy import event
-from sqlalchemy.engine import Engine  # Импортируем обычный Engine
 
 # Вешаемся на внутренний синхронный движок асинхронного драйвера
 @event.listens_for(engine.sync_engine, "connect")

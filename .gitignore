@@ -36,5 +36,6 @@ htmlcov/
 .localized
 Thumbs.db
 
-envs/
-app/app_log.log
+data
+envs
+./app/app_log.log

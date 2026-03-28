@@ -97,7 +97,7 @@ async def create_channel_post(
 
 @router.get(
     "/subscribers",
-    tags=["Subscribes"],
+    tags=["Subscribe"],
     summary="Получить подписчиков канала",
     response_model=list[UserShow]
 )

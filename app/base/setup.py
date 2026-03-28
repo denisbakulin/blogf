@@ -47,11 +47,12 @@ def include_routers(app: FastAPI):
     for router in routers:
         app.include_router(router)
 
+from base.db import init_models, session_maker
+
 
 async def init_db(app: FastAPI):
-    from base.db import init_models
-    await init_models()
 
+    await init_models()
 
 
 @asynccontextmanager
@@ -60,6 +61,14 @@ async def lifespan(
 ):
 
     include_routers(app)
+    from base.settings import settings
+    from auth.init_admin import create_admin_user
+
+    await create_admin_user(
+        username=settings.admin.login,
+        password=settings.admin.password
+    )
+
     from base.broker import broker
 
     await init_db(app)

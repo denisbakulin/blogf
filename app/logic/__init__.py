@@ -4,5 +4,5 @@ from .container import *
 from .link import *
 from .post import *
 from .reaction import *
-
+from .topic import CreateTopicUseCase
 

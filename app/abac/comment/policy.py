@@ -1,17 +1,17 @@
 from abac.access_level import AccessLevel
 from abac.policy import BasePolicy, ContextEnsure
-from entities.comment import Comment
-from entities.container import Container
-from entities.user import User
+from entities import Comment, Container, User, Post
 
 
 class CommentPolicy(BasePolicy):
 
-    async def ensure_create(self, user: User, container: Container):
+    async def ensure_create(self, user: User, container: Container, post: Post):
         ctx = await self.resolver.resolve(
             user=user, container=container
         )
         ContextEnsure(ctx).ge_role(AccessLevel.VIEWER)
+        ContextEnsure.ensure(post.allow_comments, "Не поддерживаются комментарии")
+
 
 
     async def ensure_update(self, user: User, comment: Comment, container: Container):
