@@ -27,8 +27,8 @@ class BaseCommentUseCase:
 
 class CreateCommentUseCase(BaseCommentUseCase):
 
-    async def execute(self, user: User, create: CommentCreate, post_slug: str):
-        post = await self.post_service.get_by_or_raise(slug=post_slug)
+    async def execute(self, user: User, create: CommentCreate, post_id: int):
+        post = await self.post_service.get_item_by_id(post_id)
         container = await self.container_service.get_item_by_id(post.container_id)
 
         await self.policy.ensure_create(user=user, container=container, post=post)
@@ -45,8 +45,8 @@ class CreateCommentUseCase(BaseCommentUseCase):
 
 
 class GetPostCommentsUseCase(BaseCommentUseCase):
-    async def execute(self, user: User, post_slug: str, pagination: Pagination) -> list[tuple[Comment, User, Post]]:
-        post = await self.post_service.get_by_or_raise(slug=post_slug)
+    async def execute(self, user: User, post_id: int, pagination: Pagination) -> list[tuple[Comment, User, Post]]:
+        post = await self.post_service.get_item_by_id(post_id)
         container = await self.container_service.get_item_by_id(post.container_id)
 
         await self.policy.ensure_read(user=user, container=container)

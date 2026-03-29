@@ -1,8 +1,6 @@
 from abac.access_level import AccessLevel
-from abac.context_resolver import ContextResolver
 from abac.policy import BasePolicy, ContextEnsure
 from entities import Container, Reaction, User, Post
-from services.subscribe import SubscribeService
 
 
 class ReactionPolicy(BasePolicy):

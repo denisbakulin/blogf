@@ -15,7 +15,9 @@ class TopicOfferService(BaseService[TopicOffer, TopicOfferRepository]):
         return await self.create_item(author_id=author_id, **topic_create.dict())
 
     async def get_topic_offer_by_id(self, offer_id):
-        return await self.repository.get_topic_offer_by_id(offer_id)
+        return self.ensure_one_return(
+            await self.repository.get_topic_offer_by_id(offer_id)
+        )
 
     async def get_topic_offers(self, pagination: Pagination):
         return await self.repository.get_some_topic_offers(**pagination.dict())

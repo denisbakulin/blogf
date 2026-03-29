@@ -9,7 +9,16 @@ from helpers.search import Pagination
 from schemas.comment import CommentCreate, CommentAuthorShow, CommentShow, UserUsername
 from schemas.post import PostShow, PostUpdate, PostContainerShow, ContainerShow
 
-from logic import GetPostUseCase, UpdatePostUseCase, DeletePostUseCase, CreateCommentUseCase, GetPostCommentsUseCase
+from logic import (
+    GetPostUseCase,
+    UpdatePostUseCase,
+    DeletePostUseCase,
+    CreateCommentUseCase,
+    GetPostCommentsUseCase,
+    GetPostReactionsUseCase,
+    ProcessPostReactionUseCase
+
+)
 from utils.post import PostSearchParams
 from schemas.reaction import ReactionPostShow, ReactionAuthorShow, PostSlug, UserUsername, ReactionShow
 
@@ -43,18 +52,18 @@ async def search_posts(
 
 
 @router.get(
-    "/{slug}",
+    "/{post_id}",
     summary="Получить пост",
     response_model=PostContainerShow,
 )
 async def get_post(
-        slug: str,
+        post_id: int,
         session: getSessionDep,
         user: currentUserDep,
 ):
     logic = GetPostUseCase(session)
 
-    post, container = await logic.execute(user=user, slug=slug)
+    post, container = await logic.execute(user=user, post_id=post_id)
 
     return PostContainerShow(
         **PostShow.from_orm(post).model_dump(),
@@ -62,46 +71,46 @@ async def get_post(
     )
 
 @router.patch(
-    "/{slug}",
+    "/{post_id}",
     summary="Изменить информацию о посте",
     response_model=PostShow
 )
 async def update_post(
         session: getSessionDep,
-        slug: str,
+        post_id: int,
         user: currentUserDep,
         update: PostUpdate,
 ):
     logic = UpdatePostUseCase(session)
 
     return await logic.execute(
-        slug=slug, update=update, user=user
+        post_id=post_id, update=update, user=user
     )
 
 
 @router.delete(
-    "/{slug}",
+    "/{post_id}",
     summary="Удалить пост",
 )
 async def delete_post(
         session: getSessionDep,
-        slug: str,
+        post_id: int,
         user: currentUserDep,
 ):
     logic = DeletePostUseCase(session)
 
     return await logic.execute(
-        slug=slug,  user=user
+        post_id=post_id,  user=user
     )
 
 
 @router.post(
-    "/{slug}/comments",
+    "/{post_id}/comments",
     summary="Создать комментарий под постом",
     status_code=status.HTTP_201_CREATED
 )
 async def create_comment(
-        slug: str,
+        post_id: int,
         user: currentUserDep,
         session: getSessionDep,
         create: CommentCreate,
@@ -110,7 +119,7 @@ async def create_comment(
     logic = CreateCommentUseCase(session)
 
     return await logic.execute(
-        create=create, user=user, post_slug=slug
+        create=create, user=user, post_id=post_id
     )
 
 #
@@ -135,12 +144,12 @@ async def create_comment(
 
 
 @router.get(
-    "/{slug}/comments",
+    "/{post_id}/comments",
     summary="Получить комментарии под постом",
     response_model=list[CommentAuthorShow]
 )
 async def get_post_comments(
-        slug: str,
+        post_id: int,
         user: currentUserDep,
         session: getSessionDep,
         pagination: Pagination = Depends(),
@@ -149,7 +158,7 @@ async def get_post_comments(
 
 
     comments = await logic.execute(
-        user=user, post_slug=slug, pagination=pagination
+        user=user, post_id=post_id, pagination=pagination
     )
 
     return [
@@ -160,43 +169,45 @@ async def get_post_comments(
     ]
 
 
-# @router.post(
-#     "/{slug}/reactions",
-#     summary="Оставить реакцию под постом",
-#     status_code=status.HTTP_201_CREATED
-# )
-# async def add_post_reaction(
-#         post: postDep,
-#         user: currentUserDep,
-#         service: reactionServiceDep,
-#         reaction: ReactionType | None = None,
-# ):
-#     await service.process_post_reaction(
-#         user_id=user.id, post_id=post.id, reaction=reaction
-#     )
-#
-#
-# @router.get(
-#     "/{slug}/reactions",
-#     summary="Получить реакции поста",
-#     response_model=list[ReactionAuthorShow]
-# )
-# async def get_post_reactions(
-#         post: postDep,
-#         service: reactionServiceDep,
-#         pagination: Pagination = Depends(),
-#         type: ReactionType | None = None,
-# ):
-#     reactions = await service.get_post_reactions(
-#         post_id=post.id, reaction_type=type, pagination=pagination
-#     )
-#
-#     return [
-#         ReactionAuthorShow(
-#             **ReactionShow.from_orm(reaction).model_dump(),
-#             author=UserUsername.from_orm(author)
-#         ) for reaction, author in reactions
-#     ]
-#
-#
-#
+
+@router.get(
+    "/{post_id}/reactions",
+    summary="Получить реакции поста",
+    response_model=list[ReactionAuthorShow]
+)
+async def get_post_reactions(
+    post_id: int,
+    session: getSessionDep,
+    user: currentUserDep,
+    pagination: Pagination = Depends(),
+    type: ReactionType | None = None,
+):
+    logic = GetPostReactionsUseCase(session)
+
+    reactions = await logic.execute(
+        user=user, post_id=post_id, reaction_type=type, pagination=pagination
+    )
+
+    return [
+        ReactionAuthorShow(
+            **ReactionShow.from_orm(reaction).model_dump(),
+            author=UserUsername.from_orm(author)
+        ) for reaction, author in reactions
+    ]
+
+@router.post(
+    "/{post_id}/reactions",
+    summary="Оставить реакцию под постом",
+)
+async def process_reaction(
+    post_id: int,
+    user: currentUserDep,
+    session: getSessionDep,
+    type: ReactionType | None = None,
+):
+    logic = ProcessPostReactionUseCase(session)
+
+    await logic.execute(
+        user=user, post_id=post_id, type=type
+    )
+

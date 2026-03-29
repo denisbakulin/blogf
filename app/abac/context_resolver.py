@@ -98,7 +98,6 @@ class PrivateChannelContextBuilder(ContainerContexBuilder):
         access_ctx, self.level = self.get_level()
         is_subscriber = await self.is_subscriber()
 
-
         if self.level is AccessLevel.UNDEFINED:
             self.level = AccessLevel.VIEWER if is_subscriber else AccessLevel.UNDEFINED
 

@@ -12,6 +12,8 @@ from services.admin import AdminService
 
 
 class BaseContainerPolicy:
+    """Базовый класс для взаимодействия с Контейнерами"""
+
     builder: ContainerContexBuilder
 
     def __init__(

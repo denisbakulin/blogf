@@ -15,7 +15,7 @@ class ReactionService(BaseService[Reaction, ReactionRepository]):
             self,
             user_id: int,
             post_id: int,
-            reaction: ReactionType | None = None,
+            type: ReactionType | None = None,
     ):
         ex_reaction = await self.repository.get_one_by(
             author_id=user_id, post_id=post_id
@@ -24,8 +24,8 @@ class ReactionService(BaseService[Reaction, ReactionRepository]):
         if ex_reaction:
             await self.delete_item_by_id(ex_reaction.id)
 
-        if reaction is not None:
-            await self.create_item(author_id=user_id, post_id=post_id, type=reaction)
+        if type is not None:
+            await self.create_item(author_id=user_id, post_id=post_id, type=type)
 
 
     async def get_post_reactions(

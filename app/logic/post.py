@@ -74,7 +74,6 @@ class CreatePostUseCase(BasePostUseCase):
 
         await self.policy.ensure_create(user=user, container=container)
 
-
         post = await self.post_service.create_post(
             author_id=user.id, post=post, container_id=container.id
         )
@@ -87,8 +86,8 @@ class CreatePostUseCase(BasePostUseCase):
 
 
 class GetPostUseCase(BasePostUseCase):
-    async def execute(self, user: User, slug: str) -> tuple[Post, Container]:
-        post = await self.post_service.get_by_or_raise(slug=slug)
+    async def execute(self, user: User, post_id: int) -> tuple[Post, Container]:
+        post = await self.post_service.get_item_by_id(post_id)
         container = await self.container_service.get_item_by_id(post.container_id)
 
         await self.policy.ensure_read(user=user, container=container)
@@ -98,8 +97,8 @@ class GetPostUseCase(BasePostUseCase):
 
 
 class UpdatePostUseCase(BasePostUseCase):
-    async def execute(self, user: User, slug: str, update: PostUpdate) -> Post:
-        post = await self.post_service.get_by_or_raise(slug=slug)
+    async def execute(self, user: User, post_id: int, update: PostUpdate) -> Post:
+        post = await self.post_service.get_item_by_id(post_id)
         container = await self.container_service.get_item_by_id(post.container_id)
 
         await self.policy.ensure_update(user=user, post=post, container=container)
@@ -108,8 +107,8 @@ class UpdatePostUseCase(BasePostUseCase):
 
 
 class DeletePostUseCase(BasePostUseCase):
-    async def execute(self, user: User, slug: str) -> None:
-        post = await self.post_service.get_by_or_raise(slug=slug)
+    async def execute(self, user: User, post_id: int) -> None:
+        post = await self.post_service.get_item_by_id(post_id)
         container = await self.container_service.get_item_by_id(post.container_id)
 
         await self.policy.ensure_delete(user=user, post=post, container=container)
