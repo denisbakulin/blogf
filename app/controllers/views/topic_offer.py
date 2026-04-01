@@ -1,12 +1,12 @@
 from deps.auth import currentUserDep
-from deps.topic import topicServiceDep
-from deps.topic_offer import topicOfferServiceDep
 from fastapi import APIRouter, Depends, status
 from helpers.search import Pagination
 from schemas.topic import AddTopicByOffer
 from schemas.topic_offer import CreateTopicOffer, TopicOfferFullShow, TopicOfferShow, UserUsername
 from base.db import getSessionDep
 from logic import CreateTopicFromOfferUseCase
+from services.topic_offer import TopicOfferService
+
 
 router = APIRouter(prefix="/topic-offers", tags=["📚 Предложенные Темы"])
 
@@ -18,12 +18,14 @@ router = APIRouter(prefix="/topic-offers", tags=["📚 Предложенные 
     response_model=TopicOfferShow
 )
 async def create_topic_offer(
-        topic_create: CreateTopicOffer,
-        user: currentUserDep,
-        service: topicOfferServiceDep,
+    create: CreateTopicOffer,
+    user: currentUserDep,
+    session: getSessionDep
 ):
+    service = TopicOfferService(session)
+
     offer = await service.create_offer_topic(
-        author_id=user.id, topic_create=topic_create
+        author_id=user.id, topic_create=create
     )
 
     return TopicOfferShow.from_orm(offer)
@@ -36,9 +38,11 @@ async def create_topic_offer(
     response_model=list[TopicOfferFullShow]
 )
 async def get_offer_topics(
-        service: topicOfferServiceDep,
-        pagination: Pagination = Depends()
+    session: getSessionDep,
+    pagination: Pagination = Depends()
 ):
+    service = TopicOfferService(session)
+
     offers = await service.get_topic_offers(pagination)
 
     return [
@@ -57,9 +61,11 @@ async def get_offer_topics(
     response_model=TopicOfferFullShow
 )
 async def get_topic_offer(
-        offer_id: int,
-        service: topicOfferServiceDep,
+    offer_id: int,
+    session: getSessionDep,
 ):
+    service = TopicOfferService(session)
+
     offer, author, processor = await service.get_topic_offer_by_id(offer_id)
 
     return TopicOfferFullShow(
@@ -68,11 +74,9 @@ async def get_topic_offer(
         process_user=UserUsername.from_orm(processor) if processor else None
     )
 
-#todo доступ админам + добавить таблицу админов
-
 
 @router.post(
-    "/{offer_id}/process",
+    "/process/{offer_id}",
     summary="Принять/отклонить тему",
     status_code=status.HTTP_201_CREATED
 )
@@ -88,3 +92,5 @@ async def process_topic(
     return await logic.execute(
         user=user, process=process, offer_id=offer_id
     )
+
+

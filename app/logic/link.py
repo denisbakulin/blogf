@@ -6,12 +6,14 @@ from services.container import AsyncSession
 from services.channel import PrivateChannelService
 from services.container_link import InviteLinkService
 from services.join_request import JoinRequestService
+from schemas.link import DeleteLink
 
-
+from base.exceptions import EntityBadRequestError
 __all__ = (
     "CreateInviteLinkUseCase",
     "CrossToInviteLinkUseCase",
-    "GetInviteLinksUseCase"
+    "GetInviteLinksUseCase",
+    "DeleteInviteLinkUseCase"
 )
 
 class BaseLinkUseCase:
@@ -58,6 +60,21 @@ class CrossToInviteLinkUseCase(BaseLinkUseCase):
         jr = await self.jr.create_jr(user_id=user.id, channel_id=channel.id)
 
         return jr
+
+
+class DeleteInviteLinkUseCase(BaseLinkUseCase):
+    async def execute(self, user: User, channel_id: int, link: DeleteLink):
+        channel = await self.private.get_channel(channel_id)
+        link = await self.link.get_item_by_id(link.link_id)
+
+        if channel.id != link.container_id:
+            raise EntityBadRequestError("ссылка не принадлежит каналу")
+
+        policy = self.policy(self.session, user=user, container=channel)
+
+        await policy.ensure_is_admin()
+
+        await self.link.delete_item_by_id(link.id)
 
 
 

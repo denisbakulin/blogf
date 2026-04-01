@@ -4,55 +4,21 @@ from deps.auth import currentUserDep
 from fastapi import APIRouter
 
 from logic import (
-    CreateInviteLinkUseCase,
     GetJRSUseCase,
     ProcessJRSPUseCase,
-    GetInviteLinksUseCase,
 )
+from schemas.channel import ChannelID
 
 from schemas.join_request import JRSUserShow, JRShow
 from schemas.user import UserUsername
 
-router = APIRouter(prefix="/{channel_id}")
 
-
-
-@router.post(
-    "/invite-links",
-    tags=["invite link"]
-)
-async def create_invite_link(
-    user: currentUserDep,
-    channel_id: int,
-    session: getSessionDep
-):
-    logic = CreateInviteLinkUseCase(session)
-
-    link = await logic.execute(user=user, channel_id=channel_id)
-
-    return link
-
-@router.get(
-    "/invite-links",
-    tags=["invite link"]
-)
-async def get_invite_links(
-    user: currentUserDep,
-    channel_id: int,
-    session: getSessionDep
-):
-    logic = GetInviteLinksUseCase(session)
-
-    links = await logic.execute(user=user, channel_id=channel_id)
-
-    return links
-
+router = APIRouter(prefix="/join-requests", tags=["Заявки на вступление"])
 
 
 @router.get(
-    "/joins",
+    "/channels/{channel_id}",
     summary="Получить заявки в канал",
-    tags=["Join Request"],
     response_model=list[JRSUserShow]
 )
 async def get_jrs(
@@ -73,12 +39,11 @@ async def get_jrs(
 
 
 @router.post(
-    "/join-process/{jr_id}",
+    "/process/{jr_id}",
     summary="Обработать заявку",
-    tags=["Join Request"]
 )
 async def process_jr(
-    channel_id: int,
+    channel: ChannelID,
     session: getSessionDep,
     user: currentUserDep,
     jr_id: int,
@@ -87,11 +52,6 @@ async def process_jr(
 
     logic = ProcessJRSPUseCase(session)
 
-    processed = await logic.execute(
-        channel_id=channel_id, user=user, jr_id=jr_id, accept=accept
+    await logic.execute(
+        channel_id=channel.id, user=user, jr_id=jr_id, accept=accept
     )
-
-
-
-
-

@@ -1,8 +1,10 @@
-from base.schemas import BaseSchema, CreatedAtMixinSchema, UpdatedAtMixinSchema
+from base.schemas import BaseSchema, CreatedAtMixinSchema, UpdatedAtMixinSchema, IdMixinSchema
 from pydantic import Field
 from schemas.container import ContainerShow
 from schemas.user import UserUsername
 
+class PostID(BaseSchema, IdMixinSchema):
+    pass
 
 class PostBase(BaseSchema):
     title: str = Field(min_length=3, max_length=100)

@@ -1,21 +1,19 @@
-from .same import router as same_router
-from .private import router as private_router
-from .public import router as public_router
+from logic import UpdateContainerUseCase, GetChannelUseCase
+
 from base.db import getSessionDep
 from deps.auth import currentUserDep
 
 from fastapi import APIRouter, status
 
 from schemas.channel import CreatePublic, CreatePrivate
-from schemas.container import ContainerShow
+from schemas.container import ContainerShow, ContainerUpdate
 
 from services.channel import PublicChannelService, PrivateChannelService
 
 
-router = APIRouter(prefix="/channels", tags=[])
-router.include_router(same_router)
-router.include_router(private_router)
-router.include_router(public_router)
+router = APIRouter(prefix="/channels", tags=["Каналы "])
+
+
 
 
 @router.post(
@@ -61,3 +59,37 @@ async def create_public_channel(
 
 
 
+@router.get(
+    "/{channel_id}",
+    summary="Посмотреть канал",
+    response_model=ContainerShow
+)
+async def get_channel(
+    channel_id: int,
+    session: getSessionDep,
+    user: currentUserDep
+):
+    logic = GetChannelUseCase(session)
+
+    channel = await logic.execute(channel_id=channel_id, user=user)
+
+    return ContainerShow.from_orm(channel)
+
+
+
+
+@router.patch(
+    "/{channel_id}",
+    summary="Изменить канал",
+)
+async def update_channel(
+    channel_id: int,
+    update: ContainerUpdate,
+    session: getSessionDep,
+    user: currentUserDep
+):
+    logic = UpdateContainerUseCase(session)
+
+    return await logic.execute(
+        user=user, container_id=channel_id, update=update
+    )

@@ -7,7 +7,7 @@ from entities import ContainerType
 from logic import get_container_by_identifier, SetContainerAdminUseCase
 from schemas.admin import AdminCreate
 
-router = APIRouter(prefix="/admin", tags=[])
+router = APIRouter(prefix="/admin", tags=["Админы"])
 
 
 @router.post(

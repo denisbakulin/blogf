@@ -4,7 +4,7 @@ from services.comment import CommentService
 from deps.container import containerServiceDep
 from services.subscribe import SubscribeService
 from deps.user import userServiceDep
-from entities import ContainerType
+from entities import ContainerType, Report
 from fastapi import APIRouter, Depends, status
 from helpers.search import Pagination
 from schemas.container import ContainerMetricsShow
@@ -12,7 +12,11 @@ from schemas.post import PostShow
 from schemas.user import UserProfile, UserProfileShow, UserShow
 from logic import GetWallPostsUseCase
 from utils.user import UserSearchParams
-
+from schemas.topic import UserCommentsCountOfTopicShow
+from services.report import ReportService
+from services.user import UserService
+from base.model import DBEntity
+from schemas.report import CreateReport
 
 router = APIRouter(prefix="/users", tags=["👨 Пользователи"])
 
@@ -52,7 +56,7 @@ async def get_user(
     )
 
 
-from schemas.topic import UserCommentsCountOfTopicShow
+
 
 
 @router.get(
@@ -91,41 +95,8 @@ async def get_user_wall(
     return ContainerMetricsShow.from_orm(wall)
 
 
-@router.get(
-    "/{user_id}/wall/posts",
-    summary="Получить посты пользователя",
-    response_model=list[PostShow]
-)
-async def get_user_wall_posts(
-    user_id: int,
-    session: getSessionDep,
-    pagination: Pagination = Depends(),
-):
-    logic = GetWallPostsUseCase(session)
-
-    posts = await logic.execute(wall_owner_id=user_id, pagination=pagination)
-
-    return [
-        PostShow.from_orm(post)
-        for post in posts
-    ]
 
 
-@router.post(
-    "/{user_id}/wall/subscribe",
-    summary="Подписаться на пользователя",
-    status_code=status.HTTP_201_CREATED,
-    response_model=None
-)
-async def subscribe_to_user_wall(
-    user_id: int,
-    cuser: currentUserDep,
-    session: getSessionDep,
-    c: containerServiceDep
-):
-    service = SubscribeService(session)
-    container = await c.get_by_or_raise(author_id=user_id, type=ContainerType.WALL)
-    return await service.create_subscribe(user_id=cuser.id, container_id=container.id)
 
 
 

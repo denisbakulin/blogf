@@ -48,21 +48,14 @@ class CreateTopicFromOfferUseCase(BaseTopicUseCase):
         offer_id: int,
         process: AddTopicByOffer,
     ):
-        topic_offer = await self.offer_service.get_topic_offer_by_id(offer_id)
+        topic_offer = await self.offer_service.get_item_by_id(offer_id)
 
         await self.policy.ensure_create(self.session, user_id=user.id)
 
-
-        if topic_offer.status != TopicOfferStatus.PENDING:
+        if process.status == TopicOfferStatus.PENDING:
             raise EntityBadRequestError(
-                "offer-Тема", f"Предложенная тема уже имеет статус {topic_offer.status}"
+                "offer-Тема", f"низя pending"
             )
-
-        await self.offer_service.update_item(
-            topic_offer.id,
-            status=process.status,
-            process_user_id=user.id
-        )
 
         if process.status == TopicOfferStatus.APPROVE:
             slug = generate_slug(process.slug)
@@ -84,7 +77,9 @@ class CreateTopicFromOfferUseCase(BaseTopicUseCase):
                 release_topic_id=release_topic.id
             )
 
-        return topic_offer
+        await self.offer_service.delete_item_by_id(offer_id)
+
+        return {"ok": True}
 
 
 

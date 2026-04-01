@@ -1,13 +1,11 @@
-from base.schemas import BaseSchema
+from base.schemas import BaseSchema, IdMixinSchema
+
+class ChannelID(BaseSchema, IdMixinSchema):
+    pass
 
 class BaseChannelCreate(BaseSchema):
     title: str | None = None
     description: str | None = None
-
-
-class ChannelCreate(BaseChannelCreate):
-    slug: str | None = None
-    is_private: bool = False
 
 
 class CreatePublic(BaseChannelCreate):
@@ -15,5 +13,5 @@ class CreatePublic(BaseChannelCreate):
 
 
 class CreatePrivate(BaseChannelCreate):
-    slug: None = None
+    pass
 

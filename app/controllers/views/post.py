@@ -1,26 +1,24 @@
-
 from base.db import getSessionDep
 from deps.auth import currentUserDep
-from deps.post import postDep, postServiceDep
+from deps.post import postServiceDep
 
 from entities import ContainerType, ReactionType
 from fastapi import APIRouter, Depends, status
 from helpers.search import Pagination
-from schemas.comment import CommentCreate, CommentAuthorShow, CommentShow, UserUsername
-from schemas.post import PostShow, PostUpdate, PostContainerShow, ContainerShow
+
+from schemas.post import PostShow, PostUpdate, PostContainerShow, ContainerShow, PostCreate, PostAuthorShow
 
 from logic import (
     GetPostUseCase,
     UpdatePostUseCase,
     DeletePostUseCase,
-    CreateCommentUseCase,
-    GetPostCommentsUseCase,
-    GetPostReactionsUseCase,
-    ProcessPostReactionUseCase
+    CreatePostUseCase,
+    GetPostsUseCase, CreateWallPostUseCase, GetWallPostsUseCase
 
 )
 from utils.post import PostSearchParams
-from schemas.reaction import ReactionPostShow, ReactionAuthorShow, PostSlug, UserUsername, ReactionShow
+from schemas.reaction import UserUsername
+
 
 router = APIRouter(prefix="/posts", tags=["📝 Посты"])
 
@@ -104,110 +102,134 @@ async def delete_post(
     )
 
 
-@router.post(
-    "/{post_id}/comments",
-    summary="Создать комментарий под постом",
-    status_code=status.HTTP_201_CREATED
-)
-async def create_comment(
-        post_id: int,
-        user: currentUserDep,
-        session: getSessionDep,
-        create: CommentCreate,
-
-):
-    logic = CreateCommentUseCase(session)
-
-    return await logic.execute(
-        create=create, user=user, post_id=post_id
-    )
-
-#
-# @router.post(
-#     "/{slug}/as-anon/comments",
-#     summary="Создать комментарий анонимно",
-#     response_model=CommentShow,
-#     status_code=status.HTTP_201_CREATED
-# )
-# async def create_comment_as_anon(
-#         post: postDep,
-#         anon: anonDep,
-#         comment_create: CommentCreate,
-#         comment_service: commentServiceDep,
-#
-# ):
-#     return await comment_service.create_comment(
-#         comment_create=comment_create, user=anon, post=post
-#     )
-
-
-
 
 @router.get(
-    "/{post_id}/comments",
-    summary="Получить комментарии под постом",
-    response_model=list[CommentAuthorShow]
+    "/channels/{channel_id}",
+    summary="Получить посты канала",
+    response_model=list[PostAuthorShow]
 )
-async def get_post_comments(
-        post_id: int,
-        user: currentUserDep,
-        session: getSessionDep,
-        pagination: Pagination = Depends(),
+async def get_channel_posts(
+    channel_id: int,
+    session: getSessionDep,
+    user: currentUserDep,
+    pagination: Pagination = Depends()
 ):
-    logic = GetPostCommentsUseCase(session)
+    logic = GetPostsUseCase(session)
 
-
-    comments = await logic.execute(
-        user=user, post_id=post_id, pagination=pagination
+    posts = await logic.execute(
+        container_id=channel_id, user=user, pagination=pagination
     )
 
     return [
-        CommentAuthorShow(
-            **CommentShow.from_orm(comment).model_dump(),
+        PostAuthorShow(
+            **PostShow.from_orm(post).model_dump(),
             author=UserUsername.from_orm(author)
-        ) for comment, author, _ in comments
+        ) for post, author in posts
+    ]
+
+@router.post(
+    "/channels/{channel_id}",
+    summary="Создать пост в канале",
+    response_model=PostShow
+)
+async def create_channel_post(
+    channel_id: int,
+    session: getSessionDep,
+    user: currentUserDep,
+    create: PostCreate
+):
+    logic = CreatePostUseCase(session)
+
+    post = await logic.execute(
+        container_id=channel_id, user=user, post=create
+    )
+
+    return PostShow.from_orm(post)
+
+
+
+
+
+@router.post(
+    "/topics/{topic_id}",
+    summary="Создать пост",
+    status_code=status.HTTP_201_CREATED,
+    response_model=PostShow
+)
+async def create_topic_post(
+    topic_id: int,
+    create: PostCreate,
+    user: currentUserDep,
+    session: getSessionDep
+):
+    logic = CreatePostUseCase(session)
+
+    post = await logic.execute(
+        user=user, post=create, container_id=topic_id
+    )
+
+    return PostShow.from_orm(post)
+
+
+@router.get(
+    "/topics/{topic_id}",
+    summary="Получить посты по теме",
+    response_model=list[PostAuthorShow]
+)
+async def get_topic_posts(
+    topic_id: int,
+    service: postServiceDep,
+    pagination: Pagination = Depends()
+):
+
+    posts = await service.get_posts_with_authors(
+        container_id=topic_id, pagination=pagination
+    )
+
+    return [
+        PostAuthorShow(
+            **PostShow.from_orm(post).model_dump(),
+            author=UserUsername.from_orm(author)
+        ) for post, author in posts
     ]
 
 
 
-@router.get(
-    "/{post_id}/reactions",
-    summary="Получить реакции поста",
-    response_model=list[ReactionAuthorShow]
+@router.post(
+    "/me",
+    summary="Создать пост",
+    status_code=status.HTTP_201_CREATED,
+    response_model=PostShow
 )
-async def get_post_reactions(
-    post_id: int,
+async def create_my_post(
+        create: PostCreate,
+        user: currentUserDep,
+        session: getSessionDep
+):
+
+    logic = CreateWallPostUseCase(session)
+    post = await logic.execute(wall_owner_id=user.id, create=create)
+
+    return PostShow.from_orm(post)
+
+
+
+
+@router.get(
+    "/users/{user_id}",
+    summary="Получить посты пользователя",
+    response_model=list[PostShow]
+)
+async def get_user_wall_posts(
+    user_id: int,
     session: getSessionDep,
-    user: currentUserDep,
     pagination: Pagination = Depends(),
-    type: ReactionType | None = None,
 ):
-    logic = GetPostReactionsUseCase(session)
+    logic = GetWallPostsUseCase(session)
 
-    reactions = await logic.execute(
-        user=user, post_id=post_id, reaction_type=type, pagination=pagination
-    )
+    posts = await logic.execute(wall_owner_id=user_id, pagination=pagination)
 
     return [
-        ReactionAuthorShow(
-            **ReactionShow.from_orm(reaction).model_dump(),
-            author=UserUsername.from_orm(author)
-        ) for reaction, author in reactions
+        PostShow.from_orm(post)
+        for post in posts
     ]
-
-@router.post(
-    "/{post_id}/reactions",
-    summary="Оставить реакцию под постом",
-)
-async def process_reaction(
-    post_id: int,
-    user: currentUserDep,
-    session: getSessionDep,
-    type: ReactionType | None = None,
-):
-    logic = ProcessPostReactionUseCase(session)
-
-    await logic.execute(
-        user=user, post_id=post_id, type=type
-    )
-
