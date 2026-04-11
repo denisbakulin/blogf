@@ -14,7 +14,7 @@ mode = ModeSettings()
 current_env_file = env_dir / (".env.prod" if mode.MODE == "PROD" else ".env.dev")
 
 
-print(current_env_file)
+
 
 class JWTAuthSettings(BaseSettings):
     secret_key: str
@@ -60,5 +60,7 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
-print(settings.redis.host)
+
+print(f"settings was loaded by file: {current_env_file.name}")
+
 

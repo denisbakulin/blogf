@@ -31,7 +31,7 @@ async def get_subs(
     subs = await service.get_subs(user_id=user.id, pagination=pagination)
 
     return [
-        ContainerMetricsShow.from_orm(subs)
+        ContainerMetricsShow.from_orm(sub) for sub in subs
     ]
 
 

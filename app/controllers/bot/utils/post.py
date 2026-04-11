@@ -1,16 +1,8 @@
-from base.exceptions import AppError
-
-MIN_POST_TITLE_LENGTH = 3
-MAX_POST_TITLE_LENGTH = 100
-
-MIN_POST_CONTENT_LENGTH = 10
-MAX_POST_CONTENT_LENGTH = 5000
-
+from schemas.post import PostCreate
+from pydantic import TypeAdapter
 
 def ensure_correct_title(title: str):
-    if not (MIN_POST_TITLE_LENGTH <= len(title) <= MAX_POST_TITLE_LENGTH):
-        raise AppError()
+    TypeAdapter(PostCreate.model_fields['title'].annotation).validate_python(title)
 
 def ensure_correct_content(content: str):
-    if not (MIN_POST_CONTENT_LENGTH <= len(content) <= MAX_POST_CONTENT_LENGTH):
-        raise AppError()
+    TypeAdapter(PostCreate.model_fields['content'].annotation).validate_python(content)

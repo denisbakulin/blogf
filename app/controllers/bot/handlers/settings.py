@@ -16,6 +16,7 @@ router = Router()
 router.callback_query.middleware(UserMiddleware(session_maker))
 router.message.middleware(UserMiddleware(session_maker))
 
+
 @router.callback_query(F.data == "settings")
 async def settings_menu(
         callback: CallbackQuery,

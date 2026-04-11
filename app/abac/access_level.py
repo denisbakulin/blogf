@@ -7,8 +7,9 @@ class AccessLevel(Enum):
     BANNED = auto()
     VIEWER = auto()
     MEMBER = auto()
-    OWNER = auto()
-    ADMIN = auto()
+    ENTITY_OWNER = auto()
+    CONTAINER_ADMIN = auto()
+    CONTAINER_OWNER = auto()
     GENERAL_ADMIN = auto()
 
 

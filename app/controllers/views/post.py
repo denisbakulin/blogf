@@ -196,19 +196,20 @@ async def get_topic_posts(
 
 
 @router.post(
-    "/me",
+    "/users/{owner_id}",
     summary="Создать пост",
     status_code=status.HTTP_201_CREATED,
     response_model=PostShow
 )
 async def create_my_post(
-        create: PostCreate,
-        user: currentUserDep,
-        session: getSessionDep
+    create: PostCreate,
+    user: currentUserDep,
+    session: getSessionDep,
+    owner_id: int
 ):
 
     logic = CreateWallPostUseCase(session)
-    post = await logic.execute(wall_owner_id=user.id, create=create)
+    post = await logic.execute(user=user, owner_id=owner_id, create=create)
 
     return PostShow.from_orm(post)
 

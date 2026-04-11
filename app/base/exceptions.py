@@ -1,6 +1,9 @@
 class AppError(Exception):
     """Базовая ошибка приложения"""
 
+class LogicError(AppError):
+    """Внутренняя ошибка"""
+
 
 class EntityNotFoundError(AppError):
     """Ресурс не найден"""
@@ -37,8 +40,8 @@ class EntityBadRequestError(AppError):
 
 class InsufficientPermissionsError(AppError):
 
-    def __init__(self):
-        super().__init__("НЕДОСТАТОЧНО ПРАВ")
+    def __init__(self, msg: str | None = None):
+        super().__init__(msg or "НЕДОСТАТОЧНО ПРАВ")
 
 class EntityAlreadyExists(AppError):
     """Ресурс уже существует"""
@@ -63,10 +66,28 @@ class EntityLockedError(AppError):
 
 
 
+from typing import Callable, Coroutine
+import inspect
 
+async def check_at_least_one_func_not_raise(options: list[tuple[Callable | Coroutine, type[Exception]]]):
+    """
+    Если хотя бы одна не вызывает ошибку, то не вызываем исключение,
+    если все ошибочны, то выкидываем последнее
+    """
 
+    excs: list[Exception] = []
 
+    for option, exc in options:
+        try:
+            if inspect.isawaitable(option):
+                await option
+            else:
+                option()
 
-
+        except exc as e:
+            excs.append(e)
+    print(excs)
+    if len(excs) == len(options):
+        raise excs[-1]
 
 

@@ -8,19 +8,19 @@ class AccessResolver:
 
     @staticmethod
     def resolve(
-            user: User,
-            context: AccessContext,
-            container: Container,
+        user: User,
+        context: AccessContext,
+        container: Container,
     ) -> AccessLevel:
 
         if not user.is_active:
             return AccessLevel.BANNED
 
         if container.author_id == user.id:
-            return AccessLevel.ADMIN
+            return AccessLevel.CONTAINER_OWNER
 
         if context.is_owner:
-            return AccessLevel.OWNER
+            return AccessLevel.ENTITY_OWNER
 
 
         return AccessLevel.UNDEFINED

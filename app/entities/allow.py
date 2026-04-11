@@ -19,6 +19,8 @@ class Allow(BaseORM, IdMixin):
     action: Mapped[AllowAction]
     entity: Mapped[DBEntity]
 
-    context: Mapped[DBEntity | None]
-    context_id: Mapped[int | None]
+    container_id: Mapped[int | None]
+
+    against: Mapped[bool] = mapped_column(default=False)
+
 

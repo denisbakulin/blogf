@@ -9,7 +9,7 @@ from schemas.channel import CreatePublic, CreatePrivate
 from schemas.container import ContainerShow, ContainerUpdate
 
 from services.channel import PublicChannelService, PrivateChannelService
-
+from services.subscribe import SubscribeService
 
 router = APIRouter(prefix="/channels", tags=["Каналы "])
 
@@ -28,10 +28,13 @@ async def create_private_channel(
     session: getSessionDep
 ):
     service = PrivateChannelService(session)
+    sub = SubscribeService(session)
 
     channel = await service.create_private_channel(
         user_id=user.id, create=create
     )
+
+    await sub.create_subscribe(user_id=user.id, container_id=channel.id)
 
     return ContainerShow.from_orm(channel)
 
@@ -52,6 +55,9 @@ async def create_public_channel(
     channel = await service.create_public_channel(
         user_id=user.id, create=create
     )
+    sub = SubscribeService(session)
+
+    await sub.create_subscribe(user_id=user.id, container_id=channel.id)
 
     return ContainerShow.from_orm(channel)
 

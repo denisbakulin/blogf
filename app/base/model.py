@@ -75,4 +75,5 @@ class DBEntity(StrEnum):
     COMMENT = auto()
     REACTION = auto()
     TOPIC_OFFER = auto()
+    TOPIC = auto()
 

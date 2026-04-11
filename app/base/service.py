@@ -80,7 +80,7 @@ class BaseService[T, R]:
         return await self.get_by_or_raise(id=item_id)
 
     async def get_items_by(
-            self, pagination: Pagination,
+            self, pagination: Pagination = Pagination(),
             **params
     ) -> list[T]:
         return await self.repository.get_any_by(**params, **pagination.dict())

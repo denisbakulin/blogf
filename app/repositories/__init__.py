@@ -11,3 +11,4 @@ from .join_request import JoinRequestRepository
 from .notification import NotificationRepository
 from .topic_offer import TopicOfferRepository
 from .report import ReportRepository
+from .allow import AllowRepository

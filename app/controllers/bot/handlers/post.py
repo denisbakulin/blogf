@@ -13,6 +13,7 @@ from entities.user import User
 from sqlalchemy.ext.asyncio import AsyncSession
 from logic import CreateWallPostUseCase
 from schemas.post import PostCreate
+from pydantic import ValidationError
 
 router = Router()
 
@@ -42,8 +43,11 @@ async def enter_post_title(
         await state.set_state(CreatePostFSM.content)
         await state.update_data({"title": title})
         await message.answer(ENTER_POST_CONTENT_TEXT)
-    except AppError:
+
+    except ValidationError:
         await message.reply("❌ Проверьте корректность заголовка и попробуйте снова")
+
+
 
 
 
@@ -60,7 +64,10 @@ async def enter_post_content(
         data = await state.get_data()
 
         wpc = CreateWallPostUseCase(session)
-        post = await wpc.execute(user.id, PostCreate(title=data["title"], content=content))
+        post = await wpc.execute(
+            user=user, owner_id=user.id,
+            create=PostCreate(title=data["title"], content=content)
+        )
 
         await message.answer(
             "✅ <b>Пост успешно создан!</b>\n",
@@ -69,8 +76,12 @@ async def enter_post_content(
             })
         )
         await state.clear()
-    except AppError:
+
+    except ValidationError:
         await message.answer("❌ Проверьте корректность содержания и попробуйте снова" )
+
+    except AppError as e:
+        await message.reply(f"❌ Кажется произошла ошибка, пост не был создан: {e}")
 
 
 

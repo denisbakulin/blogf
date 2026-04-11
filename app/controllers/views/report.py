@@ -1,15 +1,35 @@
+from abac.policy import BasePolicy
 from base.db import getSessionDep
 from base.model import DBEntity
 from deps.auth import currentUserDep
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+
+from helpers.search import Pagination
 from logic import  GetPostUseCase, GetCommentUseCase
 from schemas.report import CreateReport
 from services.report import ReportService
 from services.topic_offer import TopicOfferService
 from services.user import UserService
 
-router = APIRouter(prefix="/report", tags=["Репорт"])
+
+router = APIRouter(prefix="/reports", tags=["Репорт"])
+
+
+@router.get(
+    "",
+    summary="get reports (admins only)"
+)
+async def get_reports(
+    session: getSessionDep,
+    user: currentUserDep,
+    pagination: Pagination = Depends(),
+):
+    await BasePolicy.ensure_is_global_admin(session, user_id=user.id)
+    service = ReportService(session)
+
+
+    return await service.get_items_by(pagination=pagination)
 
 
 

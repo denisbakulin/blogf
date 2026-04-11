@@ -1,6 +1,6 @@
 from base.exceptions import AppError
 
 
-class Forbidden(AppError):
+class InsufficientAllows(AppError):
     def __init__(self, msg: str | None = None):
-        super().__init__(msg or "Forbidden / недостаточно прав!")
+        super().__init__(msg or "InsufficientAllows / недостаточно прав!")

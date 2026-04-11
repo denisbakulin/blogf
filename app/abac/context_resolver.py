@@ -7,10 +7,9 @@ from entities import Container, ContainerType, User
 from services.admin import AdminService
 from services.subscribe import SubscribeService
 from base.model import OwnedByUserMixin
-from abc import ABC, abstractmethod
 
 
-class ContainerContexBuilder(ABC):
+class ContainerContexBuilder:
     def __init__(
         self,
         session: AsyncSession,
@@ -30,7 +29,7 @@ class ContainerContexBuilder(ABC):
         self.admin = AdminService(session)
 
 
-    @abstractmethod
+
     async def build(self) -> Context:
         pass
 
@@ -47,13 +46,11 @@ class ContainerContexBuilder(ABC):
         )
 
 
-
-
     async def set_admin_status(self):
-        if self.is_admin():
-            self.admin = AccessLevel.ADMIN
-        if self.is_admin(general=True):
-            self.admin = AccessLevel.GENERAL_ADMIN
+        if await self.is_admin():
+            self.level = AccessLevel.CONTAINER_ADMIN
+        if await self.is_admin(general=True):
+            self.level = AccessLevel.GENERAL_ADMIN
 
 
     @property
@@ -76,8 +73,8 @@ class ContainerContexBuilder(ABC):
 
 
 
-def ctx_from_access(access: AccessContext, level: AccessLevel) -> Context:
-    return Context(**access.__dict__, level=level)
+def ctx_from_access(access: AccessContext, level: AccessLevel, container_id: int) -> Context:
+    return Context(**access.__dict__, level=level, container_id=container_id)
 
 
 class PublicChannelContextBuilder(ContainerContexBuilder):
@@ -89,7 +86,7 @@ class PublicChannelContextBuilder(ContainerContexBuilder):
 
         await self.set_admin_status()
 
-        return ctx_from_access(access_ctx, self.level)
+        return ctx_from_access(access_ctx, self.level, self.container.id)
 
 
 class PrivateChannelContextBuilder(ContainerContexBuilder):
@@ -103,7 +100,7 @@ class PrivateChannelContextBuilder(ContainerContexBuilder):
 
         await self.set_admin_status()
 
-        return ctx_from_access(access_ctx, self.level)
+        return ctx_from_access(access_ctx, self.level, self.container.id)
 
 
 
@@ -118,16 +115,18 @@ class TopicContextBuilder(ContainerContexBuilder):
 
         await self.set_admin_status()
 
-        return ctx_from_access(access_ctx, self.level)
+        return ctx_from_access(access_ctx, self.level, self.container.id)
 
 
 class WallContextBuilder(ContainerContexBuilder):
     async def build(self) -> Context:
-        access_ctx, level = self.get_level()
+        access_ctx, self.level = self.get_level()
 
-        level = AccessLevel.ADMIN if level == AccessLevel.ADMIN else AccessLevel.VIEWER
+        if self.level == AccessLevel.UNDEFINED:
+            self.level = AccessLevel.VIEWER
+            await self.set_admin_status()
 
-        return ctx_from_access(access_ctx, level)
+        return ctx_from_access(access_ctx, self.level, self.container.id)
 
 
 class ContextResolver:

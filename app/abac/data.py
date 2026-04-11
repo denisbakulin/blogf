@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-
+from entities import Container
 from abac.access_level import AccessLevel
 
 
@@ -17,6 +17,10 @@ class AccessContext:
 @dataclass
 class Context(AccessContext):
     level: AccessLevel
+    container_id: int | None = None
+
+    def get_dict(self):
+        return {"user_id": self.auth.user_id, "container_id": self.container_id}
 
 
 

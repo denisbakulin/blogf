@@ -8,7 +8,10 @@ from abac.context_resolver import (
     ContainerContexBuilder,
     TopicContextBuilder
 )
-from services.admin import AdminService
+
+from base.exceptions import check_at_least_one_func_not_raise, InsufficientPermissionsError
+from abac.exceptions import InsufficientAllows
+from services.allow import AllowService, AllowAction, DBEntity
 
 
 class BaseContainerPolicy:
@@ -32,10 +35,17 @@ class BaseContainerPolicy:
 
     async def ensure_is_admin(self):
         ctx = await self.get_contex()
-        ContextEnsure(ctx).ge_role(AccessLevel.ADMIN)
+        ContextEnsure(ctx).ge_role(AccessLevel.CONTAINER_ADMIN)
+
 
     async def ensure_is_owner(self):
         ContextEnsure.ensure(self.user.id == self.container.author_id, "НЕ Владелец")
+
+
+class AllowContainerPolicy(BaseContainerPolicy):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
 
 class PrivateChannelPolicy(BaseContainerPolicy):
@@ -46,13 +56,33 @@ class PrivateChannelPolicy(BaseContainerPolicy):
         ContextEnsure(ctx).ge_role(AccessLevel.VIEWER)
 
 
+
+
 class TopicPolicy(BaseContainerPolicy):
     builder = TopicContextBuilder
 
+
     @staticmethod
     async def ensure_create(session: AsyncSession, user_id: int):
-        admin = AdminService(session)
-        await admin.get_by_or_raise(user_id=user_id, container_id=None)
+        allow = AllowService(session)
+
+        # Если глобальный админ или есть разрешение на создание топиков
+        options = [
+            (
+                BasePolicy.ensure_is_global_admin(session, user_id=user_id),
+                InsufficientPermissionsError
+            ),
+            (
+
+                allow.check_access(
+                    user_id=user_id, action=AllowAction.CREATE,
+                    entity=DBEntity.TOPIC
+                ),
+                InsufficientAllows
+            )
+        ]
+
+        await check_at_least_one_func_not_raise(options)
 
 
 

@@ -17,6 +17,9 @@ __all__ = (
     "GetPostUseCase"
 )
 
+from services.user import UserService
+
+
 class BasePostUseCase:
     def __init__(
         self, session: AsyncSession
@@ -51,14 +54,27 @@ class GetPostsUseCase(BasePostUseCase):
 
 
 class CreateWallPostUseCase(BasePostUseCase):
-    async def execute(self, wall_owner_id: int, create: PostCreate) -> Post:
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.user_service = UserService(self.session)
+
+
+    async def execute(self, user: User, owner_id: int, create: PostCreate) -> Post:
+        owner = await self.user_service.get_user_by_id(owner_id)
+
         wall = await self.container_service.get_by_or_raise(
-            author_id=wall_owner_id, type=ContainerType.WALL
+            author_id=owner.id, type=ContainerType.WALL
+        )
+
+        await self.policy.ensure_create(
+            user=user, container=wall
         )
 
         post = await self.post_service.create_post(
-            author_id=wall_owner_id, post=create, container_id=wall.id
+            author_id=user.id, post=create, container_id=wall.id
         )
+
         await self.container_service.update_item(
             wall.id, post_count=wall.post_count + 1
         )
@@ -113,8 +129,12 @@ class DeletePostUseCase(BasePostUseCase):
 
         await self.policy.ensure_delete(user=user, post=post, container=container)
 
+
         await self.post_service.delete_item_by_id(post.id)
 
+        await self.container_service.update_item(
+            container.id, post_count=container.post_count - 1
+        )
 
 
 

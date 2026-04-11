@@ -1,46 +1,23 @@
+from typing import Literal
+
 from abac.container.policy import BaseContainerPolicy
-from base.exceptions import EntityBadRequestError
-from entities import User, Container
+from entities import User
 from schemas.admin import AdminCreate
 from schemas.container import ContainerUpdate, ContainerType
 from services.admin import AdminService
-from services.channel import PrivateChannelService, PublicChannelService
 from services.container import AsyncSession, ContainerService
-from services.topic import TopicService
+
 from services.user import UserService
+
+from base.exceptions import LogicError
 
 __all__ = (
     "UpdateContainerUseCase",
     "UpdateWallUseCase",
-    "get_container_by_identifier",
-    "SetContainerAdminUseCase"
+    "ProcessContainerAdminUseCase"
 )
 
 
-
-
-async def get_container_by_identifier(
-    ctype: ContainerType,
-    value: str,
-    session: AsyncSession
-) -> Container:
-    match ctype:
-        case ContainerType.PRIVATE_CHANEL if value.isdigit():
-            service = PrivateChannelService(session)
-            channel_value = int(value)
-
-        case ContainerType.PUBLIC_CHANNEL if value.isdigit():
-            service = PublicChannelService(session)
-            channel_value = int(value)
-
-        case ContainerType.TOPIC if value.isdigit():
-            return await TopicService(session).get_topic(
-                topic_id=int(value)
-            )
-        case _:
-            raise EntityBadRequestError(ctype)
-
-    return await service.get_channel(channel_value)
 
 
 class BaseContainerUseCase:
@@ -80,22 +57,36 @@ class UpdateWallUseCase(BaseContainerUseCase):
 
 
 
-class SetContainerAdminUseCase(BaseContainerUseCase):
+class ProcessContainerAdminUseCase(BaseContainerUseCase):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.admin_service = AdminService(self.session)
         self.user_service = UserService(self.session)
 
-    async def execute(self, user: User, admin: AdminCreate, container: Container):
-        admin = await self.user_service.get_user_by_username(admin.username)
+
+    async def execute(self, user: User, admin: AdminCreate, method: Literal["create", "delete"]):
+        admin_user = await self.user_service.get_user_by_id(admin.user_id)
+        container = await self.container_service.get_item_by_id(admin.container_id)
 
         policy = self.policy(self.session, user=user, container=container)
 
-        await policy.ensure_is_admin()
+        await policy.ensure_is_owner()
 
-        await self.admin_service.create_admin(
-            user_id=admin.id, container_id=container.id
-        )
+        match method:
+            case "create":
+                await self.admin_service.create_admin(
+                    user_id=admin_user.id, container_id=container.id
+                )
+            case "delete":
+                adm_column = await self.admin_service.get_by_or_raise(
+                    user_id=admin_user.id, container_id=container.id
+                )
+                await self.admin_service.delete_item_by_id(
+                    adm_column.id
+                )
+
+            case _:
+                raise LogicError("Некорректное Действие")
 
 
 

@@ -1,10 +1,11 @@
-from abac.exceptions import Forbidden
+from abac.exceptions import InsufficientAllows
 from base.exceptions import (
     EntityAlreadyExists,
     EntityBadRequestError,
     EntityLockedError,
     EntityNotFoundError,
     InsufficientPermissionsError,
+    LogicError
 )
 from exceptions.auth import AuthError
 from fastapi import status
@@ -29,7 +30,7 @@ class AppExceptionMiddleware(BaseHTTPMiddleware):
         except EntityNotFoundError as exc:
             return ErrorResponse(status.HTTP_404_NOT_FOUND, exc)
 
-        except (EntityAlreadyExists, InsufficientPermissionsError, Forbidden) as exc:
+        except (EntityAlreadyExists, InsufficientPermissionsError, InsufficientAllows) as exc:
             return ErrorResponse(status.HTTP_403_FORBIDDEN, exc)
 
         except EntityBadRequestError as exc:
@@ -45,5 +46,7 @@ class AppExceptionMiddleware(BaseHTTPMiddleware):
             return ErrorResponse(status.HTTP_423_LOCKED, exc)
 
 
+        except LogicError as exc:
+            return ErrorResponse(status.HTTP_500_INTERNAL_SERVER_ERROR, exc)
 
 

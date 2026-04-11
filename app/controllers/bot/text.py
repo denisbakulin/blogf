@@ -1,10 +1,5 @@
 from aiogram import html
-from controllers.bot.utils.post import (
-    MAX_POST_CONTENT_LENGTH,
-    MAX_POST_TITLE_LENGTH,
-    MIN_POST_CONTENT_LENGTH,
-    MIN_POST_TITLE_LENGTH,
-)
+
 from entities.user import Profile, User
 
 START_TEXT = (
@@ -37,14 +32,14 @@ RESET_PASSWORD_TEXT = (
 
 ENTER_POST_TITLE_TEXT = (
     "<b>🔹 Заголовок поста </b>\n"
-    f"  • Минимум: {MIN_POST_TITLE_LENGTH} символов 🔤\n"
-    f"  • Максимум: {MAX_POST_TITLE_LENGTH} символов 🔤\n"
+    f"  • Минимум: 3 символа 🔤\n"
+    f"  • Максимум: 5000 символов 🔤\n"
 )
 
 ENTER_POST_CONTENT_TEXT = (
     "<b>🔹 Содержание поста </b>\n"
-    f"  • Минимум: {MIN_POST_CONTENT_LENGTH} символов 🔤\n"
-    f"  • Максимум: {MAX_POST_CONTENT_LENGTH} символов 🔤\n"
+    f"  • Минимум: 10 символов 🔤\n"
+    f"  • Максимум: 5000 символов 🔤\n"
 )
 
 def create_settings_text(user: User, profile: Profile) -> str:
@@ -65,20 +60,17 @@ def get_profile_text(user: User, profile: Profile) -> str:
     bio = html.italic(html.quote(profile.bio or "Информация отсутствует"))
     city = html.quote(profile.city or "Не указан")
 
-    active_icon = "🟢 <b>Активен</b>" if user.is_active else "🔴 <b>Заблокирован</b>"
 
     text = [
         f"<b>Username:</b> <code>{username}</code> [{user.id}]",
         f"<b>Имя:</b> {name}",
-        f"<b>Город:</b> {city}",
-        f"<b>Возраст:</b> {profile.age or '—'}",
+        f"<b>Город:</b> {city}" if city else "",
+        f"<b>Возраст:</b> {profile.age}" if profile.city else "",
         "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯",
         "📝 <b>О себе:</b>",
         f"{bio}",
         "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯",
-        f"⚙️ <b>Доступ:</b> {active_icon}",
-        "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯",
         f"📅 <i>В системе с {user.created_at.strftime('%d.%m.%Y')}</i>"
     ]
 
-    return "\n".join(text)
+    return "\n".join(line for line in text if line)

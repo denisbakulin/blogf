@@ -12,8 +12,8 @@ class SubscribeService(BaseService[Subscribe, SubscribeRepository]):
 
 
     async def create_subscribe(
-            self, user_id: int,
-            container_id: int,
+        self, user_id: int,
+        container_id: int,
     ):
         subscribe = await self.repository.get_one_by(
             user_id=user_id, container_id=container_id

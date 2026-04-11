@@ -40,7 +40,7 @@ async def create_invite_link(
     return link
 
 @router.get(
-    "/channels/{channel_id}",
+    "",
     summary="Получить ссылки",
 )
 async def get_invite_links(

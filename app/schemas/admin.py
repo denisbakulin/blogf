@@ -1,5 +1,7 @@
 from base.schemas import BaseSchema
 
+
 class AdminCreate(BaseSchema):
-    username: str
+    user_id: int
+    container_id: int
 

@@ -6,10 +6,10 @@ from services.user import User, UserService
 
 
 async def process_change(
-        change: str,
-        user: User,
-        state: FSMContext,
-        user_service: UserService
+    change: str,
+    user: User,
+    state: FSMContext,
+    user_service: UserService
 ) -> tuple[bool, str]:
 
     state = await state.get_state()
@@ -23,8 +23,11 @@ async def process_change(
     try:
         await user_service.update_user(user, process_params)
         return True, "✅ Успешно обновлено!"
+
     except AppError as e:
-        return (False, "❌ " + str(e))
+        return False, f"❌ {e}"
+
+
 
 
 
